@@ -58,14 +58,64 @@
         <div class="container">
             <h1>First-order equations: The Euler method</h1>
 
-            <h2 data-toggle="collapse" data-target="#background"><a href="#">Background</a></h2>
-            <div id="background" class="collapse in">
+            <h2 data-toggle="collapse" data-target="#tutorial"><a href="#">Tutorial</a></h2>
+            <div id="tutorial" class="collapse in">
                 <p><b>Required math</b>: Differential calculus.</p>
 
-                <p>The laws of nature are often written down in terms of differential equations. A differential equation in a dependent variable $x(t)$ is any equation containing $x(t)$ and its derivatives $\frac{dx}{dt}, \frac{d^2x}{dt^2}, \ldots$. For example, if $P = P(t)$ denoted the population of rabbits on a university campus as a function of time then the population can be modelled by the differential equation $$ \frac{dP}{dt} = \left( 1 - \frac{P}{K} \right) rP $$ where $K$ is the "carrying capacity" or the maximum number of rabbits allowed the campus can sustain according to the model and $r$ is the growth rate of the rabbits.</p>
+                <p>The laws of nature are often written down in terms of differential equations. Everything from the motion of a baseball and cannon shells to the quantum state of a particle and the global ocean circulation are described in terms of differential equations. Without them, we wouldn't be able to understand most physical phenomena!</p>
 
-                <p>Most differential equations you encounter cannot be solved analytically (this one can though!) and so we turn to computers. The first step is to approximate the derivative $$ \frac{\Delta P}{\Delta t} = \left( 1 - \frac{P(t - \Delta t}{K} \right) rP(t - \Delta t) $$</p>
-            </div>
+                <p>A differential equation (DE) in a dependent variable $y(t)$ is any equation containing $y(t)$ and its derivatives. A first-order DE only contains $y(t)$ and its first derivative $\frac{dy}{dt}$. So one way to write a general first-order DE is $$ \frac{dy}{dt} = f \left( t,y(t) \right) $$</p>
+
+                <p>Many DE's can be solved by hand, but many more cannot making computational solutions very useful. In this tutorial you will solve a first-order ordinary differential equation (ODE) using Euler's method. The appendix discusses Euler's method more generally</p>
+
+                <p>The ODE given in the problem may be solved by hand however you will solve it using Euler's method. To implement the method, the first step is to approximate the derivative
+
+                $$ \frac{\Delta P}{\Delta t} = \left( 1 - \frac{P}{K} \right) rP $$
+
+                where $\Delta P$ is the change in $P$ between two iterations of Euler's method. Writing $\Delta P = P_{i+1} - P_i$ we can write
+
+                $$ \frac{P_{i+1} - P_i}{\Delta t} = \left( 1 - \frac{P_i}{K} \right) rP_i $$
+
+                or solving for $P_{i+1}$ we get
+
+                $$ P_{i+1} = P_i + \left( 1 - \frac{P_i}{K} \right) rP_i\Delta t $$</p>
+              </div>
+
+              <h2 data-toggle="collapse" data-target="#problem"><a href="#">Problem</a></h2>
+              <div id="problem" class="collapse in">
+                <p>Let $P = P(t)$ denote the population of geese on a university campus as a function of time (days). Then the population can be modelled by the differential equation
+
+                $$ \frac{dP}{dt} = \left( 1 - \frac{P}{K} \right) rP \quad , \quad P(0) = P_0 $$
+
+                where $K$ is the "carrying capacity" or the maximum number of geese the campus may sustain according to the model and $r$ is the growth rate of the geese. $P_0$ is the initial geese population at time $t=0$.</p>
+
+                <p>The university would like to keep the population below half the carrying capacity ($K/2$). When will the population reach this level (in days)?</p>
+              </div>
+
+              <h2 data-toggle="collapse" data-target="#input"><a href="#">Input</a></h2>
+              <div id="input" class="collapse">
+                  <p>Values for $K$, $r$, and $P_0$.</p>
+
+                  <div class="panel panel-default">
+                      <div class="panel-heading">Example input</div>
+                      <div class="panel-body" style="font-family: monospace;">
+                          K r P_0<br>
+                          800 4.5 150
+                      </div>
+                  </div>
+              </div>
+
+              <h2 data-toggle="collapse" data-target="#output"><a href="#">Output</a></h2>
+              <div id="output" class="collapse">
+                  <p>The number of days after which the population reaches $K/2$.</p>
+
+                  <div class="panel panel-default">
+                      <div class="panel-heading">Example output</div>
+                      <div class="panel-body" style="font-family: monospace;">
+                          37
+                      </div>
+                  </div>
+              </div>
 
             <!-- <h3>Submit Your Answer</h3>
             <div class="input-group">
