@@ -62,14 +62,16 @@
             <div id="tutorial" class="collapse in">
                 <p><b>Required math</b>: Differential calculus.</p>
 
+                <!--- Introduction --->
                 <p>The laws of nature are often written down in terms of differential equations. Everything from the motion of a baseball and cannon shells to the quantum state of a particle and the global ocean circulation are described in terms of differential equations. Without them, we wouldn't be able to understand most physical phenomena!</p>
 
                 <p>A differential equation (DE) in a dependent variable $y(t)$ is any equation containing $y(t)$ and its derivatives. A first-order DE only contains $y(t)$ and its first derivative $\frac{dy}{dt}$. So one way to write a general first-order DE is
 
                 $$ \frac{dy(t)}{dt} = f \left( t,y(t) \right) $$</p>
 
-                <p>Many DE's can be solved by hand, but many more cannot making computational solutions very useful. In this tutorial you will solve a first-order ordinary differential equation (ODE) using Euler's method. The appendix discusses Euler's method more generally</p>
+                <p>Many DE's can be solved by hand but many more cannot, making numerical/computational solutions very useful. In this tutorial you will solve a first-order ordinary differential equation (ODE) using Euler's method. The appendix discusses Euler's method more generally</p>
 
+                <!--- "Recipe" or tutorial --->
                 <p>The ODE given in the problem may be solved by hand however you will solve it using Euler's method. To implement the method, the first step is to approximate the derivative by a finite difference
 
                 $$ \frac{\Delta P}{\Delta t} = \left( 1 - \frac{P}{K} \right) rP $$
@@ -82,23 +84,23 @@
 
                 $$ P_{i+1} = P_i + \left( 1 - \frac{P_i}{K} \right) rP_i\Delta t $$</p>
 
-                <p>We can then pick a small value for $\Delta t$ and approximate the solution starting from $t=0$. We know $P(0)=P_0$ so we can calculate
+                <p>We can then pick a small value for $\Delta t$ and approximate the solution starting from $t=0$. $P(0)=P_0$ is given as an input so we can calculate
 
                 $$ P(\Delta t) = P_1 = P_0 + \left( 1 - \frac{P_0}{K} \right) rP_0\Delta t $$
                 $$ P(2\Delta t) = P_2 = P_1 + \left( 1 - \frac{P_1}{K} \right) rP_1\Delta t $$
 
-                and so on until you have enough of the solution as desired. The smaller you pick $\Delta t$ to be, the more accurate your solution will be in generaly; however, it will take more steps to copmute.</p>
+                and so on until you have enough of the solution as desired. The smaller you pick $\Delta t$ to be, the more accurate your solution will be in generaly; however, it will take more steps to compute.</p>
               </div>
 
               <h2 data-toggle="collapse" data-target="#problem"><a href="#">Problem</a></h2>
               <div id="problem" class="collapse in">
                 <p>Let $P = P(t)$ denote the population of geese on a university campus as a function of time (days). Then the population can be modelled by the differential equation
 
-                $$ \frac{dP}{dt} = \left( 1 - \frac{P}{K} \right) rP \quad , \quad P(0) = P_0 $$
+                $$ \frac{dP}{dt} = \left( 1 - \frac{P}{K} \right) rP \quad $$
 
-                where $K$ is the "carrying capacity" or the maximum number of geese the campus may sustain according to the model and $r$ is the growth rate of the geese. $P_0$ is the initial geese population at time $t=0$.</p>
+                with the initial condition $P(0) = P_0$, where $K$ is the "carrying capacity" or the maximum number of geese the campus may sustain according to the model, and $r$ is the growth rate of the geese. $P_0$ is the initial geese population at time $t=0$.</p>
 
-                <p>The university would like to keep the population below half the carrying capacity ($K/2$). When will the population reach this level (in days)?</p>
+                <p>The university would like to keep the population at a reasonable level and so it's your job to predict when the goose population will reach half the carrying capacity $(K/2)$.</p>
               </div>
 
               <h2 data-toggle="collapse" data-target="#input"><a href="#">Input</a></h2>
@@ -116,7 +118,7 @@
 
               <h2 data-toggle="collapse" data-target="#output"><a href="#">Output</a></h2>
               <div id="output" class="collapse">
-                  <p>The number of days after which the population reaches $K/2$.</p>
+                  <p>The number of days (rounded down to the nearest integer) on which the population reaches $K/2$.</p>
 
                   <div class="panel panel-default">
                       <div class="panel-heading">Example output</div>
