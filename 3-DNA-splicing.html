@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" sizes="96x96" href="img/favicon.png">
+
+    <title>DNA splicing | Project Lovelace</title>
+
+    <!-- Bootstrap core CSS with Jumbotron Theme -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="css/jumbotron.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+    </script>
+    <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Project Lovelace</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="about">About</a></li>
+                    <li><a href="problems">Problems</a></li>
+                    <li><a href="tutorials">Tutorials</a></li>
+                </ul>
+                <form class="navbar-form navbar-right">
+                    <div class="form-group">
+                        <input type="text" placeholder="Email" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" placeholder="Password" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-success">Sign in</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="jumbotron">
+        <div class="container">
+            <h1>DNA splicing</h1>
+
+            <h2 data-toggle="collapse" data-target="#question"><a href="#">Problem</a></h2>
+            <div id="question" class="collapse in">
+                <p>A DNA sequence is a string of <tt>ATCG</tt> characters representing possible nucleotide base. The complement of a DNA sequence is obtained by substituting each base with its base pair (<tt>A</tt> and <tt>T</tt> are one pair. <tt>C</tt> and <tt>G</tt> is the other). Together the two strands containing the sequence form a DNA molecule. A restriction enzyme cuts off DNA strands at a specific binding site in a DNA sequence. EcoRII is a restriction enzyme that searches for the sequence <tt>---CCWGG---</tt> where <tt>W</tt> could be either <tt>A</tt> or <tt>T</tt>, and splices it open like <tt>---NN___CCWGGNN---</tt> where another DNA strand can be spliced into the underscored region.</p>
+
+                <p>Given a DNA sequence to be spliced using EcoRII and a DNA strand to be spliced in afterward, what is the complement of the DNA sequence resulting from the splicing process?</p>
+            </div>
+
+            <h2 data-toggle="collapse" data-target="#input"><a href="#">Input</a></h2>
+            <div id="input" class="collapse">
+                <p>The DNA sequence to be spliced using the EcoRII restriction enzyme on the first line. The sequence strand to be inserted on the second line.</p>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">Example input</div>
+                    <div class="panel-body" style="font-family: monospace;">
+                        CCAGGACCAGGCCCCAGGTGGGGCCAGGCCAGGCTC<br>
+                        GTACTC
+                    </div>
+                </div>
+            </div>
+
+            <h2 data-toggle="collapse" data-target="#output"><a href="#">Output</a></h2>
+            <div id="output" class="collapse">
+                <p>A single line containing the complementary DNA sequence after splicing.</p>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">Example output</div>
+                    <div class="panel-body" style="font-family: monospace;">
+                        CATGAGGGTCCTCATGAGGGTCCGGCATGAGGGTCCACCCCCATGAGGGTCCCATGAGGGTCCGAG
+                    </div>
+                </div>
+            </div>
+
+            <!--
+            <h3>Submit Your Answer</h3>
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon3"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></span>
+                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+            </div>
+
+            <h3>Submit Your Code</h3>
+            <input id="input-1" type="file" class="file">
+            -->
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript & jQuery -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+    <script> window.jQuery || alert("jQuery could not be loaded."); </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+</html>
