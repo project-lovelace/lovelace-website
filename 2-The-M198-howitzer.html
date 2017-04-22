@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" sizes="96x96" href="img/favicon.png">
+
+    <title>The M198 Howitzer | Project Lovelace</title>
+
+    <!-- Bootstrap core CSS with Jumbotron Theme -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="css/jumbotron.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+    </script>
+    <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Project Lovelace</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="about">About</a></li>
+                    <li><a href="problems">Problems</a></li>
+                    <li><a href="tutorials">Tutorials</a></li>
+                </ul>
+                <form class="navbar-form navbar-right">
+                    <div class="form-group">
+                        <input type="text" placeholder="Email" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" placeholder="Password" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-success">Sign in</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="jumbotron">
+        <div class="container">
+            <h1>The M198 Howitzer</h1>
+
+            <h2 data-toggle="collapse" data-target="#question"><a href="#">Problem</a></h2>
+            <div id="question" class="collapse in">
+                <p><b>Required math</b>: ordinary differential equations.</p>
+                <p><b>Required physics</b>: Newton's laws of motion.</p>
+
+                <p>An M198 howitzer situated on a flat surface fires an M107 shell of mass $m$ at an angle $\theta$ to the horizon. The projectile leaves the howitzer's barrel at the coordinates $(x_0, y_0)$ with initial velocity $v_0$. During it's flight it is subjected to a drag force acting in the opposite direction to its motion $$\mathbf{F}_d = -\frac{1}{2}C\rho Av^2\hat{\mathbf{v}} $$ where $\rho$ is the density of the air, $C$ is the projectile's drag coefficient, $A$ is the projectile's area subject to the drag force, and $v$ is the projectile's velocity. $\hat{\mathbf{v}}$ is a unit vector in the direction of the projectile's velocity. Values for the constants are given below in the input section.</p>
+
+                <p>What is the $x$-coordinate of the projectile's landing spot?</p>
+            </div>
+
+            <h2 data-toggle="collapse" data-target="#input"><a href="#">Input</a></h2>
+            <div id="input" class="collapse in">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Constant</th>
+                      <th>Value</th>
+                      <th>Comments</th>
+                    </tr>
+                  </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">$g$</th>
+                    <td>$9.80665 \; \mathrm{m/s^2}$</td>
+                    <td>Standard gravity</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">$\rho$</th>
+                    <td>$1.225 \; \mathrm{kg/m^3}$</td>
+                    <td>Density of air at sea level and 15°C</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">$m$</th>
+                    <td>$43 \; \mathrm{kg}$</td>
+                    <td>M107 155mm shell mass</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">$A$</th>
+                    <td>$188.7 \; \mathrm{m^2}$</td>
+                    <td>Exposed area of M107 155mm shell. Calculated using $A=\pi r^2$ where $r$ is the radius of a shell ($155/2 \; \mathrm{mm}$).</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">$C$</th>
+                    <td>$0.0579$</td>
+                    <td>Drag coefficient of M107 155m shell for speeds below mach 0.9.</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <p>The firing angle $\theta$ in degres, initial muzzle velocity $v_0$ in m/s, and coordinates of the howitzer's bore $(x_0, y_0)$ in meters. All to four significant figures.</p>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">Example input</div>
+                    <div class="panel-body" style="font-family: monospace;">
+                        # theta  v_0    x_0    y_0<br>
+                        9.683    241.4  2.362  1.756
+                    </div>
+                </div>
+            </div>
+
+            <h2 data-toggle="collapse" data-target="#output"><a href="#">Output</a></h2>
+            <div id="output" class="collapse">
+                <p>The $x$-coordinate of the projectile's landing spot in meters, accurate to at least the nearest meter.</p>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">Example output</div>
+                    <div class="panel-body" style="font-family: monospace;">
+                        2678.15
+                    </div>
+                </div>
+            </div>
+
+            <!--
+            <h3>Submit Your Answer</h3>
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon3"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></span>
+                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+            </div>
+
+            <h3>Submit Your Code</h3>
+            <input id="input-1" type="file" class="file">
+            -->
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript & jQuery -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+    <script> window.jQuery || alert("jQuery could not be loaded."); </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+</html>
