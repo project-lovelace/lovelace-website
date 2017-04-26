@@ -104,16 +104,13 @@
                 </div>
             </div>
 
-            <!--
-            <h3>Submit Your Answer</h3>
-            <div class="input-group">
-                <span class="input-group-addon" id="basic-addon3"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></span>
-                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
-            </div>
-
             <h3>Submit Your Code</h3>
-            <input id="input-1" type="file" class="file">
-            -->
+            <form id="code-submit-form" enctype="multipart/form-data" method="post" action="#">
+                <input id="file-upload" name="code-file" type="file">
+                <br>
+                <input type="submit" value="Submit" id="submit-code-button" />
+            </form>
+            <p id="result-text"></p>
         </div>
     </div>
 
@@ -122,5 +119,6 @@
     <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
     <script> window.jQuery || alert("jQuery could not be loaded."); </script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="js/submit.js"></script>
 </body>
 </html>
