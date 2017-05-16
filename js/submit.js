@@ -7,6 +7,8 @@ function readCodeFile(event) {
 
     reader.addEventListener("load", function () {
         console.log("Done reading file.");
+        document.getElementById('result-text').innerHTML = "File read.<br>";
+
         rawResult = reader.result; // base64 encoded
         data = rawResult.substring(26) // discard substring "data:text/plain;base64,"
         payload = '{"code": "' + data + '"}'
@@ -35,14 +37,15 @@ function handleAjaxSuccess(response) {
     console.log("AJAX success!");
     console.log(response);
     if (response.success) {
-        document.getElementById('result-text').innerHTML = "Success!";
+        document.getElementById('result-text').innerHTML += "Success!";
     } else {
-        document.getElementById('result-text').innerHTML = "Failed.";
+        document.getElementById('result-text').innerHTML += "Failed.";
     }
+    document.getElementById('result-text').innerHTML += response.details;
 }
 
 function handleAjaxError(response) {
     console.log("AJAX error!");
     console.log(response);
-    document.getElementById('result-text').innerHTML = "AJAX error!";
+    document.getElementById('result-text').innerHTML += "AJAX error!";
 }
