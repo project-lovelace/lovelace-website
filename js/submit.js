@@ -10,8 +10,13 @@ function readCodeFile(event) {
         document.getElementById('result-text').innerHTML = "File read.<br>";
 
         rawResult = reader.result; // base64 encoded
-        data = rawResult.substring(26) // discard substring "data:text/plain;base64,"
-        payload = '{"code": "' + data + '"}'
+        data = rawResult.substring(26) // discard substring "data:text/plain;base64,"     
+
+        var payloadObj = new Object();
+        payloadObj.code = data;
+        payloadObj.problemID = 1;
+        var payload = JSON.stringify(payloadObj);
+        
         $.ajax({
             type: "POST",
             url: apiUrl,
