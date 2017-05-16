@@ -14,7 +14,7 @@ function readCodeFile(event) {
 
         var payloadObj = new Object();
         payloadObj.code = data;
-        payloadObj.problemID = 1;
+        payloadObj.problemID = $('meta[name="problemID"]').attr('content');
         var payload = JSON.stringify(payloadObj);
         
         $.ajax({
