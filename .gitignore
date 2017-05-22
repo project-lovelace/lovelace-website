@@ -1,2 +1,5 @@
+# Virtual environment files
+env/
+
 # IDE files
 .idea
