@@ -91,9 +91,5 @@ env/
 # Rope project settings
 .ropeproject
 
-# Sensitive problem files
-problems
-tutorials
-
 # IDE files
 .idea
