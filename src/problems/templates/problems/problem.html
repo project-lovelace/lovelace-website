@@ -1,0 +1,60 @@
+{% extends "./base.html" %}
+{% load static %}
+
+{% block preload_javascript %}
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+    </script>
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="jumbotron">
+        <div class="container">
+        <meta name="problemID" content="1">
+            <h1>{% block problem_name %}Problem Title Goes Here{% endblock %}</h1>
+
+            <h2 data-toggle="collapse" data-target="#question"><a href="#">Problem</a></h2>
+            <div id="question" class="collapse in">
+              {% block required %}<p><b>Required math</b>: Required Math Goes Here.</p>{% endblock %}
+              <p>{% block problem_body %}Problem Body Goes Here{% endblock %}</p>
+            </div>
+
+            <h2 data-toggle="collapse" data-target="#input"><a href="#">Input</a></h2>
+            <div id="input" class="collapse">
+                {% block input_description %}Problem Input Goes Here{% endblock %}
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">Example input</div>
+                    <div class="panel-body" style="font-family: monospace;">{% block input_example %}Input Example Goes Here{% endblock %}</div>
+                </div>
+            </div>
+
+            <h2 data-toggle="collapse" data-target="#output"><a href="#">Output</a></h2>
+            <div id="output" class="collapse">
+                {% block output_description %}Output Description Goes Here{% endblock %}
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">Example output</div>
+                    <div class="panel-body" style="font-family: monospace;">
+                        {% block output_example %}Output Example Goes Here{% endblock %}
+                    </div>
+                </div>
+            </div>
+
+            <h3>Submit Your Code</h3>
+            <form id="code-submit-form" enctype="multipart/form-data" method="post" action="#">
+                <input id="file-upload" name="code-file" type="file">
+                <br>
+                <input type="submit" value="Submit" id="submit-code-button" />
+            </form>
+            <p id="result-text"></p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block postload_javascript %}
+    <!-- Load our JavaScript code -->
+    <script src="{% static 'problems/js/submit.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "./problem.html" %}
+
+{% block problem_name %}{{ problem.name }}{% endblock %}
+
+{% block required %}
+    <p><b>Required math</b>: Required Math Goes Here.</p>
+{% endblock %}
+
+{% block problem_body %}
+    <p>
+        An earthquake occurs at some unknown location $(x,y), -100 < x,y < 100$ where $x,y$ are in
+        kilometers (km). Modeling the Earth's surface as a flat 2D plane, the earthquake emits
+        seismic waves which travel through the Earth and are detected by three seismographs. Given
+        the arrival times of the seismic waves, and the locations of the three seismographs,
+        determine the earthquake's source or epicenter $(x,y)$. Assume the seismic waves travel at
+        a constant 6 km/s. (We're also assuming that the earthquake happens very close to the
+        surface and that the seismographs are close to each other so the Earth's curvature is
+        negligible.)
+    </p>
+{% endblock %}
+
+{% block input_description %}
+    <p>
+        One line for each earthquake event, containing the $x$ and $y$-coordinates of the
+        seismograph and the arrival times of the seismic waves.
+    </p>
+{% endblock %}
+
+{% block input_example %}
+    x1 y1 t1 x2 y2 t2 x3 y3 t3<br>
+    8.38235322677 -58.0037208141 12.8607541935 -13.590571819 73.976069096 22.8474885484 77.2911723706 7.50876445638 5.76780978383
+{% endblock %}
+
+{% block output_description %}
+    <p>
+        A single line for each earthquake event giving the $(x,y)$ coordinate of the earthquake in km.
+    </p>
+{% endblock %}
+
+{% block output_example %}
+    79.0674612756 -27.0524778103
+{% endblock %}
