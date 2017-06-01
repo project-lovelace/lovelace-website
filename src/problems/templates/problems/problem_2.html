@@ -1,0 +1,87 @@
+{% extends "problems/problem.html" %}
+
+{% block problem_name %}{{ problem.name }}{% endblock %}
+
+{% block required %}
+    <p><b>Required math</b>: ordinary differential equations.</p>
+    <p><b>Required physics</b>: Newton's laws of motion.</p>
+{% endblock %}
+
+{% block problem_body %}
+    <p>
+        An M198 howitzer situated on a flat surface fires an M107 shell of mass $m$ at an angle
+        $\theta$ to the horizon. The projectile leaves the howitzer's barrel at the coordinates
+        $(x_0, y_0)$ with initial velocity $v_0$. During it's flight it is subjected to a drag
+        force acting in the opposite direction to its motion
+
+        $$\mathbf{F}_d = -\frac{1}{2}C\rho Av^2\hat{\mathbf{v}} $$
+
+        where $\rho$ is the density of the air, $C$ is the projectile's drag coefficient, $A$ is
+        the projectile's area subject to the drag force, and $v$ is the projectile's velocity.
+        $\hat{\mathbf{v}}$ is a unit vector in the direction of the projectile's velocity.
+        Values for the constants are given below in the input section.
+    </p>
+    <p>
+        What is the $x$-coordinate of the projectile's landing spot?
+    </p>
+{% endblock %}
+
+{% block input_description %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Constant</th>
+                    <th>Value</th>
+                    <th>Comments</th>
+                </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">$g$</th>
+                <td>$9.80665 \; \mathrm{m/s^2}$</td>
+                <td>Standard gravity</td>
+            </tr>
+            <tr>
+                <th scope="row">$\rho$</th>
+                <td>$1.225 \; \mathrm{kg/m^3}$</td>
+                <td>Density of air at sea level and 15°C</td>
+            </tr>
+            <tr>
+                <th scope="row">$m$</th>
+                <td>$43 \; \mathrm{kg}$</td>
+                <td>M107 155mm shell mass</td>
+            </tr>
+            <tr>
+                <th scope="row">$A$</th>
+                <td>$188.7 \; \mathrm{m^2}$</td>
+                <td>Exposed area of M107 155mm shell. Calculated using $A=\pi r^2$ where $r$ is the radius of a shell ($155/2 \; \mathrm{mm}$).</td>
+            </tr>
+            <tr>
+                <th scope="row">$C$</th>
+                <td>$0.0579$</td>
+                <td>Drag coefficient of M107 155m shell for speeds below mach 0.9.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>
+        The firing angle $\theta$ in degres, initial muzzle velocity $v_0$ in m/s, and coordinates
+        of the howitzer's bore $(x_0, y_0)$ in meters. All to four significant figures.
+    </p>
+{% endblock %}
+
+{% block input_example %}
+    # theta  v_0    x_0    y_0<br>
+    9.683    241.4  2.362  1.756
+{% endblock %}
+
+{% block output_description %}
+    <p>
+        The $x$-coordinate of the projectile's landing spot in meters, accurate to at least the
+        nearest meter.
+    </p>
+{% endblock %}
+
+{% block output_example %}
+    2678.15
+{% endblock %}
