@@ -1,6 +1,12 @@
 {% extends "problems/problem.html" %}
 
-{% block problem_name %}{{ problem.name }}{% endblock %}
+{% block page_title %}
+    {{ problem.name }} | Project Lovelace
+{% endblock %}
+
+{% block problem_name %}
+    {{ problem.name }}
+{% endblock %}
 
 {% block required %}
     <p><b>Required math</b>: Required Math Goes Here.</p>
