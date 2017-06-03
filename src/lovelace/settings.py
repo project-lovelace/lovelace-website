@@ -25,7 +25,9 @@ SECRET_KEY = 'foobar'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.projectlovelace.net']
+ALLOWED_HOSTS = [
+    '.projectlovelace.net'
+]
 
 
 # Application definition
@@ -55,7 +57,9 @@ ROOT_URLCONF = 'lovelace.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],  # look in the project-level templates directory for templates
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates')  # project-level templates directory
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -122,8 +126,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-STATIC_URL = '/static/'
-
+# Look for static files in the project-level static files directory
 STATICFILES_DIRS = [
-    'static'  # look for static files in the project-level static directory
+    os.path.join(BASE_DIR, 'static')
 ]
+
+# When running collectstatic in production, put all static files into src/prod_static
+STATIC_ROOT = os.path.join(BASE_DIR, 'prod_static')
+
+# When client requests files under projectlovelace.net/static, look for them in STATIC_ROOT
+STATIC_URL = '/static'
