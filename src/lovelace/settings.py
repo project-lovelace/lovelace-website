@@ -135,4 +135,4 @@ STATICFILES_DIRS = [
 STATIC_ROOT = os.path.join(BASE_DIR, 'prod_static')
 
 # When client requests files under projectlovelace.net/static, look for them in STATIC_ROOT
-STATIC_URL = '/static'
+STATIC_URL = '/static/'
