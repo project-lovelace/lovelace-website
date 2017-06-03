@@ -25,7 +25,7 @@ SECRET_KEY = 'foobar'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.projectlovelace.net']
 
 
 # Application definition
