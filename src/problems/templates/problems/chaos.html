@@ -1,0 +1,89 @@
+{% extends "problems/problem.html" %}
+
+{% block page_title %}
+    {{ problem.name }} | Project Lovelace
+{% endblock %}
+
+{% block problem_name %}
+    {{ problem.name }}
+{% endblock %}
+
+{% block required %}
+    <p><b>Required math</b>: addition and multiplication.</p>
+{% endblock %}
+
+{% block problem_body %}
+    <p>
+        Let's use loops to look at an example of chaos in nature, the logistic map. It's a dumbed down version of a model used to describe population sizes and can be written mathematically as $x_{n+1} = r*x_n(1 - x_n)$ where $0 < r < 4$ is a constant and $0 < x_n < 1$ represents the population size. Starting with $x_0 = 0.5$, your program should read in the input value $r$ then calculate and print out the first 50 values of the logistic map $x_0, x_1, x_2, \dots, x_49, x_50$ on separate lines.
+    </p>
+{% endblock %}
+
+{% block input_description %}
+    <p>
+        The value of $r$.
+    </p>
+{% endblock %}
+
+{% block input_example %}
+
+{% endblock %}
+
+{% block output_description %}
+    <p>
+        The first 50 values of the logistic map $(x_0, x_1, x_2, \dots, x_49, x_50)$ on separate lines, with at least 6 decimal place accuracy.
+    </p>
+{% endblock %}
+
+{% block output_example %}
+    0.500000
+    0.702500
+    0.587272
+    0.681098
+    0.610342
+    0.668287
+    0.622919
+    0.660043
+    0.630525
+    0.654627
+    0.635315
+    0.651049
+    0.638388
+    0.648685
+    0.640379
+    0.647126
+    0.641675
+    0.646098
+    0.642521
+    0.645422
+    0.643075
+    0.644978
+    0.643438
+    0.644686
+    0.643675
+    0.644494
+    0.643831
+    0.644368
+    0.643933
+    0.644286
+    0.644000
+    0.644232
+    0.644044
+    0.644196
+    0.644073
+    0.644173
+    0.644092
+    0.644157
+    0.644104
+    0.644147
+    0.644113
+    0.644141
+    0.644118
+    0.644136
+    0.644121
+    0.644134
+    0.644124
+    0.644132
+    0.644125
+    0.644130
+    0.644126
+{% endblock %}
