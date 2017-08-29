@@ -1,0 +1,59 @@
+<!--
+  Project Lovelace: Problem I9
+  El Nino intensities (2D arrays or matrices, climate science)
+-->
+
+{% extends "problems/problem.html" %}
+
+{% block page_title %}
+    {{ problem.name }} | Project Lovelace
+{% endblock %}
+
+{% block problem_name %}
+    {{ problem.name }}
+{% endblock %}
+
+{% block required %}
+    <p><b>Required math</b>: None.</p>
+{% endblock %}
+
+{% block problem_body %}
+    <p>
+      * What is El Nino and the El Nino Southern Oscillation (ENSO)?
+      * https://www.wildlife.ca.gov/Conservation/Marine/El-Nino#26072340-how-often-does-el-nio-occur-and-how-long-does-it-last
+      * What is the Multivariable El Nino Index (MEI)?
+
+      A warm (El Nino) event occurs when the MEI is at or above +0.5 for five consecutive two-month periods, and a cold (La Nina) event occurs when the MEI is at or below -0.5 for five consecutive two-month periods. The threshold is further broken down into weak (with a 0.5 to 0.9 anomaly), moderate (1.0 to 1.4), strong (1.5 to 1.9) and very strong (≥ 2.0) events.
+    </p>
+{% endblock %}
+
+{% block input_description %}
+    <p>
+        * A file (mei_index.txt) containing the MEI index values for each two-month period from 1950 to 2017. See https://www.esrl.noaa.gov/psd/enso/mei/table.html for more details.
+    </p>
+{% endblock %}
+
+{% block input_example %}
+
+{% endblock %}
+
+{% block output_description %}
+    <p>
+      A table of El Nino events (marked by their year, e.g. 1982-83, 2014-2016) that were weak, moderate, strong, and very strong and a similar list of La Nina events. (See example for formatting.)
+    </p>
+{% endblock %}
+
+{% block output_example %}
+  El Nino
+  weak     Moderate  Strong   Very Strong
+  1951-52  1963-64   1957-58  1982-83
+  1952-53  1986-87   1965-66  1997-98
+  1953-54  1991-92
+  1958-59
+
+  La Nina
+  Weak     Moderate  Strong
+  1950-51  1955-56   1973-74
+  1954-55  1970-71
+  1964-65
+{% endblock %}
