@@ -1,0 +1,45 @@
+<!--
+  Project Lovelace: Problem I2
+  Habitable exoplanets (conditional statements, planetary science)
+-->
+
+{% extends "problems/problem.html" %}
+
+{% block page_title %}
+    {{ problem.name }} | Project Lovelace
+{% endblock %}
+
+{% block problem_name %}
+    {{ problem.name }}
+{% endblock %}
+
+{% block required %}
+    <p><b>Required math</b>: None.</p>
+{% endblock %}
+
+{% block problem_body %}
+    <p>
+      * What is an exoplanet?
+      * What does it take for an exoplanet to be habitable? Mention the habitable zone: "not too cold, not too cold, but just right".
+      * How to calculate whether an exoplanet is in the habitable zone? (Check bookmarks for links to papers etc.)
+    </p>
+{% endblock %}
+
+{% block input_description %}
+  <p>
+    The planet's distance from the star, the star's brightness?
+  </p>
+{% endblock %}
+
+{% block input_example %}
+  
+{% endblock %}
+
+{% block output_description %}
+  <p>
+    The string "too cold", "too hot", or "habitable".
+  </p>
+{% endblock %}
+
+{% block output_example %}
+{% endblock %}
