@@ -1,0 +1,45 @@
+<!--
+  Project Lovelace: Problem I5
+  Caesar cipher (lists, cryptography)
+-->
+
+{% extends "problems/problem.html" %}
+
+{% block page_title %}
+    {{ problem.name }} | Project Lovelace
+{% endblock %}
+
+{% block problem_name %}
+    {{ problem.name }}
+{% endblock %}
+
+{% block required %}
+    <p><b>Required math</b>: None.</p>
+{% endblock %}
+
+{% block problem_body %}
+    <p>
+      * Mention that encrypted messages have been employed since antiquity (i.e. the invention of writing).
+      * Cryptography is the study of X. Explain that ciphertexts are usually written in all caps and periods are left out.
+      * Explain the Caesar cipher. Mention there are only 26 different ciphers for English.
+      * It's a weak cipher and isn't used for anything serious today, but was used in Roman times.
+    </p>
+{% endblock %}
+
+{% block input_description %}
+  <p>
+    Two strings: the first is the ciphertext and the second is one word that is present in the ciphertext.
+  </p>
+{% endblock %}
+
+{% block input_example %}
+{% endblock %}
+
+{% block output_description %}
+  <p>
+    The decrypted original message, in lower case letters.
+  </p>
+{% endblock %}
+
+{% block output_example %}
+{% endblock %}

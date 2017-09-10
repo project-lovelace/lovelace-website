@@ -1,0 +1,50 @@
+<!--
+  Project Lovelace: Problem I7
+  Correlation does not imply causation (file I/O, statistics)
+-->
+
+{% extends "problems/problem.html" %}
+
+{% block page_title %}
+    {{ problem.name }} | Project Lovelace
+{% endblock %}
+
+{% block problem_name %}
+    {{ problem.name }}
+{% endblock %}
+
+{% block required %}
+    <p><b>Required math</b>: None.</p>
+{% endblock %}
+
+{% block problem_body %}
+    <p>
+      * What is correlation and causation?
+      * Explain the phrase "correlation does not imply causation". Include 1-2 good examples.
+      You're going to read a data file containing the measurements of two variables with an $(x,y)$ data value pair on each line and calculate the correlation coefficient between the two variables.
+      The correlation coefficient $r$ between two variables $X$ and $Y$ with $n$ measurements $x_1, x_2, \dots, x_n$ and $y_1, y_2, \dots, y_n$ can be calculated using
+      $$ r = \frac{(x_1 - \bar{x})(y_1 - \bar{y}) + \dots + (x_n - \bar{x})(y_n - \bar{y})}
+                  {\sqrt{(x_1 - \bar{x})^2 + \dots + (x_n - \bar{x})^2} \times
+                   \sqrt{(y_1 - \bar{y})^2 + \dots + (y_n - \bar{y})^2}} $$
+      where $\bar{x} = \frac{x_1 + x_2 + \dots + x_n}{n}$ and $\bar{y} = \frac{y_1 + y_2 + \dots + y_n}{n}$ are the mean values of the $X$ and $Y$ measurements.
+    </p>
+{% endblock %}
+
+{% block input_description %}
+  <p>
+    A comma-separated values file containing the two variables of interest (xy_data.csv) with an x,y value pair on each line.
+  </p>
+{% endblock %}
+
+{% block input_example %}
+  
+{% endblock %}
+
+{% block output_description %}
+  <p>
+    The correlation coefficient $r$ ($-1 < r < 1$) between the two variables.
+  </p>
+{% endblock %}
+
+{% block output_example %}
+{% endblock %}

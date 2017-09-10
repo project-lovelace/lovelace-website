@@ -1,0 +1,53 @@
+<!--
+  Project Lovelace: Problem I8
+  Molecular mass calculator (pattern matching, chemistry)
+-->
+
+{% extends "problems/problem.html" %}
+
+{% block page_title %}
+    {{ problem.name }} | Project Lovelace
+{% endblock %}
+
+{% block problem_name %}
+    {{ problem.name }}
+{% endblock %}
+
+{% block required %}
+    <p><b>Required math</b>: None.</p>
+{% endblock %}
+
+{% block problem_body %}
+    <p>
+        Molecules are made up of atoms and each atom has a specific mass. For example, water (H2O) is a molecule made up of two hydrogens and an oxygen. Atoms are so light (*insert*) that using grams to describe their mass can get pretty annoying so we use other units, like the atomic mass unit (amu), to do so. 1 amu is defined as one twelevth the mass of a carbon-12 atom, or 1.661e-27 kg. For example the lightest atom, the hydrogen (H) atom, has a mass of 1.008 amu while carbon (C) has a mass of 12.011 amu and the heaviest atom on the periodic table, Oganesson (Og), has a mass of 294 amu. Methane (CH4) has a mass of 16.04 amu.
+
+        Your program should read in a comma-separated file containing the abbreviation of the elements in the periodic table with their masses in atomic mass units (amu) along with an arbitrary chemical formula and print its molecular mass.
+    </p>
+{% endblock %}
+
+{% block input_description %}
+    <p>
+        File: A file (element_masses.csv) containing the abbreviation of the elements in the periodic table with their masses in atomic mass units (amu).
+        Line 1: The molecule's chemical formula.
+    </p>
+{% endblock %}
+
+{% block input_example %}
+    Pa
+    OCS
+    C4H4AsH
+    C20H25N3O
+{% endblock %}
+
+{% block output_description %}
+    <p>
+        The molecule's mass in atomic mass units (amu).
+    </p>
+{% endblock %}
+
+{% block output_example %}
+    231.04 amu
+    60.08 amu
+    128.00 amu
+    323.44 amu
+{% endblock %}
