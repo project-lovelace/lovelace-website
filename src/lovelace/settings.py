@@ -26,7 +26,8 @@ SECRET_KEY = 'foobar'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '.projectlovelace.net'
+    '.projectlovelace.net',
+    'localhost'
 ]
 
 
