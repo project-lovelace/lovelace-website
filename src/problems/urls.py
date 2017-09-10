@@ -6,6 +6,6 @@ app_name = 'problems'
 urlpatterns = [
     # ex: /problems/
     url(r'^$', views.index, name='index'),
-    # ex: /problems/5/
-    url(r'^(?P<problem_id>[0-9]+)/$', views.detail, name='detail'),
+    # ex: /problems/earthquake-epicenters/
+    url(r'^(?P<problem_name>[a-zA-Z0-9\-]+)/$', views.detail, name='detail'),
 ]

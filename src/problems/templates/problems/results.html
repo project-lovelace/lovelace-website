@@ -2,6 +2,9 @@
 {% load static %}
 
 {% block body %}
+
+
+
     <div class="jumbotron">
         <div class="container">
             <h1>Problems</h1>
@@ -10,7 +13,7 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th><p>Date added</p></th>
+                            <th><p>ID#</p></th>
                             <th><p>Problem title</p></th>
                         </tr>
                     </thead>
@@ -18,8 +21,8 @@
                     <tbody>
                         {% for problem in latest_problem_list %}
                         <tr>
-                            <th scope="row"><p>{{ problem.date_added }}</p></th>
-                            <td><a href="{% url 'problems:detail' problem.name %}"><p>{{ problem.title }}</p></a></td>
+                            <th scope="row"><p>{{ problem.id }}</p></th>
+                            <td><a href="{% url 'problems:detail' problem.id %}"><p>{{ problem.name }}</p></a></td>
                         </tr>
                         {% endfor %}
                       </tbody>

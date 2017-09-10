@@ -5,13 +5,13 @@ from django.db import models
 
 
 class Problem(models.Model):
-    id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=128, blank=False)  # ex: "Finding Earthquake Epicenters"
-    date_added = models.DateField(default=date.today, blank=True, editable=True)
+    name = models.CharField(primary_key=True, max_length=256)  # ex: "earthquake-epicenters"
+    title = models.CharField(max_length=256)  # shown to user, ex: "Finding Earthquake Epicenters"
+    date_added = models.DateField(default=date.today, editable=True)
     visible = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.name
+        return self.title
 
 
 class Submission(models.Model):
@@ -20,7 +20,9 @@ class Submission(models.Model):
     problem = models.ForeignKey(Problem, on_delete=models.PROTECT)
     date = models.DateTimeField(auto_now_add=True, verbose_name='date submitted')
     language = models.CharField(max_length=64, verbose_name='programming language')
-    file = models.BinaryField(verbose_name='source code file')
+    file = models.FileField(max_length=4096,
+                            upload_to='uploads/%Y/%m/%d',
+                            verbose_name='source code file')
 
     def __str__(self):
         return self.id
