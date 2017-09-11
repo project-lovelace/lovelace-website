@@ -2,47 +2,43 @@
 {% load static %}
 
 {% block body %}
-    <div class="jumbotron">
-        <div class="container">
-            <h1>About</h1>
+    <h1>About</h1>
 
-            <h2>What is Project Lovelace?</h2>
-            <div class="row">
-                <div class="col-md-8">
-                    <p style="text-align: justify;">
-                        Project Lovelace is an open online platform for learning about science and
-                        developing computational thinking through programming and problem solving.
-                        It is a collection of computational science problems and tutorials taken
-                        from all branches of the natural, social, and mathematical sciences. Each
-                        problem teaches a scientific application (e.g. locating earthquakes, DNA
-                        splicing) and requires the use of scientific insight and some programming
-                        skills to solve. Tutorials teach computational methods that students and
-                        researchers may find useful (e.g. solving differential equations, Bayesian
-                        inference) and may be required knowledge for some problems.
-                    </p>
-                    <p style="text-align: justify;">
-                        While Project Lovelace is still in development, we are deploying the
-                        website and the problems one by one throughout the winter. In addition to
-                        the website's recreational aspect we ultimately hope that the problems and
-                        tutorials may be used in undergraduate courses, especially to complement
-                        courses that lack a computational portion as computational methods have
-                        become ubiquitous in almost every field of science.
-                    </p>
-                    <p style="text-align: justify;">
-                        Lovelace draws inspiration from similar projects such as
-                        <a href="https://projecteuler.net/" target="_blank">Project Euler</a> and
-                        <a href="http://rosalind.info/" target="_blank">Rosalind</a>.
-                    </p>
-                </div>
+    <h2>What is Project Lovelace?</h2>
+    <div class="row">
+        <div class="col-md-8">
+            <p style="text-align: justify;">
+                Project Lovelace is an open online platform for learning about science and
+                developing computational thinking through programming and problem solving.
+                It is a collection of computational science problems and tutorials taken
+                from all branches of the natural, social, and mathematical sciences. Each
+                problem teaches a scientific application (e.g. locating earthquakes, DNA
+                splicing) and requires the use of scientific insight and some programming
+                skills to solve. Tutorials teach computational methods that students and
+                researchers may find useful (e.g. solving differential equations, Bayesian
+                inference) and may be required knowledge for some problems.
+            </p>
+            <p style="text-align: justify;">
+                While Project Lovelace is still in development, we are deploying the
+                website and the problems one by one throughout the winter. In addition to
+                the website's recreational aspect we ultimately hope that the problems and
+                tutorials may be used in undergraduate courses, especially to complement
+                courses that lack a computational portion as computational methods have
+                become ubiquitous in almost every field of science.
+            </p>
+            <p style="text-align: justify;">
+                Lovelace draws inspiration from similar projects such as
+                <a href="https://projecteuler.net/" target="_blank">Project Euler</a> and
+                <a href="http://rosalind.info/" target="_blank">Rosalind</a>.
+            </p>
+        </div>
 
-                <div class="col-md-4">
-                    <img src="{% static 'img/ada-lovelace.jpg' %}" style="display: block; margin-left: auto; margin-right: auto; max-width: 100%; max-height: 100%;">
-                    <i>
-                        The name commemorates <a href="https://en.wikipedia.org/wiki/Ada_Lovelace"target="_blank">Ada Lovelace</a>
-                        who proposed the first algorithm to be run on a computer in the 1840's.
-                    </i>
-                </div>
-            </div>
+        <div class="col-md-4">
+            <img src="{% static 'img/ada-lovelace.jpg' %}" style="display: block; margin-left: auto; margin-right: auto; max-width: 100%; max-height: 100%;">
+            <i>
+                The name commemorates <a href="https://en.wikipedia.org/wiki/Ada_Lovelace"target="_blank">Ada Lovelace</a>
+                who proposed the first algorithm to be run on a computer in the 1840's.
+            </i>
         </div>
     </div>
 {% endblock %}

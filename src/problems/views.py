@@ -40,8 +40,8 @@ def detail(request, problem_name):
                 'code': str(base64.b64encode(file.read()), 'utf-8')
             }
             engine_response = requests.post(ENGINE_URL, data=json.dumps(submission_dict), timeout=9999)
-            # template = 'problems/results.html'
-            return HttpResponseRedirect('/')  # TODO: should redirect to a results page.
+            results = json.loads(engine_response.text)
+            return render(request, 'problems/results.html', {'results': results})
         else:
             return HttpResponseBadRequest('Unknown problem with the submitted file')
 

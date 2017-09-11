@@ -3,34 +3,38 @@
 
 {% block body %}
 
+    {% if results.success %}
+        <h2>Success!</h2>
+    {% else %}
+        <h2>Failed!</h2>
+    {% endif %}
 
+    <p>
+        Passed {{ results.numTestCasesPassed }} / {{ results.numTestCases }} test cases.
+    </p>
 
-    <div class="jumbotron">
-        <div class="container">
-            <h1>Problems</h1>
+    {% for test_case in results.testCaseDetails %}
+        <div class="panel panel-default">
+            <div class="panel-heading" style="font-size: medium;">
+                Test case {{ forloop.counter }} / {{ results.numTestCases }} ({{ test_case.testCaseType }}): {{ results.success|yesno:"passed!,failed." }}
+            </div>
+            <div class="panel-body" style="font-family: monospace; font-size: medium;">
+                Return code: {{ test_case.processInfo.returnCode }}<br>
+                utime: {{ test_case.processInfo.utime }}s<br>
+                stime: {{ test_case.processInfo.stime }}s<br>
+                maxrss: {{ test_case.processInfo.maxrss }}kB<br>
 
-            {% if latest_problem_list %}
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th><p>ID#</p></th>
-                            <th><p>Problem title</p></th>
-                        </tr>
-                    </thead>
+                <br>
 
-                    <tbody>
-                        {% for problem in latest_problem_list %}
-                        <tr>
-                            <th scope="row"><p>{{ problem.id }}</p></th>
-                            <td><a href="{% url 'problems:detail' problem.id %}"><p>{{ problem.name }}</p></a></td>
-                        </tr>
-                        {% endfor %}
-                      </tbody>
-                </table>
-            {% else %}
-                <p>No questions are available.</p>
-            {% endif %}
+                Input:<br>
+                {{ test_case.inputString }}<br>
 
+                <br>
+
+                Output:<br>
+                {{ test_case.outputString }}
+            </div>
         </div>
-    </div>
+    {% endfor %}
+
 {% endblock %}
