@@ -28,18 +28,22 @@
 
 {% block input_description %}
   <p>
-    Two strings: the first is the ciphertext and the second is one word that is present in the ciphertext.
+    Line 1: The ciphertext to be decrypted.
+    Line 2: The one word that is definitely present in the ciphertext.
   </p>
 {% endblock %}
 
 {% block input_example %}
+    QEB NRFZH YOLTK CLU GRJMP LSBO QEB IXWV ALD
+    FOX
 {% endblock %}
 
 {% block output_description %}
   <p>
-    The decrypted original message, in lower case letters.
+    The original message in lower case letters.
   </p>
 {% endblock %}
 
 {% block output_example %}
+    THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG
 {% endblock %}
