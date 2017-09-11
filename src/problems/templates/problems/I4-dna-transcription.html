@@ -13,33 +13,28 @@
 
 {% block problem_body %}
     <p>
-        Deoxyribonucleic acid (DNA) is a molecule found 
+        Deoxyribonucleic acid (DNA) is a molecule that carries the genetic instructions used in the growth, development, functioning and reproduction of all known living organisms and many viruses. This genetic information is stored as a sequence of nucleotides of which there are four: adenine (A), cytosine (C), guanine (G), and thymine (T). Thus a DNA sequence can be stored on a computer as a string of <tt>ATCG</tt> characters.
 
-        A DNA sequence is a string of <tt>ATCG</tt> characters representing possible nucleotide
-        bases of which there are four: adenine (A), cytosine (C), guanine (G), and thymine (T).
-
-        The complement of a DNA sequence is obtained by substituting each base with its base
-        pair (<tt>A</tt> and <tt>T</tt> are one pair. <tt>C</tt> and <tt>G</tt> is the other).
-        
-        Together the two strands containing the sequence form a DNA molecule.
+        Certain DNA sequences store the information required to syntheize proteins, and the first step is to transcribe the DNA sequence into a ribonucleic acid (RNA) sequence. The transcription process is biochemically complex, however the end result is that the RNA sequence is simple the DNA sequence with all instances of <tt>T</tt> replaced with a <tt>U</tt>.
     </p>
 {% endblock %}
 
 {% block input_description %}
     <p>
+      A string of <tt>ATCG</tt> characters representing a DNA sequence.
     </p>
 {% endblock %}
 
 {% block input_example %}
-
+    CCAGGACCAGGCCCCAGGTGGGGCCAGGCCAGGCTC
 {% endblock %}
 
 {% block output_description %}
     <p>
-        
+      The RNA sequence corresponding to the input DNA sequence.
     </p>
 {% endblock %}
 
 {% block output_example %}
-    
+    CCAGGACCAGGCCCCAGGUGGGGCCAGGCCAGGCUC
 {% endblock %}
