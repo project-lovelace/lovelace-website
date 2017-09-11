@@ -26,8 +26,12 @@
 <body>
     {% include "navbar.html" %}
 
-    {% block body %}
-    {% endblock %}
+    <div class="jumbotron">
+        <div class="container">
+        {% block body %}
+        {% endblock %}
+        </div>
+    </div>
 
     <!-- Bootstrap core JavaScript & jQuery -->
     <!-- Placed at the end of the document so the pages load faster -->

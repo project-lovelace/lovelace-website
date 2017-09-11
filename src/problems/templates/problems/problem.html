@@ -9,71 +9,70 @@
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML"></script>
 {% endblock %}
 
+{% block page_title %}
+    {{ problem.title }} | Project Lovelace
+{% endblock %}
+
 {% block body %}
-    <div class="jumbotron">
-        <div class="container">
-        <meta name="problem_name" content="problem.name">
-            <h1>
-                {% block problem_name %}
-                    Problem Title Goes Here
-                {% endblock %}
-            </h1>
+    <meta name="problem_name" content="problem.name">
+    <h1>
+        {% block problem_name %}
+            {{ problem.title }}
+        {% endblock %}
+    </h1>
 
-            {% block introduction %}
+    {% block introduction %}
+    {% endblock %}
+
+    <h2 data-toggle="collapse" data-target="#question"><a href="#">Problem</a></h2>
+    <div id="question" class="collapse in">
+        {% block required %}
+            <p><b>Required math</b>: Required Math Goes Here.</p>
+        {% endblock %}
+
+        <p>
+            {% block problem_body %}
+                Problem Body Goes Here
             {% endblock %}
+        </p>
+    </div>
 
-            <h2 data-toggle="collapse" data-target="#question"><a href="#">Problem</a></h2>
-            <div id="question" class="collapse in">
-                {% block required %}
-                    <p><b>Required math</b>: Required Math Goes Here.</p>
+    <h2 data-toggle="collapse" data-target="#input"><a href="#">Input</a></h2>
+    <div id="input" class="collapse">
+        {% block input_description %}
+            Problem Input Goes Here
+        {% endblock %}
+
+        <div class="panel panel-default">
+            <div class="panel-heading">Example input</div>
+            <div class="panel-body" style="font-family: monospace;">
+                {% block input_example %}
+                    Input Example Goes Here
                 {% endblock %}
-
-                <p>
-                    {% block problem_body %}
-                        Problem Body Goes Here
-                    {% endblock %}
-                </p>
             </div>
-
-            <h2 data-toggle="collapse" data-target="#input"><a href="#">Input</a></h2>
-            <div id="input" class="collapse">
-                {% block input_description %}
-                    Problem Input Goes Here
-                {% endblock %}
-
-                <div class="panel panel-default">
-                    <div class="panel-heading">Example input</div>
-                    <div class="panel-body" style="font-family: monospace;">
-                        {% block input_example %}
-                            Input Example Goes Here
-                        {% endblock %}
-                    </div>
-                </div>
-            </div>
-
-            <h2 data-toggle="collapse" data-target="#output"><a href="#">Output</a></h2>
-            <div id="output" class="collapse">
-                {% block output_description %}
-                    Output Description Goes Here
-                {% endblock %}
-
-                <div class="panel panel-default">
-                    <div class="panel-heading">Example output</div>
-                    <div class="panel-body" style="font-family: monospace;">
-                        {% block output_example %}
-                            Output Example Goes Here
-                        {% endblock %}
-                    </div>
-                </div>
-            </div>
-
-            <h3>Submit Your Code</h3>
-            <form action="{% url 'problems:detail' problem.name %}" method="post" id="code-submit-form" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ form }}
-                <input type="submit" value="Submit" id="submit-code-button" />
-            </form>
-            <p id="result-text"></p>
         </div>
     </div>
+
+    <h2 data-toggle="collapse" data-target="#output"><a href="#">Output</a></h2>
+    <div id="output" class="collapse">
+        {% block output_description %}
+            Output Description Goes Here
+        {% endblock %}
+
+        <div class="panel panel-default">
+            <div class="panel-heading">Example output</div>
+            <div class="panel-body" style="font-family: monospace;">
+                {% block output_example %}
+                    Output Example Goes Here
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+
+    <h3>Submit Your Code</h3>
+    <form action="{% url 'problems:detail' problem.name %}" method="post" id="code-submit-form" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Submit" id="submit-code-button" />
+    </form>
 {% endblock %}
