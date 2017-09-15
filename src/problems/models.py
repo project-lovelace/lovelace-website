@@ -18,11 +18,10 @@ class Submission(models.Model):
     id = models.AutoField(primary_key=True)
     # user = models.ForeignKey(settings.AUTH_USER_MODEL)
     problem = models.ForeignKey(Problem, on_delete=models.PROTECT)
-    date = models.DateTimeField(auto_now_add=True, verbose_name='date submitted')
-    language = models.CharField(max_length=64, verbose_name='programming language')
-    file = models.FileField(max_length=4096,
-                            upload_to='uploads/%Y/%m/%d',
-                            verbose_name='source code file')
+    passed = models.BooleanField()
+    date = models.DateTimeField(auto_now_add=True, verbose_name='submission date')
+    language = models.CharField(max_length=256, verbose_name='programming language')
+    file = models.FileField(upload_to='uploads/%Y/%m/%d', verbose_name='source code file')
 
     def __str__(self):
         return self.id
