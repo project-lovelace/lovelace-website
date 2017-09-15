@@ -142,3 +142,46 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'prod_static')
 
 # When client requests files under projectlovelace.net/static, look for them in STATIC_ROOT
 STATIC_URL = '/static/'
+
+# Configure logging settings
+# TODO: configure logging
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'formatters': {
+#         'standard': {
+#             'format': '[%(asctime)s] %(name)s:%(levelname)s: %(message)s',
+#         },
+#     },
+#     'handlers': {
+#         'console': {
+#             'level': 'DEBUG',
+#             'class': 'logging.StreamHandler',
+#             'formatter': 'standard',
+#         },
+#         # TODO: choose a file we have permission to use before re-enabling
+#         # 'file': {
+#         #     'level': 'DEBUG',
+#         #     'class': 'logging.FileHandler',
+#         #     'formatter': 'standard',
+#         #     'filename': '/var/log/lovelace-website.log',
+#         # },
+#     },
+#     'loggers': {
+#         'django': {
+#             'handlers': ['console'],
+#             'level': 'INFO',
+#             'propagate': True,
+#         },
+#         'problems': {
+#             'handlers': ['console'],
+#             'level': 'DEBUG',
+#             'propagate': False,
+#         },
+#         'problems.views': {
+#             'handlers': ['console'],
+#             'level': 'DEBUG',
+#             'propagate': False,
+#         },
+#     },
+# }

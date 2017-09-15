@@ -1,15 +1,17 @@
 import base64
 import json
 
-from django.http import HttpResponseRedirect, HttpResponseBadRequest
-from django.shortcuts import get_object_or_404, render
 import requests
+from django.http import HttpResponseBadRequest, HttpResponseServerError
+from django.shortcuts import get_object_or_404, render
 
 from .forms import CodeSubmissionForm
-from .models import Problem
+from .models import Problem, Submission
 
 ENGINE_URL = 'http://localhost:14714/submit'
 MAX_FILE_SIZE_BYTES = 65536
+
+# logger = logging.getLogger(__name__)
 
 
 def index(request):
@@ -19,8 +21,9 @@ def index(request):
 
 
 def detail(request, problem_name):
+    problem = get_object_or_404(Problem, pk=problem_name)
+
     if request.method == 'GET':
-        problem = get_object_or_404(Problem, pk=problem_name)
         template = 'problems/problem_{}.html'.format(str(problem_name))
         form = CodeSubmissionForm()
         context = {
@@ -31,19 +34,34 @@ def detail(request, problem_name):
 
     elif request.method == 'POST':
         form = CodeSubmissionForm(request.POST, request.FILES)
-        if form.is_valid():
-            file = form.files['file']
-            if file.size > MAX_FILE_SIZE_BYTES:
-                return HttpResponseBadRequest('File must be smaller than {} bytes'.format(MAX_FILE_SIZE_BYTES))
-            submission_dict = {
-                'problem': problem_name,
-                'code': str(base64.b64encode(file.read()), 'utf-8')
-            }
-            engine_response = requests.post(ENGINE_URL, data=json.dumps(submission_dict), timeout=9999)
-            results = json.loads(engine_response.text)
+        if not form.is_valid():
+            return HttpResponseBadRequest('Unknown problem with the submitted file')
+
+        file = form.files['file']
+        if file.size > MAX_FILE_SIZE_BYTES:
+            return HttpResponseBadRequest('File must be smaller than {} bytes'.format(MAX_FILE_SIZE_BYTES))
+
+        submission_dict = {
+            'problem': problem_name,
+            'code': str(base64.b64encode(file.read()), 'utf-8')
+        }
+
+        engine_resp = requests.post(ENGINE_URL, data=json.dumps(submission_dict), timeout=9999)
+        status = engine_resp.status_code
+
+        if status == 200:
+            results = json.loads(engine_resp.text)
+            submission = Submission(
+                problem=problem,
+                passed=results['success'],
+                language='Python3',
+                file=file,
+            )
+            submission.save()
             return render(request, 'problems/results.html', {'results': results})
         else:
-            return HttpResponseBadRequest('Unknown problem with the submitted file')
+            # logging.warning('Engine returned an error: {}'.format(engine_resp))
+            return HttpResponseServerError('Code runner failed to run your program')
 
     else:
         return HttpResponseBadRequest('Unsupported HTTP method: {}'.format(request.method))
