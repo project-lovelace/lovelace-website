@@ -43,6 +43,7 @@ def detail(request, problem_name):
 
         submission_dict = {
             'problem': problem_name,
+            'language': 'python3',
             'code': str(base64.b64encode(file.read()), 'utf-8')
         }
 
