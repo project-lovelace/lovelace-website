@@ -15,10 +15,12 @@
 
             <tbody>
                 {% for problem in latest_problem_list %}
-                <tr>
-                    <th scope="row"><p>{{ problem.date_added }}</p></th>
-                    <td><a href="{% url 'problems:detail' problem.name %}"><p>{{ problem.title }}</p></a></td>
-                </tr>
+                    {% if problem.visible %}
+                    <tr>
+                        <th scope="row"><p>{{ problem.date_added }}</p></th>
+                        <td><a href="{% url 'problems:detail' problem.name %}"><p>{{ problem.title }}</p></a></td>
+                    </tr>
+                    {% endif %}
                 {% endfor %}
               </tbody>
         </table>
