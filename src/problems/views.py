@@ -4,6 +4,7 @@ import json
 import requests
 from django.http import HttpResponseBadRequest, HttpResponseServerError
 from django.shortcuts import get_object_or_404, render
+from django.views import generic
 
 from .forms import CodeSubmissionForm
 from .models import Problem, Submission
@@ -11,13 +12,16 @@ from .models import Problem, Submission
 ENGINE_URL = 'http://localhost:14714/submit'
 MAX_FILE_SIZE_BYTES = 65536
 
-# logger = logging.getLogger(__name__)
+# logger = logging.getLogger(__name__)  # TODO enable logging
 
 
-def index(request):
-    latest_problem_list = Problem.objects.order_by('date_added')
-    context = {'latest_problem_list': latest_problem_list}
-    return render(request, 'problems/index.html', context)
+class IndexView(generic.ListView):
+    template_name = 'problems/index.html'
+    context_object_name = 'latest_problem_list'
+
+    def get_queryset(self):
+        """Return all problems, sorted alphabetically by title."""
+        return Problem.objects.order_by('title')
 
 
 def detail(request, problem_name):
