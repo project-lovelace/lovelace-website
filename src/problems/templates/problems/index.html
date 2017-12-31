@@ -8,8 +8,8 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th><p>Date added</p></th>
                     <th><p>Problem title</p></th>
+                    <th><p>Date added</p></th>
                 </tr>
             </thead>
 
@@ -17,8 +17,8 @@
                 {% for problem in latest_problem_list %}
                     {% if problem.visible %}
                     <tr>
-                        <th scope="row"><p>{{ problem.date_added }}</p></th>
-                        <td><a href="{% url 'problems:detail' problem.name %}"><p>{{ problem.title }}</p></a></td>
+                        <th scope="row"><a href="{% url 'problems:detail' problem.name %}"><p>{{ problem.title }}</p></a></th>
+                        <td><p>{{ problem.date_added }}</p></td>
                     </tr>
                     {% endif %}
                 {% endfor %}
