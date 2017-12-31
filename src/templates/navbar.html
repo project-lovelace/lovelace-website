@@ -12,9 +12,9 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li><a href="{% url 'problems:index' %}">Problems</a></li>
+                <li><a href="{% url 'tutorials' %}">Tutorials</a></li> {# TODO completely remove tutorials at some point #}
                 <li><a href="{% url 'about' %}">About</a></li>
                 <li><a href="{% url 'contact' %}">Contact</a></li>
-                {# <li><a href="{% url 'tutorials' %}">Tutorials</a></li> #} {# TODO completely remove tutorials at some point #}
                 {% if user.is_authenticated %}
                 <li><a href="{% url 'logout' %}">Log Out ({{ user.username }})</a></li>
                 {% else %}

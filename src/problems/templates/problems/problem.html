@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% load static %}
 
 {% block preload_javascript %}
     <!-- MathJax -->
@@ -69,10 +68,12 @@
         </div>
     </div>
 
+    {% if problem.name %}  {# TODO remove this hacky conditional after removing tutorials #}
     <h3>Submit Your Code</h3>
     <form action="{% url 'problems:detail' problem.name %}" method="post" id="code-submit-form" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form }}
         <input type="submit" value="Submit" id="submit-code-button" />
     </form>
+    {% endif %}
 {% endblock %}
