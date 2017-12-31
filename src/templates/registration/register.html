@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_title %}
+    Register | Project Lovelace
+{% endblock %}
+
+{% block body %}
+    <meta name="problem_name" content="problem.name">
+    <h1>Create a New Account</h1>
+    <form class="form-horizontal" action="" method="post" id="registration-form" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Register" id="register-button" />
+    </form>
+{% endblock %}
