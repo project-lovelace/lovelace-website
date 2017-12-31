@@ -26,6 +26,10 @@
 <body>
     {% include "navbar.html" %}
 
+    {% if error_message %}
+        <p><strong>{{ error_message }}</strong></p>
+    {% endif %}
+
     <div class="jumbotron">
         <div class="container">
         {% block body %}

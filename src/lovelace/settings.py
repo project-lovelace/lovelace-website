@@ -143,6 +143,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'prod_static')
 # When client requests files under projectlovelace.net/static, look for them in STATIC_ROOT
 STATIC_URL = '/static/'
 
+# Redirect users after logging in and logging out
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
+
 # Configure logging settings
 # TODO: configure logging
 # LOGGING = {
