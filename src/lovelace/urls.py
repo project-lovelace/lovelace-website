@@ -38,6 +38,6 @@ urlpatterns = [
     url(r'^problems/', include('problems.urls'), name='problems'),
 
     # Temporary
-    url(r'^tutorials$', TemplateView.as_view(template_name='temporary/tutorials.html')),
+    url(r'^tutorials$', TemplateView.as_view(template_name='temporary/tutorials.html'), name='tutorials'),
     url(r'^tutorials/1$', TemplateView.as_view(template_name='temporary/tutorial_1.html')),
 ]
