@@ -7,10 +7,11 @@
 
 {% block body %}
     <meta name="problem_name" content="problem.name">
-    <h1>Create a New Account</h1>
+    <h2>Create a New Account</h2>
+    <br>
     <form class="form-horizontal" action="" method="post" id="registration-form" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form }}
+        {{ form.as_p }}
         <input type="submit" value="Register" id="register-button" />
     </form>
 {% endblock %}
