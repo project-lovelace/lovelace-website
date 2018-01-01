@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import View
 
 from .forms import UserRegistrationForm
+from users.models import UserProfile
 
 # logger = logging.getLogger(__name__)  # TODO enable logging
 
@@ -24,7 +25,9 @@ class UserRegistrationView(View):
             username = form.cleaned_data['username']  # TODO unnecessary?
             email = form.cleaned_data['email']
             password = form.cleaned_data['password']
-            user = User.objects.create_user(username, email, password)
+            user = User.objects.create_user(username, email, password)  # TODO disallow bad passwords
+            profile = UserProfile(user=user, display_name=username)
+            profile.save()
             # user.groups.add('users')  # TODO create a group for normal users?
             login(request, user)
             return redirect(to='home')

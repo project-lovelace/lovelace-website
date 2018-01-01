@@ -10,10 +10,11 @@
         {% if user.is_authenticated %}
             <p>Your account doesn't have access to this page. To proceed,
             please login with an account that has access.</p>
-        {% else %}
-            <h2>Log In</h2>
         {% endif %}
     {% endif %}
+
+    <h2>Log In</h2>
+    <br>
 
     <form method="post" action="{% url 'login' %}">
         {% csrf_token %}
@@ -28,7 +29,7 @@
         </tr>
         </table>
 
-        <input type="submit" value="login" />
+        <input type="submit" value="Log In" />
         <input type="hidden" name="next" value="{{ next }}" />
     </form>
 

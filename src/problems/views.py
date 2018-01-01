@@ -8,6 +8,7 @@ from django.views import generic
 
 from .forms import CodeSubmissionForm
 from .models import Problem, Submission
+from users.models import UserProfile
 
 ENGINE_URL = 'http://localhost:14714/submit'
 MAX_FILE_SIZE_BYTES = 65536
@@ -21,11 +22,11 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         """Return all problems, sorted alphabetically by title."""
-        return Problem.objects.order_by('title')
+        return Problem.objects.order_by('date_added')
 
 
 def detail(request, problem_name):
-    problem = get_object_or_404(Problem, pk=problem_name)
+    problem = get_object_or_404(Problem, name=problem_name)
 
     if request.method == 'GET':
         template = 'problems/problem_{}.html'.format(str(problem_name))
@@ -57,6 +58,7 @@ def detail(request, problem_name):
         if status == 200:
             results = json.loads(engine_resp.text)
             submission = Submission(
+                user=UserProfile.objects.get(user=request.user),
                 problem=problem,
                 passed=results['success'],
                 language='Python3',
