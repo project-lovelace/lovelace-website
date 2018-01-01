@@ -15,7 +15,7 @@
     {% for test_case in results.testCaseDetails %}
         <div class="panel panel-default">
             <div class="panel-heading" style="font-size: medium;">
-                Test case {{ forloop.counter }} ({{ test_case.testCaseType }}): {{ results.success|yesno:"passed!,failed." }}
+                Test case {{ forloop.counter }} ({{ test_case.testCaseType }}): {{ test_case.passed|yesno:"passed!,failed." }}
             </div>
             <div class="panel-body" style="font-family: monospace; font-size: medium;">
                 Return code: {{ test_case.processInfo.returnCode }}<br>
