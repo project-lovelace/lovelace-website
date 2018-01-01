@@ -11,35 +11,56 @@
 
 {% block problem_body %}
     <p>
+      <!--
       * What are cellular automata?
       * Introduce Conway's (wiki link?) Game of Life as the most popular example of a cellular automata.
+      -->
 
-      The universe of the Game of Life is an infinite two-dimensional orthogonal grid of square cells, each of which is in one of two possible states, alive or dead, or "populated" or "unpopulated". Every cell interacts with its eight neighbours, which are the cells that are horizontally, vertically, or diagonally adjacent. At each step in time, the following transitions occur:
-      Any live cell with fewer than two live neighbours dies, as if caused by underpopulation.
-      Any live cell with two or three live neighbours lives on to the next generation.
-      Any live cell with more than three live neighbours dies, as if by overpopulation.
-      Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
+      The universe of the Game of Life is an infinite two-dimensional orthogonal grid of square cells, each of which is in one of two possible states, alive or dead, or "populated" or "unpopulated". Every cell interacts with its eight neighbours, which are the cells that are horizontally, vertically, or diagonally adjacent. After the board is initialized to a specific configuration, at each step in time the following transitions occur:
+      <ol>
+        <li>Any live cell with fewer than two live neighbours dies, as if caused by underpopulation.</li>
+        <li>Any live cell with two or three live neighbours lives on to the next generation.</li>
+        <li>Any live cell with more than three live neighbours dies, as if by overpopulation.</li>
+        <li>Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.</li>
+      </ol>
 
-      * What to do because of finite sized grid. Loop it around or just ignore stuff that go off screen?
+      <!-- * What to do because of finite sized grid. Loop it around or just ignore stuff that go off screen? -->
     </p>
 {% endblock %}
 
 {% block input_description %}
   <p>
-    * A comma-separated values (CSV) file containing a 2D array of ones (1) and zeros (0) corresponding to the initial pattern.
+    * Filename of a file containing a 2D array of dead cells (.) and alive cells (o) corresponding to the initial pattern.<br>
     * An integer $n$ indicating the number of turns the Game of Life should be simulated.
   </p>
 {% endblock %}
 
 {% block input_example %}
-  
+  spaceships.txt:<br>
+  .............................<br>
+  ....o........................<br>
+  ..o.o........................<br>
+  ...oo........................<br>
+  .............................<br>
+  .............................<br>
+  .............................<br>
+  .............................<br>
+  15
 {% endblock %}
 
 {% block output_description %}
   <p>
-    The pattern after $n$ turns.
+    File 'board.txt' containing the pattern after $n$ turns.
   </p>
 {% endblock %}
 
 {% block output_example %}
+  ...............................<br>
+  ...............................<br>
+  ...............................<br>
+  ...............................<br>
+  ...............................<br>
+  ......o.o......................<br>
+  .......oo......................<br>
+  .......o.......................
 {% endblock %}
