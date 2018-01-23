@@ -70,6 +70,9 @@
 
     {% if problem.name %}  {# TODO remove this hacky conditional after removing tutorials #}
     <h3>Submit Your Code</h3>
+    {% if not user.is_authenticated %}
+        <p>You must be logged in for your submission to contribute to your profile.</p>
+    {% endif %}
     <form action="{% url 'problems:detail' problem.name %}" method="post" id="code-submit-form" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form }}

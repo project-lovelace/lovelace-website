@@ -18,7 +18,7 @@ class Problem(models.Model):
 
 class Submission(models.Model):
     id = models.AutoField(primary_key=True)
-    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)  # TODO add null=True and migrate
     problem = models.ForeignKey(Problem, on_delete=models.PROTECT)
     passed = models.BooleanField()
     date = models.DateTimeField(auto_now_add=True, verbose_name='submission date')

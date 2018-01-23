@@ -55,20 +55,20 @@ def detail(request, problem_name):
         engine_resp = requests.post(ENGINE_URL, data=json.dumps(submission_dict), timeout=9999)
         status = engine_resp.status_code
 
-        if status == 200:
-            results = json.loads(engine_resp.text)
-            submission = Submission(
-                user=UserProfile.objects.get(user=request.user),
-                problem=problem,
-                passed=results['success'],
-                language='Python3',
-                file=file,
-            )
-            submission.save()
-            return render(request, 'problems/results.html', {'results': results})
-        else:
+        if status != 200:
             # logging.warning('Engine returned an error: {}'.format(engine_resp))
             return HttpResponseServerError('Code runner failed to run your program')
+
+        results = json.loads(engine_resp.text)
+        submission = Submission(
+            user=UserProfile.objects.get(user=request.user) if request.user else None,
+            problem=problem,
+            passed=results['success'],
+            language='Python3',
+            file=file,
+        )
+        submission.save()
+        return render(request, 'problems/results.html', {'results': results})
 
     else:
         return HttpResponseBadRequest('Unsupported HTTP method: {}'.format(request.method))
