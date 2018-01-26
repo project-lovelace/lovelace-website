@@ -4,7 +4,7 @@ import json
 import requests
 from django.http import HttpResponseBadRequest, HttpResponseServerError
 from django.shortcuts import get_object_or_404, render
-from django.views import generic
+from django.views import generic, View
 
 from .forms import CodeSubmissionForm
 from .models import Problem, Submission
@@ -25,10 +25,10 @@ class IndexView(generic.ListView):
         return Problem.objects.order_by('date_added')
 
 
-def detail(request, problem_name):
-    problem = get_object_or_404(Problem, name=problem_name)
-
-    if request.method == 'GET':
+class DetailView(View):
+    @staticmethod
+    def get(request, problem_name):
+        problem = get_object_or_404(Problem, name=problem_name)
         template = 'problems/problem_{}.html'.format(str(problem_name))
         form = CodeSubmissionForm()
         context = {
@@ -37,7 +37,9 @@ def detail(request, problem_name):
         }
         return render(request, template, context)
 
-    elif request.method == 'POST':
+    @staticmethod
+    def post(request, problem_name):
+        problem = get_object_or_404(Problem, name=problem_name)
         form = CodeSubmissionForm(request.POST, request.FILES)
         if not form.is_valid():
             return HttpResponseBadRequest('Unknown problem with the submitted file')
@@ -46,13 +48,13 @@ def detail(request, problem_name):
         if file.size > MAX_FILE_SIZE_BYTES:
             return HttpResponseBadRequest('File must be smaller than {} bytes'.format(MAX_FILE_SIZE_BYTES))
 
-        submission_dict = {
+        submission = {
             'problem': problem_name,
             'language': 'python3',
             'code': str(base64.b64encode(file.read()), 'utf-8')
         }
 
-        engine_resp = requests.post(ENGINE_URL, data=json.dumps(submission_dict), timeout=9999)
+        engine_resp = requests.post(ENGINE_URL, data=json.dumps(submission), timeout=9999)
         status = engine_resp.status_code
 
         if status != 200:
@@ -60,15 +62,14 @@ def detail(request, problem_name):
             return HttpResponseServerError('Code runner failed to run your program')
 
         results = json.loads(engine_resp.text)
+        user_logged_in = not request.user.is_anonymous
         submission = Submission(
-            user=UserProfile.objects.get(user=request.user) if request.user else None,
+            user=UserProfile.objects.get(user=request.user) if user_logged_in else None,
             problem=problem,
             passed=results['success'],
             language='Python3',
             file=file,
         )
         submission.save()
-        return render(request, 'problems/results.html', {'results': results})
-
-    else:
-        return HttpResponseBadRequest('Unsupported HTTP method: {}'.format(request.method))
+        template = 'problems/results.html'
+        return render(request, template, {'results': results})
