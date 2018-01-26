@@ -2,7 +2,6 @@
 
 {% block body %}
     <h1>Problems</h1>
-
     {% if latest_problem_list %}
         <table class="table">
             <thead>
@@ -11,7 +10,6 @@
                     <th><p>Date added</p></th>
                 </tr>
             </thead>
-
             <tbody>
                 {% for problem in latest_problem_list %}
                     {% if problem.visible %}
