@@ -21,7 +21,7 @@ urlpatterns = [
 
     # Temporary pages
     path('tutorials/', TemplateView.as_view(template_name='temporary/tutorials.html'), name='tutorials'),
-    path('tutorials/1', TemplateView.as_view(template_name='temporary/tutorial_1.html')),
+    path('tutorials/1', TemplateView.as_view(template_name='temporary/tutorial_1.html')),  # TODO: remove tutorials
 
     # Applications
     path('problems/', include('problems.urls'), name='problems'),

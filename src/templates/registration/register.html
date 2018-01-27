@@ -8,9 +8,14 @@
     <meta name="problem_name" content="problem.name">
     <h2>Create a New Account</h2>
     <br>
+    {% if model_errors %}
+        {{ model_errors }}
+    {% endif %}
     <form class="form-horizontal" action="" method="post" id="registration-form" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form.as_p }}
+        <table>
+            {{ form.as_table }}
+        </table>
         <input type="submit" value="Register" id="register-button" />
     </form>
 {% endblock %}

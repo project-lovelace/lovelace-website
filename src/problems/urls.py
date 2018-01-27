@@ -9,5 +9,5 @@ urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
 
     # ex: /problems/earthquake-epicenters/
-    path('<str:problem_name>/', views.detail, name='detail'),
+    path('<str:problem_name>/', views.DetailView.as_view(), name='detail'),
 ]

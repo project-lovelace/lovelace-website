@@ -2,10 +2,6 @@
 
 {% block body %}
 
-    {% if form.errors %}
-        <p>Your username and password didn't match. Please try again.</p>
-    {% endif %}
-
     {% if next %}
         {% if user.is_authenticated %}
             <p>Your account doesn't have access to this page. To proceed,
@@ -14,6 +10,10 @@
     {% endif %}
 
     <h2>Log In</h2>
+
+    {% if form.errors %}
+        <p>Your username and password didn't match. Please try again.</p>
+    {% endif %}
     <br>
 
     <form method="post" action="{% url 'login' %}">
