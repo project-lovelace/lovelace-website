@@ -16,12 +16,14 @@
       * Introduce Conway's (wiki link?) Game of Life as the most popular example of a cellular automata.
       -->
 
-      The universe of the Game of Life is an infinite two-dimensional orthogonal grid of square cells, each of which is in one of two possible states, alive or dead, or "populated" or "unpopulated". Every cell interacts with its eight neighbours, which are the cells that are horizontally, vertically, or diagonally adjacent. After the board is initialized to a specific configuration, at each step in time the following transitions occur:
+      A cellular automaton is a model used to simulate a wide variety of systems in science. It consists of a grid of cells, each of which can be in one of a finite number of states (such as on and off) and evolves according to some rule. The most famous example is John Conway's Game of Life. <br>
+
+      The universe of the Game of Life is a two-dimensional grid of square cells, each of which is in one of two possible states, alive or dead (or, populated or unpopulated). Every cell interacts with its eight neighbours. After the board is initialized to a specific configuration, each cell evolves according to the following rules:
       <ol>
-        <li>Any live cell with fewer than two live neighbours dies, as if caused by underpopulation.</li>
-        <li>Any live cell with two or three live neighbours lives on to the next generation.</li>
-        <li>Any live cell with more than three live neighbours dies, as if by overpopulation.</li>
-        <li>Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.</li>
+        <li>A live cell with less than two live neighbours dies, as if caused by underpopulation.</li>
+        <li>A live cell with two or three live neighbours continues to live.</li>
+        <li>A live cell with more than three live neighbours dies, as if by overpopulation.</li>
+        <li>A dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.</li>
       </ol>
 
       <!-- * What to do because of finite sized grid. Loop it around or just ignore stuff that go off screen? -->
