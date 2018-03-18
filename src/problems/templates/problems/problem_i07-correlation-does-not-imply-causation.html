@@ -11,13 +11,13 @@
 
 {% block problem_body %}
     <p>
-      Two variables are said to be correlated if there exists some statistical relationship between the two. However, just because two variables are correlated does not mean that one is caused by the other. This is a misconcepted commonly referred to as "correlation does not imply causation".
+      Two variables are said to be correlated if there's some statistical relationship between the two. However, just because two variables are correlated does not mean that one is caused by the other. This is a misconcepted commonly referred to as "correlation does not imply causation".
 
       In this problem you're going to read a data file containing the measurements of two variables with an $(x,y)$ data value pair on each line and calculate the correlation coefficient between the two variables. The correlation coefficient $r$ between two variables $X$ and $Y$ with $n$ measurements $x_1, x_2, \dots, x_n$ and $y_1, y_2, \dots, y_n$ can be calculated using
       $$ r = \frac{(x_1 - \bar{x})(y_1 - \bar{y}) + \dots + (x_n - \bar{x})(y_n - \bar{y})}
                   {\sqrt{(x_1 - \bar{x})^2 + \dots + (x_n - \bar{x})^2} \times
                    \sqrt{(y_1 - \bar{y})^2 + \dots + (y_n - \bar{y})^2}} $$
-      where $\bar{x} = \frac{x_1 + x_2 + \dots + x_n}{n}$ and $\bar{y} = \frac{y_1 + y_2 + \dots + y_n}{n}$ are the mean values of the $X$ and $Y$ measurements.
+      where $\bar{x} = \frac{x_1 + x_2 + \dots + x_n}{n}$ and $\bar{y} = \frac{y_1 + y_2 + \dots + y_n}{n}$ are the averages of the $X$ and $Y$ measurements.
     </p>
 {% endblock %}
 
