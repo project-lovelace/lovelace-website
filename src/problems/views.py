@@ -44,6 +44,10 @@ class DetailView(View):
         if not form.is_valid():
             return HttpResponseBadRequest('Unknown problem with the submitted file')
 
+        user_logged_in = not request.user.is_anonymous
+        if not user_logged_in:
+            return HttpResponseBadRequest("You must be registered and logged in to submit code.")
+
         file = form.files['file']
         if file.size > MAX_FILE_SIZE_BYTES:
             return HttpResponseBadRequest('File must be smaller than {} bytes'.format(MAX_FILE_SIZE_BYTES))
@@ -62,7 +66,6 @@ class DetailView(View):
             return HttpResponseServerError('Code runner failed to run your program')
 
         results = json.loads(engine_resp.text)
-        user_logged_in = not request.user.is_anonymous
         submission = Submission(
             user=UserProfile.objects.get(user=request.user) if user_logged_in else None,
             problem=problem,
