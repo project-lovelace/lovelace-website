@@ -95,3 +95,6 @@ ENV/
 
 # User submissions
 src/media
+
+# Production static file
+src/prod_static
