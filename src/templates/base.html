@@ -33,10 +33,6 @@
 <body class="Site">
   {% include "navbar.html" %}
 
-  {% if error_message %}
-    <p><strong>{{ error_message }}</strong></p>
-  {% endif %}
-
   <main class="Site-content">
     {% block body %}
     {% endblock %}
