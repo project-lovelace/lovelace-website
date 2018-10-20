@@ -29,9 +29,9 @@
                     <a href="{% url 'problems:detail' problem.name %}"><p>{{ problem.title  }}</p></a>
                     <span class="taf is-info">Physics</span>
                   </td>
-                  <td>1,337</td>
-                  <td><progress class="progress is-success" value="1" max="15"></progress></td>
-                  <td><progress class="progress is-warning" value="6" max="15"></progress></td>
+                  <td>{{ problem.solved_by }}</td>
+                  <td><progress class="progress is-success" value="{{ problem.difficulty }}" max="15"></progress></td>
+                  <td><progress class="progress is-warning" value="{{ problem.timesink }}" max="15"></progress></td>
                 </tr>
               {% endif %}
             {% endfor %}
