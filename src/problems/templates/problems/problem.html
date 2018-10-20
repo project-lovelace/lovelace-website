@@ -124,12 +124,22 @@
 
         <div class="column is-one-quarter">
           <div class="container">
-            <div class="file has-name is-boxed">
+            <form action="{% url 'problems:detail' problem.name %}" method="post" id="code-submit-form" enctype="multipart/form-data">
+              {% csrf_token %}
+              {{ form }}
+              <input type="submit" value="Submit" id="submit-code-button" />
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<!--             <div class="file has-name is-boxed">
               <label class="file-label">
                 <form action="{% url 'problems:detail' problem.name %}" method="post" id="code-submit-form" enctype="multipart/form-data">
-                  <!-- {% csrf_token %} -->
-                  <!-- {{ form }} -->
-                  <input class="file-input" type="file" name="resume">
+                  {% csrf_token %}
+                  {{ form }}
+                  <input class="file-input" type="file" name="resume" />
                 </form>
                 <span class="file-cta">
                   <span class="file-icon">
@@ -147,7 +157,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <section data-content="3"> <!-- Notes and references tab -->
       <p>Notes and references go here...</p>
