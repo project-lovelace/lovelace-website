@@ -31,14 +31,14 @@ class UserRegistrationView(View):
     def post(self, request):
         """Process form data and register the user."""
 
-        logger.info("Processing registration:\n{:}".format(pprint.pformat(request.__dict__)))
+        logger.info("Processing registration:\n{:}".format(pprint.pformat(request.__dict__['_post'])))
 
         form = self.form_class(data=request.POST)
         if not form.is_valid():
             logger.warning("Invalid form: {:}".format(form))
             return self._partially_filled_form(request, form)
 
-        user = form.save(commit=False)
+        user = form.save()
         profile = UserProfile(user=user, display_name=user.username)
         try:
             user.full_clean()
