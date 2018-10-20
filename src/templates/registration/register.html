@@ -9,12 +9,7 @@
   <br>  
   <div class="columns is-centered">
     <div class="column is-one-third">
-        <form class="form-horizontal" action="{% url 'register' %}" method="post" id="registration-form" enctype="multipart/form-data">
-        {% csrf_token %}
-        <table>{{ form.as_table }}</table>
-        <input type="submit" value="Register" id="register-button" />
-      </form>
-<!--       <form method="post" action="" id="registration-form" enctype="multipart/form-data">
+      <form method="post" action="" id="registration-form" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="field">
           <p class="control has-icons-left">
@@ -44,7 +39,7 @@
         <div class="control">
           <button class="button is-primary" type="submit" id="register-button">Register</button>
         </div>
-      </form> -->
+      </form>
     </div>
   </div>
 {% endblock %}
