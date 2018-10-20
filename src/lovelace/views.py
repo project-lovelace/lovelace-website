@@ -1,3 +1,5 @@
+import logging
+
 from django.contrib.auth import login
 from django.core.exceptions import ValidationError
 from django.shortcuts import render, redirect
@@ -6,7 +8,7 @@ from django.views.generic import View
 from .forms import UserRegistrationForm
 from users.models import UserProfile
 
-# logger = logging.getLogger(__name__)  # TODO enable logging
+logger = logging.getLogger(__name__)
 
 
 class UserRegistrationView(View):
@@ -27,6 +29,10 @@ class UserRegistrationView(View):
 
     def post(self, request):
         """Process form data and register the user."""
+
+        logger.info("Processing registration. Request:")
+        logger.info(request)
+
         form = self.form_class(data=request.POST)
         if not form.is_valid():
             return self._partially_filled_form(request, form)

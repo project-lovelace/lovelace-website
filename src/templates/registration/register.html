@@ -1,21 +1,49 @@
 {% extends "base.html" %}
 
 {% block page_title %}
-    Register | Project Lovelace
+  Register | Project Lovelace
 {% endblock %}
 
 {% block body %}
-    <meta name="problem_name" content="problem.name">
-    <h2>Create a New Account</h2>
-    <br>
-    {% if model_errors %}
+  <meta name="problem_name" content="problem.name">
+  <br>  
+  <div class="columns is-centered">
+    <div class="column is-one-third">
+      {% if model_errors %}
         {{ model_errors }}
-    {% endif %}
-    <form class="form-horizontal" action="" method="post" id="registration-form" enctype="multipart/form-data">
+      {% endif %}
+
+      <form method="post" action="" id="registration-form" enctype="multipart/form-data">
         {% csrf_token %}
-        <table>
-            {{ form.as_table }}
-        </table>
-        <input type="submit" value="Register" id="register-button" />
-    </form>
+        <div class="field">
+          <p class="control has-icons-left">
+            <input class="input" type="text" name="user" id="{{ form.username.id_for_label }}" placeholder="Username">
+            <span class="icon is-small is-left">
+              <i class="fas fa-user"></i>
+            </span>
+          </p>
+        </div>
+        <div class="field">
+          <p class="control has-icons-left">
+            <input class="input" type="email" name="email" id="{{ form.email.id_for_label }}" placeholder="Email">
+            <span class="icon is-small is-left">
+              <i class="fas fa-envelope"></i>
+            </span>
+          </p>
+        </div>
+        <div class="field">
+          <p class="control has-icons-left">
+            <input class="input" type="password" name="password" id="{{ form.password.id_for_label }}" placeholder="Password">
+            <span class="icon is-small is-left">
+              <i class="fas fa-lock"></i>
+            </span>
+          </p>
+        </div>
+
+        <div class="control">
+          <button class="button is-primary" type="submit" id="register-button">Register</button>
+        </div>
+      </form>
+    </div>
+  </div>
 {% endblock %}
