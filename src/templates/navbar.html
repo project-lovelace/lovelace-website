@@ -1,27 +1,43 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{% url 'home' %}">Project Lovelace</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="{% url 'problems:index' %}">Problems</a></li>
-                <li><a href="{% url 'tutorials' %}">Tutorials</a></li> {# TODO completely remove tutorials at some point #}
-                <li><a href="{% url 'about' %}">About</a></li>
-                <li><a href="{% url 'contact' %}">Contact</a></li>
-                {% if user.is_authenticated %}
-                    <li><a href="{% url 'logout' %}">Log Out ({{ user.username }})</a></li>
-                {% else %}
-                    <li><a href="{% url 'login' %}">Log In</a></li>
-                    <li><a href="{% url 'register' %}">Register</a></li>
-                {% endif %}
-            </ul>
-        </div>
+<nav class="navbar is-transparent is-dark">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="https://bulma.io">
+      <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+    </a>
+    <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
+  </div>
+
+  <div id="navbarExampleTransparentExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="http://projectlovelace.net/problems/">Problems</a>
+      <a class="navbar-item" href="http://projectlovelace.net/about/">FAQ</a>
+      <a class="navbar-item" href="http://projectlovelace.net/contact/">Feedback</a>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="field is-grouped">
+          <p class="control">
+            <a class="bd-tw-button button" href="projectlovelace.net/login/">
+              <span class="icon">
+                <i class="fas fa-sign-in-alt"></i>
+              </span>
+              <span>Log in</span>
+            </a>
+          </p>
+          <p class="control">
+            <a class="button is-info" href="http://projectlovelace.net/register/">
+              <span class="icon">
+                <i class="fas fa-user-plus"></i>
+              </span>
+              <span>Register</span>
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </nav>
