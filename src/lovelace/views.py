@@ -1,4 +1,5 @@
 import logging
+import pprint
 
 from django.contrib.auth import login
 from django.core.exceptions import ValidationError
@@ -30,11 +31,11 @@ class UserRegistrationView(View):
     def post(self, request):
         """Process form data and register the user."""
 
-        logger.info("Processing registration. Request:")
-        logger.info(request)
+        logger.info("Processing registration:\n{:}".format(pprint.pformat(request.__dict__)))
 
         form = self.form_class(data=request.POST)
         if not form.is_valid():
+            logger.warning("Invalid form: {:}".format(form))
             return self._partially_filled_form(request, form)
 
         user = form.save(commit=False)
