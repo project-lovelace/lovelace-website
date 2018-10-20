@@ -1,27 +1,43 @@
 {% extends "base.html" %}
 
 {% block body %}
-    <h1>Problems</h1>
+
+<br>
+<section classs="section">
+  <div class="columns is-centered">
+    <div class="column is-narrow">
     {% if latest_problem_list %}
-        <table class="table">
-            <thead>
+      <table class="table is-hoverable">
+        <thead>
+          <tr>
+            <th><abbr title="Problem ID">#</abbr></th>
+            <th></th>
+            <th>Problem</th>
+            <th>Solved by</th>
+            <th style="width: 120px;"><abbr title="Higher = more math and scientific knowledge required">Difficulty</abbr></th>
+            <th style="width: 120px;"><abbr title="Higher = more time needed to code up a solution">Timesink</abbr></th>
+          </tr>
+        </thead>
+
+        <tbody>
+            {% for problem in latest_problem_list %}
+              {% if problem.visible %}
                 <tr>
-                    <th><p>Problem title</p></th>
-                    <th><p>Date added</p></th>
+                  <th>{{ problem.id  }}</th>
+                  <th><i class="fas fa-check has-text-success"></i></th>
+                  <td>
+                    <a href="{% url 'problems:detail' problem.name %}"><p>{{ problem.title  }}</p></a>
+                    <span class="taf is-info">Physics</span>
+                  </td>
+                  <td>1,337</td>
+                  <td><progress class="progress is-success" value="1" max="15"></progress></td>
+                  <td><progress class="progress is-warning" value="6" max="15"></progress></td>
                 </tr>
-            </thead>
-            <tbody>
-                {% for problem in latest_problem_list %}
-                    {% if problem.visible %}
-                    <tr>
-                        <th scope="row"><a href="{% url 'problems:detail' problem.name %}"><p>{{ problem.title }}</p></a></th>
-                        <td><p>{{ problem.date_added }}</p></td>
-                    </tr>
-                    {% endif %}
-                {% endfor %}
-              </tbody>
-        </table>
+              {% endif %}
+            {% endfor %}
+        </tbody>
+      </table>
     {% else %}
-        <p>No questions are available.</p>
+      <p>No questions are available.</p>
     {% endif %}
 {% endblock %}
