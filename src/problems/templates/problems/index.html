@@ -23,10 +23,32 @@
               {% if problem.visible %}
                 <tr>
                   <th>{{ problem.id  }}</th>
-                  <th><i class="fas fa-check has-text-success"></i></th>
+                  <th>
+                    {% if user.is_authenticated %}
+                      <i class="fas fa-check has-text-success"></i>
+                    {% endif %}
+                  </th>
                   <td>
                     <a href="{% url 'problems:detail' problem.name %}">{{ problem.title  }}</a>
-                    <span class="tag is-info">Physics</span>
+
+                    {% if problem.subject == 'physics' %}  
+                      <span class="tag is-info">physics</span>
+                    {% elif problem.subject == 'math' %}
+                      <span class="tag is-warning">math</span>
+                    {% elif problem.subject == 'earth science' %}
+                      <span class="tag is-success">earth science</span>
+                    {% elif problem.subject == 'chemistry' %}
+                      <span class="tag is-danger">chemistry</span>
+                    {% elif problem.subject == 'biology' %}
+                      <span class="tag is-primary">biology</span>
+                    {% elif problem.subject == 'astronomy' %}
+                      <span class="tag is-black">astronomy</span>
+                    {% elif problem.subject == 'engineering' %}
+                      <span class="tag is-light">engineering</span>
+                    {% elif problem.subject == 'computer science' %}
+                      <span class="tag is-dark">computer science</span>
+                    {% endif %}
+                  
                   </td>
                   <td>{{ problem.solved_by }}</td>
 
