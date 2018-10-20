@@ -39,6 +39,10 @@ class UserRegistrationView(View):
             return self._partially_filled_form(request, form)
 
         user = form.save()
+
+        # TODO: SHOULD PROBABLY NOT BE READING RAW PASSWORD AND SETTING THEM LIKE THIS.
+        # But this should work for now to avoid "Invalid password format or unknown
+        # hashing algorithm."
         user.set_password(request.__dict__['_post']['password'])
 
         profile = UserProfile(user=user, display_name=user.username)
