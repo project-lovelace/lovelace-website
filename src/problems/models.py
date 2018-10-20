@@ -7,6 +7,26 @@ from users.models import UserProfile
 
 
 class Problem(models.Model):
+    PHYSICS = 'physics'
+    MATH = 'math'
+    EARTH_SCIENCE = 'earth science'
+    CHEMISTRY = 'chemistry'
+    BIOLOGY = 'biology'
+    ASTRONOMY = 'astronomy'
+    ENGINEERING = 'engineering'
+    COMPUTER_SCIENCE = 'computer science'
+
+    SUBJECT_CHOICES = (
+        (PHYSICS, 'Physics'),
+        (MATH, 'Math'),
+        (EARTH_SCIENCE, 'Earth science'),
+        (CHEMISTRY, 'Chemistry'),
+        (BIOLOGY, 'Biology'),
+        (ASTRONOMY, 'Astronomy'),
+        (ENGINEERING, 'Engineering'),
+        (COMPUTER_SCIENCE, 'Computer science'),
+    )
+
     id = models.AutoField(primary_key=True)
 
     # Unique name for database and urls, e.g. "earthquake-epicenters".
@@ -14,6 +34,8 @@ class Problem(models.Model):
 
     # Human-readable name shown to user, e.g. "Finding Earthquake Epicenters".
     title = models.CharField(max_length=256, editable=True)
+
+    subject = models.CharField(max_length=32, choices=SUBJECT_CHOICES, default=PHYSICS, editable=True)
 
     date_added = models.DateField(default=date.today, editable=True)
 
