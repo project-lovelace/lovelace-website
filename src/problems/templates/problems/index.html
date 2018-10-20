@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 
 {% block body %}
-
 <br>
 <section classs="section">
   <div class="columns is-centered">
@@ -26,8 +25,8 @@
                   <th>{{ problem.id  }}</th>
                   <th><i class="fas fa-check has-text-success"></i></th>
                   <td>
-                    <a href="{% url 'problems:detail' problem.name %}"><p>{{ problem.title  }}</p></a>
-                    <span class="taf is-info">Physics</span>
+                    <a href="{% url 'problems:detail' problem.name %}">{{ problem.title  }}</a>
+                    <span class="tag is-info">Physics</span>
                   </td>
                   <td>{{ problem.solved_by }}</td>
 
