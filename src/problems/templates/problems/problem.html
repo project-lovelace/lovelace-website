@@ -7,147 +7,165 @@
 </script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
 
+<!-- Ace editor config -->
 <style type="text/css" media="screen">
-#editor {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
+  #editor {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 95%;
+    height: 100%;
+  }
+</style>
+
+<!-- CSS to show active tab and hide inactive tabs. -->
+<style>
+  #tab-content section {
+    display: none;
+  }
+
+  #tab-content section.is-active {
+    display: block;
+  }
 </style>
 {% endblock %}
 
 {% block page_title %}
-    {{ problem.title }} | Project Lovelace
+{{ problem.title }} | Project Lovelace
 {% endblock %}
 
 {% block body %}
-    <meta name="problem_name" content="problem.name">
-    <section class="section">
+<meta name="problem_name" content="problem.name">
+<section class="section">
+  <br>
+  <h1 class="title is-2 has-text-centered">{{ problem.title }}</h1>
+  <h3 class="subtitle is-5 has-text-centered is-italic"><strong>Useful to know</strong>: {% block required %}{% endblock %}</h3>
+
+  <div id="tabs" class="tabs is-centered is-boxed">
+    <ul>
+      <li data-tab="1" class="is-active">
+        <a>
+          <span class="icon is-small"><i class="fas fa-align-justify" aria-hidden="true"></i></span>
+          <span>Description</span>
+        </a>
+      </li>
+      <li data-tab="2">
+        <a>
+          <span class="icon is-small"><i class="fas fa-history" aria-hidden="true"></i></span>
+          <span>Submissions</span>
+        </a>
+      </li>
+      <li data-tab="3">
+        <a>
+          <span class="icon is-small"><i class="fas fa-book" aria-hidden="true"></i></span>
+          <span>Notes and references</span>
+        </a>
+      </li>
+      <li data-tab="4">
+        <a>
+          <span class="icon is-small"><i class="far fa-comments" aria-hidden="true"></i></span>
+          <span>Forum</span>
+        </a>
+      </li>
+      <li data-tab="5">
+        <a>
+          <span class="icon is-small"><i class="fas fa-check-double" aria-hidden="true"></i></span>
+          <span>Solution</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="container" id="tab-content">
+    <section data-content="1" class="is-active"> <!-- Description tab -->
+      <p class="has-text-justified">
+        {% block introduction %}{% endblock %}
+        {% block problem_body %}{% endblock %}
+      </p>
       <br>
-      <h1 class="title is-2 has-text-centered">{{ problem.title }}</h1>
-      <h3 class="subtitle is-5 has-text-centered is-italic"><strong>Useful to know</strong>: {% block required %}{% endblock %}</h3>
+      
+      <p><strong>Input</strong>: {% block input_description %}{% endblock %}</p>
+      <br>
+      <p><strong>Output</strong>: {% block output_description %}{% endblock %}</p>
+      <br>
+      
+      <article class="message">
+        <div class="message-header">
+          <p>Example input</p>
+        </div>
+        <div class="message-body" style="font-family: monospace; text-align: justify">
+          {% block input_example %}{% endblock %}
+        </div>
+      </article>
 
-      <div class="tabs is-centered is-boxed">
-        <ul>
-          <li class="is-active">
-            <a>
-              <span class="icon is-small"><i class="fas fa-align-justify" aria-hidden="true"></i></span>
-              <span>Description</span>
-            </a>
-          </li>
-          <li>
-            <a>
-              <span class="icon is-small"><i class="fas fa-history" aria-hidden="true"></i></span>
-              <span>Submissions</span>
-            </a>
-          </li>
-          <li>
-            <a>
-              <span class="icon is-small"><i class="fas fa-book" aria-hidden="true"></i></span>
-              <span>Notes and references</span>
-            </a>
-          </li>
-          <li>
-            <a>
-              <span class="icon is-small"><i class="far fa-comments" aria-hidden="true"></i></span>
-              <span>Forum</span>
-            </a>
-          </li>
-          <li>
-            <a>
-              <span class="icon is-small"><i class="fas fa-check-double" aria-hidden="true"></i></span>
-              <span>Solution</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-
-    <div class="container">
-        <p class="has-text-justified">
-            {% block introduction %}
-            {% endblock %}
-            {% block problem_body %}
-            {% endblock %}
-        </p>
-        
-        <br>
-        
-        <p>
-            <strong>Input</strong>: {% block input_description %}{% endblock %}
-        </p>
-        <br>
-        <p>
-        <strong>Output</strong>: {% block output_description %}{% endblock %}
-        </p>
-        
-        <br>
-        
-        <article class="message">
-          <div class="message-header">
-            <p>Example input</p>
-          </div>
-          <div class="message-body" style="font-family: monospace; text-align: justify">
-              {% block input_example %}{% endblock %}
-          </div>
-        </article>
-
-        <article class="message">
-          <div class="message-header">
-            <p>Example output</p>
-          </div>
-          <div class="message-body" style="font-family: monospace; text-align: justify">
-              {% block output_example %}{% endblock %}
-          </div>
-        </article>
-
-      </div>
+      <article class="message">
+        <div class="message-header">
+          <p>Example output</p>
+        </div>
+        <div class="message-body" style="font-family: monospace; text-align: justify">
+          {% block output_example %}{% endblock %}
+        </div>
+      </article>
     </section>
 
+    <section data-content="2"> <!-- Submissions tab -->
+      <p>You can use the editor below or upload a file to submit your code.</p><br>
+      <div class="columns">
+        <div class="column is-three-quarters" style="position: relative;">
+          <div id="editor">def earthquake_epicenter_2d(x1, y1, t1, x2, y2, t2, x3, y3, t3):
+            pass
+            return (x0, y0)'
+          </div>
+        </div>
 
-    <br>
+        <div class="is-divider-vertical" data-content="OR"></div>
 
-    <div class="container">
-    <div class="columns">
-      <div class="column is-three-quarters" style="position: relative;">
-        <div id="editor">def earthquake_epicenter_2d(x1, y1, t1, x2, y2, t2, x3, y3, t3):
-    pass
-    return (x0, y0)</div>
-      </div>
-
-      <div class="is-divider-vertical" data-content="OR"></div>
-
-      <div class="column is-one-quarter">
-        <div class="container">
-          <div class="file has-name is-boxed">
-            <label class="file-label">
-              <form action="{% url 'problems:detail' problem.name %}" method="post" id="code-submit-form" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ form }}
-                <input class="file-input" type="file" name="resume">
-              </form>
-              <span class="file-cta">
-                <span class="file-icon">
-                  <i class="fas fa-upload"></i>
+        <div class="column is-one-quarter">
+          <div class="container">
+            <div class="file has-name is-boxed">
+              <label class="file-label">
+                <form action="{% url 'problems:detail' problem.name %}" method="post" id="code-submit-form" enctype="multipart/form-data">
+                  <!-- {% csrf_token %} -->
+                  <!-- {{ form }} -->
+                  <input class="file-input" type="file" name="resume">
+                </form>
+                <span class="file-cta">
+                  <span class="file-icon">
+                    <i class="fas fa-upload"></i>
+                  </span>
+                  <span class="file-label">
+                    Upload file
+                  </span>
                 </span>
-                <span class="file-label">
-                  Upload file
+                <span class="file-name">
+                  earthquake_2d_69420.py
                 </span>
-              </span>
-              <span class="file-name">
-                earthquake_2d_69420.py
-              </span>
-            </label>
+              </label>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
+
+    <section data-content="3"> <!-- Notes and references tab -->
+      <p>Notes and references go here...</p>
+    </section>
+
+    <section data-content="4"> <!-- Forum tab -->
+      <p>Discussion goes here!</p>
+    </section>
+
+    <section data-content="5"> <!-- Forum tab -->
+      <p>I wonder if you can see the text below...</p><br>
+      <div>
+        <p>Solution goes here!</p>
+      </div>
+    </section>
+
   </div>
-  
-  <br><br>
+</section>
 {% endblock %}
 
 {% block postload_javascript %}
@@ -160,4 +178,45 @@
   editor.session.setMode("ace/mode/python");
   editor.resize();
 </script>
+
+<script>
+  // Credit to sol @ https://stackoverflow.com/a/47591788
+  const TABS = [...document.querySelectorAll('#tabs li')];
+  const CONTENT = [...document.querySelectorAll('#tab-content section')];
+  const ACTIVE_CLASS = 'is-active';
+
+  function initTabs() {
+    TABS.forEach((tab) => {
+      tab.addEventListener('click', (e) => {
+        let selected = tab.getAttribute('data-tab');
+        updateActiveTab(tab);
+        updateActiveContent(selected);
+      })
+    })
+  }
+
+  function updateActiveTab(selected) {
+    TABS.forEach((tab) => {
+      if (tab && tab.classList.contains(ACTIVE_CLASS)) {
+        tab.classList.remove(ACTIVE_CLASS);
+      }
+    });
+    selected.classList.add(ACTIVE_CLASS);
+  }
+
+  function updateActiveContent(selected) {
+    CONTENT.forEach((item) => {
+      if (item && item.classList.contains(ACTIVE_CLASS)) {
+        item.classList.remove(ACTIVE_CLASS);
+      }
+      let data = item.getAttribute('data-content');
+      if (data === selected) {
+        item.classList.add(ACTIVE_CLASS);
+      }
+    });
+  }
+
+  initTabs();
+</script>
+
 {% endblock %}
