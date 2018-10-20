@@ -39,6 +39,8 @@ class UserRegistrationView(View):
             return self._partially_filled_form(request, form)
 
         user = form.save()
+        user.set_password(request.__dict__['_post']['password'])
+
         profile = UserProfile(user=user, display_name=user.username)
         try:
             user.full_clean()
