@@ -30,8 +30,22 @@
                     <span class="taf is-info">Physics</span>
                   </td>
                   <td>{{ problem.solved_by }}</td>
-                  <td><progress class="progress is-success" value="{{ problem.difficulty }}" max="15"></progress></td>
-                  <td><progress class="progress is-warning" value="{{ problem.timesink }}" max="15"></progress></td>
+
+                  {% if problem.difficulty <= 5 %}
+                    <td><progress class="progress is-success" value="{{ problem.difficulty }}" max="15"></progress></td>
+                  {% elif problem.difficulty > 5 and problem.difficulty <= 10 %}
+                    <td><progress class="progress is-warning" value="{{ problem.difficulty }}" max="15"></progress></td>
+                  {% else %}
+                    <td><progress class="progress is-danger" value="{{ problem.difficulty }}" max="15"></progress></td>
+                  {% endif %}
+                  
+                  {% if problem.timesink <= 5 %}
+                    <td><progress class="progress is-success" value="{{ problem.timesink }}" max="15"></progress></td>
+                  {% elif problem.timesink > 5 and problem.timesink <= 10 %}
+                    <td><progress class="progress is-warning" value="{{ problem.timesink }}" max="15"></progress></td>
+                  {% else %}
+                    <td><progress class="progress is-danger" value="{{ problem.timesink }}" max="15"></progress></td>
+                  {% endif %}
                 </tr>
               {% endif %}
             {% endfor %}
