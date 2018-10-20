@@ -9,10 +9,6 @@
   <br>  
   <div class="columns is-centered">
     <div class="column is-one-third">
-      {% if model_errors %}
-        {{ model_errors }}
-      {% endif %}
-
       <form method="post" action="" id="registration-form" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="field">
