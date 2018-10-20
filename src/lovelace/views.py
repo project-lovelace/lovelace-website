@@ -8,7 +8,7 @@ from django.views.generic import View
 from .forms import UserRegistrationForm
 from users.models import UserProfile
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger('django.' + __name__)
 
 
 class UserRegistrationView(View):

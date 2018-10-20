@@ -140,7 +140,7 @@ LOGGING = {
     'disable_existing_loggers': False,
     'formatters': {
         'simple': {
-            'format': '[%(asctime)s] %(funcName)s:%(levelname)s: %(message)s',
+            'format': '[%(asctime)s] %(name)s.%(levelname)s (%(pathname)s:%(lineno)d): %(message)s',
         },
     },
     'handlers': {
