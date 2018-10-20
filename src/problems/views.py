@@ -1,8 +1,9 @@
 import base64
 import json
+import logging
 
 import requests
-from django.http import HttpResponseBadRequest, HttpResponseServerError
+from django.http import HttpResponseBadRequest, HttpResponseServerError, JsonResponse
 from django.shortcuts import get_object_or_404, render
 from django.views import generic, View
 
@@ -13,7 +14,7 @@ from users.models import UserProfile
 ENGINE_URL = 'http://localhost:14714/submit'
 MAX_FILE_SIZE_BYTES = 65536
 
-# logger = logging.getLogger(__name__)  # TODO enable logging
+logger = logging.getLogger('django')
 
 
 class IndexView(generic.ListView):
@@ -52,6 +53,8 @@ class DetailView(View):
         if file.size > MAX_FILE_SIZE_BYTES:
             return HttpResponseBadRequest('File must be smaller than {} bytes'.format(MAX_FILE_SIZE_BYTES))
 
+        logger.info("Received submission for problem={:}".format(problem_name))
+
         submission = {
             'problem': problem_name,
             'language': 'python3',
@@ -75,4 +78,6 @@ class DetailView(View):
         )
         submission.save()
         template = 'problems/results.html'
+
+        # return JsonResponse({'results': results})
         return render(request, template, {'results': results})
