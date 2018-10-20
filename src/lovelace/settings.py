@@ -138,9 +138,15 @@ LOGOUT_REDIRECT_URL = 'home'
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'formatters': {
+        'simple': {
+            'format': '%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
+        },
+    },
     'handlers': {
         'file': {
             'level': 'DEBUG',
+            'formatter': 'simple',
             'class': 'logging.FileHandler',
             'filename': '/var/log/lovelace/lovelace-django.log',
         },
