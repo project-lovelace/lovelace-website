@@ -1,6 +1,12 @@
+{% load static %}
+
 <nav class="navbar is-transparent is-dark">
   <div class="navbar-brand">
-      <a class="navbar-item" href="http://projectlovelace.net/" style="font-variant: small-caps;"><b>Project Lovelace</b></a>
+      <a class="navbar-item" href="http://projectlovelace.net/" style="font-variant: small-caps;">
+          <img src="{% static 'img/Lovelace_logo_white_192px.png' %}">
+          &nbsp;
+          <b>Project Lovelace</b>
+      </a>
     <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
       <span></span>
       <span></span>
