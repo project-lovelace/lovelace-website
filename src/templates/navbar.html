@@ -30,7 +30,7 @@
             </div>
             <div class="dropdown-menu" id="dropdown-menu" role="menu">
               <div class="dropdown-content">
-                <a href="#" class="dropdown-item">Profile</a>
+                <a href="{% url 'users:profile' user.username %}" class="dropdown-item">Profile</a>
                 <a href="#" class="dropdown-item">Submissions</a>
                 <a href="#" class="dropdown-item">Progress</a>
                 <hr class="dropdown-divider">
