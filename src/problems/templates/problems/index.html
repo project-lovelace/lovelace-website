@@ -25,7 +25,9 @@
                   <th>{{ problem.id  }}</th>
                   <th>
                     {% if user.is_authenticated %}
-                      <i class="fas fa-check has-text-success"></i>
+                      {% if problem.id in problems_solved %}
+                        <i class="fas fa-check has-text-success"></i>
+                      {% endif %}
                     {% endif %}
                   </th>
                   <td>

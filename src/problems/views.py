@@ -14,7 +14,7 @@ from users.models import UserProfile
 ENGINE_URL = 'http://localhost:14714/submit'
 MAX_FILE_SIZE_BYTES = 65536
 
-logger = logging.getLogger('django')
+logger = logging.getLogger('django.' + __name__)
 
 
 class IndexView(generic.ListView):
@@ -22,8 +22,18 @@ class IndexView(generic.ListView):
     context_object_name = 'latest_problem_list'
 
     def get_queryset(self):
-        """Return all problems, sorted alphabetically by title."""
+        """Return all problems, sorted chronologically."""
         return Problem.objects.order_by('date_added')
+
+    def get_context_data(self, **kwargs):
+        """ Add a list of problems solved by the user. """
+        data = super().get_context_data(**kwargs)
+
+        current_user_profile = UserProfile.objects.get(user=self.request.user)
+        problems_solved = Submission.objects.all().filter(user=current_user_profile, passed=True).distinct().values_list('problem', flat=True)
+        # logger.info("problems_solved by {:} = {:}".format(self.request.user, problems_solved))
+        data['problems_solved'] = problems_solved
+        return data
 
 
 class DetailView(View):
