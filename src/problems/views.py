@@ -27,13 +27,14 @@ class IndexView(generic.ListView):
         return Problem.objects.order_by('date_added')
 
     def get_context_data(self, **kwargs):
-        """ Add a list of problems solved by the user. """
+        """ Add a list of problems solved by the user, if authenticated. """
         data = super().get_context_data(**kwargs)
 
-        current_user_profile = UserProfile.objects.get(user=self.request.user)
-        problems_solved = Submission.objects.filter(user=current_user_profile, passed=True).distinct().values_list('problem', flat=True)
-        # logger.info("problems_solved by {:} = {:}".format(self.request.user, problems_solved))
-        data['problems_solved'] = problems_solved
+        if self.request.user.is_authenticated:
+            current_user_profile = UserProfile.objects.get(user=self.request.user)
+            problems_solved = Submission.objects.filter(user=current_user_profile, passed=True).distinct().values_list('problem', flat=True)
+            # logger.info("problems_solved by {:} = {:}".format(self.request.user, problems_solved))
+            data['problems_solved'] = problems_solved
 
         return data
 
