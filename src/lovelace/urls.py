@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
-from django.urls import include, path
+from django.urls import include, path, re_path
 from django.views.generic import TemplateView
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.views.generic.base import RedirectView
@@ -31,5 +31,5 @@ urlpatterns = [
     path('users/', include('users.urls'), name='users'),
 
     # Favicon. See: http://staticfiles.productiondjango.com/blog/failproof-favicons/
-    path(r'^favicon.ico$', RedirectView.as_view(url=staticfiles_storage.url('img/favicon.ico'), permanent=False), name='favicon'),
+    re_path(r'^favicon.ico$', RedirectView.as_view(url='/static/img/favicon.ico', permanent=False), name='favicon'),
 ]
