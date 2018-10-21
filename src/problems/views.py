@@ -6,6 +6,7 @@ import requests
 from django.http import HttpResponseBadRequest, HttpResponseServerError, JsonResponse
 from django.shortcuts import get_object_or_404, render
 from django.views import generic, View
+from django.db.models import F
 
 from .forms import CodeSubmissionForm
 from .models import Problem, Submission
@@ -30,9 +31,10 @@ class IndexView(generic.ListView):
         data = super().get_context_data(**kwargs)
 
         current_user_profile = UserProfile.objects.get(user=self.request.user)
-        problems_solved = Submission.objects.all().filter(user=current_user_profile, passed=True).distinct().values_list('problem', flat=True)
+        problems_solved = Submission.objects.filter(user=current_user_profile, passed=True).distinct().values_list('problem', flat=True)
         # logger.info("problems_solved by {:} = {:}".format(self.request.user, problems_solved))
         data['problems_solved'] = problems_solved
+
         return data
 
 
@@ -88,6 +90,15 @@ class DetailView(View):
         )
         submission.save()
         template = 'problems/results.html'
+
+        # If successful and is user's first successful submission, increment problem's solved_by.
+        if results['success']:
+            current_user_profile = UserProfile.objects.get(user=request.user)
+            num_previous_successful_submissions = Submission.objects.filter(user=current_user_profile, passed=True, problem__name=problem_name).count()
+            logger.info("# previous successful submissions: {:}".format(num_previous_successful_submissions))
+            if num_previous_successful_submissions == 1:
+                logger.info("User {:} successfully solved {:}. Incrementing problem's solved_by 1 to TODO.".format(request.user, problem_name))
+                Problem.objects.filter(name=problem_name).update(solved_by=F('solved_by')+1)
 
         # return JsonResponse({'results': results})
         return render(request, template, {'results': results})
