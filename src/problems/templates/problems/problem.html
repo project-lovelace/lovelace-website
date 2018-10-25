@@ -123,16 +123,19 @@
         </div>
 
         <div class="is-divider-vertical" data-content="OR"></div>
-
-        <div class="column is-one-quarter">
-          <div class="container">
-            <form method="post" id="code-submit-form" enctype="multipart/form-data">
-              {% csrf_token %}
-              {{ form }}
-              <input type="submit" value="Submit" id="submit-code-button" />
-            </form>
+          <div class="column is-one-quarter">
+            <div class="container">
+              {% if user.is_authenticated %}
+                <form method="post" id="code-submit-form" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  {{ form }}
+                  <input type="submit" value="Submit" id="submit-code-button" />
+                </form>
+              {% else %}
+                <p>You must be logged in to submit code.</p>
+              {% endif %}
+            </div>
           </div>
-        </div>
       </div>
     </section>
 
