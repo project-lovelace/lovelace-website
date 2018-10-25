@@ -1,6 +1,7 @@
 import base64
 import json
 import logging
+import pprint
 
 import requests
 from django.http import HttpResponseBadRequest, HttpResponseServerError, JsonResponse
@@ -66,7 +67,13 @@ class DetailView(View):
         if file.size > MAX_FILE_SIZE_BYTES:
             return HttpResponseBadRequest('File must be smaller than {} bytes'.format(MAX_FILE_SIZE_BYTES))
 
-        logger.info("Received submission for problem={:}".format(problem_name))
+        if request.is_ajax():
+            logger.info("AJAX request received.")
+        else:
+            logger.info("Received request NOT AJAX.")
+
+        logger.info("Received submission for problem={:}. Request:\n{:}"
+                .format(problem_name, pprint.pformat(request.__dict__)))
 
         submission = {
             'problem': problem_name,
@@ -101,5 +108,5 @@ class DetailView(View):
                 logger.info("User {:} successfully solved {:}. Incrementing problem's solved_by 1 to TODO.".format(request.user, problem_name))
                 Problem.objects.filter(name=problem_name).update(solved_by=F('solved_by')+1)
 
-        # return JsonResponse({'results': results})
-        return render(request, template, {'results': results})
+        return JsonResponse({'results': results})
+        # return render(request, template, {'results': results})

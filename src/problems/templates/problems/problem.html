@@ -126,7 +126,7 @@
 
         <div class="column is-one-quarter">
           <div class="container">
-            <form action="{% url 'problems:detail' problem.name %}" method="post" id="code-submit-form" enctype="multipart/form-data">
+            <form method="post" id="code-submit-form" enctype="multipart/form-data">
               {% csrf_token %}
               {{ form }}
               <input type="submit" value="Submit" id="submit-code-button" />
@@ -177,6 +177,23 @@
     </section>
 
   </div>
+
+  <!-- Modal for showing test case results -->
+  <div class="modal" id="results-modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title" id="results-modal-title"></p>
+        <button class="delete" aria-label="close"></button>
+      </header>
+      <section class="modal-card-body" id="results-modal-body"></section>
+      <footer class="modal-card-foot">
+        <button class="button is-success">Save changes</button>
+        <button class="button">Cancel</button>
+      </footer>
+    </div>
+  </div>
+
 </section>
 {% endblock %}
 
@@ -192,6 +209,7 @@
 </script>
 
 <script>
+  // Tab switching.
   // Credit to sol @ https://stackoverflow.com/a/47591788
   const TABS = [...document.querySelectorAll('#tabs li')];
   const CONTENT = [...document.querySelectorAll('#tab-content section')];
@@ -229,6 +247,95 @@
   }
 
   initTabs();
+</script>
+
+<script>
+  var apiUrl = '{% url 'problems:detail' problem.name %}';
+  var csrf_token = '{{ csrf_token }}';
+
+  function sendCodeFile(event) {
+    console.log("Inside sendCodeFile()...");
+    
+    // var form = document.getElementById('code-submit-form');
+    var form = document.forms.namedItem('code-submit-form');
+    var data = new FormData(form);
+    // data.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+
+    // console.log("form [key, value]:");
+    // for (var [key, value] of data.entries()) { 
+    //   console.log(key + ': ' + value);
+    // }
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', apiUrl, true);
+    // xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+    xhr.setRequestHeader('X-CSRFToken', csrf_token);
+    xhr.onreadystatechange = injectTestCaseResults;
+    xhr.onerror = handleAjaxError;
+    xhr.send(data);
+  }
+
+  document.getElementById('code-submit-form').onsubmit = sendCodeFile;
+
+  function injectTestCaseResults() {
+    console.log("AJAX success!");
+    r = JSON.parse(this.response).results;
+    console.log("response: " + JSON.stringify(r, null, 2));
+    console.log("sucess: " + r['success']);
+    console.log("testCaseDetails: " + r.testCaseDetails);
+
+    if (r.success) {
+      document.getElementById('results-modal-title').innerHTML += "Success!";
+    } else {
+      document.getElementById('results-modal-title').innerHTML += "Failed.";
+    }
+
+    var nTestCases = r.testCaseDetails.length;
+    var passes = 0;
+    for (var i = 0; i < nTestCases; i++) {
+        passes += r.testCaseDetails[i].passed ? 1 : 0;
+    }
+
+    document.getElementById('results-modal-title').innerHTML
+        += ' Passed ' + passes + '/' + nTestCases + ' test cases.';
+
+    // Print all the test case details.
+    var resultsModalBody = document.getElementById('results-modal-body');
+    for (var i = 0; i < nTestCases; i++) {
+      resultsModalBody.innerHTML += '<article class="message">'
+          + '<div class="message-header">'
+
+        testCasePanelTitle = 'Test case ' + (i+1) + '/' + nTestCases
+            + ' (' + r.testCaseDetails[i].testCaseType + '): ';
+
+        if (r.testCaseDetails[i].passed) {
+            testCasePanelTitle += 'passed!<br>';
+        } else {
+            testCasePanelTitle += 'failed.<br>';
+        }
+
+        resultsModalBody.innerHTML += '<p>' + testCasePanelTitle + '</p></div>'
+
+        processInfoString = 'Return code ' + r.testCaseDetails[i].processInfo.returnCode + ', '
+            + 'utime: ' + r.testCaseDetails[i].processInfo.utime + ' s, '
+            + 'stime: ' + r.testCaseDetails[i].processInfo.stime + ' s, '
+            + 'maxrss: ' + r.testCaseDetails[i].processInfo.maxrss + ' kB.<br><br>';
+
+        resultsModalBody.innerHTML += '<div class="message-body" style="font-family: monospace; text-align: justify">'
+            + processInfoString
+            + 'Input:<br>' + r.testCaseDetails[i].inputString + '<br><br>'
+            + 'Output:<br>' + r.testCaseDetails[i].outputString
+            + '</div></article>';
+    }
+    document.getElementById('results-modal').classList.add('is-active');
+    console.log("Done drawing modal.")
+  }
+
+  function handleAjaxError() {
+    console.log("AJAX error!");
+    console.log(this.response);
+  }
 </script>
 
 {% endblock %}
