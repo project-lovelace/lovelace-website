@@ -256,34 +256,33 @@
   function sendCodeFile(event) {
     console.log("Inside sendCodeFile()...");
     
-    // var form = document.getElementById('code-submit-form');
     var form = document.forms.namedItem('code-submit-form');
     var data = new FormData(form);
-    // data.append('csrfmiddlewaretoken', '{{ csrf_token }}');
-
-    // console.log("form [key, value]:");
-    // for (var [key, value] of data.entries()) { 
-    //   console.log(key + ': ' + value);
-    // }
 
     var xhr = new XMLHttpRequest();
     xhr.open('POST', apiUrl, true);
     // xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
     xhr.setRequestHeader('X-CSRFToken', csrf_token);
-    xhr.onreadystatechange = injectTestCaseResults;
+    xhr.onload = injectTestCaseResults;
     xhr.onerror = handleAjaxError;
     xhr.send(data);
   }
 
-  document.getElementById('code-submit-form').onsubmit = sendCodeFile;
+  document.getElementById('code-submit-form').addEventListener('submit',
+    function(event) {
+      event.preventDefault()
+      event.stopImmediatePropagation();
+      sendCodeFile(event);
+
+      // Prevents the default action and stops propagation.
+      // See: http://blog.niftysnippets.org/2011/11/story-on-return-false.html
+      return false;
+  });
 
   function injectTestCaseResults() {
-    console.log("AJAX success!");
+    console.log("Inside injectTestCaseResults()...")
     r = JSON.parse(this.response).results;
-    console.log("response: " + JSON.stringify(r, null, 2));
-    console.log("sucess: " + r['success']);
-    console.log("testCaseDetails: " + r.testCaseDetails);
 
     if (r.success) {
       document.getElementById('results-modal-title').innerHTML += "Success!";
@@ -303,33 +302,33 @@
     // Print all the test case details.
     var resultsModalBody = document.getElementById('results-modal-body');
     for (var i = 0; i < nTestCases; i++) {
+      testCasePanelTitle = 'Test case ' + (i+1) + '/' + nTestCases
+          + ' (' + r.testCaseDetails[i].testCaseType + '): ';
+
+      if (r.testCaseDetails[i].passed) {
+          testCasePanelTitle += 'passed!<br>';
+      } else {
+          testCasePanelTitle += 'failed.<br>';
+      }
+
       resultsModalBody.innerHTML += '<article class="message">'
           + '<div class="message-header">'
+          + '<p>' + testCasePanelTitle + '</p></div>';
 
-        testCasePanelTitle = 'Test case ' + (i+1) + '/' + nTestCases
-            + ' (' + r.testCaseDetails[i].testCaseType + '): ';
+      processInfoString = 'Return code ' + r.testCaseDetails[i].processInfo.returnCode + ', '
+          + 'utime: ' + r.testCaseDetails[i].processInfo.utime + ' s, '
+          + 'stime: ' + r.testCaseDetails[i].processInfo.stime + ' s, '
+          + 'maxrss: ' + r.testCaseDetails[i].processInfo.maxrss + ' kB.<br><br>';
 
-        if (r.testCaseDetails[i].passed) {
-            testCasePanelTitle += 'passed!<br>';
-        } else {
-            testCasePanelTitle += 'failed.<br>';
-        }
-
-        resultsModalBody.innerHTML += '<p>' + testCasePanelTitle + '</p></div>'
-
-        processInfoString = 'Return code ' + r.testCaseDetails[i].processInfo.returnCode + ', '
-            + 'utime: ' + r.testCaseDetails[i].processInfo.utime + ' s, '
-            + 'stime: ' + r.testCaseDetails[i].processInfo.stime + ' s, '
-            + 'maxrss: ' + r.testCaseDetails[i].processInfo.maxrss + ' kB.<br><br>';
-
-        resultsModalBody.innerHTML += '<div class="message-body" style="font-family: monospace; text-align: justify">'
-            + processInfoString
-            + 'Input:<br>' + r.testCaseDetails[i].inputString + '<br><br>'
-            + 'Output:<br>' + r.testCaseDetails[i].outputString
-            + '</div></article>';
+      resultsModalBody.innerHTML += '<div class="message-body" style="font-family: monospace; text-align: justify">'
+          + processInfoString
+          + 'Input:<br>' + r.testCaseDetails[i].inputString + '<br><br>'
+          + 'Output:<br>' + r.testCaseDetails[i].outputString
+          + '</div></article>';
     }
+
     document.getElementById('results-modal').classList.add('is-active');
-    console.log("Done drawing modal.")
+    console.log("Done drawing modal.");
   }
 
   function handleAjaxError() {
