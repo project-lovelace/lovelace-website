@@ -184,12 +184,12 @@
     <div class="modal-card">
       <header class="modal-card-head">
         <p class="modal-card-title" id="results-modal-title"></p>
-        <button class="delete" aria-label="close"></button>
+        <button class="delete" aria-label="close" id="modal-close"></button>
       </header>
       <section class="modal-card-body" id="results-modal-body"></section>
       <footer class="modal-card-foot">
         <button class="button is-success">Save changes</button>
-        <button class="button">Cancel</button>
+        <button class="button">Close</button>
       </footer>
     </div>
   </div>
@@ -250,6 +250,12 @@
 </script>
 
 <script>
+    var modal = document.getElementById('modal-close');
+    modal.addEventListener('click', function(event) {
+      event.stopPropagation();
+      document.getElementById('results-modal').classList.toggle('is-active');
+    });
+
   var apiUrl = '{% url 'problems:detail' problem.name %}';
   var csrf_token = '{{ csrf_token }}';
 
@@ -301,6 +307,8 @@
 
     // Print all the test case details.
     var resultsModalBody = document.getElementById('results-modal-body');
+    resultsModalBody.innerHTML = '';
+
     for (var i = 0; i < nTestCases; i++) {
       testCasePanelTitle = 'Test case ' + (i+1) + '/' + nTestCases
           + ' (' + r.testCaseDetails[i].testCaseType + '): ';
@@ -311,16 +319,15 @@
           testCasePanelTitle += 'failed.<br>';
       }
 
-      resultsModalBody.innerHTML += '<article class="message">'
-          + '<div class="message-header">'
-          + '<p>' + testCasePanelTitle + '</p></div>';
-
       processInfoString = 'Return code ' + r.testCaseDetails[i].processInfo.returnCode + ', '
           + 'utime: ' + r.testCaseDetails[i].processInfo.utime + ' s, '
           + 'stime: ' + r.testCaseDetails[i].processInfo.stime + ' s, '
           + 'maxrss: ' + r.testCaseDetails[i].processInfo.maxrss + ' kB.<br><br>';
 
-      resultsModalBody.innerHTML += '<div class="message-body" style="font-family: monospace; text-align: justify">'
+      resultsModalBody.innerHTML += '<article class="message">'
+          + '<div class="message-header">'
+          + '<p>' + testCasePanelTitle + '</p></div>'
+          + '<div class="message-body" style="font-family: monospace; text-align: justify">'
           + processInfoString
           + 'Input:<br>' + r.testCaseDetails[i].inputString + '<br><br>'
           + 'Output:<br>' + r.testCaseDetails[i].outputString
