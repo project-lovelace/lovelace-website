@@ -16,9 +16,9 @@ class ViewUserProfileView(View):
     template_name = 'users/profile.html'
 
     def get(self, request, username):
-        logger.info("Getting user profile for user {:}.".format(request.user))
+        logger.info("Getting user profile for user {:}.".format(username))
 
-        user = User.objects.get(username=request.user)
+        user = User.objects.get(username=username)
         profile = UserProfile.objects.get(user=user)
 
         return render(request, self.template_name, {
@@ -30,7 +30,7 @@ class ViewUserProfileView(View):
 class EditUserProfileView(View):
     template_name = 'users/editprofile.html'
 
-    # @method_decorator(login_required)
+    @method_decorator(login_required)
     def get(self, request):
         logger.info("User {:} is editing user profile.".format(request.user))
 
