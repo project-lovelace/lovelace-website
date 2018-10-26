@@ -99,14 +99,18 @@ class DetailView(View):
         submission.save()
         template = 'problems/results.html'
 
-        # If successful and is user's first successful submission, increment problem's solved_by.
+        # Increment user's submission count by 1.
+        UserProfile.objects.filter(user=request.user).update(submissions_made=F('submissions_made') + 1)
+
+        # If successful and is user's first successful submission, increment problem's solved_by and user's problems_solved.
         if results['success']:
             current_user_profile = UserProfile.objects.get(user=request.user)
             num_previous_successful_submissions = Submission.objects.filter(user=current_user_profile, passed=True, problem__name=problem_name).count()
             logger.info("# previous successful submissions: {:}".format(num_previous_successful_submissions))
             if num_previous_successful_submissions == 1:
                 logger.info("User {:} successfully solved {:}. Incrementing problem's solved_by 1 to TODO.".format(request.user, problem_name))
-                Problem.objects.filter(name=problem_name).update(solved_by=F('solved_by')+1)
+                Problem.objects.filter(name=problem_name).update(solved_by=F('solved_by') + 1)
+                UserProfile.objects.filter(user=request.user).update(problems_solved=F('problems_solved') + 1)
 
         return JsonResponse({'results': results})
         # return render(request, template, {'results': results})
