@@ -23,6 +23,8 @@ class UserProfile(models.Model):
     country = CountryField(blank=True, null=True)
     location = models.CharField(max_length=50, blank=True)
     avatar = models.ImageField(upload_to=avatar_file_name, max_length=100, default=default_avatar_filepath)
+    problems_solved = models.IntegerField(default=0)
+    submissions_made = models.IntegerField(default=0)
 
     def __str__(self):
         return '{} ({})'.format(self.display_name, self.user.username)
