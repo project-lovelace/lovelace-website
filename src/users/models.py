@@ -11,10 +11,10 @@ from django_countries.fields import CountryField
 class UserProfile(models.Model):
     id = models.AutoField(primary_key=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE, unique=True)
-    display_name = models.CharField(max_length=40)
+    display_name = models.CharField(max_length=40, default="")
     about = models.CharField(max_length=1000, default="")
-    birthday = models.DateField(default=datetime.date(1900, 1, 1))
-    country = CountryField(default='CA')
+    birthday = models.DateField(blank=True, null=True)
+    country = CountryField(blank=True, null=True)
     location = models.CharField(max_length=50, default="")
     avatar = models.ImageField(upload_to='avatars', max_length=100, default=static("img/default_avatar.png"))
 
