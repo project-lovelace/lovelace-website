@@ -8,3 +8,8 @@ class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'email', 'password1', 'password2')
+
+    def __init__(self, *args, **kwargs):
+        super(CustomUserCreationForm, self).__init__(*args, **kwargs)
+
+        self.fields['password1'].help_text = "Your password must contain at least 8 characters and can't be too similar to your other personal information, a commonly used password, or entirely numeric."
