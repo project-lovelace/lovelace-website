@@ -57,6 +57,16 @@ class DetailView(View):
             previous_submissions_queryset = Submission.objects.filter(user=current_user_profile, problem__name=problem_name)
             for s in previous_submissions_queryset:
                 logger.info("Found previous submission ID#{:d}".format(s.id))
+
+                if s.runtime_sum < 1e-3:
+                    runtime_sum = "{:d} μs".format(round(s.runtime_sum * 1e6))
+                elif 1e-3 < s.runtime_sum < 1:
+                    runtime_sum = "{:d} ms".format(round(s.runtime_sum * 1e3))
+                else:
+                    runtime_sum = "{:d} s".format(round(s.runtime_sum))
+
+                max_mem_usage = "{:d} kB".format(round(s.max_mem_usage))
+
                 previous_submissions.append({
                     'id': s.id,
                     'passed': s.passed,
@@ -64,6 +74,10 @@ class DetailView(View):
                     'language': s.language,
                     'file': s.file,
                     'filename': s.file.name.split('/')[-1],
+                    'test_cases_passed': s.test_cases_passed,
+                    'test_cases_total': s.test_cases_total,
+                    'runtime_sum': runtime_sum,
+                    'max_mem_usage': max_mem_usage,
                     })
 
         context = {
@@ -78,14 +92,15 @@ class DetailView(View):
     def post(request, problem_name):
         problem = get_object_or_404(Problem, name=problem_name)
         form = CodeSubmissionForm(request.POST, request.FILES)
+
         if not form.is_valid():
             return HttpResponseBadRequest('Unknown problem with the submitted file')
 
-        user_logged_in = not request.user.is_anonymous
-        if not user_logged_in:
+        if not request.user.is_authenticated:
             return HttpResponseBadRequest("You must be registered and logged in to submit code.")
 
         file = form.files['file']
+
         if file.size > MAX_FILE_SIZE_BYTES:
             return HttpResponseBadRequest('File must be smaller than {} bytes'.format(MAX_FILE_SIZE_BYTES))
 
@@ -111,12 +126,29 @@ class DetailView(View):
             return HttpResponseServerError('Code runner failed to run your program')
 
         results = json.loads(engine_resp.text)
+
+        test_cases_passed = 0
+        test_cases_total = 0
+        runtime_sum = 0.0
+        max_mem_usage = 0.0
+
+        for tc in results['testCaseDetails']:
+            test_cases_total += 1
+            if tc['passed']:
+                test_cases_passed += 1
+            runtime_sum += tc['processInfo']['utime']
+            max_mem_usage = max(max_mem_usage, tc['processInfo']['maxrss'])
+
         submission = Submission(
-            user=UserProfile.objects.get(user=request.user) if user_logged_in else None,
+            user=UserProfile.objects.get(user=request.user),
             problem=problem,
             passed=results['success'],
             language='Python3',
             file=file,
+            test_cases_passed=test_cases_passed,
+            test_cases_total=test_cases_total,
+            runtime_sum=runtime_sum,
+            max_mem_usage=max_mem_usage,
         )
         submission.save()
         template = 'problems/results.html'

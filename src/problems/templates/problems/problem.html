@@ -119,6 +119,8 @@
                 <th><abbr title="Submission ID">#</abbr></th>
                 <th>Date</th>
                 <th>File</th>
+                <th title="Sum of runtimes of all test cases">Runtime</th>
+                <th title="Maximum memory usage among all test cases">Memory</th>
                 <th>Language</th>
                 <th>Passed</th>
               </tr>
@@ -129,8 +131,16 @@
                   <td>{{ sub.id }}</td>
                   <td>{{ sub.date }}</td>
                   <td><a href="{{ sub.file.url }}">{{ sub.filename }}</a> ({{ sub.file.size }} bytes)</td>
+                  <td>{{ sub.runtime_sum }}</td>
+                  <td>{{ sub.max_mem_usage }}</td>
                   <td>{{ sub.language }}</td>
-                  <td>{{ sub.passed }}</td>
+                  {% if sub.test_cases_passed == 0 %}
+                    <td class="has-text-danger">{{ sub.test_cases_passed }}/{{ sub.test_cases_total }}</td>
+                  {% elif sub.test_cases_passed == sub.test_cases_total %}
+                    <td class="has-text-success">{{ sub.test_cases_passed }}/{{ sub.test_cases_total }}</td>
+                  {% else %}
+                    <td class="has-text-warning">{{ sub.test_cases_passed }}/{{ sub.test_cases_total }}</td>
+                  {% endif %}
                 </tr>
               </tbody>
             {% endfor %}
