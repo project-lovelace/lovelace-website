@@ -19,11 +19,13 @@ class ViewUserProfileView(View):
     def get(self, request, username):
         logger.info("Getting user profile for user {:}.".format(username))
 
-        user = User.objects.get(username=username)
-        profile = UserProfile.objects.get(user=user)
+        user = User.objects.get(username=request.user.username)
+        user_shown = User.objects.get(username=username)
+        profile = UserProfile.objects.get(user=user_shown)
 
         return render(request, self.template_name, {
             'user': user,
+            'user_shown': user_shown,
             'profile': profile,
         })
 

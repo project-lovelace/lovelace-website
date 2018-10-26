@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block page_title %}
-  {{ user.username }} | Project Lovelace
+  {{ user_shown.username }} | Project Lovelace
 {% endblock %}
 
 {% block body %}
@@ -10,14 +10,14 @@
 <section classs="section">
   <div class="columns is-centered">
     <div class="column is-one-third">
-      <h3 class="title is-3 has-text-centered">{{ user.username }} ({{ profile.display_name }})</h3>
+      <h3 class="title is-3 has-text-centered">{{ user_shown.username }} ({{ profile_shown.display_name }})</h3>
       <h4 class="subtitle is-5 has-text-centered is-italic"><strong>{{ profile.problems_solved }} problems solved ({{ profile.submissions_made}} submissions)</strong></h4>
       <div class="columns">
         <div class="column is-one-third">
           <img src="{{ profile.avatar.url }}" style="display: block; margin-left: auto; margin-right: auto; max-width: 100%; max-height: 100%;">
         </div>
         <div class="column is-two-thirds">
-          <p>Member since: {{ user.date_joined }}</p>
+          <p>Member since: {{ user_shown.date_joined }}</p>
           <p class="has-text-justified">{{ profile.about }}</p>
         </div>
       </div>
