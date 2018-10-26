@@ -118,6 +118,7 @@ USE_TZ = True
 # Directory for media files
 # Mostly used for storing user submitted files
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 
 # Static files (CSS, JavaScript, Images)

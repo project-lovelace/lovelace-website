@@ -22,7 +22,7 @@ class ViewUserProfileView(View):
         profile = UserProfile.objects.get(user=user)
 
         return render(request, self.template_name, {
-            'user_shown': user,
+            'user': user,
             'profile': profile,
         })
 
@@ -39,7 +39,7 @@ class EditUserProfileView(View):
         edit_user_profile_form = EditUserProfileForm(instance=profile)
 
         return render(request, self.template_name, {
-            'user_shown': user,
+            'user': user,
             'profile': profile,
             'form': edit_user_profile_form,
         })
