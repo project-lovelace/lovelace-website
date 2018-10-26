@@ -30,7 +30,5 @@ class UserRegistrationView(generic.CreateView):
             user.refresh_from_db()  # load the profile instance created by the signal
             UserProfile.objects.create(user=user)
             return redirect('login')
-        else:
-            form = CustomUserCreationForm()
 
         return render(request, self.template_name, {'form': form})
