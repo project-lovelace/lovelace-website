@@ -9,36 +9,10 @@
   <br>  
   <div class="columns is-centered">
     <div class="column is-one-third">
-      <form method="post" action="" id="registration-form" enctype="multipart/form-data">
+      <form method="post">
         {% csrf_token %}
-        <div class="field">
-          <p class="control has-icons-left">
-            <input class="input" type="text" name="username" id="{{ form.username.id_for_label }}" placeholder="Username">
-            <span class="icon is-small is-left">
-              <i class="fas fa-user"></i>
-            </span>
-          </p>
-        </div>
-        <div class="field">
-          <p class="control has-icons-left">
-            <input class="input" type="email" name="email" id="{{ form.email.id_for_label }}" placeholder="Email">
-            <span class="icon is-small is-left">
-              <i class="fas fa-envelope"></i>
-            </span>
-          </p>
-        </div>
-        <div class="field">
-          <p class="control has-icons-left">
-            <input class="input" type="password" name="password" id="{{ form.password.id_for_label }}" placeholder="Password">
-            <span class="icon is-small is-left">
-              <i class="fas fa-lock"></i>
-            </span>
-          </p>
-        </div>
-
-        <div class="control">
-          <button class="button is-primary" type="submit" id="register-button">Register</button>
-        </div>
+        {{ form }}
+        <button type="submit">Sign up</button>
       </form>
     </div>
   </div>
