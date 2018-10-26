@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block body %}
+<br>
+<section classs="section">
+  <div class="columns is-centered">
+    <div class="column is-one-third">
+      <form action="/your-name/" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

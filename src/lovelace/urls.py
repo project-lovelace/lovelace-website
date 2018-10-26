@@ -7,6 +7,7 @@ from django.views.generic.base import RedirectView
 
 
 from . import views
+from users.views import EditUserProfileView
 
 urlpatterns = [
     # Administration
@@ -22,6 +23,7 @@ urlpatterns = [
     path('register/', views.UserRegistrationView.as_view(), name='register'),
     path('login/', auth_views.LoginView.as_view(), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('editprofile/', EditUserProfileView.as_view(), name='editprofile'),
 
     # Applications
     path('problems/', include('problems.urls'), name='problems'),
