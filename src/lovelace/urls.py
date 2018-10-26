@@ -23,10 +23,6 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
 
-    # Temporary pages
-    path('tutorials/', TemplateView.as_view(template_name='temporary/tutorials.html'), name='tutorials'),
-    path('tutorials/1', TemplateView.as_view(template_name='temporary/tutorial_1.html')),  # TODO: remove tutorials
-
     # Applications
     path('problems/', include('problems.urls'), name='problems'),
     path('users/', include('users.urls'), name='users'),
