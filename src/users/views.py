@@ -51,19 +51,3 @@ class EditUserProfileView(UpdateView):
             'profile': profile,
             'form': edit_user_profile_form,
         })
-
-    # @method_decorator(login_required)
-    # def post(self, request):
-    #     form = EditUserProfileForm(request.POST)
-    #     user = User.objects.get(username=request.user)
-    #     profile = UserProfile.objects.get(user=user)
-
-    #     if form.is_valid():
-    #         form.save()
-    #         return redirect('editprofile')
-
-    #     return render(request, self.template_name, {
-    #         'user': user,
-    #         'profile': profile,
-    #         'form': form,
-    #         })
