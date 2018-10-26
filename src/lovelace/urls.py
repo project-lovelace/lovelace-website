@@ -4,6 +4,8 @@ from django.urls import include, path, re_path
 from django.views.generic import TemplateView
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.views.generic.base import RedirectView
+from django.conf.urls.static import static
+from django.conf import settings
 
 
 from . import views
@@ -31,4 +33,4 @@ urlpatterns = [
 
     # Favicon. See: http://staticfiles.productiondjango.com/blog/failproof-favicons/
     re_path(r'^favicon.ico$', RedirectView.as_view(url='/static/img/favicon.ico', permanent=False), name='favicon'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
