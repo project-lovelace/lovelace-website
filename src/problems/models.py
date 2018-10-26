@@ -57,10 +57,14 @@ class Submission(models.Model):
     id = models.AutoField(primary_key=True)
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, null=True)
     problem = models.ForeignKey(Problem, on_delete=models.PROTECT)
+    test_cases_passed = models.IntegerField(default=0)
+    test_cases_total = models.IntegerField(default=0)
     passed = models.BooleanField()
     date = models.DateTimeField(auto_now_add=True, verbose_name='submission date')
     language = models.CharField(max_length=256, verbose_name='programming language')
     file = models.FileField(upload_to='uploads/%Y/%m/%d', verbose_name='source code file')
+    runtime_sum = models.FloatField(default=0.0)
+    max_mem_usage = models.FloatField(default=0.0)
 
     def __str__(self):
         return str(self.id)
