@@ -27,7 +27,9 @@ class UserProfile(models.Model):
             validators=[MaxLengthValidator(1000)],
             help_text="Maximum length of 1000 characters.")
 
-    birthday = models.DateField(blank=True, null=True)
+    birthday = models.DateField(blank=True, null=True,
+            help_text="Date format: YYYY-MM-DD.")
+
     country = CountryField(blank=True, null=True)
 
     location = models.CharField(max_length=50, blank=True,

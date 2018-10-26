@@ -1,15 +1,61 @@
 {% extends "base.html" %}
 {% load static %}
+{% load widget_tweaks %}
+
+{% block page_title %}
+  Edit profile | Project Lovelace
+{% endblock %}
 
 {% block body %}
 <br>
 <section classs="section">
   <div class="columns is-centered">
     <div class="column is-one-third">
-      <form action="/your-name/" method="post">
+      <h3 class="title is-3 has-text-centered">{{ user.username }} ({{ profile.display_name }})</h3>
+      <h4 class="subtitle is-5 has-text-centered is-italic"><strong>{{ profile.problems_solved }} problems solved ({{ profile.submissions_made}} submissions)</strong></h4>
+      <div class="column is-one-third">
+        <img src="{{ profile.avatar.url }}" style="display: block; margin-left: auto; margin-right: auto; max-width: 100%; max-height: 100%;">
+      </div>
+      <div class="column is-two-thirds">
+        <p class="has-text-justified">{{ profile.about }}</p>
+      </div>
+      <form method="post">
         {% csrf_token %}
-        {{ form }}
-        <input type="submit" value="Submit">
+        {% for field in form.visible_fields %}
+          {% if field.name == 'avatar' %}
+            <label class="label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+            <br><br>
+          {% else %}
+            <div class="field">
+              <label class="label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+              <div class="control has-icons-left">        
+                {% if field.name == 'country' %}
+                  <div class="select">{{ field }}</div>
+                {% else %}
+                  {{ field | add_class:'input' }}
+                {% endif %}
+
+                <span class="icon is-small is-left">
+                  {% if field.name == 'display_name' %}
+                    <i class="fas fa-user"></i>
+                  {% elif field.name == 'about' %}
+                    <i class="fas fa-pen"></i>
+                  {% elif field.name == 'birthday' %}
+                    <i class="fas fa-calendar"></i>
+                  {% elif field.name == 'location' %}
+                    <i class="fas fa-location-arrow"></i>
+                  {% endif %}
+                </span>
+              </div>
+              <p class="help">{{ field.help_text }}</p>
+              {% for error in field.errors %}
+                <p class="help is-danger">{{ error }}</p>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endfor %}
+        <button class="button is-primary" type="submit">Edit profile</button>
       </form>
     </div>
   </div>

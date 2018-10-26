@@ -1,46 +1,24 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block page_title %}
+  {{ user.username }} | Project Lovelace
+{% endblock %}
+
 {% block body %}
 <br>
 <section classs="section">
   <div class="columns is-centered">
     <div class="column is-one-third">
       <h3 class="title is-3 has-text-centered">{{ user.username }} ({{ profile.display_name }})</h3>
-      <h4 class="subtitle is-5 has-text-centered is-italic"><strong>4 problems solved</strong></h4>
+      <h4 class="subtitle is-5 has-text-centered is-italic"><strong>{{ profile.problems_solved }} problems solved ({{ profile.submissions_made}} submissions)</strong></h4>
       <div class="columns">
         <div class="column is-one-third">
           <img src="{{ profile.avatar.url }}" style="display: block; margin-left: auto; margin-right: auto; max-width: 100%; max-height: 100%;">
         </div>
         <div class="column is-two-thirds">
-          <p class="has-text-justified">
-            I once studied perl enough to read perl code and spot bugs in other
-            people's programs, but I don't write in it and I don't ever
-            plan to use it for anything. Also, very much unlike any other language I
-            have ever studied, perl has failed to stick to memory, a phenomenon that
-            has actually puzzled me, but I guess there are some things that are so
-            gross you just have to forget, or it'll destroy something with you. perl
-            is the first such thing I have known.
-          </p>
+          <p class="has-text-justified">{{ profile.about }}</p>
         </div>
-      </div>
-      <label class="label">Display name</label>
-      <div class="field">
-        <p class="control has-icons-left">
-          <input class="input" type="text" placeholder="" value="{{ profile.display_name }}">
-          <span class="icon is-small is-left">
-            <i class="fas fa-user"></i>
-          </span>
-        </p>
-      </div>
-      <label class="label">Email</label> {# TODO showing e-mail publicly should be opt-in #}
-      <div class="field">
-        <p class="control has-icons-left">
-          <input class="input" type="text" placeholder="" value="{{ user_shown.email }}">
-          <span class="icon is-small is-left">
-            <i class="fas fa-envelope"></i>
-          </span>
-        </p>
       </div>
     </div>
   </div>

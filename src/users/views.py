@@ -1,8 +1,9 @@
 import logging
 
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User
 from django.views import View
+from django.views.generic.edit import UpdateView
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 
@@ -27,8 +28,13 @@ class ViewUserProfileView(View):
         })
 
 
-class EditUserProfileView(View):
+class EditUserProfileView(UpdateView):
+    form_class = EditUserProfileForm
     template_name = 'users/editprofile.html'
+    model = UserProfile
+
+    def get_object(self):
+        return get_object_or_404(UserProfile, pk=UserProfile.objects.get(user=self.request.user).pk)
 
     @method_decorator(login_required)
     def get(self, request):
@@ -43,3 +49,19 @@ class EditUserProfileView(View):
             'profile': profile,
             'form': edit_user_profile_form,
         })
+
+    # @method_decorator(login_required)
+    # def post(self, request):
+    #     form = EditUserProfileForm(request.POST)
+    #     user = User.objects.get(username=request.user)
+    #     profile = UserProfile.objects.get(user=user)
+
+    #     if form.is_valid():
+    #         form.save()
+    #         return redirect('editprofile')
+
+    #     return render(request, self.template_name, {
+    #         'user': user,
+    #         'profile': profile,
+    #         'form': form,
+    #         })
