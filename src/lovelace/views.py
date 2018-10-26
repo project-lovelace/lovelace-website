@@ -28,7 +28,7 @@ class UserRegistrationView(generic.CreateView):
         if form.is_valid():
             user = form.save()
             user.refresh_from_db()  # load the profile instance created by the signal
-            UserProfile.objects.create(user=user)
+            UserProfile.objects.create(user=user, display_name=user.username)
             return redirect('login')
 
         return render(request, self.template_name, {'form': form})

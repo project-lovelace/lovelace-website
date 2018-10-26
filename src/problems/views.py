@@ -2,12 +2,15 @@ import base64
 import json
 import logging
 import pprint
-
+import os
 import requests
+from urllib.parse import urljoin
+
 from django.http import HttpResponseBadRequest, HttpResponseServerError, JsonResponse
 from django.shortcuts import get_object_or_404, render
 from django.views import generic, View
 from django.db.models import F
+from django.conf import settings
 
 from .forms import CodeSubmissionForm
 from .models import Problem, Submission
@@ -39,17 +42,36 @@ class IndexView(generic.ListView):
 
         return data
 
-
 class DetailView(View):
     @staticmethod
     def get(request, problem_name):
         problem = get_object_or_404(Problem, name=problem_name)
         template = 'problems/problem_{}.html'.format(str(problem_name))
         form = CodeSubmissionForm()
+
+        logger.info("Adding list of previous submissions to context data...")
+
+        previous_submissions = []
+        if request.user.is_authenticated:
+            current_user_profile = UserProfile.objects.get(user=request.user)
+            previous_submissions_queryset = Submission.objects.filter(user=current_user_profile, problem__name=problem_name)
+            for s in previous_submissions_queryset:
+                logger.info("Found previous submission ID#{:d}".format(s.id))
+                previous_submissions.append({
+                    'id': s.id,
+                    'passed': s.passed,
+                    'date': s.date,
+                    'language': s.language,
+                    'file': s.file,
+                    'filename': s.file.name.split('/')[-1],
+                    })
+
         context = {
             'problem': problem,
-            'form': form
+            'form': form,
+            'previous_submissions': previous_submissions,
         }
+
         return render(request, template, context)
 
     @staticmethod

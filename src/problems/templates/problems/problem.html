@@ -111,6 +111,33 @@
     </section>
 
     <section data-content="2"> <!-- Submissions tab -->
+      {% if previous_submissions %}
+        <div class="columns is-centered">
+          <table class="table is-hoverable">
+            <thead>
+              <tr>
+                <th><abbr title="Submission ID">#</abbr></th>
+                <th>Date</th>
+                <th>File</th>
+                <th>Language</th>
+                <th>Passed</th>
+              </tr>
+            </thead>
+            {% for sub in previous_submissions %}
+              <tbody>
+                <tr>
+                  <td>{{ sub.id }}</td>
+                  <td>{{ sub.date }}</td>
+                  <td><a href="{{ sub.file.url }}">{{ sub.filename }}</a> ({{ sub.file.size }} bytes)</td>
+                  <td>{{ sub.language }}</td>
+                  <td>{{ sub.passed }}</td>
+                </tr>
+              </tbody>
+            {% endfor %}
+          </table>
+        </div>
+      {% endif %}
+
       <p>You can use the editor below or upload a file to submit your code.</p><br>
       <div class="columns">
         <div class="column is-three-quarters" style="position: relative;">
