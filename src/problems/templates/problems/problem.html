@@ -11,11 +11,6 @@
 <!-- Ace editor config -->
 <style type="text/css" media="screen">
   #editor {
-/*    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;*/
     width: 95%;
     height: 100%;
   }
@@ -42,7 +37,7 @@
 <section class="section">
   <br>
   <h1 class="title is-2 has-text-centered">{{ problem.title }}</h1>
-  <h3 class="subtitle is-5 has-text-centered is-italic"><strong>Useful to know</strong>: {% block required %}{% endblock %}</h3>
+  <h3 class="subtitle is-5 has-text-centered is-italic"><strong>Useful to know</strong>: {% block useful_to_know %}{% endblock %}</h3>
 
   <div id="tabs" class="tabs is-centered is-boxed">
     <ul>
@@ -70,17 +65,18 @@
           <span>Forum</span>
         </a>
       </li>
-      <li data-tab="5">
+<!--  <li data-tab="5">
         <a>
           <span class="icon is-small"><i class="fas fa-check-double" aria-hidden="true"></i></span>
           <span>Solution</span>
         </a>
-      </li>
+      </li> -->
     </ul>
   </div>
 
   <div class="container" id="tab-content">
-    <section data-content="1" class="is-active"> <!-- Description tab -->
+    <!-- Description tab -->
+    <section data-content="1" class="is-active">
       <p class="has-text-justified">
         {% block introduction %}{% endblock %}
         {% block problem_body %}{% endblock %}
@@ -189,19 +185,20 @@
     </section>
 
     <section data-content="3"> <!-- Notes and references tab -->
-      <p>Notes and references go here...</p>
+      {% block notes_and_references %}{% endblock %}
     </section>
 
     <section data-content="4"> <!-- Forum tab -->
-      <p>Discussion goes here!</p>
+      {% block forum %}{% endblock %}
     </section>
 
-    <section data-content="5"> <!-- Forum tab -->
+    <!-- Solution tab
+    <section data-content="5">
       <p>I wonder if you can see the text below...</p><br>
       <div>
         <p>Solution goes here!</p>
       </div>
-    </section>
+    </section> -->
 
   </div>
 
