@@ -52,7 +52,7 @@
                     {% endif %}
                   
                   </td>
-                  <td>{{ problem.solved_by }}</td>
+                  <td align="center">{{ problem.solved_by }}</td>
 
                   {% if problem.difficulty <= 5 %}
                     <td><progress class="progress is-success" value="{{ problem.difficulty }}" max="15"></progress></td>

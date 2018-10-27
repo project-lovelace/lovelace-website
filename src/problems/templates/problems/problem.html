@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load widget_tweaks %}
 
 {% block preload_javascript %}
 <!-- MathJax -->
@@ -33,7 +34,7 @@
 {% endblock %}
 
 {% block page_title %}
-{{ problem.title }} | Project Lovelace
+  {{ problem.title }} | Project Lovelace
 {% endblock %}
 
 {% block body %}
@@ -149,23 +150,36 @@
       {% endif %}
 
       <p>You can use the editor below or upload a file to submit your code.</p><br>
-      <div class="columns">
+      <div class="columns is-centered">
         <div class="column is-three-quarters" style="position: relative;">
           <div id="editor">def earthquake_epicenter_2d(x1, y1, t1, x2, y2, t2, x3, y3, t3):
             pass
             return (x0, y0)'
           </div>
+          <a class="button is-primary">Submit code</a>
         </div>
 
         <div class="is-divider-vertical" data-content="OR"></div>
           <div class="column is-one-quarter">
             <div class="container">
               {% if user.is_authenticated %}
-                <form method="post" id="code-submit-form" enctype="multipart/form-data">
-                  {% csrf_token %}
-                  {{ form }}
-                  <input type="submit" value="Submit" id="submit-code-button" />
-                </form>
+                <div class="file has-name is-boxed">
+                  <form method="post" id="code-submit-form" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <label class="file-label">
+                      {% render_field form.file class+="file-input" %}
+                      <span class="file-cta">
+                        <span class="file-icon"><i class="fas fa-upload"></i></span>
+                        <span class="file-label">Choose file...</span>
+                      </span>
+                      <span class="file-name" id="file-name-span"></span>
+                    </label>
+                    <br>
+                    <div class="control has-text-centered">
+                      <button class="button is-primary" type="submit" id="submit-code-button">Submit file</button>
+                    </div>
+                  </form>
+                </div>
               {% else %}
                 <p>You must be logged in to submit code.</p>
               {% endif %}
@@ -173,31 +187,6 @@
           </div>
       </div>
     </section>
-
-<!--             <div class="file has-name is-boxed">
-              <label class="file-label">
-                <form action="{% url 'problems:detail' problem.name %}" method="post" id="code-submit-form" enctype="multipart/form-data">
-                  {% csrf_token %}
-                  {{ form }}
-                  <input class="file-input" type="file" name="resume" />
-                </form>
-                <span class="file-cta">
-                  <span class="file-icon">
-                    <i class="fas fa-upload"></i>
-                  </span>
-                  <span class="file-label">
-                    Upload file
-                  </span>
-                </span>
-                <span class="file-name">
-                  earthquake_2d_69420.py
-                </span>
-              </label>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section> -->
 
     <section data-content="3"> <!-- Notes and references tab -->
       <p>Notes and references go here...</p>
@@ -244,6 +233,14 @@
   editor.setTheme("ace/theme/eclipse");
   editor.session.setMode("ace/mode/python");
   editor.resize();
+</script>
+
+<script>
+  document.getElementById('{{ form.file.auto_id }}').onchange = function() {
+      // See: https://stackoverflow.com/a/9234894
+      var filename = this.value.split(/(\\|\/)/g).pop();
+      document.getElementById('file-name-span').innerHTML = filename;
+  };
 </script>
 
 <script>
@@ -315,6 +312,8 @@
 
   document.getElementById('code-submit-form').addEventListener('submit',
     function(event) {
+      document.getElementById('submit-code-button').classList.add('is-loading');
+      
       event.preventDefault()
       event.stopImmediatePropagation();
       sendCodeFile(event);
@@ -372,6 +371,7 @@
           + '</div></article>';
     }
 
+    document.getElementById('submit-code-button').classList.remove('is-loading');
     document.getElementById('results-modal').classList.add('is-active');
     console.log("Done drawing modal.");
   }
