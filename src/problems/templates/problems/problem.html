@@ -356,10 +356,20 @@
           testCasePanelTitle += 'failed.<br>';
       }
 
-      processInfoString = 'Return code ' + r.testCaseDetails[i].processInfo.returnCode + ', '
-          + 'utime: ' + r.testCaseDetails[i].processInfo.utime + ' s, '
-          + 'stime: ' + r.testCaseDetails[i].processInfo.stime + ' s, '
-          + 'maxrss: ' + r.testCaseDetails[i].processInfo.maxrss + ' kB.<br><br>';
+      runtime = r.testCaseDetails[i].processInfo.runtime;
+      if (runtime < 1e-3) {
+        runtime_str = String(Math.round(runtime * 1e6)) + " μs";
+      } else if (runtime < 1) {
+        runtime_str = String(Math.round(runtime * 1e3)) + " ms";
+      } else {
+        runtime_str = String(Math.round(runtime)) + " s";
+      }
+
+      max_mem_usage = r.testCaseDetails[i].processInfo.max_mem_usage;
+      max_mem_usage_str = String(Math.round(max_mem_usage)) + " kB";
+
+      processInfoString = 'Runtime: ' + runtime_str
+          + 'Max memory usage: ' + max_mem_usage_str + '<br><br>';
 
       resultsModalBody.innerHTML += '<article class="message">'
           + '<div class="message-header">'

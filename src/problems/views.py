@@ -136,8 +136,8 @@ class DetailView(View):
             test_cases_total += 1
             if tc['passed']:
                 test_cases_passed += 1
-            runtime_sum += tc['processInfo']['utime']
-            max_mem_usage = max(max_mem_usage, tc['processInfo']['maxrss'])
+            runtime_sum += tc['processInfo']['runtime']
+            max_mem_usage = max(max_mem_usage, tc['processInfo']['max_mem_usage'])
 
         submission = Submission(
             user=UserProfile.objects.get(user=request.user),
