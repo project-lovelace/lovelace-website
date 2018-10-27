@@ -11,11 +11,11 @@
 <!-- Ace editor config -->
 <style type="text/css" media="screen">
   #editor {
-    position: absolute;
+/*    position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
-    left: 0;
+    left: 0;*/
     width: 95%;
     height: 100%;
   }
@@ -156,7 +156,7 @@
             pass
             return (x0, y0)'
           </div>
-          <a class="button is-primary">Submit code</a>
+          <!-- <br><button class="button is-primary">Submit code</button> -->
         </div>
 
         <div class="is-divider-vertical" data-content="OR"></div>
@@ -176,7 +176,7 @@
                     </label>
                     <br>
                     <div class="control has-text-centered">
-                      <button class="button is-primary" type="submit" id="submit-code-button">Submit file</button>
+                      <button class="button is-primary" type="submit" id="submit-file-button">Submit file</button>
                     </div>
                   </form>
                 </div>
@@ -229,10 +229,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.1/ace.js" type="text/javascript" charset="utf-8"></script>
 
 <script>
-  var editor = ace.edit("editor");
-  editor.setTheme("ace/theme/eclipse");
-  editor.session.setMode("ace/mode/python");
-  editor.resize();
+  var editor = ace.edit("editor", {
+      theme: "ace/theme/eclipse",
+      mode: "ace/mode/python",
+      autoScrollEditorIntoView: true,
+      maxLines: 50,
+      minLines: 8
+  });
 </script>
 
 <script>
@@ -312,7 +315,7 @@
 
   document.getElementById('code-submit-form').addEventListener('submit',
     function(event) {
-      document.getElementById('submit-code-button').classList.add('is-loading');
+      document.getElementById('submit-file-button').classList.add('is-loading');
       
       event.preventDefault()
       event.stopImmediatePropagation();
@@ -371,7 +374,7 @@
           + '</div></article>';
     }
 
-    document.getElementById('submit-code-button').classList.remove('is-loading');
+    document.getElementById('submit-file-button').classList.remove('is-loading');
     document.getElementById('results-modal').classList.add('is-active');
     console.log("Done drawing modal.");
   }
@@ -380,6 +383,19 @@
     console.log("AJAX error!");
     console.log(this.response);
   }
+</script>
+
+<script>
+  var editor_div = document.getElementById('editor');
+  var submit_code_button = document.createElement('button');
+
+  submit_code_button.classList.add('button', 'is-primary');
+  submit_code_button.appendChild(document.createTextNode("Submit code"));
+
+  editor_div.parentNode.appendChild(document.createElement("br"));
+  editor_div.parentNode.appendChild(submit_code_button);
+  // editor_div.parentNode.insertBefore(submit_code_button, editor_div.nextSibling);
+  // submit_code_button.insertBefore(document.createElement("br"), submit_code_button);
 </script>
 
 {% endblock %}
