@@ -1,40 +1,33 @@
-<!--
-  Project Lovelace: Problem I10
-  Game of Life (bit of everything, cellular automata)
--->
-
 {% extends "problems/problem.html" %}
 
 {% block required %}
-    <p><b>Required math</b>: None.</p>
+  2D arrays, loops.
 {% endblock %}
 
 {% block problem_body %}
-    <p>
-      <!--
-      * What are cellular automata?
-      * Introduce Conway's (wiki link?) Game of Life as the most popular example of a cellular automata.
-      -->
-
-      A cellular automaton is a model used to simulate a wide variety of systems in science. It consists of a grid of cells, each of which can be in one of a finite number of states (such as on and off) and evolves according to some rule. The most famous example is John Conway's Game of Life. <br>
-
-      The universe of the Game of Life is a two-dimensional grid of square cells, each of which is in one of two possible states, alive or dead (or, populated or unpopulated). Every cell interacts with its eight neighbours. After the board is initialized to a specific configuration, each cell evolves according to the following rules:
-      <ol>
-        <li>A live cell with less than two live neighbours dies, as if caused by underpopulation.</li>
-        <li>A live cell with two or three live neighbours continues to live.</li>
-        <li>A live cell with more than three live neighbours dies, as if by overpopulation.</li>
-        <li>A dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.</li>
-      </ol>
-
-      <!-- * What to do because of finite sized grid. Loop it around or just ignore stuff that go off screen? -->
-    </p>
+  <!--
+  * What are cellular automata?
+  * Introduce Conway's (wiki link?) Game of Life as the most popular example of a cellular automata.
+  -->
+  <p class="has-text-justified">A cellular automaton is a model used to simulate a wide variety of systems in science. It consists of a grid of cells, each of which can be in one of a finite number of states (such as on and off) and evolves according to some rule. The most famous example is John Conway's Game of Life.</p>
+  <br>
+  <p class="has-text-justified">The universe of the Game of Life is a two-dimensional grid of square cells, each of which is in one of two possible states, alive or dead (or, populated or unpopulated). Every cell interacts with its eight neighbours. After the board is initialized to a specific configuration, each cell evolves according to the following rules:
+    <ol>
+      <li>A live cell with less than two live neighbours dies, as if caused by underpopulation.</li>
+      <li>A live cell with two or three live neighbours continues to live.</li>
+      <li>A live cell with more than three live neighbours dies, as if by overpopulation.</li>
+      <li>A dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.</li>
+    </ol>
+  </p>
+  <!-- * What to do because of finite sized grid. Loop it around or just ignore stuff that go off screen? -->
 {% endblock %}
 
 {% block input_description %}
-  <p>
-    * Filename of a file containing a 2D array of dead cells (.) and alive cells (o) corresponding to the initial pattern.<br>
-    * An integer $n$ indicating the number of turns the Game of Life should be simulated.
-  </p>
+  Filename of a file containing a 2D array of dead cells (.) and alive cells (o) corresponding to the initial pattern, and an integer $n$ indicating the number of turns the Game of Life should be simulated.
+{% endblock %}
+
+{% block output_description %}
+  File 'board.txt' containing the pattern after $n$ turns.
 {% endblock %}
 
 {% block input_example %}
@@ -50,12 +43,6 @@
   15
 {% endblock %}
 
-{% block output_description %}
-  <p>
-    File 'board.txt' containing the pattern after $n$ turns.
-  </p>
-{% endblock %}
-
 {% block output_example %}
   ...............................<br>
   ...............................<br>
@@ -65,4 +52,12 @@
   ......o.o......................<br>
   .......oo......................<br>
   .......o.......................
+{% endblock %}
+
+{% block notes_and_references %}
+  <div class="content">
+    <ul>
+      <li>Gotta link to the train!</li>
+    </ul>
+  </div>
 {% endblock %}

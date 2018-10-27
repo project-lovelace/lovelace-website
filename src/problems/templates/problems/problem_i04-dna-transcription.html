@@ -1,41 +1,35 @@
-<!--
-  Project Lovelace: Problem I4
-  DNA sequences (strings, biology)
--->
-
 {% extends "problems/problem.html" %}
 
-{% block required %}
-    <p>
-      <b>Concepts</b>: strings.
-      <b>Required math</b>: none.
-    </p>
+{% block useful_to_know %}
+  strings.
 {% endblock %}
 
 {% block problem_body %}
-    <p>
-      DNA (deoxyribonucleic acid) is the molecule that carries the genetic information of all known living organisms (life on exoplanets might be totally different!). The genetic information is stored as a sequence of nucleotides of which there are four: adenine (A), cytosine (C), guanine (G), and thymine (T). So a DNA sequence can be stored on a computer as a string of <tt>ATCG</tt> characters. <br>
-
-      Certain DNA sequences contain the information required to syntheize proteins, and the first step is to transcribe the DNA sequence into a ribonucleic acid (RNA) sequence. The transcription process is biochemically complex, however the end result is that the RNA sequence is simple: the DNA sequence with all instances of <tt>T</tt> replaced with a <tt>U</tt>.
-    </p>
+  <p class="has-text-justified">DNA (deoxyribonucleic acid) is the molecule that carries the genetic information of all known living organisms (life on exoplanets might be totally different!). The genetic information is stored as a sequence of nucleotides of which there are four: adenine (A), cytosine (C), guanine (G), and thymine (T). So a DNA sequence can be stored on a computer as a string of <tt>ATCG</tt> characters.</p>
+  <br>
+  <p class="has-text-justified">Certain DNA sequences contain the information required to syntheize proteins, and the first step is to transcribe the DNA sequence into a ribonucleic acid (RNA) sequence. The transcription process is biochemically complex, however the end result is that the RNA sequence is simple: the DNA sequence with all instances of <tt>T</tt> replaced with a <tt>U</tt>.</p>
 {% endblock %}
 
 {% block input_description %}
-    <p>
-      A string of <tt>ATCG</tt> characters representing a DNA sequence.
-    </p>
-{% endblock %}
-
-{% block input_example %}
-    CCAGGACCAGGCCCCAGGTGGGGCCAGGCCAGGCTC
+  A string of <tt>ATCG</tt> characters representing a DNA sequence.
 {% endblock %}
 
 {% block output_description %}
-    <p>
-      The RNA sequence corresponding to the input DNA sequence.
-    </p>
+  The RNA sequence corresponding to the input DNA sequence.
+{% endblock %}
+
+{% block input_example %}
+  CCAGGACCAGGCCCCAGGTGGGGCCAGGCCAGGCTC
 {% endblock %}
 
 {% block output_example %}
     CCAGGACCAGGCCCCAGGUGGGGCCAGGCCAGGCUC
+{% endblock %}
+
+{% block notes_and_references %}
+  <div class="content">
+    <ul>
+      <li>Lots of pretty cool genes like Sonic Hedgehog (Shh).</li>
+    </ul>
+  </div>
 {% endblock %}

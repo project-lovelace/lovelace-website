@@ -1,40 +1,28 @@
-<!--
-  Project Lovelace: Problem I8
-  Molecular mass calculator (pattern matching, chemistry)
--->
-
 {% extends "problems/problem.html" %}
 
-{% block required %}
-    <p><b>Required math</b>: None.</p>
+{% block useful_to_know %}
+  reading files, text parsing.
 {% endblock %}
 
 {% block problem_body %}
-    <p>
-        Molecules are made up of atoms and each atom has a specific mass. For example, water (H<sub>2</sub>O) is a molecule made up of two hydrogens and an oxygen. Atoms are so light that using grams to describe their mass can get pretty annoying so we use other units, like the atomic mass unit (amu), to do so. 1 amu is defined as one twelevth the mass of a carbon-12 atom, or $1.661 \times 10^{-27} \mathrm{kg}$. For example the lightest atom, the hydrogen (H) atom, has a mass of 1.008 amu while carbon (C) has a mass of 12.011 amu and the heaviest atom on the periodic table, Oganesson (Og), has a mass of 294 amu while the methane molecule (CH4) has a mass of 16.04 amu.
-
-        Your program should read in a comma-separated file containing the abbreviation of the elements in the periodic table with their masses in atomic mass units (amu) along with an arbitrary chemical formula and print its molecular mass.
-    </p>
+  <p class="has-text-justified">Molecules are made up of atoms and each atom has a specific mass. For example, water (H<sub>2</sub>O) is a molecule made up of two hydrogens and an oxygen. Atoms are so light that using grams to describe their mass can get pretty annoying so we use other units, like the atomic mass unit (amu), to do so. 1 amu is defined as one twelevth the mass of a carbon-12 atom, or $1.661 \times 10^{-27} \mathrm{kg}$. For example the lightest atom, the hydrogen (H) atom, has a mass of 1.008 amu while carbon (C) has a mass of 12.011 amu and the heaviest atom on the periodic table, Oganesson (Og), has a mass of 294 amu while the methane molecule (CH4) has a mass of 16.04 amu.</p>
+  <br>
+  <p class="has-text-justified">Your program should read in a comma-separated file containing the abbreviation of the elements in the periodic table with their masses in atomic mass units (amu) along with an arbitrary chemical formula and print its molecular mass.</p>
 {% endblock %}
 
 {% block input_description %}
-    <p>
-        File: A file (element_masses.csv) containing the abbreviation of the elements in the periodic table with their masses in atomic mass units (amu).
-        Line 1: The molecule's chemical formula.
-    </p>
-{% endblock %}
-
-{% block input_example %}
-    Pa<br>
-    OCS<br>
-    C4H4AsH<br>
-    C20H25N3O
+  The molecule's chemical formula.
 {% endblock %}
 
 {% block output_description %}
-    <p>
-        The molecule's mass in atomic mass units (amu).
-    </p>
+  The molecule's mass in atomic mass units (amu).
+{% endblock %}
+
+{% block input_example %}
+  Pa<br>
+  OCS<br>
+  C4H4AsH<br>
+  C20H25N3O
 {% endblock %}
 
 {% block output_example %}
@@ -42,4 +30,12 @@
     60.08 amu<br>
     128.00 amu<br>
     323.44 amu
+{% endblock %}
+
+{% block notes_and_references %}
+  <div class="content">
+    <ul>
+      <li>Would be good to include the regex in post-problem notes.</li>
+    </ul>
+  </div>
 {% endblock %}

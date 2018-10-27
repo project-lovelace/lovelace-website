@@ -1,41 +1,36 @@
-<!--
-  Project Lovelace: Problem I7
-  Correlation does not imply causation (file I/O, statistics)
--->
-
 {% extends "problems/problem.html" %}
 
-{% block required %}
-    <p><b>Required math</b>: None.</p>
+{% block useful_to_know %}
+  lists, summing lots of numbers.
 {% endblock %}
 
 {% block problem_body %}
-    <p>
-      Two variables are said to be correlated if there's some statistical relationship between the two. However, just because two variables are correlated does not mean that one is caused by the other. This is a misconcepted commonly referred to as "correlation does not imply causation".
-
-      In this problem you're going to read a data file containing the measurements of two variables with an $(x,y)$ data value pair on each line and calculate the correlation coefficient between the two variables. The correlation coefficient $r$ between two variables $X$ and $Y$ with $n$ measurements $x_1, x_2, \dots, x_n$ and $y_1, y_2, \dots, y_n$ can be calculated using
-      $$ r = \frac{(x_1 - \bar{x})(y_1 - \bar{y}) + \dots + (x_n - \bar{x})(y_n - \bar{y})}
-                  {\sqrt{(x_1 - \bar{x})^2 + \dots + (x_n - \bar{x})^2} \times
-                   \sqrt{(y_1 - \bar{y})^2 + \dots + (y_n - \bar{y})^2}} $$
-      where $\bar{x} = \frac{x_1 + x_2 + \dots + x_n}{n}$ and $\bar{y} = \frac{y_1 + y_2 + \dots + y_n}{n}$ are the averages of the $X$ and $Y$ measurements.
-    </p>
+  <p class="has-text-justified">Two variables are said to be correlated if there's some statistical relationship between the two. However, just because two variables are correlated does not mean that one is caused by the other. This is a misconcepted commonly referred to as "correlation does not imply causation".</p>
+  <br>
+  <p class="has-text-justified">In this problem you're going to read a data file containing the measurements of two variables with an $(x,y)$ data value pair on each line and calculate the correlation coefficient between the two variables. The correlation coefficient $r$ between two variables $X$ and $Y$ with $n$ measurements $x_1, x_2, \dots, x_n$ and $y_1, y_2, \dots, y_n$ can be calculated using
+    $$ r = \frac{(x_1 - \bar{x})(y_1 - \bar{y}) + \dots + (x_n - \bar{x})(y_n - \bar{y})}
+            {\sqrt{(x_1 - \bar{x})^2 + \dots + (x_n - \bar{x})^2} \times \sqrt{(y_1 - \bar{y})^2 + \dots + (y_n - \bar{y})^2}} $$
+    where $\displaystyle \bar{x} = \frac{x_1 + x_2 + \dots + x_n}{n}$ and $\displaystyle \overline{y} = \frac{y_1 + y_2 + \dots + y_n}{n}$ are the averages of the $X$ and $Y$ measurements.</p>
 {% endblock %}
 
 {% block input_description %}
-  <p>
-    A comma-separated values file containing the two variables of interest (xy_data.csv) with an x,y value pair on each line.
-  </p>
-{% endblock %}
-
-{% block input_example %}
-  
+  A comma-separated values file containing the two variables of interest (xy_data.csv) with an x,y value pair on each line.
 {% endblock %}
 
 {% block output_description %}
-  <p>
-    The correlation coefficient $r$ ($-1 < r < 1$) between the two variables.
-  </p>
+  The correlation coefficient $r$ ($-1 < r < 1$) between the two variables.
+{% endblock %}
+
+{% block input_example %}
 {% endblock %}
 
 {% block output_example %}
+{% endblock %}
+
+{% block notes_and_references %}
+  <div class="content">
+    <ul>
+      <li>There are some really good websites for this stuff.</li>
+    </ul>
+  </div>
 {% endblock %}

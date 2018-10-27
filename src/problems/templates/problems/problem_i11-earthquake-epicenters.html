@@ -1,27 +1,15 @@
 {% extends "problems/problem.html" %}
 
-{% block required %}
-    <p><b>Required math</b>: Required Math Goes Here.</p>
+{% block useful_to_know %}
+  equation of a circle, systems of linear equations.
 {% endblock %}
 
 {% block problem_body %}
-    <p>
-        An earthquake occurs at some unknown location $(x,y), -100 < x,y < 100$ where $x,y$ are in
-        kilometers (km). Modeling the Earth's surface as a flat 2D plane, the earthquake emits
-        seismic waves which travel through the Earth and are detected by three seismographs. Given
-        the arrival times of the seismic waves, and the locations of the three seismographs,
-        determine the earthquake's source or epicenter $(x,y)$. Assume the seismic waves travel at
-        a constant 6 km/s. (We're also assuming that the earthquake happens very close to the
-        surface and that the seismographs are close to each other so the Earth's curvature is
-        negligible.)
-    </p>
+    <p class="has-text-justified">An earthquake occurs at some unknown location $(x,y), -100 < x,y < 100$ where $x,y$ are in kilometers (km). Modeling the Earth's surface as a flat 2D plane, the earthquake emits seismic waves which travel through the Earth and are detected by three seismographs. Given the arrival times of the seismic waves, and the locations of the three seismographs, determine the earthquake's source or epicenter $(x,y)$. Assume the seismic waves travel at a constant 6 km/s. (We're also assuming that the earthquake happens very close to the surface and that the seismographs are close to each other so the Earth's curvature is negligible.)</p>
 {% endblock %}
 
 {% block input_description %}
-    <p>
-        One line for each earthquake event, containing the $x$ and $y$-coordinates of the
-        seismograph and the arrival times of the seismic waves.
-    </p>
+  One line for each earthquake event, containing the $x$ and $y$-coordinates of the seismograph and the arrival times of the seismic waves.
 {% endblock %}
 
 {% block input_example %}
@@ -30,11 +18,17 @@
 {% endblock %}
 
 {% block output_description %}
-    <p>
-        A single line for each earthquake event giving the $(x,y)$ coordinate of the earthquake in km.
-    </p>
+  A single line for each earthquake event giving the $(x,y)$ coordinate of the earthquake in km.
 {% endblock %}
 
 {% block output_example %}
-    79.0674612756 -27.0524778103
+  79.0674612756 -27.0524778103
+{% endblock %}
+
+{% block notes_and_references %}
+  <div class="content">
+    <ul>
+      <li>Hmmm...</li>
+    </ul>
+  </div>
 {% endblock %}

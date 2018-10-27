@@ -1,44 +1,38 @@
-<!--
-  Project Lovelace: Problem I6
-  Colorful resistors (dictionaries, electronics)
--->
-
 {% extends "problems/problem.html" %}
 
-{% block required %}
-    <p><b>Required math</b>: None.</p>
+{% block useful_to_know %}
+  dictionaries.
 {% endblock %}
 
 {% block problem_body %}
-    <p>
-        Let's use dictionaries to look at resistors, which are common electric components found in almost every electronic circuit. Resistors come with a resistance rating $\Omega$ (measured in ohms) that describes how difficult it is to pass an electric current through the resistor. This resistance rating is indicated by four or five colored bands on the resistor itself (see table below).
-
-        <!-- *Insert table here* -->
-
-        For a four band resistor, the first two color bands indicate the first two digits of the resistance value with the third band indicating a multiplier, and the last band indicates a tolerance. For a five band resistor, the first three color bands indicate the first three digits of the resistance value followed by a fourth band (multiplier) and a fifth band (tolerance).
-
-        Your program should read in a list of four or five colors and use the table to compute the minimum and maximum resistance value of the resistor.
-    </p>
+    <p class="has-text-justified">Let's use dictionaries to look at resistors, which are common electric components found in almost every electronic circuit. Resistors come with a resistance rating $\Omega$ (measured in ohms) that describes how difficult it is to pass an electric current through the resistor. This resistance rating is indicated by four or five colored bands on the resistor itself (see table below).</p>
+    <br>
+    <!-- *Insert table here* -->
+    <p class="has-text-justified">For a four band resistor, the first two color bands indicate the first two digits of the resistance value with the third band indicating a multiplier, and the last band indicates a tolerance. For a five band resistor, the first three color bands indicate the first three digits of the resistance value followed by a fourth band (multiplier) and a fifth band (tolerance). Your program should read in a list of four or five colors and use the table to compute the minimum and maximum resistance value of the resistor.</p>
 {% endblock %}
 
 {% block input_description %}
-    <p>
-        The four or five band colors separated by spaces.
-    </p>
-{% endblock %}
-
-{% block input_example %}
-    green blue yellow gold<br>
-    red orange purple black brown
+  The four or five band colors separated by spaces.
 {% endblock %}
 
 {% block output_description %}
-    <p>
-        The minimum resistance and maximum resistance of the resistor. Use k, M, G, and T affixes. Round to two decimal places? Four significant figures?
-    </p>
+  The minimum resistance and maximum resistance of the resistor. Use k, M, G, and T affixes. Round to two decimal places? Four significant figures?
+{% endblock %}
+
+{% block input_example %}
+  green blue yellow gold<br>
+  red orange purple black brown
 {% endblock %}
 
 {% block output_example %}
-    532k 588k<br>
-    234.63k 239.37k
+  532k 588k<br>
+  234.63k 239.37k
+{% endblock %}
+
+{% block notes_and_references %}
+  <div class="content">
+    <ul>
+      <li>Should we include some non-standard ones?</li>
+    </ul>
+  </div>
 {% endblock %}

@@ -1,38 +1,35 @@
-<!--
-  Project Lovelace: Problem I1
-  Rocket science (intro/calculations, physics)
--->
-
 {% extends "problems/problem.html" %}
 
-{% block required %}
-    <p>
-      <b>Required math</b>: multiplication, division, raising a number to a power.
-    </p>
+{% block useful_to_know %}
+	basic math operations.
 {% endblock %}
 
 {% block problem_body %}
-    <p>
-        We'll get you familiar with how Project Lovelace problems work by doing some rocket science! A rocket, say the <a href="https://www.nasa.gov/audience/forstudents/5-8/features/nasa-knows/what-was-the-saturn-v-58.html">Saturn V</a>, needs to escape a planet with velocity $v$ but it needs to know how much fuel to carry with it for its escape. You can calculate the amount of fuel needed using the rocket equation $m_\mathrm{fuel} = M \left( e^{v/v_e} - 1\right)$ where $M = 250,000 \; \mathrm{kg}$ is the mass of the rocket (with no fuel), $v_e = 2,550 \; \mathrm{m/s}$ is the exhaust velocity of the rocket, and $e = 2.71828...$ is Euler's number. Your program or script should read in the velocity $v$ as an input, calculate the mass of fuel needed, and print it.
-    </p>
+  <p class="has-text-justified">We'll get you familiar with how Project Lovelace problems work by doing some rocket science! A rocket, say the <a href="https://www.nasa.gov/audience/forstudents/5-8/features/nasa-knows/what-was-the-saturn-v-58.html">Saturn V</a>, needs to escape a planet with velocity $v$ but it needs to know how much fuel to carry with it for its escape. You can calculate the amount of fuel needed using the rocket equation $m_\mathrm{fuel} = M \left( e^{v/v_e} - 1\right)$ where $M = 250,000 \; \mathrm{kg}$ is the mass of the rocket (with no fuel), $v_e = 2,550 \; \mathrm{m/s}$ is the exhaust velocity of the rocket, and $e = 2.71828...$ is Euler's number. Your program or script should read in the velocity $v$ as an input, calculate the mass of fuel needed, and print it.</p>
 {% endblock %}
 
 {% block input_description %}
-    <p>
-        The velocity $v$ the rocket needs to reach (in meters per second [m/s]) to escape the planet.
-    </p>
+  The velocity $v$ the rocket needs to reach (in meters per second [m/s]) to escape the planet.
+{% endblock %}
+
+{% block output_description %}
+    The mass of fuel $m_\mathrm{fuel}$ needed by the rocket to escape the planet in kilograms (kg).
 {% endblock %}
 
 {% block input_example %}
     11186.0
 {% endblock %}
 
-{% block output_description %}
-    <p>
-        The mass of fuel $m_\mathrm{fuel}$ needed by the rocket to escape the planet in kilograms (kg).
-    </p>
-{% endblock %}
-
 {% block output_example %}
     19843016.2
+{% endblock %}
+
+{% block notes_and_references %}
+  <div class="content">
+    <ul>
+      <li>We essentially used the <a href="https://en.wikipedia.org/wiki/Tsiolkovsky_rocket_equation">Tsiolkovsky rocket equation</a> in this problem.</li>
+      <li>Kurzgesagt has a great YouTube video that's essentially about the rocket equation and why it's so hard to leave Earth: <a href="https://www.youtube.com/watch?v=RVMZxH1TIIQ">Why Earth Is A Prison and How To Escape It</a>.</li>
+      <li>Numbers for the Saturn V in this problem were sourced from NASA's <a href="https://history.msfc.nasa.gov/saturn_apollo/documents/F-1_Engine.pdf">F-1 Engine Fact Sheet</a>.</li>
+    </ul>
+  </div>
 {% endblock %}

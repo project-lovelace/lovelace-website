@@ -1,45 +1,39 @@
-<!--
-  Project Lovelace: Problem I3
-  Chaos (loops, chaos theory or systems science)
--->
-
 {% extends "problems/problem.html" %}
 
-{% block required %}
-    <p>
-      <b>Concepts</b>: loops.
-      <b>Required math</b>: addition and multiplication.
-    </p>
+{% block useful_to_know %}
+  loops.
 {% endblock %}
 
 {% block problem_body %}
-    <p>
-        Let's look at an example of chaos in nature: the logistic map. It's a simplified model used to describe population sizes and can be written mathematically as $x_{n+1} = r*x_n(1 - x_n)$ where $0 < r < 4$ is a constant and $0 < x_n < 1$ represents the population size. Starting with an initial population size of $x_0 = 0.5$, your program should read in a value for $r$ then calculate and print out the first 50 values of the logistic map $x_0, x_1, x_2, \dots, x_49, x_50$ on separate lines. You should see different behavior depending on the value of $r$.
-    </p>
+  <p class="has-text-justified">Let's look at an example of chaos in nature: the logistic map. It's a simplified model used to describe population sizes and can be written mathematically as $x_{n+1} = rx_n(1 - x_n)$ where $0 < r < 4$ is a constant and $0 < x_n < 1$ represents the population size. Starting with an initial population size of $x_0 = 0.5$, your function should accept a value for $r$ then calculate and print out the first 50 values of the logistic map $x_0, x_1, x_2, \dots, x_{49}, x_{50}$. You should see different behavior depending on the value of $r$, and .</p>
 {% endblock %}
 
 {% block input_description %}
-    <p>
-        The value of $r$.
-    </p>
+  The parameter $r$.
+{% endblock %}
+
+{% block output_description %}
+  The first 50 values of the logistic map $(x_0, x_1, x_2, \dots, x_{49}, x_{50})$ on separate lines, with at least 6 decimal place accuracy.
 {% endblock %}
 
 {% block input_example %}
     2.81
 {% endblock %}
 
-{% block output_description %}
-    <p>
-        The first 50 values of the logistic map $(x_0, x_1, x_2, \dots, x_49, x_50)$ on separate lines, with at least 6 decimal place accuracy.
-    </p>
-{% endblock %}
-
 {% block output_example %}
     0.500000<br>
     0.702500<br>
     0.587272<br>
-    ...
+    &nbsp;&nbsp;&nbsp;&nbsp;⋮<br>
     0.644125<br>
     0.644130<br>
     0.644126<br>
+{% endblock %}
+
+{% block notes_and_references %}
+  <div class="content">
+    <ul>
+      <li>There's a huge amount of stuff we could say about the logistic map.</li>
+    </ul>
+  </div>
 {% endblock %}
