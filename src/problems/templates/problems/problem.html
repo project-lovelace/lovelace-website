@@ -53,8 +53,8 @@
       </li>
       <li data-tab="4">
         <a>
-          <span class="icon is-small"><i class="far fa-comments" aria-hidden="true"></i></span>
-          <span>Forum</span>
+          <span class="icon is-small"><i class="fab fa-discourse" aria-hidden="true"></i></span>
+          <span>Discourse</span>
         </a>
       </li>
 <!--  <li data-tab="5">
@@ -99,7 +99,8 @@
       </article>
     </section>
 
-    <section data-content="2"> <!-- Submissions tab -->
+    <!-- Submissions tab -->
+    <section data-content="2">
       {% if previous_submissions %}
         <div class="columns is-centered">
           <table class="table is-hoverable">
@@ -169,13 +170,14 @@
         </form>
     </section>
 
-    <section data-content="3"> <!-- Notes and references tab -->
+    <!-- Notes and references tab -->
+    <section data-content="3">
       {% block notes_and_references %}{% endblock %}
     </section>
 
-    <section data-content="4"> <!-- Forum tab -->
-      {% block forum %}{% endblock %}
-    </section>
+    <!-- Discourse tab -->
+    <section data-content="4">
+      <div id='discourse-comments'></div></section>
 
     <!-- Solution tab
     <section data-content="5">
@@ -408,5 +410,10 @@
   editor_textarea.parentNode.appendChild(document.createElement("br"));
   editor_textarea.parentNode.appendChild(submit_code_button);
 </script>
+
+<script>
+</script>
+
+{% block discourse %}{% endblock %}
 
 {% endblock %}
