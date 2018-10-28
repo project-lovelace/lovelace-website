@@ -4,6 +4,8 @@ import logging
 import pprint
 import os
 import requests
+import pprint
+import datetime
 from urllib.parse import urljoin
 
 from django.http import HttpResponseBadRequest, HttpResponseServerError, JsonResponse
@@ -11,6 +13,7 @@ from django.shortcuts import get_object_or_404, render
 from django.views import generic, View
 from django.db.models import F
 from django.conf import settings
+from django.core.files import File
 
 from .forms import CodeSubmissionForm
 from .models import Problem, Submission
@@ -99,15 +102,39 @@ class DetailView(View):
         if not request.user.is_authenticated:
             return HttpResponseBadRequest("You must be registered and logged in to submit code.")
 
-        file = form.files['file']
-
-        if file.size > MAX_FILE_SIZE_BYTES:
-            return HttpResponseBadRequest('File must be smaller than {} bytes'.format(MAX_FILE_SIZE_BYTES))
-
         if request.is_ajax():
             logger.info("AJAX request received.")
         else:
             logger.info("Received request NOT AJAX.")
+
+        button_clicked = request.POST['button-clicked']
+        logger.info("Button clicked: {:}".format(button_clicked))
+
+        if button_clicked == 'submit-code-button':
+            editor_code = request.POST['raw-code']
+            logger.info("User code:\n{:}".format(editor_code))
+            raw_code = str(base64.b64encode(bytes(editor_code, 'utf-8')), 'utf-8')
+
+            t = datetime.datetime.now()
+            user_code_filename = "{:}_{:}.py".format(problem_name, t.strftime("%Y%m%d%H%M%S"))
+            user_code_filepath = os.path.join(settings.MEDIA_ROOT, "uploads", str(t.year), str(t.month), str(t.day), user_code_filename)
+            logger.info("Writing user code to file: {:s}".format(user_code_filepath))
+
+            pfile = open(user_code_filepath, 'w+')  # Python file
+            pfile.write(editor_code)
+            file = File(pfile)  # Creating Django file from Python file
+            # pfile.close()  # Django needs the python file to save the submission so we won't close it.
+
+        elif button_clicked == 'submit-file-button':
+            file = form.files['file']
+
+            if file.size > MAX_FILE_SIZE_BYTES:
+                return HttpResponseBadRequest('File must be smaller than {} bytes'.format(MAX_FILE_SIZE_BYTES))
+
+            raw_code = str(base64.b64encode(file.read()), 'utf-8')
+
+        else:
+            return HttpResponseBadRequest("Invalid value for button-clicked in POST form.")
 
         logger.info("Received submission for problem={:}. Request:\n{:}"
                 .format(problem_name, pprint.pformat(request.__dict__)))
@@ -115,7 +142,7 @@ class DetailView(View):
         submission = {
             'problem': problem_name,
             'language': 'python3',
-            'code': str(base64.b64encode(file.read()), 'utf-8')
+            'code': raw_code
         }
 
         engine_resp = requests.post(ENGINE_URL, data=json.dumps(submission), timeout=9999)

@@ -142,7 +142,7 @@
         <div class="columns is-centered">
           {% csrf_token %}
           <div class="column is-three-quarters" style="position: relative;">
-            {% render_field form.code id="editor" %}
+            {% render_field form.code id="editor-textarea" %}
           </div>
           <div class="is-divider-vertical" data-content="OR"></div>
           <div class="column is-one-quarter">
@@ -225,7 +225,7 @@
 </style>
 
 <script>
-  var editor_textarea = document.getElementById('editor');
+  var editor_textarea = document.getElementById('editor-textarea');
   var cm = CodeMirror.fromTextArea(editor_textarea, {
       autoRefresh:true,
       mode: 'python',
@@ -293,11 +293,13 @@
   var apiUrl = '{% url 'problems:detail' problem.name %}';
   var csrf_token = '{{ csrf_token }}';
 
-  function sendCodeFile(event) {
+  function sendCodeFile(event, button_clicked) {
     console.log("Inside sendCodeFile()...");
     
     var form = document.forms.namedItem('submit-code-or-file-form');
-    var data = new FormData(form);
+    var form_data = new FormData(form);
+    form_data.append('button-clicked', button_clicked)
+    form_data.append('raw-code', cm.getValue());
 
     var xhr = new XMLHttpRequest();
     xhr.open('POST', apiUrl, true);
@@ -306,23 +308,16 @@
     xhr.setRequestHeader('X-CSRFToken', csrf_token);
     xhr.onload = injectTestCaseResults;
     xhr.onerror = handleAjaxError;
-    xhr.send(data);
+    xhr.send(form_data);
   }
 
   document.getElementById('submit-code-or-file-form').addEventListener('submit',
     function(event) {
-      console.log("this.button_clicked=" + this.button_clicked);
       document.getElementById(this.button_clicked).classList.add('is-loading');
 
-      // if (this.button_clicked == "submit-code-button") {
-      //   document.getElementById('submit-file-button').classList.add('is-loading');
-      // } else if (this.button_clicked == "submit-file-button") {
-      //   document.getElementById('submit-file-button').classList.add('is-loading');
-      // }
-      
-      event.preventDefault()
+      event.preventDefault();
       event.stopImmediatePropagation();
-      sendCodeFile(event);
+      sendCodeFile(event, this.button_clicked);
 
       // Prevents the default action and stops propagation.
       // See: http://blog.niftysnippets.org/2011/11/story-on-return-false.html
@@ -399,7 +394,10 @@
 </script>
 
 <script>
-  var editor_div = document.getElementById('editor');
+  // Add a "submit code" button below the CodeMirror editor after the
+  // editor has loaded, otherwise when the editor html is inserted it
+  // appears over the button.
+  var editor_textarea = document.getElementById('editor-textarea');
   var submit_code_button = document.createElement('button');
 
   submit_code_button.classList.add('button', 'is-primary');
@@ -407,10 +405,8 @@
   submit_code_button.setAttribute('onclick', "this.form.button_clicked=this.id");
   submit_code_button.appendChild(document.createTextNode("Submit code"));
 
-  editor_div.parentNode.appendChild(document.createElement("br"));
-  editor_div.parentNode.appendChild(submit_code_button);
-  // editor_div.parentNode.insertBefore(submit_code_button, editor_div.nextSibling);
-  // submit_code_button.insertBefore(document.createElement("br"), submit_code_button);
+  editor_textarea.parentNode.appendChild(document.createElement("br"));
+  editor_textarea.parentNode.appendChild(submit_code_button);
 </script>
 
 {% endblock %}
