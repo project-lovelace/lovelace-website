@@ -8,14 +8,6 @@
 </script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
 
-<!-- Ace editor config -->
-<style type="text/css" media="screen">
-  #editor {
-    width: 95%;
-    height: 100%;
-  }
-</style>
-
 <!-- CSS to show active tab and hide inactive tabs. -->
 <style>
   #tab-content section {
@@ -148,10 +140,7 @@
       <p>You can use the editor below or upload a file to submit your code.</p><br>
       <div class="columns is-centered">
         <div class="column is-three-quarters" style="position: relative;">
-          <div id="editor">def earthquake_epicenter_2d(x1, y1, t1, x2, y2, t2, x3, y3, t3):
-            pass
-            return (x0, y0)'
-          </div>
+          <textarea id="editor">def solution(x, y, z)</textarea>
           <!-- <br><button class="button is-primary">Submit code</button> -->
         </div>
 
@@ -222,16 +211,28 @@
 {% endblock %}
 
 {% block postload_javascript %}
-<!-- Ace Editor -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.1/ace.js" type="text/javascript" charset="utf-8"></script>
+<!-- CodeMirror editor -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.41.0/codemirror.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.41.0/theme/monokai.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.41.0/codemirror.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.41.0/mode/python/python.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.41.0/addon/display/autorefresh.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.41.0/addon/selection/active-line.js"></script>
+
+<style>
+  .CodeMirror {
+      border: 1px solid black;
+      font-size:13px
+  }
+</style>
 
 <script>
-  var editor = ace.edit("editor", {
-      theme: "ace/theme/eclipse",
-      mode: "ace/mode/python",
-      autoScrollEditorIntoView: true,
-      maxLines: 50,
-      minLines: 8
+  var editor_textarea = document.getElementById('editor');
+  var cm = CodeMirror.fromTextArea(editor_textarea, {
+      autoRefresh:true,
+      mode: 'python',
+      lineNumbers: true,
+      styleActiveLine: true
   });
 </script>
 
