@@ -159,7 +159,7 @@
                   </label>
                 </div>
                 <br>
-                <button class="button is-primary" type="submit" id="submit-file-button">Submit file</button>
+                <button class="button is-primary" type="submit" id="submit-file-button" onclick="this.form.button_clicked=this.id">Submit file</button>
               {% else %}
                 <p>You must be logged in to submit code.</p>
               {% endif %}
@@ -311,7 +311,14 @@
 
   document.getElementById('submit-code-or-file-form').addEventListener('submit',
     function(event) {
-      document.getElementById('submit-file-button').classList.add('is-loading');
+      console.log("this.button_clicked=" + this.button_clicked);
+      document.getElementById(this.button_clicked).classList.add('is-loading');
+
+      // if (this.button_clicked == "submit-code-button") {
+      //   document.getElementById('submit-file-button').classList.add('is-loading');
+      // } else if (this.button_clicked == "submit-file-button") {
+      //   document.getElementById('submit-file-button').classList.add('is-loading');
+      // }
       
       event.preventDefault()
       event.stopImmediatePropagation();
@@ -396,6 +403,8 @@
   var submit_code_button = document.createElement('button');
 
   submit_code_button.classList.add('button', 'is-primary');
+  submit_code_button.setAttribute('id', "submit-code-button");
+  submit_code_button.setAttribute('onclick', "this.form.button_clicked=this.id");
   submit_code_button.appendChild(document.createTextNode("Submit code"));
 
   editor_div.parentNode.appendChild(document.createElement("br"));
