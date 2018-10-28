@@ -138,39 +138,35 @@
       {% endif %}
 
       <p>You can use the editor below or upload a file to submit your code.</p><br>
-      <div class="columns is-centered">
-        <div class="column is-three-quarters" style="position: relative;">
-          <textarea id="editor">def solution(x, y, z)</textarea>
-          <!-- <br><button class="button is-primary">Submit code</button> -->
-        </div>
-
-        <div class="is-divider-vertical" data-content="OR"></div>
+        <form method="post" id="submit-code-or-file-form" enctype="multipart/form-data">
+        <div class="columns is-centered">
+          {% csrf_token %}
+          <div class="column is-three-quarters" style="position: relative;">
+            {% render_field form.code id="editor" %}
+          </div>
+          <div class="is-divider-vertical" data-content="OR"></div>
           <div class="column is-one-quarter">
             <div class="container">
               {% if user.is_authenticated %}
                 <div class="file has-name is-boxed">
-                  <form method="post" id="code-submit-form" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <label class="file-label">
-                      {% render_field form.file class+="file-input" %}
-                      <span class="file-cta">
-                        <span class="file-icon"><i class="fas fa-upload"></i></span>
-                        <span class="file-label">Choose file...</span>
-                      </span>
-                      <span class="file-name" id="file-name-span"></span>
-                    </label>
-                    <br>
-                    <div class="control has-text-centered">
-                      <button class="button is-primary" type="submit" id="submit-file-button">Submit file</button>
-                    </div>
-                  </form>
+                  <label class="file-label">
+                    {% render_field form.file class+="file-input" %}
+                    <span class="file-cta">
+                      <span class="file-icon"><i class="fas fa-upload"></i></span>
+                      <span class="file-label">Choose file...</span>
+                    </span>
+                    <span class="file-name" id="file-name-span"></span>
+                  </label>
                 </div>
+                <br>
+                <button class="button is-primary" type="submit" id="submit-file-button">Submit file</button>
               {% else %}
                 <p>You must be logged in to submit code.</p>
               {% endif %}
             </div>
           </div>
-      </div>
+          </div>
+        </form>
     </section>
 
     <section data-content="3"> <!-- Notes and references tab -->
@@ -222,7 +218,9 @@
 <style>
   .CodeMirror {
       border: 1px solid black;
-      font-size:13px
+      font-size:13px;
+      height: 100%;
+      width: 100%;
   }
 </style>
 
@@ -298,7 +296,7 @@
   function sendCodeFile(event) {
     console.log("Inside sendCodeFile()...");
     
-    var form = document.forms.namedItem('code-submit-form');
+    var form = document.forms.namedItem('submit-code-or-file-form');
     var data = new FormData(form);
 
     var xhr = new XMLHttpRequest();
@@ -311,7 +309,7 @@
     xhr.send(data);
   }
 
-  document.getElementById('code-submit-form').addEventListener('submit',
+  document.getElementById('submit-code-or-file-form').addEventListener('submit',
     function(event) {
       document.getElementById('submit-file-button').classList.add('is-loading');
       
