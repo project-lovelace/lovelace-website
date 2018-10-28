@@ -50,5 +50,11 @@
       d.src = DiscourseEmbed.discourseUrl + 'javascripts/embed.js';
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(d);
     })();
+
+    window.addEventListener('load', function(){
+      var iframe = document.getElementById('discourse-embed-frame');
+      iframe.setAttribute("style", "height: 100vh;");
+      iframe.setAttribute("scrolling", "yes");
+     });
   </script>
 {% endblock %}
