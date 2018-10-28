@@ -13,15 +13,9 @@
     <div class="column is-one-third">
       <h3 class="title is-3 has-text-centered">{{ user.username }} ({{ profile.display_name }})</h3>
       <h4 class="subtitle is-5 has-text-centered is-italic"><strong>{{ profile.problems_solved }} problems solved ({{ profile.submissions_made}} submissions)</strong></h4>
-        <img src="{{ profile.avatar.url }}" style="display: block; margin-left: auto; margin-right: auto; max-width: 100%; max-height: 100%;">
       <form method="post">
         {% csrf_token %}
         {% for field in form.visible_fields %}
-          {% if field.name == 'avatar' %}
-            <label class="label" for="{{ field.id_for_label }}">{{ field.label }}</label>
-            {{ field }}
-            <br><br>
-          {% else %}
             <div class="field">
               <label class="label" for="{{ field.id_for_label }}">{{ field.label }}</label>
               <div class="control has-icons-left">        
@@ -48,7 +42,6 @@
                 <p class="help is-danger">{{ error }}</p>
               {% endfor %}
             </div>
-          {% endif %}
         {% endfor %}
         <button class="button is-primary" type="submit">Save changes</button>
       </form>
