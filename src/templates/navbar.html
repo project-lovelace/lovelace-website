@@ -2,10 +2,8 @@
 
 <nav class="navbar is-transparent is-dark">
   <div class="navbar-brand">
-      <a class="navbar-item" href="http://projectlovelace.net/" style="font-variant: small-caps;">
-          <img src="{% static 'img/Lovelace_logo_white_192px.png' %}">
-          &nbsp;
-          <b>Project Lovelace</b>
+      <a class="navbar-item" href="http://projectlovelace.net/">
+          <img src="{% static 'img/Lovelace_banner_white_192px.png' %}">
       </a>
     <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
       <span></span>
@@ -19,7 +17,7 @@
       <a class="navbar-item" href="http://projectlovelace.net/problems/">Problems</a>
       <a class="navbar-item" href="http://projectlovelace.net/about/">About</a>
       <a class="navbar-item" href="http://projectlovelace.net/news/">News</a>
-      <a class="navbar-item" href="http://projectlovelace.net/contact/">Forum</a>
+      <a class="navbar-item" href="http://discourse.projectlovelace.net/">Discourse</a>
     </div>
 
     {% if user.is_authenticated %}
