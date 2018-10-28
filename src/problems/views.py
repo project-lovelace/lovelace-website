@@ -123,6 +123,7 @@ class DetailView(View):
             pfile = open(user_code_filepath, 'w+')  # Python file
             pfile.write(editor_code)
             file = File(pfile)  # Creating Django file from Python file
+            file.name = os.path.join("uploads", str(t.year), str(t.month), str(t.day), user_code_filename)
             # pfile.close()  # Django needs the python file to save the submission so we won't close it.
 
         elif button_clicked == 'submit-file-button':
