@@ -102,6 +102,9 @@ class DetailView(View):
         if not request.user.is_authenticated:
             return HttpResponseBadRequest("You must be registered and logged in to submit code.")
 
+        logger.info("Received submission for problem={:}. Request:\n{:}"
+                .format(problem_name, pprint.pformat(request.__dict__)))
+
         if request.is_ajax():
             logger.info("AJAX request received.")
         else:
@@ -121,10 +124,10 @@ class DetailView(View):
             logger.info("Writing user code to file: {:s}".format(user_code_filepath))
 
             pfile = open(user_code_filepath, 'w+')  # Python file
-            pfile.write(editor_code)
             file = File(pfile)  # Creating Django file from Python file
             file.name = os.path.join("uploads", str(t.year), str(t.month), str(t.day), user_code_filename)
-            # pfile.close()  # Django needs the python file to save the submission so we won't close it.
+            pfile.write(editor_code)
+            # We close pfile at the end, after the submission has been saved.
 
         elif button_clicked == 'submit-file-button':
             file = form.files['file']
@@ -136,9 +139,6 @@ class DetailView(View):
 
         else:
             return HttpResponseBadRequest("Invalid value for button-clicked in POST form.")
-
-        logger.info("Received submission for problem={:}. Request:\n{:}"
-                .format(problem_name, pprint.pformat(request.__dict__)))
 
         submission = {
             'problem': problem_name,
@@ -180,6 +180,9 @@ class DetailView(View):
         )
         submission.save()
         template = 'problems/results.html'
+
+        if button_clicked == "submit-code-button":
+            pfile.close()
 
         # Increment user's submission count by 1.
         UserProfile.objects.filter(user=request.user).update(submissions_made=F('submissions_made') + 1)
