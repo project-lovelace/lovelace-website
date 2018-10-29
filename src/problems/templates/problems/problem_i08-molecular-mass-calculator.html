@@ -45,7 +45,7 @@ with open('periodic_table.csv') as csvfile:
         atomic_mass = float(row[1])
         atomic_masses[element_symbol] = atomic_mass
     
-def mass(chemical_formula):
+def molecular_mass(chemical_formula):
     ...
     return mass
 {% endblock %}
@@ -57,3 +57,6 @@ def mass(chemical_formula):
     </ul>
   </div>
 {% endblock %}
+
+{% block discourse_topic_id %}20{% endblock %}
+
