@@ -32,6 +32,24 @@
     323.44 amu
 {% endblock %}
 
+{% block code_stub %}
+import csv
+
+atomic_masses = {}
+
+# Load atomic masses from periodic table into dictionary.
+with open('periodic_table.csv') as csvfile:
+    ptable_reader = csv.reader(csvfile, delimiter=',')
+    for row in ptable_reader:
+        element_symbol = str(row[0])
+        atomic_mass = float(row[1])
+        atomic_masses[element_symbol] = atomic_mass
+    
+def mass(chemical_formula):
+    ...
+    return mass
+{% endblock %}
+
 {% block notes_and_references %}
   <div class="content">
     <ul>

@@ -27,6 +27,15 @@
 {% block output_example %}
 {% endblock %}
 
+{% block code_stub %}
+import numpy as np
+
+def correlation_coefficient(x, y):
+  N = len(x)
+  ...
+  return r
+{% endblock %}
+
 {% block notes_and_references %}
   <div class="content">
     <ul>
