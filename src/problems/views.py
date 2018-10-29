@@ -83,10 +83,17 @@ class DetailView(View):
                     'max_mem_usage': max_mem_usage,
                     })
 
+
+            n_submissions_passed = Submission.objects.filter(user=current_user_profile, problem__name=problem_name, passed=True).count()
+            solved_by_user = True if n_submissions_passed > 0 else False
+        else:
+            solved_by_user = False
+
         context = {
             'problem': problem,
             'form': form,
             'previous_submissions': previous_submissions,
+            'solved_by_user': solved_by_user,
         }
 
         return render(request, template, context)

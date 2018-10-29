@@ -36,11 +36,23 @@ def rocket_fuel(v):
 
 {% block notes_and_references %}
   <div class="content">
+    {% if solved_by_user %}
+    <h3>Solution notes</h3>
+    <ul>
+      <li>Hey you solved a problem. Go you!</li>
+      <li>Here's a cool plot you can look at:</li>
+    </ul>
+    {% endif %}
+    <h3>Notes</h3>
     <ul>
       <li>We essentially used the <a href="https://en.wikipedia.org/wiki/Tsiolkovsky_rocket_equation">Tsiolkovsky rocket equation</a> in this problem.</li>
       <li>Kurzgesagt has a great YouTube video that's essentially about the rocket equation and why it's so hard to leave Earth: <a href="https://www.youtube.com/watch?v=RVMZxH1TIIQ">Why Earth Is A Prison and How To Escape It</a>.</li>
-      <li>Numbers for the Saturn V in this problem were sourced from NASA's <a href="https://history.msfc.nasa.gov/saturn_apollo/documents/F-1_Engine.pdf">F-1 Engine Fact Sheet</a>.</li>
     </ul>
+    <h3>References</h3>
+    <dl>
+      <dt><a href="https://history.msfc.nasa.gov/saturn_apollo/documents/F-1_Engine.pdf">F-1 Engine Fact Sheet </a>, NASA Saturn V News Reference (1968)</dt>
+      <dd>This is where we sourced the numbers for the Saturn V in this problem. The full <a href="https://history.msfc.nasa.gov/saturn_apollo/saturnv_press_kit.html">Saturn V Press Kit</a> is also online.</dd>
+    </dl>
   </div>
 {% endblock %}
 
