@@ -124,7 +124,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'prod_static')
 STATIC_URL = '/static/'
 
 # Login URL used especially by @login_required decorator.
-LOGIN_URL = '/login/'
+LOGIN_URL = '/accounts/login/'
 
 # Redirect users after logging in and logging out
 LOGIN_REDIRECT_URL = 'home'
