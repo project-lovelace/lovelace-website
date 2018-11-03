@@ -1,0 +1,8 @@
+Hi {{ user.username }},
+
+Thanks for signing up on Project Lovelace!
+
+Click the following link to activate your account:
+http://{{ site.domain }}{% url 'django_registration_activate' activation_key %}
+
+The link is valid for {{ expiration_days }} days.

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% load widget_tweaks %}
+
+{% block body %}
+  {% if next %}
+      {% if user.is_authenticated %}
+          <p>Your account doesn't have access to this page. To proceed,
+          please login with an account that has access.</p>
+      {% endif %}
+  {% endif %}
+
+  <br>
+  <div class="columns is-centered">
+    <div class="column is-one-third">
+      {% if form.errors %}
+        <article class="message is-danger">
+          <div class="message-body">
+            Your username or password didn't match. Please try again.
+          </div>
+        </article>          
+      {% endif %}
+
+      <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        {% for hidden in form.hidden_fields %}
+          {{ hidden }}
+        {% endfor %}
+
+        {% for field in form.visible_fields %}
+          <div class="field">
+            <label class="label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+            <div class="control has-icons-left">
+              {{ field | add_class:'input' }}
+              <span class="icon is-small is-left">
+                {% if field.name == 'username' %}
+                  <i class="fas fa-user"></i>
+                {% elif field.name == 'password' %}
+                  <i class="fas fa-lock"></i>
+                {% endif %}
+              </span>
+            </div>
+            <p class="help">{{ field.help_text }}</p>
+            {% for error in field.errors %}
+              <p class="help is-danger">{{ error }}</p>
+            {% endfor %}
+          </div>
+        {% endfor %}
+
+        <div class="control">
+          <button class="button is-primary" type="submit">Log in</button>
+        </div>
+        <input type="hidden" name="next" value="{{ next }}" />
+      </form>
+      {# Assumes you setup the password_reset view in your URLconf #}
+      {# TODO <p><a href="{% url 'password_reset' %}">Lost password?</a></p> #}
+    </div>
+  </div>
+{% endblock %}
