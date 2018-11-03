@@ -139,7 +139,7 @@ EMAIL_HOST_PASSWORD = 'bc63dc818734758811c2791d942dbf87-4836d8f5-33db4e04'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-DEFAULT_FROM_EMAIL = "ada@projectlovelace.net"
+DEFAULT_FROM_EMAIL = "Ada Lovelace <ada@projectlovelace.net>"
 
 LOGGING = {
     'version': 1,
