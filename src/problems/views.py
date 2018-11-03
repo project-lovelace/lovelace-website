@@ -156,9 +156,18 @@ class DetailView(View):
         engine_resp = requests.post(ENGINE_URL, data=json.dumps(submission), timeout=9999)
         status = engine_resp.status_code
 
-        if status != 200:
-            # logging.warning('Engine returned an error: {}'.format(engine_resp))
-            return HttpResponseServerError('Code runner failed to run your program')
+        if status == 400:
+            error_resp = json.loads(engine_resp.text)
+            error_msg = error_resp['error']
+            logging.warning("Engine returned HTTP 400. Probably due to bad user code. Error: {:}".format(error_msg))
+            return JsonResponse({'error': error_msg})
+            # return HttpResponseBadRequest(error_msg)
+        elif status == 500:
+            error_resp = json.loads(engine_resp.text)
+            error_msg = error_resp['error']
+            logging.warning("Engine returned HTTP 500. Probably due to bad file push or pull. Error: {:}".format(error_msg))
+            return JsonResponse({'error': error_msg})
+            # return HttpResponseServerError(error_msg)
 
         results = json.loads(engine_resp.text)
 
