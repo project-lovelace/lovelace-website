@@ -2,6 +2,11 @@
 
 {% load widget_tweaks %}
 
+{% block page_title %}
+  Log in | Project Lovelace
+{% endblock %}
+
+
 {% block body %}
   {% if next %}
       {% if user.is_authenticated %}
@@ -52,6 +57,7 @@
         <div class="control">
           <button class="button is-primary" type="submit">Log in</button>
         </div>
+        <p><a href="{% url 'password_reset' %}">Forgot your password?</a></p>
         <input type="hidden" name="next" value="{{ next }}" />
       </form>
       {# Assumes you setup the password_reset view in your URLconf #}
