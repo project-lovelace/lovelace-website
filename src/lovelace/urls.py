@@ -23,9 +23,11 @@ urlpatterns = [
     path('contact/', TemplateView.as_view(template_name='contact.html'), name='contact'),
 
     # User accounts
-    path('register/', views.UserRegistrationView.as_view(), name='register'),
-    path('login/', auth_views.LoginView.as_view(), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('accounts/', include('django_registration.backends.activation.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
+    # path('register/', views.UserRegistrationView.as_view(), name='register'),
+    # path('login/', auth_views.LoginView.as_view(), name='login'),
+    # path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('editprofile/', EditUserProfileView.as_view(success_url='/editprofile/'), name='editprofile'),
 
     # Applications
