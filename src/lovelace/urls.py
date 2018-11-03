@@ -8,9 +8,6 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.conf.urls import handler404, handler500
 
-from django_registration.views import RegistrationView
-from django_registration.forms import RegistrationFormUniqueEmail
-
 from . import views, forms
 from users.views import EditUserProfileView
 
@@ -25,13 +22,9 @@ urlpatterns = [
     path('contact/', TemplateView.as_view(template_name='contact.html'), name='contact'),
 
     # User accounts
-    path('accounts/register/', views.UserRegistrationView.as_view(form_class=forms.CustomRegistrationForm),
-        name='django_registration_register'),
+    path('accounts/register/', views.UserRegistrationView.as_view(form_class=forms.CustomRegistrationForm), name='django_registration_register'),
     path('accounts/', include('django_registration.backends.activation.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
-    # path('register/', views.UserRegistrationView.as_view(), name='register'),
-    # path('login/', auth_views.LoginView.as_view(), name='login'),
-    # path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('editprofile/', EditUserProfileView.as_view(success_url='/editprofile/'), name='editprofile'),
 
     # Applications
