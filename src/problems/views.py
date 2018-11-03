@@ -128,8 +128,13 @@ class DetailView(View):
             t = datetime.datetime.now()
             user_code_filename = "{:}_{:}.py".format(problem_name, t.strftime("%Y%m%d%H%M%S"))
             user_code_filepath = os.path.join(settings.MEDIA_ROOT, "uploads", str(t.year), str(t.month), str(t.day), user_code_filename)
-            logger.info("Writing user code to file: {:s}".format(user_code_filepath))
 
+            user_code_dir = os.path.dirname(user_code_filepath)
+            if not os.path.exists(user_code_dir):
+                logger.info("Creating directory: {:}".format(user_code_dir))
+                os.makedirs(user_code_dir)
+
+            logger.info("Writing user code to file: {:s}".format(user_code_filepath))
             pfile = open(user_code_filepath, 'w+')  # Python file
             file = File(pfile)  # Creating Django file from Python file
             file.name = os.path.join("uploads", str(t.year), str(t.month), str(t.day), user_code_filename)
