@@ -37,9 +37,21 @@ def habitable_exoplanet(L, r):
 
 {% block notes_and_references %}
   <div class="content">
+    {% if solved_by_user %}
+      <h3>Solution notes</h3>
+      <ul>
+        <li>We still don't know much about circumstellar habitable zones so even though your new "habitable zone calculator" is very simple it might still be pretty good for all we know. It's not like we've found extraterristrial life (yet)...</li>
+      </ul>
+    {% endif %}
+    <h3>Notes</h3>
     <ul>
-      <li>You just created (or will create) a basic habitable zone calculator! We still don't know much about circumstellar habitable zones so even though it's basic it's still pretty good.</li>
+      <li>There are many other conditions for habitability than just distance of an exoplanet from its host star, and there are <a href="https://en.wikipedia.org/wiki/Circumstellar_habitable_zone#Solar_System_estimates">many different estimates</a> of where the circumstellar habitable zone is for our own solar system.</li>
     </ul>
+    <h3>References</h3>
+    <dl>
+      <dt>Kasting, J.F. (1996),  <a href="#">Habitable zones around stars: An update.</a> In: Doyle, L. (ed.). Circumstellar Habitable Zones, pp. 117-142.</dt>
+      <dd>Gave the boundaries used in this problem but there are other attempts, including many recent ones. We just used this one for simplicity. We could not find the chapter referenced online so we scanned a copy and uploaded it on here.</dd>
+    </dl>
   </div>
 {% endblock %}
 
