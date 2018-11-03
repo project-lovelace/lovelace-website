@@ -13,12 +13,14 @@
   <br>
   <div class="columns is-centered">
     <div class="column is-one-third">
-      {% if form.errors %}
-        <article class="message is-danger">
-          <div class="message-body">
-            Your username or password didn't match. Please try again.
-          </div>
-        </article>          
+      {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+          <article class="message is-danger">
+            <div class="message-body">
+              {{ error }} If you recently signed up, you may need to activate your account (by clicking the link in the activation email) before you can log in.
+            </div>
+          </article>
+        {% endfor %}
       {% endif %}
 
       <form method="post" action="{% url 'login' %}">

@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 
 {% block body %}
-  <p>Your account is now activated.</p>
+  <section classs="section">
+    <div class="container">
+      <br>
+      <p>Your account is now activated. You can now <a href="{% url 'login' %}">log in</a>.</p>
+    </div>
+  </section>
 {% endblock %}
