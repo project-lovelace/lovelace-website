@@ -25,7 +25,7 @@ urlpatterns = [
     path('contact/', TemplateView.as_view(template_name='contact.html'), name='contact'),
 
     # User accounts
-    path('accounts/register/', RegistrationView.as_view(form_class=forms.CustomRegistrationForm),
+    path('accounts/register/', views.UserRegistrationView.as_view(form_class=forms.CustomRegistrationForm),
         name='django_registration_register'),
     path('accounts/', include('django_registration.backends.activation.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
