@@ -6,6 +6,7 @@ from django.contrib.staticfiles.storage import staticfiles_storage
 from django.views.generic.base import RedirectView
 from django.conf.urls.static import static
 from django.conf import settings
+from django.conf.urls import handler404, handler500
 
 
 from . import views
@@ -34,3 +35,7 @@ urlpatterns = [
     # Favicon. See: http://staticfiles.productiondjango.com/blog/failproof-favicons/
     re_path(r'^favicon.ico$', RedirectView.as_view(url='/static/img/favicon.ico', permanent=False), name='favicon'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+handler404 = views.error_404
+handler500 = views.error_500
