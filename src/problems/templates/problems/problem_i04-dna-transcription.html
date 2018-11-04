@@ -1,13 +1,35 @@
 {% extends "problems/problem.html" %}
 
+{% load static %}
+
 {% block useful_to_know %}
   strings.
 {% endblock %}
 
 {% block problem_body %}
-  <p class="has-text-justified">DNA (deoxyribonucleic acid) is the molecule that carries the genetic information of all known living organisms (life on exoplanets might be totally different!). The genetic information is stored as a sequence of nucleotides of which there are four: adenine (A), cytosine (C), guanine (G), and thymine (T). So a DNA sequence can be stored on a computer as a string of <tt>ATCG</tt> characters.</p>
-  <br>
-  <p class="has-text-justified">Certain DNA sequences contain the information required to syntheize proteins, and the first step is to transcribe the DNA sequence into a ribonucleic acid (RNA) sequence. The transcription process is biochemically complex, however the end result is that the RNA sequence is simple: the DNA sequence with all instances of <tt>T</tt> replaced with a <tt>U</tt>.</p>
+  <div class="columns is-centered is-vcentered">
+    <div class="column is-three-fifths">
+      <p class="has-text-justified">
+        DNA (deoxyribonucleic acid) is the molecule that carries the genetic information of all known living organisms (life on exoplanets might be totally different!). The genetic information is stored as a sequence of nucleotides of which there are four: adenine (A), cytosine (C), guanine (G), and thymine (T). So a DNA sequence can be stored on a computer as a string of <tt>ATCG</tt> characters.
+      </p>
+      <br>
+      <p class="has-text-justified">
+        Certain DNA sequences contain the information required to syntheize proteins, and the first step in the process is to transcribe the DNA sequence into a ribonucleic acid (RNA) sequence. The transcription process is biochemically complex, however the resulting RNA sequence is simple: it's equal to the DNA sequence with all instances of <tt>T</tt> replaced with a <tt>U</tt> (uracil).
+      </p>
+      <br>
+      <p class="has-text-justified">
+        Given the DNA string as input, return the transcribed RNA string. Keep in mind that these sequences can be very long (the human genome is 3,088,286,401 characters or base pairs long!).
+      </p>
+    </div>
+    <div class="column is-two-fifths">
+      <figure style="text-align: center;">
+        <img src="{% static 'img/DNA_RNA_difference.png' %}">
+        <figcaption class="help">
+          Comparison of DNA and RNA with their corresponding nucleotides. (<a href="http://planetary-science.org/astrobiology/habitable-zones/">Wikimedia Commons</a> / <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">CC BY-SA 3.0</a>)
+        </figcaption>
+      </figure>
+    </div>
+  </div>
 {% endblock %}
 
 {% block input_description %}
@@ -23,7 +45,7 @@
 {% endblock %}
 
 {% block output_example %}
-    CCAGGACCAGGCCCCAGGUGGGGCCAGGCCAGGCUC
+  CCAGGACCAGGCCCCAGGUGGGGCCAGGCCAGGCUC
 {% endblock %}
 
 {% block code_stub %}
