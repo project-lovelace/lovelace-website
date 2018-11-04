@@ -5,7 +5,9 @@
 {% endblock %}
 
 {% block problem_body %}
-  <p class="has-text-justified">Let's look at an example of chaos in nature: the logistic map. It's a simplified model used to describe population sizes and can be written mathematically as $x_{n+1} = rx_n(1 - x_n)$ where $0 < r < 4$ is a constant and $0 < x_n < 1$ represents the population size. Starting with an initial population size of $x_0 = 0.5$, your function should accept a value for $r$ then calculate and print out the first 50 values of the logistic map $x_0, x_1, x_2, \dots, x_{49}, x_{50}$. You should see different behavior depending on the value of $r$, and .</p>
+  <p class="has-text-justified">
+    Let's look at an example of chaos arising from simplicity in nature: the logistic map. It's a simplified model used to describe population sizes and can be written mathematically as $x_{n+1} = rx_n(1 - x_n)$ where $0 < r < 4$ is a parameter and $0 < x_n < 1$ represents the population size at time step $n$. Starting with an initial population size of $x_0 = 0.5$ and $r$ as an input parameter, return a list of the first 50 values of the logistic map $x_0, x_1, x_2, \dots, x_{49}, x_{50}$. You should see different behavior depending on the value of $r$, but we'll leave you to play around with it and we'll have more to say on the solution notes.
+  </p>
 {% endblock %}
 
 {% block input_description %}
@@ -13,7 +15,7 @@
 {% endblock %}
 
 {% block output_description %}
-  The first 50 values of the logistic map $(x_0, x_1, x_2, \dots, x_{49}, x_{50})$ on separate lines, with at least 6 decimal place accuracy.
+  A list containing the first 50 values of the logistic map $(x_0, x_1, x_2, \dots, x_{49}, x_{50})$.
 {% endblock %}
 
 {% block input_example %}
@@ -21,17 +23,11 @@
 {% endblock %}
 
 {% block output_example %}
-    0.500000<br>
-    0.702500<br>
-    0.587272<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;⋮<br>
-    0.644125<br>
-    0.644130<br>
-    0.644126<br>
+  [0.500000, 0.702500, 0.587272, ⋯, 0.644125, 0.644130, 0.644126]
 {% endblock %}
 
 {% block code_stub %}
-def chaos(r):
+def logistic_map(r):
     return x
 {% endblock %}
 
