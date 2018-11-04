@@ -1,15 +1,26 @@
 {% extends "problems/problem.html" %}
 
+{% load static %}
+
 {% block useful_to_know %}
   if statements, square roots.
 {% endblock %}
 
 {% block problem_body %}
-  <p class="has-text-justified">An exoplanet is a planet orbiting a star outside of our own solar system. We can now actually detect these planets! Turns out there are a lot of them and we want to know if anything lives there. How far the exoplanet is from its host star can determine whether it can support life or not. If it's too close to the star the planet would be too hot and cannot support life. Too far and now it's too cold to support life. There is a sweet spot called the circumstellar habitable zone (CHZ) in which a planet's surface is just the right temperature to support liquid water: not too hot and not too cold.</p>
-  <br> 
-  <p class="has-text-justified">One simple definition is that the CHZ is a ring around the star with inner radius $\displaystyle r_i = \sqrt{\frac{L}{0.54}}$ and outer radius $\displaystyle r_o = \sqrt{\frac{L}{1.1}}$. The radii $r_i$ and $r_o$ are given in astronomical units (1 au is roughly the distance between the Sun and the Earth) and $L$ is the star's luminosity as a multiple of the Sun's luminosity.</p>
+  <p class="has-text-justified">
+    An exoplanet is a planet orbiting a star other than our sun and we can actually detect these planets now! It turns out there are a lot of exoplanets and everyone is wondering whether anything lives there. How far the exoplanet is from its host star can determine whether it can support life or not. If it's too close to the star the planet would be too hot for life to survive there. Too far and now it's too cold to support life. There is a sweet spot in between called the circumstellar habitable zone (CHZ) in which a planet's surface is just the right temperature to support liquid water: not too hot and not too cold.
+  </p>
+  <figure style="text-align: center;">
+    <img src="{% static 'img/circumstellar_habitable_zone.gif' %}">
+    <figcaption>Image credit: <a href="http://planetary-science.org/astrobiology/habitable-zones/">The Center for Planetary Science</a></figcaption>
+  </figure>
+  <p class="has-text-justified">
+    One simple definition is that the CHZ is a ring around the star (the green zone in the figure) with inner radius $\displaystyle r_i = \sqrt{\frac{L}{0.54}}$ and outer radius $\displaystyle r_o = \sqrt{\frac{L}{1.1}}$. The radii $r_i$ and $r_o$ are given in astronomical units or au (1 au is roughly the distance between the Sun and the Earth) and $L$ is the star's luminosity as a multiple of the Sun's luminosity.
+  </p>
   <br>
-  <p class="has-text-justified">Given a star's absolute luminosity $L$ and the planet's distance from the star $r$, your program should print "too hot" if the planet is too close to the star, "too cold" if it's too far away from the star, and "just right" if its in the CHZ.</p>
+  <p class="has-text-justified">
+    Given a star's absolute luminosity $L$ and the planet's distance from the star $r$ as inputs, return "too hot" if the planet is too close to the star, "too cold" if it's too far away from the star, and "just right" if it's in the CHZ.
+  </p>
 {% endblock %}
 
 {% block input_description %}
