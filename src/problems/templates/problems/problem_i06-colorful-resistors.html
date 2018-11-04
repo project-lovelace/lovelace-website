@@ -1,32 +1,50 @@
 {% extends "problems/problem.html" %}
 
+{% load static %}
+
 {% block useful_to_know %}
   dictionaries.
 {% endblock %}
 
 {% block problem_body %}
-    <p class="has-text-justified">Let's use dictionaries to look at resistors, which are common electric components found in almost every electronic circuit. Resistors come with a resistance rating $\Omega$ (measured in ohms) that describes how difficult it is to pass an electric current through the resistor. This resistance rating is indicated by four or five colored bands on the resistor itself (see table below).</p>
+    <p class="has-text-justified">
+      Let's use dictionaries (you don't have to of course) to look at resistors, which are common electric components found in virtually every electronic circuit. Resistors come with a resistance rating $\Omega$ (measured in Ohms) that describes how difficult it is to pass an electric current through the resistor. This resistance rating is indicated by four or five colored bands on the resistor itself (see table).
+    </p>
     <br>
-    <!-- *Insert table here* -->
-    <p class="has-text-justified">For a four band resistor, the first two color bands indicate the first two digits of the resistance value with the third band indicating a multiplier, and the last band indicates a tolerance. For a five band resistor, the first three color bands indicate the first three digits of the resistance value followed by a fourth band (multiplier) and a fifth band (tolerance). Your program should read in a list of four or five colors and use the table to compute the minimum and maximum resistance value of the resistor.</p>
+    <div class="columns is-centered">
+      <div class="column is-one-third">
+        <figure class="image" style="text-align: center;">
+          <img src="{% static 'img/resistor_color_table.png' %}">
+          <figcaption class="help">
+            Resistor color table with example calculations for a four-band and a five-band resistor. (Image credit: <a href="https://www.digikey.com/en/articles/techzone/2017/apr/big-boys-race-young-girls-violet-wins-resistors-color-codes">Resistors and Color Codes, Digi-Key</a>)
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+    <p class="has-text-justified">
+      For a four band resistor, the first two color bands indicate the first two digits of the resistance value with the third band indicating a multiplier, and the last band indicates a tolerance. For a five band resistor, the first three color bands indicate the first three digits of the resistance value followed by a fourth band (multiplier) and a fifth band (tolerance). A resistor with a single black band has zero resistance.
+    </p>
+    <p class="has-text-justified">
+      Using a list of colors as input compute the nominal resistance (i.e. whithout any tolerance), as well as the minimum and maximum resistance value of the resistor, and return them in that order.
+    </p>
 {% endblock %}
 
 {% block input_description %}
-  The four or five band colors separated by spaces.
+  A list of colors (could be of length 1, 4, or 5).
 {% endblock %}
 
 {% block output_description %}
-  The minimum resistance and maximum resistance of the resistor. Use k, M, G, and T affixes. Round to two decimal places? Four significant figures?
+  The nominal, minimum, and maximum resistance of the resistor (in that order).
 {% endblock %}
 
 {% block input_example %}
-  green blue yellow gold<br>
-  red orange purple black brown
+  ["green", "blue", "yellow", "gold"]<br>
+  ["red", "orange", "violet", "black", "brown"]
 {% endblock %}
 
 {% block output_example %}
-  532k 588k<br>
-  234.63k 239.37k
+  (560000, 532000, 588000)<br>
+  (237, 234.63, 239.37)
 {% endblock %}
 
 {% block code_stub %}
