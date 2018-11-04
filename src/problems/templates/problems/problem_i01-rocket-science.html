@@ -1,17 +1,31 @@
 {% extends "problems/problem.html" %}
 
+{% load static %}
+
 {% block useful_to_know %}
 	basic math operations.
 {% endblock %}
 
 {% block problem_body %}
-  <p class="has-text-justified">
-    We'll get you familiar with how submitting code to Project Lovelace works by doing some rocket science! Moving stuff to outer space is super expensive and takes a lot of energy, which is part of the reason why colonizing the moon or terraforming Mars is extremely hard. To move something heavy into space you need a rocket with enough fuel. But adding fuel makes the rocket even heavier...
-  </p>
-  <br>
-  <p class="has-text-justified">
-    We can actually calculate how much fuel a rocket needs using the rocket equation: $m_\mathrm{fuel} = M \left( e^{v/v_e} - 1\right)$ where $M$ is the mass of the rocket (with no fuel), $v_e$ is the exhaust velocity of the rocket, and $e = 2.71828\dots$ is Euler's number. $v$ is the velocity the rocket needs to escape, which is different for every planet. Try to submit some code with a function <tt>rocket_fuel(v)</tt> that returns $m_\mathrm{fuel}$ for <a href="https://www.nasa.gov/audience/forstudents/5-8/features/nasa-knows/what-was-the-saturn-v-58.html">Saturn V</a> ($M = 250,000 \; \mathrm{kg}$, $v_e = 2,550 \; \mathrm{m/s}$) as a function of $v$.
-  </p>
+  <div class="columns is-centered is-vcentered">
+    <div class="column is-three-fifths">
+      <p class="has-text-justified">
+        We'll get you familiar with how submitting code to Project Lovelace works by doing some rocket science! Moving stuff to outer space is super expensive and takes a lot of energy, which is part of the reason why colonizing the moon or terraforming Mars is extremely hard. To move something heavy into space you need a rocket with enough fuel. But adding fuel makes the rocket even heavier... And if you wanted to visit Mars and come back, you would need enough fuel to leave both Earth and Mars.
+      </p>
+      <br>
+      <p class="has-text-justified">
+        We can actually calculate how much fuel a rocket needs using the rocket equation: $m_\mathrm{fuel} = M \left( e^{v/v_e} - 1\right)$ where $M$ is the mass of the rocket (with no fuel), $v_e$ is the exhaust velocity of the rocket, and $e = 2.71828\dots$ is Euler's number. $v$ is the velocity the rocket needs to escape, which is different for every planet. Try to submit some code with a function <tt>rocket_fuel(v)</tt> that returns $m_\mathrm{fuel}$ for <a href="https://www.nasa.gov/audience/forstudents/5-8/features/nasa-knows/what-was-the-saturn-v-58.html">Saturn V</a> ($M = 250,000 \; \mathrm{kg}$, $v_e = 2,550 \; \mathrm{m/s}$) as a function of $v$.
+      </p>
+    </div>
+    <div class="column is-two-fifths">
+      <figure style="text-align: center;">
+        <img src="{% static 'img/fuel_needed_planets.png' %}">
+        <figcaption class="help">
+          Fuel needed for the Saturn V to escape from each planet in our solar system (and yes, Pluto is a dwarf planet). The scale in the y-axis is logarithmic to show the huge differences in fuel needed to escape the different planets. A rocket would need over 100 times more fuel to escape Earth than Pluto. And if you could land on Jupiter, a rocket would need 225 million times more fuel to escape Jupiter than Earth! (Code used to generate this plot can be downloaded from notes after you solve the problem.)
+        </figcaption>
+      </figure>
+    </div>
+  </div>
 {% endblock %}
 
 {% block input_description %}
@@ -46,7 +60,7 @@ def rocket_fuel(v):
     <h3>Solution notes</h3>
     <ul>
       <li>Hey you solved the first problem! You might notice that your estimate for the fuel needed to escape Earth (almost 20 million kg) is much higher than the fully loaded mass of the Saturn V of 2.97 million kg. The Saturn V (and pretty much all rockets) get away with it because they are <a href="https://en.wikipedia.org/wiki/Multistage_rocket">multistage rockets</a>.</li>
-      <li>We can plot $m_\text{fuel}$ as a function of $v$ for the planets in our solar system</li>
+      <li>You can download the script used to generate the plot in the figure as <a href="{% static 'code/Rocket_science_fuel_needed_plot.py' %}">Python code</a> or a <a href="{% static 'code/Rocket_science_fuel_needed_plot.ipynb' %}">Jupyter notebook</a>.</li>
     </ul>
     {% endif %}
     <h3>Notes</h3>
