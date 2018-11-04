@@ -1,5 +1,7 @@
 {% extends "problems/problem.html" %}
 
+{% load static %}
+
 {% block useful_to_know %}
   loops.
 {% endblock %}
@@ -8,6 +10,16 @@
   <p class="has-text-justified">
     Let's look at an example of chaos arising from simplicity in nature: the logistic map. It's a simplified model used to describe population sizes and can be written mathematically as $x_{n+1} = rx_n(1 - x_n)$ where $0 < r < 4$ is a parameter and $0 < x_n < 1$ represents the population size at time step $n$. Starting with an initial population size of $x_0 = 0.5$ and $r$ as an input parameter, return a list of the first 50 values of the logistic map $x_0, x_1, x_2, \dots, x_{49}, x_{50}$. You should see different behavior depending on the value of $r$, but we'll leave you to play around with it and we'll have more to say on the solution notes.
   </p>
+  <div class="columns is-centered">
+    <div class="column is-one-third">
+      <figure class="image" style="text-align: center;">
+        <img src="{% static 'img/logistic_map_plot.png' %}">
+        <figcaption class="help">
+          Logistic map with $r=3.89$ using two initial conditions ($x_0=0.50$ and $x_0=0.49$). It shows two big features of chaotic systems. (1) It's sensitive to initial conditions as the two solutions start close to each other but quickly diverge and look completely different after just several iterations. (2) The solutions don't really repeat so they're nonperiodic which also means it's hard to predict them. (Plot generation code is in solution notes.)
+        </figcaption>
+      </figure>
+    </div>
+  </div>
 {% endblock %}
 
 {% block input_description %}
@@ -33,6 +45,12 @@ def logistic_map(r):
 
 {% block notes_and_references %}
   <div class="content">
+  {% if solved_by_user %}
+    <h3>Solution notes</h3>
+    <ul>
+      <li>You can download the script used to generate the plot in the figure as <a href="{% static 'code/Logistic_map_plot.py' %}">Python code</a> or a <a href="{% static 'code/Logistic_map_plot.ipynb' %}">Jupyter notebook</a>.</li>
+    </ul>
+    {% endif %}
     <ul>
       <li>There's a huge amount of stuff we could say about the logistic map.</li>
     </ul>
