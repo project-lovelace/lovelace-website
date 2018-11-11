@@ -95,3 +95,12 @@ ENV/
 
 # User submissions
 src/media
+
+# Production static file
+src/prod_static
+
+# mybulma sass files
+mybulma/
+
+# Node.js modules
+mybulma/node_modules

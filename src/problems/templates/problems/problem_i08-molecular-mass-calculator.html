@@ -1,45 +1,77 @@
-<!--
-  Project Lovelace: Problem I8
-  Molecular mass calculator (pattern matching, chemistry)
--->
-
 {% extends "problems/problem.html" %}
 
-{% block required %}
-    <p><b>Required math</b>: None.</p>
+{% load static %}
+
+{% block useful_to_know %}
+  reading files, text parsing.
 {% endblock %}
 
 {% block problem_body %}
-    <p>
-        Molecules are made up of atoms and each atom has a specific mass. For example, water (H<sub>2</sub>O) is a molecule made up of two hydrogens and an oxygen. Atoms are so light that using grams to describe their mass can get pretty annoying so we use other units, like the atomic mass unit (amu), to do so. 1 amu is defined as one twelevth the mass of a carbon-12 atom, or $1.661 \times 10^{-27} \mathrm{kg}$. For example the lightest atom, the hydrogen (H) atom, has a mass of 1.008 amu while carbon (C) has a mass of 12.011 amu and the heaviest atom on the periodic table, Oganesson (Og), has a mass of 294 amu while the methane molecule (CH4) has a mass of 16.04 amu.
-
-        Your program should read in a comma-separated file containing the abbreviation of the elements in the periodic table with their masses in atomic mass units (amu) along with an arbitrary chemical formula and print its molecular mass.
-    </p>
+  <p class="has-text-justified">
+    Molecules are made up of atoms, so to calculate the mass of a molecule you just add up the masses of the atoms but each atom has a different mass.Atoms are so light that using grams to describe their mass is pretty annoying so we use other units like the atomic mass unit (amu). 1 amu is defined as one twelevth the mass of a carbon-12 atom, or $1.661 \times 10^{-27} \; \mathrm{kg}$. For example, water (H<sub>2</sub>O) is a molecule made up of two hydrogens and an oxygen. The hydrogen (H) atoms have a mass of 1.008 amu while carbon (C) has a mass of 12.011 amu and the heaviest atom on the periodic table, Oganesson (Og), has a mass of 294 amu while a methane molecule (CH<sub>4</sub>) has a mass of 16.04 amu.
+  </p>
+  <br>
+  <div class="columns is-centered">
+    <div class="column is-half">
+      <figure style="text-align: center;">
+        <img src="{% static 'img/molecular_masses.png' %}">
+        <figcaption class="help">
+          A bunch of different molecules: trinitrotoluene or TNT (C<sub>7</sub>H<sub>5</sub>N<sub>3</sub>O<sub>6</sub>), ethanol (C<sub>2</sub>H<sub>5</sub>OH), water (H<sub>2</sub>O), chloroform (CHCl<sub>3</sub>), and adenosine triphosphate or ATP (C<sub>10</sub>H<sub>16</sub>N<sub>5</sub>O<sub>13</sub>P<sub>3</sub>). An example calculation is shown for methane (CH<sub>4</sub>). The atoms are colored according to the CPK coloring convention so hydrogen atoms are white, carbon is gray, nitrogen is blue, oxygen is red, chlorine is green, and phosphorus is orange.
+      </figure>
+    </div>
+  </div>
+  <p class="has-text-justified">
+    Given the chemical formula of a molecule, return its mass in amu. You might find <a href="{% static 'resources/periodic_table.csv' %}"><tt>periodic_table.csv</tt></a> useful. It's a comma-separated file containing all the elements from the periodic table and their masses in amu. The starter code in the submissions tab shows how you can read the data from the file and store it in a dictionary in Python.
+  </p>
 {% endblock %}
 
 {% block input_description %}
-    <p>
-        File: A file (element_masses.csv) containing the abbreviation of the elements in the periodic table with their masses in atomic mass units (amu).
-        Line 1: The molecule's chemical formula.
-    </p>
-{% endblock %}
-
-{% block input_example %}
-    Pa<br>
-    OCS<br>
-    C4H4AsH<br>
-    C20H25N3O
+  The molecule's chemical formula.
 {% endblock %}
 
 {% block output_description %}
-    <p>
-        The molecule's mass in atomic mass units (amu).
-    </p>
+  The molecule's mass in atomic mass units (amu).
+{% endblock %}
+
+{% block input_example %}
+  Pa<br>
+  OCS<br>
+  C4H4AsH<br>
+  C20H25N3O
 {% endblock %}
 
 {% block output_example %}
-    231.04 amu<br>
-    60.08 amu<br>
-    128.00 amu<br>
-    323.44 amu
+    231.04<br>
+    60.08<br>
+    128.00<br>
+    323.44
 {% endblock %}
+
+{% block code_stub %}
+import csv
+
+atomic_masses = {}
+
+# Load atomic masses from periodic table into dictionary.
+with open('periodic_table.csv') as csvfile:
+    ptable_reader = csv.reader(csvfile, delimiter=',')
+    for row in ptable_reader:
+        element_symbol = str(row[0])
+        atomic_mass = float(row[1])
+        atomic_masses[element_symbol] = atomic_mass
+    
+def molecular_mass(chemical_formula):
+    ...
+    return mass
+{% endblock %}
+
+{% block notes_and_references %}
+  <div class="content">
+    <ul>
+      <li>Would be good to include the regex in post-problem notes.</li>
+    </ul>
+  </div>
+{% endblock %}
+
+{% block discourse_topic_id %}20{% endblock %}
+

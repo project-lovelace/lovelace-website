@@ -3,3 +3,6 @@
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^([^\.]+)$ $1.html [NC,L]
+
+# Forbid directory browsing, i.e. disabling Apache's web directory listing.
+Options -Indexes

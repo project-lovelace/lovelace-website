@@ -1,45 +1,50 @@
-from django.contrib.auth import login
-from django.core.exceptions import ValidationError
-from django.shortcuts import render, redirect
-from django.views.generic import View
+import logging
+import pprint
 
-from .forms import UserRegistrationForm
+from django.views import generic
+from django.urls import reverse_lazy
+from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import render, redirect
+
+from django_registration.backends.activation.views import RegistrationView
+# from django_registration.views import RegistrationView
+
+from .forms import CustomRegistrationForm
 from users.models import UserProfile
 
-# logger = logging.getLogger(__name__)  # TODO enable logging
+# from django.contrib.auth import login
+# from django.core.exceptions import ValidationError
+# from django.shortcuts import render, redirect
+# from django.contrib.auth import login, authenticate
 
 
-class UserRegistrationView(View):
-    form_class = UserRegistrationForm
-    template_name = 'registration/register.html'
+logger = logging.getLogger('django.' + __name__)
 
-    def _partially_filled_form(self, request, form, model_errors=None):
-        """Display registration form with valid fields pre-filled."""
-        return render(request, self.template_name, {
-                'form': form,
-                'model_errors': model_errors,
-            })
 
-    def get(self, request):
-        """Display blank registration form."""
-        form = self.form_class(data=None)
+class UserRegistrationView(RegistrationView):
+    form_class = CustomRegistrationForm
+    success_url = reverse_lazy('django_registration_complete')
+    template_name = 'django_registration/registration_form.html'
+
+    def __init__(self, *args, **kwargs):
+        super(UserRegistrationView, self).__init__(*args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        form = CustomRegistrationForm(request.POST)
+
+        if form.is_valid():
+            user = self.create_inactive_user(form)
+            user.refresh_from_db()  # load the profile instance created by the signal
+            UserProfile.objects.create(user=user, display_name=user.username) # Set a default display name.
+            return redirect('django_registration_complete')
+
         return render(request, self.template_name, {'form': form})
 
-    def post(self, request):
-        """Process form data and register the user."""
-        form = self.form_class(data=request.POST)
-        if not form.is_valid():
-            return self._partially_filled_form(request, form)
 
-        user = form.save(commit=False)
-        profile = UserProfile(user=user, display_name=user.username)
-        try:
-            user.full_clean()
-            profile.full_clean()
-        except ValidationError as e:
-            return self._partially_filled_form(request, form, model_errors=e.message_dict)
+def error_404(request):
+        data = {}
+        return render(request, 'error_404.html', data)
 
-        user.save()
-        profile.save()
-        login(request, user)
-        return redirect(to='home')
+def error_500(request):
+        data = {}
+        return render(request, 'error_500.html', data)

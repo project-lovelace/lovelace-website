@@ -3,48 +3,83 @@
 
 {% load static %}
 
-<head>
+  <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
     <title>
         {% block page_title %}
             Project Lovelace
         {% endblock %}
     </title>
+    <style>
+      .Site {
+        display: flex;
+        min-height: 100vh;
+        flex-direction: column;
+      }
+      .Site-content {
+        flex: 1;
+      }
+    </style>
 
-    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'img/favicon.png' %}">
-    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
-    <link href="{% static 'css/custom.css' %}" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicon-16x16.png' %}">
+    <link rel="mask-icon" href="{% static 'img/safari-pinned-tab.svg' %}" color="#5bbad5">
+    
+    <link rel="stylesheet" href="{% static 'css/bulma_custom.css' %}">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css"> -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-128628724-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-128628724-1');
+    </script>
 
     {% block preload_javascript %}
     {% endblock %}
-</head>
+  </head>
 
-<body>
-    {% include "navbar.html" %}
+<body class="Site">
+  {% include "navbar.html" %}
 
-    {% if error_message %}
-        <p><strong>{{ error_message }}</strong></p>
-    {% endif %}
-
-    <div class="jumbotron">
-        <div class="container">
-        {% block body %}
-        {% endblock %}
-        </div>
-    </div>
-
-    <!-- Bootstrap core JavaScript & jQuery -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="{% static 'js/jquery.js' %}"></script>
-    <script> window.jQuery || alert("jQuery could not be loaded."); </script>
-    <script src="{% static 'js/bootstrap.js' %}"></script>
-
-    {% block postload_javascript %}
+  <main class="Site-content">
+    {% block body %}
     {% endblock %}
+  </main>
+
+  <script>
+    var dropdown = document.querySelector('.dropdown');
+    dropdown.addEventListener('click', function(event) {
+      event.stopPropagation();
+      dropdown.classList.toggle('is-active');
+    });
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+      if (navbarBurgers.length > 0) {
+        navbarBurgers.forEach( el => {
+          el.addEventListener('click', () => {
+            const target = el.dataset.target;
+            const $target = document.getElementById(target);
+            el.classList.toggle('is-active');
+            $target.classList.toggle('is-active');
+          });
+        });
+      }
+    });
+  </script>
+
+  {% block postload_javascript %}
+  {% endblock %}
+
+  {% include "footer.html" %}
+
 </body>
 </html>

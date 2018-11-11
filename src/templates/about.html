@@ -1,44 +1,85 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block page_title %}
+  About | Project Lovelace
+{% endblock %}
+
 {% block body %}
-    <h1>About</h1>
 
-    <h2>What is Project Lovelace?</h2>
-    <div class="row">
-        <div class="col-md-8">
-            <p style="text-align: justify;">
-                Project Lovelace is an open online platform for learning about science and
-                developing computational thinking through programming and problem solving.
-                It is a collection of computational science problems and tutorials taken
-                from all branches of the natural, social, and mathematical sciences. Each
-                problem teaches a scientific application (e.g. locating earthquakes, DNA
-                splicing) and requires the use of scientific insight and some programming
-                skills to solve. Tutorials teach computational methods that students and
-                researchers may find useful (e.g. solving differential equations, Bayesian
-                inference) and may be required knowledge for some problems.
-            </p>
-            <p style="text-align: justify;">
-                While Project Lovelace is still in development, we are deploying the
-                website and the problems one by one throughout the winter. In addition to
-                the website's recreational aspect we ultimately hope that the problems and
-                tutorials may be used in undergraduate courses, especially to complement
-                courses that lack a computational portion as computational methods have
-                become ubiquitous in almost every field of science.
-            </p>
-            <p style="text-align: justify;">
-                Lovelace draws inspiration from similar projects such as
-                <a href="https://projecteuler.net/" target="_blank">Project Euler</a> and
-                <a href="http://rosalind.info/" target="_blank">Rosalind</a>.
-            </p>
-        </div>
+<section classs="section">
+  <div class="container">
+      <br>
+      <h1 class="title is-spaced is-size-1-desktop is-size-2-tablet is-size-3-mobile">About Project Lovelace</h1>
 
-        <div class="col-md-4">
-            <img src="{% static 'img/ada-lovelace.jpg' %}" style="display: block; margin-left: auto; margin-right: auto; max-width: 100%; max-height: 100%;">
-            <i>
-                The name commemorates <a href="https://en.wikipedia.org/wiki/Ada_Lovelace"target="_blank">Ada Lovelace</a>
-                who proposed the first algorithm to be run on a computer in the 1840's.
-            </i>
-        </div>
-    </div>
+    <p class="is-spaced">
+      <strong>What exactly is Project Lovelace?</strong><br>
+      Project Lovelace is an open online platform for learning about science and
+      developing computational thinking through programming and problem solving.
+      It is a collection of computational science problems and tutorials taken
+      from all branches of the natural, social, and mathematical sciences. Each
+      problem teaches a scientific application (e.g. locating earthquakes, DNA
+      splicing) and requires the use of scientific insight and some programming
+      skills to solve. Tutorials teach computational methods that students and
+      researchers may find useful (e.g. solving differential equations, Bayesian
+      inference) and may be required knowledge for some problems.
+      Lovelace draws inspiration from similar projects such as <a href="https://projecteuler.net/" target="_blank">Project Euler</a> and
+      <a href="http://rosalind.info/" target="_blank">Rosalind</a>.
+    </p>
+    <br>
+    <p>
+      <strong>Who was Ada Lovelace?</strong><br>
+      Brief mention. Link to YouTube documentary and NYT obit.
+    </p>
+    <br>
+    <p>
+      <strong>Why call it Project Lovelace?</strong><br>
+      ... So other options would have been Project Babbage. Or Project Richardson. Or...
+    </p>
+    <br>
+    <p>
+      <strong>Where's the best place to start?</strong><br>
+      Overview of different kinds of problems. Depends on your skill level.
+    </p>
+    <br>
+    <p>
+      <strong>Do I need to know a lot of science and math?</strong><br>
+      We try to go for some mathy and some non-mathy problems. Math is unavoidable in scientific computing. But we'll try to give an intro
+      and link to good resources so that you can solve the problem on your own.
+    </p>
+    <br>
+    <p>
+      <strong>What is the logo supposed to be?</strong><br>
+      Short answer: An artistic rendering of one of the hydrogen atom's atomic orbitals inside curly braces (science + programming!).
+      Longer answer: ...
+    </p>
+    <p>
+      <strong>Why make another programming website when there are so many others?</strong><br>
+      Project Euler is basically for recreational math nerds. Problems are very well thought out and you can learn a lot, but somewhat contrived.
+      Other websites like Leetcode (and many others) just teach super boring and generic algorithms that may be most useful for technical interviews
+      but not so much in the real world. Since there are so many interesting real-world/applied problems in all branches of science we think this is
+      a really good opportunity to learn both science and programming at the same time.
+    </p>
+    <br>
+    <p>
+      <strong>Can I post my solutions online?</strong><br>
+      We think the most enjoyable part of solving the problems is that moment when you figure out how to finally solve it. Spending the time
+      and effort on problem solving is what makes you a better scientist and programmer. So in an ideal world everyone would figure out each
+      problem themselves, maximizing their learning. But people will always post their solutions online no matter what we say, and some people
+      can learn from solutions especially after being stuck for a while, so all we ask is that if you do post your solution online that you
+      post quality work: well-documented and efficient code that others can learn from by following your code. A lot of our problems are well-known
+      and not neccessarily original so there are probably already many solutions posted online for those.
+      <br><br>
+      To differentiate between users who submit their own solutions and users who copy and paste code we'll be implementing a plagiarism detector
+      that compares your submission to other submissions. 
+    </p>
+    <br>
+    <p>
+      <strong>I don't like something, or have a suggestion or idea for a new problem, or something is broken.</strong><br>
+      Feedback page.
+    </p>
+  </div>
+</section>
+
+<br><br>
 {% endblock %}

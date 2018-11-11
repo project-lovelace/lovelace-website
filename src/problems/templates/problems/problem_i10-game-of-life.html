@@ -1,68 +1,118 @@
-<!--
-  Project Lovelace: Problem I10
-  Game of Life (bit of everything, cellular automata)
--->
-
 {% extends "problems/problem.html" %}
 
-{% block required %}
-    <p><b>Required math</b>: None.</p>
+{% load static %}
+
+{% block useful_to_know %}
+  2D arrays, loops.
 {% endblock %}
 
 {% block problem_body %}
-    <p>
-      <!--
-      * What are cellular automata?
-      * Introduce Conway's (wiki link?) Game of Life as the most popular example of a cellular automata.
-      -->
-
-      A cellular automaton is a model used to simulate a wide variety of systems in science. It consists of a grid of cells, each of which can be in one of a finite number of states (such as on and off) and evolves according to some rule. The most famous example is John Conway's Game of Life. <br>
-
-      The universe of the Game of Life is a two-dimensional grid of square cells, each of which is in one of two possible states, alive or dead (or, populated or unpopulated). Every cell interacts with its eight neighbours. After the board is initialized to a specific configuration, each cell evolves according to the following rules:
+  <p class="has-text-justified">
+    A cellular automaton is a model used to simulate a wide variety of systems in science. We'll look at one that's supposed to simulate life itself, Conway's Game of Life. You have a two-dimensional rectangular grid of square cells, each of which can be either alive or dead. Each cell interacts with its eight nearest neighbors and evolves according to the following rules:
+    <div class="content">
       <ol>
-        <li>A live cell with less than two live neighbours dies, as if caused by underpopulation.</li>
+        <li>A live cell with less than two live neighbours dies (due to underpopulation).</li>
         <li>A live cell with two or three live neighbours continues to live.</li>
-        <li>A live cell with more than three live neighbours dies, as if by overpopulation.</li>
-        <li>A dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.</li>
+        <li>A live cell with more than three live neighbours dies (due to overpopulation).</li>
+        <li>A dead cell with exactly three live neighbours becomes a live cell (due to reproduction).</li>
       </ol>
-
-      <!-- * What to do because of finite sized grid. Loop it around or just ignore stuff that go off screen? -->
-    </p>
+    </div>
+    To deal with the finite size of the grid we'll impose periodic (or toroidal) boundary conditions, that is, to treat the left and right edges of the grid to be stitched together so that moving across the right boundary returns you to the left boundary (and we will do the same with the top and bottom edges).
+  </p>
+  <br>
+  <div class="columns is-centered">
+    <div class="column is-one-third">
+      <figure style="text-align: center;">
+        <video controls>
+          <source src="{% static 'video/still_oscillator_patterns.webm' %}" type="video/webm">
+          <p>Your browser doesn't support HTML5 webm video.</p>
+        </video> 
+        <figcaption class="help">
+          A bunch of still life patterns that do not change shape under the evolution rules, and some oscillator patterns that flip between the same patterns again and again.
+      </figure>
+    </div>
+    <div class="column is-half">
+      <figure style="text-align: center;">
+        <video controls>
+          <source src="{% static 'video/glider_gun_destruction.webm' %}" type="video/webm">
+          <p>Your browser doesn't support HTML5 webm video.</p>
+        </video> 
+        <figcaption class="help">
+          A glider gun pattern that generate gliders, which are spaceship patterns that move across the grid. In this case, the gliders go down the bottom of the grid and reappear at the top due to the periodic boundary conditions. After the gliders go through the right boundary they reappear on the left and destroy the glider gun that created them.
+      </figure>
+    </div>
+  </div>
+  <p class="has-text-justified">
+    Given an initial configuration for the grid, run the Game of Life simulation for $N$ time steps (also an input) and return the state of the grid.
+  </p>
 {% endblock %}
 
 {% block input_description %}
-  <p>
-    * Filename of a file containing a 2D array of dead cells (.) and alive cells (o) corresponding to the initial pattern.<br>
-    * An integer $n$ indicating the number of turns the Game of Life should be simulated.
-  </p>
-{% endblock %}
-
-{% block input_example %}
-  spaceships.txt:<br>
-  .............................<br>
-  ....o........................<br>
-  ..o.o........................<br>
-  ...oo........................<br>
-  .............................<br>
-  .............................<br>
-  .............................<br>
-  .............................<br>
-  15
+  A 2D integer array representing the grid where the dead cells are represnted by 0's and the alive cells are 1's, and a number of time steps $N$ to run the Game of Life for.
 {% endblock %}
 
 {% block output_description %}
-  <p>
-    File 'board.txt' containing the pattern after $n$ turns.
-  </p>
+  A 2D array representing the state of the grid after $N$ time steps.
+{% endblock %}
+
+{% block input_example %}
+  This input should reproduce the video with the still life and oscillator patterns<br>
+  N=30, board=<br>
+  000000000000000000000000000000000000<br>
+  011000001100000000000000000000000000<br>
+  011000010010000000000001110001110000<br>
+  000000001010000011100000000000000000<br>
+  000000000100000000000100001010000100<br>
+  000110000000000000000100001010000100<br>
+  001001000001000000000100001010000100<br>
+  000110000010100000000001110001110000<br>
+  000000000001000011100000000000000000<br>
+  000000000000000111000001110001110000<br>
+  011000000000000000000100001010000100<br>
+  011000000000000000000100001010000100<br>
+  000110000000000000000100001010000100<br>
+  000110000000000000000000000000000000<br>
+  000000000000000000000001110001110000<br>
+  000000000000000000000000000000000000<br>
+  000000000000000000000000000000000000
 {% endblock %}
 
 {% block output_example %}
-  ...............................<br>
-  ...............................<br>
-  ...............................<br>
-  ...............................<br>
-  ...............................<br>
-  ......o.o......................<br>
-  .......oo......................<br>
-  .......o.......................
+  000000000000000000000000000000000000<br>
+  011000001100000000000000000000000000<br>
+  011000010010000000000001110001110000<br>
+  000000001010000011100000000000000000<br>
+  000000000100000000000100001010000100<br>
+  000110000000000000000100001010000100<br>
+  001001000001000000000100001010000100<br>
+  000110000010100000000001110001110000<br>
+  000000000001000011100000000000000000<br>
+  000000000000000111000001110001110000<br>
+  011000000000000000000100001010000100<br>
+  011000000000000000000100001010000100<br>
+  000110000000000000000100001010000100<br>
+  000110000000000000000000000000000000<br>
+  000000000000000000000001110001110000<br>
+  000000000000000000000000000000000000<br>
+  000000000000000000000000000000000000
 {% endblock %}
+
+{% block code_stub %}
+def game_of_life(board, steps):
+    pass
+{% endblock %}
+
+{% block notes_and_references %}
+  <div class="content">
+    <h3>Notes</h3>
+    <ul>
+      <li>There is a <a href="https://www.youtube.com/watch?v=R9Plq-D1gEk">Numberphile video</a> where John Conway himself talks about how he invented the Game of Life!</li>
+      <li>There are many interesting patterns: <a href="https://en.wikipedia.org/wiki/Puffer_train">puffer trains</a>, </li>
+      <li>Since the Game of Life is Turing complete, you can actually make a <a href="https://codegolf.stackexchange.com/questions/88783/build-a-digital-clock-in-conways-game-of-life">digital clock pattern</a> and even an attempt to build a <a href="https://codegolf.stackexchange.com/questions/11880/build-a-working-game-of-tetris-in-conways-game-of-life">working version of Tetris</a>!
+      <li><a href="http://www.conwaylife.com/wiki/Main_Page">LifeWiki</a> has tons more information on the Game of Life, cool patterns, and the latest news (people are still discovering completely new patterns in 2018).
+    </ul>
+  </div>
+{% endblock %}
+
+{% block discourse_topic_id %}22{% endblock %}
+

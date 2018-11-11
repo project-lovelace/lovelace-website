@@ -1,38 +1,82 @@
-<!--
-  Project Lovelace: Problem I1
-  Rocket science (intro/calculations, physics)
--->
-
 {% extends "problems/problem.html" %}
 
-{% block required %}
-    <p>
-      <b>Required math</b>: multiplication, division, raising a number to a power.
-    </p>
+{% load static %}
+
+{% block useful_to_know %}
+	basic math operations.
 {% endblock %}
 
 {% block problem_body %}
-    <p>
-        We'll get you familiar with how Project Lovelace problems work by doing some rocket science! A rocket, say the <a href="https://www.nasa.gov/audience/forstudents/5-8/features/nasa-knows/what-was-the-saturn-v-58.html">Saturn V</a>, needs to escape a planet with velocity $v$ but it needs to know how much fuel to carry with it for its escape. You can calculate the amount of fuel needed using the rocket equation $m_\mathrm{fuel} = M \left( e^{v/v_e} - 1\right)$ where $M = 250,000 \; \mathrm{kg}$ is the mass of the rocket (with no fuel), $v_e = 2,550 \; \mathrm{m/s}$ is the exhaust velocity of the rocket, and $e = 2.71828...$ is Euler's number. Your program or script should read in the velocity $v$ as an input, calculate the mass of fuel needed, and print it.
-    </p>
+  <div class="columns is-centered is-vcentered">
+    <div class="column is-three-fifths">
+      <p class="has-text-justified">
+        We'll get you familiar with how submitting code to Project Lovelace works by doing some rocket science! Moving stuff to outer space is super expensive and takes a lot of energy, which is part of the reason why colonizing the moon or terraforming Mars is extremely hard. To move something heavy into space you need a rocket with enough fuel. But adding fuel makes the rocket even heavier... And if you wanted to visit Mars and come back, you would need enough fuel to leave both Earth and Mars.
+      </p>
+      <br>
+      <p class="has-text-justified">
+        We can actually calculate how much fuel a rocket needs using the rocket equation: $m_\mathrm{fuel} = M \left( e^{v/v_e} - 1\right)$ where $M$ is the mass of the rocket (with no fuel), $v_e$ is the exhaust velocity of the rocket, and $e = 2.71828\dots$ is Euler's number. $v$ is the velocity the rocket needs to escape, which is different for every planet. Try to submit some code with a function <tt>rocket_fuel(v)</tt> that returns $m_\mathrm{fuel}$ for <a href="https://www.nasa.gov/audience/forstudents/5-8/features/nasa-knows/what-was-the-saturn-v-58.html">Saturn V</a> ($M = 250,000 \; \mathrm{kg}$, $v_e = 2,550 \; \mathrm{m/s}$) as a function of $v$.
+      </p>
+    </div>
+    <div class="column is-two-fifths">
+      <figure style="text-align: center;">
+        <img src="{% static 'img/fuel_needed_planets.png' %}">
+        <figcaption class="help">
+          Fuel needed for the Saturn V to escape from each planet in our solar system (and yes, Pluto is a dwarf planet). The scale in the y-axis is logarithmic to show the huge differences in fuel needed to escape the different planets. A rocket would need over 100 times more fuel to escape Earth than Pluto. And if you could land on Jupiter, a rocket would need 225 million times more fuel to escape Jupiter than Earth! (Code used to generate this plot can be downloaded from notes after you solve the problem.)
+        </figcaption>
+      </figure>
+    </div>
+  </div>
 {% endblock %}
 
 {% block input_description %}
-    <p>
-        The velocity $v$ the rocket needs to reach (in meters per second [m/s]) to escape the planet.
-    </p>
-{% endblock %}
-
-{% block input_example %}
-    11186.0
+  The velocity $v$ the rocket needs to reach (in meters per second [m/s]) to escape the planet.
 {% endblock %}
 
 {% block output_description %}
-    <p>
-        The mass of fuel $m_\mathrm{fuel}$ needed by the rocket to escape the planet in kilograms (kg).
-    </p>
+  The mass of fuel $m_\mathrm{fuel}$ needed by the rocket to escape the planet in kilograms (kg).
+{% endblock %}
+
+{% block input_example %}
+  11186.0
 {% endblock %}
 
 {% block output_example %}
-    19843016.2
+  19843016.2
 {% endblock %}
+
+{% block code_stub %}
+import math
+
+v_e = 2550  # rocket exhaust velocity [m/s]
+M = 250000  # rocket dry mass [kg]
+
+def rocket_fuel(v):
+    return m_fuel
+{% endblock %}
+
+{% block notes_and_references %}
+  <div class="content">
+    {% if solved_by_user %}
+    <h3>Solution notes</h3>
+    <ul>
+      <li>Hey you solved the first problem! You might notice that your estimate for the fuel needed to escape Earth (almost 20 million kg) is much higher than the fully loaded mass of the Saturn V of 2.97 million kg. The Saturn V (and pretty much all rockets) get away with it because they are <a href="https://en.wikipedia.org/wiki/Multistage_rocket">multistage rockets</a>.</li>
+      <li>You can download the script used to generate the plot in the figure as <a href="{% static 'code/Rocket_science_fuel_needed_plot.py' %}">Python code</a> or a <a href="{% static 'code/Rocket_science_fuel_needed_plot.ipynb' %}">Jupyter notebook</a>.</li>
+    </ul>
+    {% endif %}
+    <h3>Notes</h3>
+    <ul>
+      <li>We basically rearranged the <a href="https://en.wikipedia.org/wiki/Tsiolkovsky_rocket_equation">Tsiolkovsky rocket equation</a> in this problem. Wikipedia shows a pretty common derivation of the rocket equation.</li>
+      <li>Kurzgesagt has a great YouTube video essentially about the rocket equation and why it's so hard to leave Earth: <a href="https://www.youtube.com/watch?v=RVMZxH1TIIQ">Why Earth Is A Prison and How To Escape It</a>.</li>
+      <li>At a launch cost of US<span>$</span>1.16 billion (2016 value) and a low Earth orbit payload of 140,000 kg, it cost <span>$</span>8,286 per kg to send stuff to space using the Saturn V.</li>
+      <li>The example uses the escape velocity of Earth (11.186 km/s) and Wikipedia has a <a href="https://en.wikipedia.org/wiki/Escape_velocity#List_of_escape_velocities">list of escape velocities</a> for many other celestial bodies.</li>
+    </ul>
+    <h3>References</h3>
+    <dl>
+      <dt><a href="https://history.msfc.nasa.gov/saturn_apollo/documents/F-1_Engine.pdf">F-1 Engine Fact Sheet </a>, NASA Saturn V News Reference (1968)</dt>
+      <dd>This is where we sourced the numbers for the Saturn V in this problem. The full <a href="https://history.msfc.nasa.gov/saturn_apollo/saturnv_press_kit.html">Saturn V Press Kit</a> is also online.</dd>
+    </dl>
+  </div>
+{% endblock %}
+
+{% block discourse_topic_id %}14{% endblock %}
+

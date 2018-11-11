@@ -1,27 +1,85 @@
 {% extends "base.html" %}
 
+{% block page_title %}
+  Problems | Project Lovelace
+{% endblock %}
+
+
 {% block body %}
-    <h1>Problems</h1>
+<br>
+<section classs="section">
+  <div class="columns is-centered">
+    <div class="column is-narrow">
     {% if latest_problem_list %}
-        <table class="table">
-            <thead>
+      <table class="table is-hoverable">
+        <thead>
+          <tr>
+            <th><abbr title="Problem ID">#</abbr></th>
+            <th></th>
+            <th>Problem</th>
+            <th>Solved by</th>
+            <th style="width: 120px;"><abbr title="Higher = more math and scientific knowledge required">Difficulty</abbr></th>
+            <th style="width: 120px;"><abbr title="Higher = more time needed to code up a solution">Timesink</abbr></th>
+          </tr>
+        </thead>
+
+        <tbody>
+            {% for problem in latest_problem_list %}
+              {% if problem.visible %}
                 <tr>
-                    <th><p>Problem title</p></th>
-                    <th><p>Date added</p></th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for problem in latest_problem_list %}
-                    {% if problem.visible %}
-                    <tr>
-                        <th scope="row"><a href="{% url 'problems:detail' problem.name %}"><p>{{ problem.title }}</p></a></th>
-                        <td><p>{{ problem.date_added }}</p></td>
-                    </tr>
+                  <th>{{ problem.id  }}</th>
+                  <th>
+                    {% if user.is_authenticated %}
+                      {% if problem.id in problems_solved %}
+                        <i class="fas fa-check has-text-success"></i>
+                      {% endif %}
                     {% endif %}
-                {% endfor %}
-              </tbody>
-        </table>
+                  </th>
+                  <td>
+                    <a href="{% url 'problems:detail' problem.name %}">{{ problem.title  }}</a>
+
+                    {% if problem.subject == 'physics' %}  
+                      <span class="tag is-info">physics</span>
+                    {% elif problem.subject == 'math' %}
+                      <span class="tag is-warning">math</span>
+                    {% elif problem.subject == 'earth science' %}
+                      <span class="tag is-success">earth science</span>
+                    {% elif problem.subject == 'chemistry' %}
+                      <span class="tag is-danger">chemistry</span>
+                    {% elif problem.subject == 'biology' %}
+                      <span class="tag is-primary">biology</span>
+                    {% elif problem.subject == 'astronomy' %}
+                      <span class="tag is-black">astronomy</span>
+                    {% elif problem.subject == 'engineering' %}
+                      <span class="tag is-light">engineering</span>
+                    {% elif problem.subject == 'computer science' %}
+                      <span class="tag is-dark">computer science</span>
+                    {% endif %}
+                  
+                  </td>
+                  <td align="center">{{ problem.solved_by }}</td>
+
+                  {% if problem.difficulty <= 5 %}
+                    <td><progress class="progress is-success" value="{{ problem.difficulty }}" max="15"></progress></td>
+                  {% elif problem.difficulty > 5 and problem.difficulty <= 10 %}
+                    <td><progress class="progress is-warning" value="{{ problem.difficulty }}" max="15"></progress></td>
+                  {% else %}
+                    <td><progress class="progress is-danger" value="{{ problem.difficulty }}" max="15"></progress></td>
+                  {% endif %}
+                  
+                  {% if problem.timesink <= 5 %}
+                    <td><progress class="progress is-success" value="{{ problem.timesink }}" max="15"></progress></td>
+                  {% elif problem.timesink > 5 and problem.timesink <= 10 %}
+                    <td><progress class="progress is-warning" value="{{ problem.timesink }}" max="15"></progress></td>
+                  {% else %}
+                    <td><progress class="progress is-danger" value="{{ problem.timesink }}" max="15"></progress></td>
+                  {% endif %}
+                </tr>
+              {% endif %}
+            {% endfor %}
+        </tbody>
+      </table>
     {% else %}
-        <p>No questions are available.</p>
+      <p>No questions are available.</p>
     {% endif %}
 {% endblock %}

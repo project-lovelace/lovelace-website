@@ -1,27 +1,74 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{% url 'home' %}">Project Lovelace</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="{% url 'problems:index' %}">Problems</a></li>
-                <li><a href="{% url 'tutorials' %}">Tutorials</a></li> {# TODO completely remove tutorials at some point #}
-                <li><a href="{% url 'about' %}">About</a></li>
-                <li><a href="{% url 'contact' %}">Contact</a></li>
-                {% if user.is_authenticated %}
-                    <li><a href="{% url 'logout' %}">Log Out ({{ user.username }})</a></li>
-                {% else %}
-                    <li><a href="{% url 'login' %}">Log In</a></li>
-                    <li><a href="{% url 'register' %}">Register</a></li>
-                {% endif %}
-            </ul>
-        </div>
+{% load static %}
+
+<nav class="navbar is-transparent is-dark">
+  <div class="navbar-brand">
+      <a class="navbar-item" href="http://projectlovelace.net/">
+        <img src="{% static 'img/Lovelace_banner_white_192px.png' %}">
+      </a>
+    <div role="button" class="navbar-burger burger" data-target="nav-menu" aria-label="menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
+  </div>
+
+  <div class="navbar-menu" id="nav-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="http://projectlovelace.net/problems/">Problems</a>
+      <a class="navbar-item" href="http://projectlovelace.net/about/">About</a>
+      <a class="navbar-item" href="http://projectlovelace.net/news/">News</a>
+      <a class="navbar-item" href="http://discourse.projectlovelace.net/">Discourse</a>
+    </div>
+
+    {% if user.is_authenticated %}
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="dropdown">
+            <div class="dropdown-trigger">
+              <button class="button is-info" aria-haspopup="true" aria-controls="dropdown-menu">
+                <i class="fas fa-laptop"></i>&nbsp;&nbsp;
+                <span>{{ user.username }}</span>
+                <span class="icon is-small">
+                  <i class="fas fa-angle-down" aria-hidden="true"></i>
+                </span>
+              </button>
+            </div>
+            <div class="dropdown-menu" id="dropdown-menu" role="menu">
+              <div class="dropdown-content">
+                <a href="{% url 'users:profile' user.username %}" class="dropdown-item">View profile</a>
+                <a href="{% url 'editprofile' %}" class="dropdown-item">Edit profile</a>
+                <a href="#" class="dropdown-item">Submissions</a>
+                <hr class="dropdown-divider">
+                <a href="{% url 'logout' %}" class="dropdown-item">Log out</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% else %}
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="field is-grouped">
+            <p class="control">
+              <a class="bd-tw-button button" href="{% url 'login' %}">
+                <span class="icon">
+                  <i class="fas fa-sign-in-alt"></i>
+                </span>
+                <span>Log in</span>
+              </a>
+            </p>
+            <p class="control">
+              <a class="button is-info" href="{% url 'django_registration_register' %}">
+                <span class="icon">
+                  <i class="fas fa-user-plus"></i>
+                </span>
+                <span>Register</span>
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
+  </div>
 </nav>

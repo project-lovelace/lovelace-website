@@ -1,41 +1,87 @@
-<!--
-  Project Lovelace: Problem I7
-  Correlation does not imply causation (file I/O, statistics)
--->
-
 {% extends "problems/problem.html" %}
 
-{% block required %}
-    <p><b>Required math</b>: None.</p>
+{% load static %}
+
+{% block useful_to_know %}
+  lists, summing lots of numbers.
 {% endblock %}
 
 {% block problem_body %}
-    <p>
-      Two variables are said to be correlated if there's some statistical relationship between the two. However, just because two variables are correlated does not mean that one is caused by the other. This is a misconcepted commonly referred to as "correlation does not imply causation".
-
-      In this problem you're going to read a data file containing the measurements of two variables with an $(x,y)$ data value pair on each line and calculate the correlation coefficient between the two variables. The correlation coefficient $r$ between two variables $X$ and $Y$ with $n$ measurements $x_1, x_2, \dots, x_n$ and $y_1, y_2, \dots, y_n$ can be calculated using
-      $$ r = \frac{(x_1 - \bar{x})(y_1 - \bar{y}) + \dots + (x_n - \bar{x})(y_n - \bar{y})}
-                  {\sqrt{(x_1 - \bar{x})^2 + \dots + (x_n - \bar{x})^2} \times
-                   \sqrt{(y_1 - \bar{y})^2 + \dots + (y_n - \bar{y})^2}} $$
-      where $\bar{x} = \frac{x_1 + x_2 + \dots + x_n}{n}$ and $\bar{y} = \frac{y_1 + y_2 + \dots + y_n}{n}$ are the averages of the $X$ and $Y$ measurements.
-    </p>
+  <p class="has-text-justified">
+    Two variables are correlated if there's some statistical relationship between the two. However, just because two variables are correlated does not mean that one is caused by the other. This misconception is commonly referred to as &ldquo;correlation does not imply causation&rdquo;.
+  </p>
+  <br>
+  <div class="columns is-centered">
+    <div class="column is-half">
+      <figure style="text-align: center;">
+        <img src="{% static 'img/correlation_examples.png' %}">
+        <figcaption class="help">
+          Correlation coefficients $r$ for 24 different example data sets $(x, y)$. Top row: values of $r$ close to -1 and 1 suggest very linear relationships with little spread while $r$ close to 0 suggest no relationship and a lot of spread. Middle row: $r>0$ values suggest positive correlations while $r<0$ suggest negative correlations. Bottom row: many nonlinear relationships result in $r=0$ suggesting that the Pearson correlation coefficient is only good for measuring linear relationships. (Image credit: <a href="https://commons.wikimedia.org/wiki/File:Correlation_examples2.svg">DenisBoigelot, Wikimedia Commons</a>)
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+  <p class="has-text-justified">
+    One way of computing a correlation coefficient between two variables $X$ and $Y$ with with $n$ measurements $x_1, x_2, \dots, x_n$ and $y_1, y_2, \dots, y_n$ is the Pearson correlation coefficient
+    $$r = \frac{\operatorname{cov}(X,Y)}{\sigma_X\sigma_Y}$$
+    where
+    $$\operatorname{cov}(X,Y)
+      = \sum_{i=1}^n (x_i - \overline{x})(y_i - \overline{y})
+      = (x_1-\overline{x})(y_1-\overline{y}) + \cdots + (x_n-\overline{x})(y_n-\overline{y})$$
+    is the covariance between $X$ and $Y$,
+    $$\sigma_X
+      = \sqrt{\sum_{i=1}^n (x_i - \overline{x})^2}
+      = \sqrt{(x_1 - \overline{x})^2 + \cdots + (x_n-\overline{x})^2}
+      \quad \text{and} \quad
+      \sigma_Y
+      = \sqrt{\sum_{i=1}^n (y_i - \overline{y})^2}
+      = \sqrt{(y_1 - \overline{y})^2 + \cdots + (y_n-\overline{y})^2}$$
+    are the variances of $X$ and $Y$, and
+    $$\overline{x}
+      = \frac{1}{n} \sum_{i=1}^n x_i
+      = \frac{x_1 + x_2 + \cdots + x_n}{n}
+      \quad \text{and} \quad
+      \overline{y}
+      = \frac{1}{n} \sum_{i=1}^n y_i
+      = \frac{y_1 + y_2 + \cdots + y_n}{n}$$
+    are the averages (or means) of the $X$ and $Y$ measurements. Here $r$ is always between -1 and 1.
+</p>
+<br>
+<p class="has-text-justified">
+  Taking in two lists of measurements $x_n$ and $y_n$, return the Pearson correlation coefficient for them.
+</p>
 {% endblock %}
 
 {% block input_description %}
-  <p>
-    A comma-separated values file containing the two variables of interest (xy_data.csv) with an x,y value pair on each line.
-  </p>
-{% endblock %}
-
-{% block input_example %}
-  
+  Two lists $x_n$ and $y_n$ of size $n$.
 {% endblock %}
 
 {% block output_description %}
-  <p>
-    The correlation coefficient $r$ ($-1 < r < 1$) between the two variables.
-  </p>
+  The Pearson correlation coefficient $r$ between the two variables.
+{% endblock %}
+
+{% block input_example %}
+([5427, 5688, 6198, 6462, 6635, 7336, 7248, 7491, 8161, 8578, 9000], [18.079, 18.594, 19.753, 20.734, 20.831, 23.029, 23.597, 23.584, 22.525, 27.731, 29.449])
 {% endblock %}
 
 {% block output_example %}
 {% endblock %}
+
+{% block code_stub %}
+import numpy as np
+
+def correlation_coefficient(x, y):
+  N = len(x)
+  ...
+  return r
+{% endblock %}
+
+{% block notes_and_references %}
+  <div class="content">
+    <ul>
+      <li>There are some really good websites for this stuff.</li>
+    </ul>
+  </div>
+{% endblock %}
+
+{% block discourse_topic_id %}19{% endblock %}

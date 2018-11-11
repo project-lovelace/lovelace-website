@@ -1,40 +1,73 @@
 {% extends "problems/problem.html" %}
 
-{% block required %}
-    <p><b>Required math</b>: Required Math Goes Here.</p>
+{% load static %}
+
+{% block useful_to_know %}
+  equation of a circle, systems of linear equations.
 {% endblock %}
 
 {% block problem_body %}
-    <p>
-        An earthquake occurs at some unknown location $(x,y), -100 < x,y < 100$ where $x,y$ are in
-        kilometers (km). Modeling the Earth's surface as a flat 2D plane, the earthquake emits
-        seismic waves which travel through the Earth and are detected by three seismographs. Given
-        the arrival times of the seismic waves, and the locations of the three seismographs,
-        determine the earthquake's source or epicenter $(x,y)$. Assume the seismic waves travel at
-        a constant 6 km/s. (We're also assuming that the earthquake happens very close to the
-        surface and that the seismographs are close to each other so the Earth's curvature is
-        negligible.)
-    </p>
+  <p class="has-text-justified">
+    To figure out how far away an earthquake is you just need one seismograph but to pinpoint where the earthquake happened, it's epicenter, you need three seismographs in three different locations.
+    Say an earthquake occurs at some unknown location $(x_0,y_0)$ on a 2D plane. It will emit seismic waves which travel through the Earth and are detected by seismograph stations. More than one type of wave is emitted but we'll just consider the faster compressional P-waves which travel at around $v = 6 \; \text{km/s}$ and arrive at the seismographs first.
+  </p>
+  <br>
+  <div class="columns is-centered">
+    <div class="column is-one-third">
+      <figure style="text-align: center;">
+        <img src="{% static 'img/earthquake_trilateration.png' %}">
+        <figcaption class="help">
+          To give an idea of the problem, here's a schematic of the domain with the three seismographs at the centers of the colored circles. We can draw a circle around each seismograph whose radius is equal to the distance from the seismograph to the earthquake epicenter.
+      </figure>
+    </div>
+    <div class="column is-one-quarter">
+      <figure style="text-align: center;">
+        <img src="{% static 'img/seismic_waves.jpg' %}">
+        <figcaption class="help">
+          The P-waves are faster and arrive at the seismograph before the shearing S-waves. They are both types of elastic body waves as they travel through the Earth with the P-waves being longitudinal while the S-waves being transverse. You can also think of the P and S as standing for primary and secondary. The surface waves are the slowest of the three and do the most damange as evidenced by the high ground motion registered on the seismograph. (Image credit: <a href="http://library.open.oregonstate.edu/earthquakes/chapter/earthquake-basics/">Living with Earthquakes in the Pacific Northwest, Yeats</a>)
+      </figure>
+    </div>
+  </div>
+  <p class="has-text-justified">
+    Given the position of three seismographs $(x_i,y_i)$ and arrival time of the seismic waves at each seismograph $t_i$ where $i=1,2,3$ as inputs, determine and return the earthquake's epicenter $(x_0,y_0)$.
+  </p>
 {% endblock %}
 
 {% block input_description %}
-    <p>
-        One line for each earthquake event, containing the $x$ and $y$-coordinates of the
-        seismograph and the arrival times of the seismic waves.
-    </p>
-{% endblock %}
-
-{% block input_example %}
-    x1 y1 t1 x2 y2 t2 x3 y3 t3<br>
-    8.38235322677 -58.0037208141 12.8607541935 -13.590571819 73.976069096 22.8474885484 77.2911723706 7.50876445638 5.76780978383
+  $(x_i,y_i)$ in kilometers where $-100 < x,y < 100$ and $t_i$ in seconds for $i=1,2,3$.
 {% endblock %}
 
 {% block output_description %}
-    <p>
-        A single line for each earthquake event giving the $(x,y)$ coordinate of the earthquake in km.
-    </p>
+  The earthquake's epicenter $(x_0,y_0)$ in kilometers.
+{% endblock %}
+
+{% block input_example %}
+  (x1=8.38235322677, y1=-58.0037208141, t1=12.8607541935, x2=-13.590571819, y2=73.976069096, t2=22.8474885484, x3=77.2911723706, y3=7.50876445638, t3=5.76780978383)
 {% endblock %}
 
 {% block output_example %}
-    79.0674612756 -27.0524778103
+  (x0=79.0674612756, y0=-27.0524778103)
 {% endblock %}
+
+{% block code_stub %}
+v = 6.0  # [km/s]
+
+def earthquake_epicenter(x1, y1, t1, x2, y2, t2, x3, y3, t3):
+    ...
+    return x, y
+{% endblock %}
+
+{% block notes_and_references %}
+  <div class="content">
+    <h3>Notes</h3>
+    <ul>
+      <li>The whole process of using points, distances, and circles to determine the location of another point (in our case the earthquake) is called trilateration.</li>
+      <li>Earthquakes usually happen below the surface so technically the epicenter is the location on the Earth's surface below which the earthquake occured while the earthquake's focus is where it actually happened inside the Earth.
+      <li>We're also assuming that the earthquake happens very close to the surface and that the seismographs are close to each other so the Earth's curvature is negligible. When the seismographs are far apart which is typical for earthquakes that happen below the ocean or when the earthquake happens deep below the ground, the Earth's spherical shape matters a lot.</li>
+      <li>The <a href="https://en.wikipedia.org/wiki/P-wave#Velocity">actual velocity of the P-waves</a> can vary quite a bit depending on the medium it's traveling through. We picked a typical value of 6 km/s which is roughly the velocity of a P-wave at the Earth's surface.</li>
+    </ul>
+  </div>
+{% endblock %}
+
+{% block discourse_topic_id %}23{% endblock %}
+

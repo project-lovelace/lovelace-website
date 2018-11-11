@@ -1,13 +1,13 @@
 import os
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 # Consult the deployment checklist before deploying to production:
 # https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'foobar'
+SECRET_KEY = 'w*n*bx#le7a)(pj7z%3s!q=-fy7s0=wc6=h)w5c+ohos3obrit'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -16,7 +16,6 @@ ALLOWED_HOSTS = [
     '.projectlovelace.net',
     'localhost',
 ]
-
 
 # Application definition
 
@@ -29,6 +28,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.postgres',
+    'django_countries',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -65,14 +67,14 @@ WSGI_APPLICATION = 'lovelace.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/1.11/ref/settings/#databases
+# https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'projectlovelace',
         'USER': 'admin',
-        'PASSWORD': 'foobar',
+        'PASSWORD': '2tk2a}[gQQMgA{*T',
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -80,45 +82,35 @@ DATABASES = {
 
 
 # Password validation
-# https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
+# https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',},
 ]
 
 
 # Internationalization
-# https://docs.djangoproject.com/en/1.11/topics/i18n/
+# https://docs.djangoproject.com/en/2.1/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'America/Toronto'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 
 # Directory for media files
 # Mostly used for storing user submitted files
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.11/howto/static-files/
+# https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 # Look for static files in the project-level static files directory
 STATICFILES_DIRS = [
@@ -131,49 +123,53 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'prod_static')
 # When client requests files under projectlovelace.net/static, look for them in STATIC_ROOT
 STATIC_URL = '/static/'
 
+# Login URL used especially by @login_required decorator.
+LOGIN_URL = '/accounts/login/'
+
 # Redirect users after logging in and logging out
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
-# Configure logging settings
-# TODO: configure logging
-# LOGGING = {
-#     'version': 1,
-#     'disable_existing_loggers': False,
-#     'formatters': {
-#         'standard': {
-#             'format': '[%(asctime)s] %(name)s:%(levelname)s: %(message)s',
-#         },
-#     },
-#     'handlers': {
-#         'console': {
-#             'level': 'DEBUG',
-#             'class': 'logging.StreamHandler',
-#             'formatter': 'standard',
-#         },
-#         # TODO: choose a file we have permission to use before re-enabling
-#         # 'file': {
-#         #     'level': 'DEBUG',
-#         #     'class': 'logging.FileHandler',
-#         #     'formatter': 'standard',
-#         #     'filename': '/var/log/lovelace-website.log',
-#         # },
-#     },
-#     'loggers': {
-#         'django': {
-#             'handlers': ['console'],
-#             'level': 'INFO',
-#             'propagate': True,
-#         },
-#         'problems': {
-#             'handlers': ['console'],
-#             'level': 'DEBUG',
-#             'propagate': False,
-#         },
-#         'problems.views': {
-#             'handlers': ['console'],
-#             'level': 'DEBUG',
-#             'propagate': False,
-#         },
-#     },
-# }
+# Email server settings
+# See: https://docs.djangoproject.com/en/2.1/topics/email/
+
+EMAIL_HOST = 'smtp.mailgun.org'
+EMAIL_HOST_USER = 'postmaster@mg.projectlovelace.net'
+EMAIL_HOST_PASSWORD = 'bc63dc818734758811c2791d942dbf87-4836d8f5-33db4e04'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+DEFAULT_FROM_EMAIL = "Ada Lovelace <ada@projectlovelace.net>"
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'simple': {
+            'format': '[%(asctime)s] %(name)s.%(levelname)s (%(pathname)s:%(lineno)d): %(message)s',
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'formatter': 'simple',
+            'class': 'logging.FileHandler',
+            'filename': '/var/log/lovelace/lovelace-django.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
+
+# django-registration settings
+ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window
+
+# Discourse settings.
+# See: https://meta.discourse.org/t/sso-example-for-django/14258
+DISCOURSE_BASE_URL = 'http://discourse.projectlovelace.net'
+DISCOURSE_SSO_SECRET = 'XVseAQn33krUvuqqzh1iZLawJ3A4v4ULLcdH0SiR'

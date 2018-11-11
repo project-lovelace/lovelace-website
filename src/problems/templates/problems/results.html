@@ -1,39 +1,46 @@
 {% extends "base.html" %}
 
 {% block body %}
-
-    {% if results.success %}
-        <h2>Success!</h2>
-    {% else %}
-        <h2>Failed!</h2>
-    {% endif %}
-
-    <p>
-        Passed {{ results.numTestCasesPassed }} / {{ results.numTestCases }} test cases.
-    </p>
-
-    {% for test_case in results.testCaseDetails %}
-        <div class="panel panel-default">
-            <div class="panel-heading" style="font-size: medium;">
-                Test case {{ forloop.counter }} ({{ test_case.testCaseType }}): {{ test_case.passed|yesno:"passed!,failed." }}
+  <div class="modal is-active">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">
+          {% if results.success %}
+            Success!
+          {% else %}
+            Failed!
+          {% endif %}
+          &nbsp;
+          Passed {{ results.numTestCasesPassed }} / {{ results.numTestCases }} test cases.
+        </p>
+        <button class="delete" aria-label="close"></button>
+      </header>
+      <section class="modal-card-body">
+        {% for test_case in results.testCaseDetails %}
+          <article class="message">
+            <div class="message-header">
+              <p>Test case {{ forloop.counter }} ({{ test_case.testCaseType }}): {{ test_case.passed|yesno:"passed!,failed." }}</p>
             </div>
-            <div class="panel-body" style="font-family: monospace; font-size: medium;">
-                Return code: {{ test_case.processInfo.returnCode }}<br>
-                utime: {{ test_case.processInfo.utime }}s<br>
-                stime: {{ test_case.processInfo.stime }}s<br>
-                maxrss: {{ test_case.processInfo.maxrss }}kB<br>
-
-                <br>
-
-                Input:<br>
-                {{ test_case.inputString }}<br>
-
-                <br>
-
-                Output:<br>
-                {{ test_case.outputString }}
+            <div class="message-body" style="font-family: monospace; text-align: justify">
+              Return code: {{ test_case.processInfo.returnCode }}<br>
+              utime: {{ test_case.processInfo.utime }}s<br>
+              stime: {{ test_case.processInfo.stime }}s<br>
+              maxrss: {{ test_case.processInfo.maxrss }}kB<br>
+              <br>
+              Input:<br>
+              {{ test_case.inputString }}<br>
+              <br>
+              Output:<br>
+              {{ test_case.outputString }}
             </div>
-        </div>
-    {% endfor %}
-
+          </article>
+        {% endfor %}
+      </section>
+      <footer class="modal-card-foot">
+        <button class="button is-success">Save changes</button>
+        <button class="button">Cancel</button>
+      </footer>
+    </div>
+  </div>
 {% endblock %}

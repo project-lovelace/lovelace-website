@@ -1,82 +1,459 @@
 {% extends "base.html" %}
+{% load widget_tweaks %}
 
 {% block preload_javascript %}
-    <!-- MathJax -->
-    <script type="text/x-mathjax-config">
-        MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
-    </script>
-    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML"></script>
+<!-- MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+<!-- CSS to show active tab and hide inactive tabs. -->
+<style>
+  #tab-content section {
+    display: none;
+  }
+
+  #tab-content section.is-active {
+    display: block;
+  }
+</style>
 {% endblock %}
 
 {% block page_title %}
-    {{ problem.title }} | Project Lovelace
+  {{ problem.title }} | Project Lovelace
 {% endblock %}
 
 {% block body %}
-    <meta name="problem_name" content="problem.name">
-    <h1>
-        {% block problem_name %}
-            {{ problem.title }}
-        {% endblock %}
-    </h1>
+<meta name="problem_name" content="problem.name">
+<section class="section">
+  <br>
+  <p class="title is-2 has-text-centered">{{ problem.title }}</p>
+  <p class="subtitle is-5 has-text-centered is-italic"><strong>Useful to know</strong>: {% block useful_to_know %}{% endblock %}</p>
 
-    {% block introduction %}
-    {% endblock %}
+  <div id="tabs" class="tabs is-centered is-boxed">
+    <ul>
+      <li data-tab="1" class="is-active">
+        <a>
+          <span class="icon is-small"><i class="fas fa-align-justify" aria-hidden="true"></i></span>
+          <span>Description</span>
+        </a>
+      </li>
+      <li data-tab="2">
+        <a>
+          <span class="icon is-small"><i class="fas fa-history" aria-hidden="true"></i></span>
+          <span>Submissions</span>
+        </a>
+      </li>
+      <li data-tab="3">
+        <a>
+          <span class="icon is-small"><i class="fas fa-book" aria-hidden="true"></i></span>
+          <span>Notes and references</span>
+        </a>
+      </li>
+      <li data-tab="4">
+        <a>
+          <span class="icon is-small"><i class="fab fa-discourse" aria-hidden="true"></i></span>
+          <span>Discourse</span>
+        </a>
+      </li>
+<!--  <li data-tab="5">
+        <a>
+          <span class="icon is-small"><i class="fas fa-check-double" aria-hidden="true"></i></span>
+          <span>Solution</span>
+        </a>
+      </li> -->
+    </ul>
+  </div>
 
-    <h2 data-toggle="collapse" data-target="#question"><a href="#">Problem</a></h2>
-    <div id="question" class="collapse in">
-        {% block required %}
-            <p><b>Required math</b>: Required Math Goes Here.</p>
-        {% endblock %}
-
-        <p>
-            {% block problem_body %}
-                Problem Body Goes Here
-            {% endblock %}
-        </p>
-    </div>
-
-    <h2 data-toggle="collapse" data-target="#input"><a href="#">Input</a></h2>
-    <div id="input" class="collapse in">
-        {% block input_description %}
-            Problem Input Goes Here
-        {% endblock %}
-
-        <div class="panel panel-default">
-            <div class="panel-heading">Example input</div>
-            <div class="panel-body" style="font-family: monospace;">
-                {% block input_example %}
-                    Input Example Goes Here
-                {% endblock %}
-            </div>
+  <div class="container" id="tab-content">
+    <!-- Description tab -->
+    <section data-content="1" class="is-active">
+      <p class="has-text-justified">
+        {% block introduction %}{% endblock %}
+        {% block problem_body %}{% endblock %}
+      </p>
+      <br>
+      
+      <p><strong>Input</strong>: {% block input_description %}{% endblock %}</p>
+      <br>
+      <p><strong>Output</strong>: {% block output_description %}{% endblock %}</p>
+      <br>
+      
+      <article class="message">
+        <div class="message-header">
+          <p>Example input</p>
         </div>
-    </div>
-
-    <h2 data-toggle="collapse" data-target="#output"><a href="#">Output</a></h2>
-    <div id="output" class="collapse in">
-        {% block output_description %}
-            Output Description Goes Here
-        {% endblock %}
-
-        <div class="panel panel-default">
-            <div class="panel-heading">Example output</div>
-            <div class="panel-body" style="font-family: monospace;">
-                {% block output_example %}
-                    Output Example Goes Here
-                {% endblock %}
-            </div>
+        <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word;">
+          {% block input_example %}{% endblock %}
         </div>
-    </div>
+      </article>
 
-    {% if problem.name %}  {# TODO remove this hacky conditional after removing tutorials #}
-    <h3>Submit Your Python Code</h3>
-    {% if not user.is_authenticated %}
-        <p>You must be logged in for your submission to contribute to your profile.</p>
-    {% endif %}
-    <form action="{% url 'problems:detail' problem.name %}" method="post" id="code-submit-form" enctype="multipart/form-data">
+      <article class="message">
+        <div class="message-header">
+          <p>Example output</p>
+        </div>
+        <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word;">
+          {% block output_example %}{% endblock %}
+        </div>
+      </article>
+    </section>
+
+    <!-- Submissions tab -->
+    <section data-content="2">
+      {% if previous_submissions %}
+        <div class="columns is-centered">
+          <table class="table is-hoverable">
+            <thead>
+              <tr>
+                <th><abbr title="Submission ID">#</abbr></th>
+                <th>Date</th>
+                <th>File</th>
+                <th title="Sum of runtimes of all test cases">Runtime</th>
+                <th title="Maximum memory usage among all test cases">Memory</th>
+                <th>Language</th>
+                <th>Passed</th>
+              </tr>
+            </thead>
+            {% for sub in previous_submissions %}
+              <tbody>
+                <tr>
+                  <td>{{ sub.id }}</td>
+                  <td>{{ sub.date }}</td>
+                  <td><a href="{{ sub.file.url }}">{{ sub.filename }}</a> ({{ sub.file.size }} bytes)</td>
+                  <td>{{ sub.runtime_sum }}</td>
+                  <td>{{ sub.max_mem_usage }}</td>
+                  <td>{{ sub.language }}</td>
+                  {% if sub.test_cases_passed == 0 %}
+                    <td class="has-text-danger">{{ sub.test_cases_passed }}/{{ sub.test_cases_total }}</td>
+                  {% elif sub.test_cases_passed == sub.test_cases_total %}
+                    <td class="has-text-success">{{ sub.test_cases_passed }}/{{ sub.test_cases_total }}</td>
+                  {% else %}
+                    <td class="has-text-warning">{{ sub.test_cases_passed }}/{{ sub.test_cases_total }}</td>
+                  {% endif %}
+                </tr>
+              </tbody>
+            {% endfor %}
+          </table>
+        </div>
+      {% endif %}
+
+      {% if user.is_authenticated %}
+        <p>You can use the editor below or upload a file to submit your code.</p><br>
+      {% else %}
+        <p>You must be logged in to submit code but you can play around with the editor.</p><br>
+      {% endif %}
+      <form method="post" id="submit-code-or-file-form" enctype="multipart/form-data">
+      <div class="columns is-centered">
         {% csrf_token %}
-        {{ form }}
-        <input type="submit" value="Submit" id="submit-code-button" />
-    </form>
-    {% endif %}
+        <div class="column is-three-quarters" style="position: relative;">
+          {% render_field form.code id="editor-textarea" %}
+        </div>
+        <div class="is-divider-vertical" data-content="OR"></div>
+        <div class="column is-one-quarter">
+          <div class="container">
+            {% if user.is_authenticated %}
+              <div class="file has-name is-boxed">
+                <label class="file-label">
+                  {% render_field form.file class+="file-input" %}
+                  <span class="file-cta">
+                    <span class="file-icon"><i class="fas fa-upload"></i></span>
+                    <span class="file-label">Choose file...</span>
+                  </span>
+                  <span class="file-name" id="file-name-span"></span>
+                </label>
+              </div>
+              <br>
+              <button class="button is-primary" type="submit" id="submit-file-button" onclick="this.form.button_clicked=this.id">Submit file</button>
+            {% else %}
+              <p>You must be logged in to upload code.</p>
+            {% endif %}
+          </div>
+        </div>
+        </div>
+      </form>
+    </section>
+
+    <!-- Notes and references tab -->
+    <section data-content="3">
+      {% block notes_and_references %}{% endblock %}
+    </section>
+
+    <!-- Discourse tab -->
+    <section data-content="4">
+      <div id='discourse-comments' style="height: 100vh;"></div></section>
+
+    <!-- Solution tab
+    <section data-content="5">
+      <p>I wonder if you can see the text below...</p><br>
+      <div>
+        <p>Solution goes here!</p>
+      </div>
+    </section> -->
+
+  </div>
+
+  <!-- Modal for showing test case results -->
+  <div class="modal" id="results-modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title" id="results-modal-title"></p>
+        <button class="delete" aria-label="close" id="modal-close"></button>
+      </header>
+      <section class="modal-card-body" id="results-modal-body"></section>
+      <footer class="modal-card-foot">
+        <button class="button is-success">Save changes</button>
+        <button class="button">Close</button>
+      </footer>
+    </div>
+  </div>
+
+</section>
+{% endblock %}
+
+{% block postload_javascript %}
+<!-- CodeMirror editor -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.41.0/codemirror.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.41.0/theme/monokai.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.41.0/codemirror.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.41.0/mode/python/python.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.41.0/addon/display/autorefresh.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.41.0/addon/selection/active-line.js"></script>
+
+<style>
+  .CodeMirror {
+      border: 1px solid black;
+      font-size:13px;
+      height: 100%;
+      width: 100%;
+  }
+</style>
+
+<script>
+  var editor_textarea = document.getElementById('editor-textarea');
+  var cm = CodeMirror.fromTextArea(editor_textarea, {
+      autoRefresh:true,
+      mode: 'python',
+      lineNumbers: true,
+      styleActiveLine: true
+  });
+
+  cm.setValue(`{% block code_stub %}{% endblock %}`.trim());
+</script>
+
+<script>
+  document.getElementById('{{ form.file.auto_id }}').onchange = function() {
+      // See: https://stackoverflow.com/a/9234894
+      var filename = this.value.split(/(\\|\/)/g).pop();
+      document.getElementById('file-name-span').innerHTML = filename;
+  };
+</script>
+
+<script>
+  // Tab switching.
+  // Credit to sol @ https://stackoverflow.com/a/47591788
+  const TABS = [...document.querySelectorAll('#tabs li')];
+  const CONTENT = [...document.querySelectorAll('#tab-content section')];
+  const ACTIVE_CLASS = 'is-active';
+
+  function initTabs() {
+    TABS.forEach((tab) => {
+      tab.addEventListener('click', (e) => {
+        let selected = tab.getAttribute('data-tab');
+        updateActiveTab(tab);
+        updateActiveContent(selected);
+      })
+    })
+  }
+
+  function updateActiveTab(selected) {
+    TABS.forEach((tab) => {
+      if (tab && tab.classList.contains(ACTIVE_CLASS)) {
+        tab.classList.remove(ACTIVE_CLASS);
+      }
+    });
+    selected.classList.add(ACTIVE_CLASS);
+  }
+
+  function updateActiveContent(selected) {
+    CONTENT.forEach((item) => {
+      if (item && item.classList.contains(ACTIVE_CLASS)) {
+        item.classList.remove(ACTIVE_CLASS);
+      }
+      let data = item.getAttribute('data-content');
+      if (data === selected) {
+        item.classList.add(ACTIVE_CLASS);
+      }
+    });
+  }
+
+  initTabs();
+</script>
+
+<script>
+    var modal = document.getElementById('modal-close');
+    modal.addEventListener('click', function(event) {
+      event.stopPropagation();
+      document.getElementById('results-modal').classList.toggle('is-active');
+    });
+
+  var apiUrl = '{% url 'problems:detail' problem.name %}';
+  var csrf_token = '{{ csrf_token }}';
+
+  function sendCodeFile(event, button_clicked) {
+    var form = document.forms.namedItem('submit-code-or-file-form');
+    var form_data = new FormData(form);
+    form_data.append('button-clicked', button_clicked)
+    form_data.append('raw-code', cm.getValue());
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', apiUrl, true);
+    // xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+    xhr.setRequestHeader('X-CSRFToken', csrf_token);
+    xhr.onload = injectTestCaseResults;
+    xhr.onerror = handleAjaxError;
+    xhr.send(form_data);
+  }
+
+  document.getElementById('submit-code-or-file-form').addEventListener('submit',
+    function(event) {
+      document.getElementById(this.button_clicked).classList.add('is-loading');
+
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      sendCodeFile(event, this.button_clicked);
+
+      // Prevents the default action and stops propagation.
+      // See: http://blog.niftysnippets.org/2011/11/story-on-return-false.html
+      return false;
+  });
+
+  function injectTestCaseResults() {
+    console.log("Inside injectTestCaseResults()...")
+
+    if (JSON.parse(this.response).hasOwnProperty('error')) {
+      document.getElementById('results-modal-title').innerHTML = "Code execution failed.";
+
+      error_str = JSON.parse(this.response).error;
+      error_str = error_str.replace(/(?:\\r\\n|\\r|\\n)/g, '<br>');
+      error_str = error_str.replace(/(?:\\t)/g, '&#9;');
+      error_str = error_str.replace(/(?:\r\n|\r|\n)/g, '<br>');
+
+      var resultsModalBody = document.getElementById('results-modal-body');
+      resultsModalBody.innerHTML = "<pre>" + error_str + "</pre>";
+      
+      document.getElementById('submit-file-button').classList.remove('is-loading');
+      document.getElementById('submit-code-button').classList.remove('is-loading');
+      document.getElementById('results-modal').classList.add('is-active');
+      return
+    }
+
+    r = JSON.parse(this.response).results;
+
+    if (r.success) {
+      document.getElementById('results-modal-title').innerHTML += "Success!";
+    } else {
+      document.getElementById('results-modal-title').innerHTML += "Failed.";
+    }
+
+    var nTestCases = r.testCaseDetails.length;
+    var passes = 0;
+    for (var i = 0; i < nTestCases; i++) {
+        passes += r.testCaseDetails[i].passed ? 1 : 0;
+    }
+
+    document.getElementById('results-modal-title').innerHTML
+        += ' Passed ' + passes + '/' + nTestCases + ' test cases.';
+
+    // Print all the test case details.
+    var resultsModalBody = document.getElementById('results-modal-body');
+    resultsModalBody.innerHTML = '';
+
+    for (var i = 0; i < nTestCases; i++) {
+      testCasePanelTitle = 'Test case ' + (i+1) + '/' + nTestCases
+          + ' (' + r.testCaseDetails[i].testCaseType + '): ';
+
+      if (r.testCaseDetails[i].passed) {
+          testCasePanelTitle += 'passed!<br>';
+      } else {
+          testCasePanelTitle += 'failed.<br>';
+      }
+
+      runtime = r.testCaseDetails[i].processInfo.runtime;
+      if (runtime < 1e-3) {
+        runtime_str = String(Math.round(runtime * 1e6)) + " μs";
+      } else if (runtime < 1) {
+        runtime_str = String(Math.round(runtime * 1e3)) + " ms";
+      } else {
+        runtime_str = String(Math.round(runtime)) + " s";
+      }
+
+      max_mem_usage = r.testCaseDetails[i].processInfo.max_mem_usage;
+      max_mem_usage_str = String(Math.round(max_mem_usage)) + " kB";
+
+      processInfoString = 'Runtime: ' + runtime_str
+          + ',   Max memory usage: ' + max_mem_usage_str + '<br><br>';
+
+      resultsModalBody.innerHTML += '<article class="message">'
+          + '<div class="message-header">'
+          + '<p>' + testCasePanelTitle + '</p></div>'
+          + '<div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word;">'
+          + processInfoString
+          + 'Input:<br>' + r.testCaseDetails[i].inputString + '<br><br>'
+          + 'Output:<br>' + r.testCaseDetails[i].outputString
+          + '</div></article>';
+    }
+
+    document.getElementById('submit-file-button').classList.remove('is-loading');
+    document.getElementById('submit-code-button').classList.remove('is-loading');
+    document.getElementById('results-modal').classList.add('is-active');
+  }
+
+  function handleAjaxError() {
+    console.log("AJAX error!");
+    console.log(this.response);
+  }
+</script>
+
+{% if user.is_authenticated %}
+<script>
+  // Add a "submit code" button below the CodeMirror editor after the
+  // editor has loaded, otherwise when the editor html is inserted it
+  // appears over the button.
+  var editor_textarea = document.getElementById('editor-textarea');
+  var submit_code_button = document.createElement('button');
+
+  submit_code_button.classList.add('button', 'is-primary');
+  submit_code_button.setAttribute('id', "submit-code-button");
+  submit_code_button.setAttribute('onclick', "this.form.button_clicked=this.id");
+  submit_code_button.appendChild(document.createTextNode("Submit code"));
+
+  editor_textarea.parentNode.appendChild(document.createElement("br"));
+  editor_textarea.parentNode.appendChild(submit_code_button);
+</script>
+{% endif %}
+
+<script type="text/javascript">
+  DiscourseEmbed = {
+    discourseUrl: 'http://discourse.projectlovelace.net/',
+    topicId: {% block discourse_topic_id %}{% endblock %}
+  };
+
+  (function() {
+    var d = document.createElement('script');
+    d.type = 'text/javascript';
+    d.async = true;
+    d.src = DiscourseEmbed.discourseUrl + 'javascripts/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(d);
+  })();
+
+  window.addEventListener('load', function(){
+    var iframe = document.getElementById('discourse-embed-frame');
+    iframe.setAttribute("style", "height: 100vh;");
+    iframe.setAttribute("scrolling", "yes");
+   });
+</script>
+
 {% endblock %}

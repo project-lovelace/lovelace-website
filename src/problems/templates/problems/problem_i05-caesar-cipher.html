@@ -1,42 +1,73 @@
-<!--
-  Project Lovelace: Problem I5
-  Caesar cipher (lists, cryptography)
--->
-
 {% extends "problems/problem.html" %}
 
-{% block required %}
-    <p><b>Required math</b>: None.</p>
+{% load static %}
+
+{% block useful_to_know %}
+    loops, strings.
 {% endblock %}
 
 {% block problem_body %}
-    <p>
-      Ever since ancient civilizations could write letter to each other, people have wanted to keep some messages secret in case they were intercepted by someone else. To do this, they used an encryption scheme or secret code to encrypt their message before sending it. The receiver could then decrypt it and read it with knowledge of the encryption scheme. In cryptography the original unencrypted message is called the plaintext (all in lowercase) while the encrypted message is the ciphertext (ALL IN UPPERCASE).
-
-      A famous method of encrypting a message is the Caesar cipher, named after the Roman general Julius Caesar (100-44 BC) who used it to secure military communications. It involves using a shifted alphabet instead of the regular alphabet. For example, a shift of 13 will involve changing A to N, B to O, C to P, and so on. It is a very weak cipher that provides no security nowadays but was actually secure at the time when no one knew of cryptography. Here you will show that knowledge of a single word is enough to break the cipher and reveal the secret message.
-
-      <!-- Post problem comment: this is why you want to leave no spaces when encrypting a message! But then you can still do frequency analysis. -->
-    </p>
+  <p class="has-text-justified">
+    Ever since ancient civilizations could write letter to each other, people have wanted to keep some messages secret in case they were intercepted by someone else. To do this, they used an encryption scheme or secret code to encrypt their message before sending it. The receiver could then decrypt it and read it if they knew how to decrypt it. In cryptography the original unencrypted message is called the plaintext (usually shown in all lowercase) while the encrypted message is the ciphertext (SHOWN IN ALL UPPERCASE).
+  </p>
+  <br>
+  <div class="columns is-centered">
+    <div class="column is-one-third">
+      <figure class="image" style="text-align: center;">
+        <img src="{% static 'img/caesar_cipher.png' %}">
+        <figcaption class="help">
+          A Caesar cipher using a right shift of 3 (which is the same as a left shift of -23). (<a href="https://commons.wikimedia.org/wiki/File:Caesar_cipher_left_shift_of_3.svg">Wikimedia Commons</a>)
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+  <p class="has-text-justified">
+    A famous method of encrypting a message is the Caesar cipher. It involves using a shifted alphabet instead of the regular alphabet. For example, a shift of 13 will involve changing A to N, B to O, C to P, and so on. It is a very weak cipher that provides no security nowadays but was actually secure at the time when no one knew of cryptography.
+  </p>
+  <br>
+  <p class="has-text-justified">
+    If you knew even a single word that is present in the ciphertext, that would be enough to break the caesar cipher and reveal the secret message. Given the ciphertext and a word that definitely exists in the plaintext, return the plaintext message.
+  </p>
 {% endblock %}
 
 {% block input_description %}
-  <p>
-    Line 1: The ciphertext to be decrypted.
-    Line 2: The one word that is definitely present in the ciphertext.
-  </p>
-{% endblock %}
-
-{% block input_example %}
-    QEB NRFZH YOLTK CLU GRJMP LSBO QEB IXWV ALD <br>
-    FOX
+  The ciphertext to be decrypted, and one word that present in the ciphertext.
 {% endblock %}
 
 {% block output_description %}
-  <p>
-    The original message in lower case letters.
-  </p>
+  The original message in lower case letters.
+{% endblock %}
+
+{% block input_example %}
+  ("QEB NRFZH YOLTK CLU GRJMP LSBO QEB IXWV ALD", "fox")
 {% endblock %}
 
 {% block output_example %}
-    THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG
+  "the quick brown fox jumped over the lazy dog"
 {% endblock %}
+
+{% block code_stub %}
+import string
+
+def break_caesar_cipher(ciphertext, known_word):
+    pass
+{% endblock %}
+
+{% block notes_and_references %}
+  <div class="content">
+    {% if solved_by_user %}
+      <h3>Solution notes</h3>
+      <ul>
+        <li>These kinds of substitution ciphers seem to have been pretty secure up until frequency analysis was discovered.</li>
+        <li>This is why you want to leave no spaces when encrypting a message! But then you can still do frequency analysis.</li>
+      </ul>
+    {% endif %}
+    <h3>Notes</h3>
+    <ul>
+      <li>It's named after the Roman general and politician Julius Caesar (100-44 BC) who used it to secure military communications.</li>
+      <li>The shift of 13 given in the description corresponds to ROT13.</li>
+    </ul>
+  </div>
+{% endblock %}
+
+{% block discourse_topic_id %}17{% endblock %}

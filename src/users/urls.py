@@ -1,7 +1,7 @@
 from django.urls import path
 from django.views.generic.base import RedirectView
 
-from . import views
+from .views import EditUserProfileView, ViewUserProfileView
 
 app_name = 'users'
 
@@ -9,6 +9,9 @@ urlpatterns = [
     # ex: /users/
     path('', RedirectView.as_view(url='/'), name='index'),
 
-    # ex: /users/CodeSlaya69420/
-    path('<str:username>/', views.UserProfileView.as_view(), name='profile'),
+    # Editing your own user profile, ex: /users/editprofile/
+    path('editprofile/', EditUserProfileView.as_view(), name='editprofile'),
+
+    # Viewing user profiles. ex: /users/CodeSlaya69420/
+    path('<str:username>/', ViewUserProfileView.as_view(), name='profile'),
 ]

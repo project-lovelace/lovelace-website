@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+  Activation complete | Project Lovelace
+{% endblock %}
+
+
+{% block body %}
+  <section classs="section">
+    <div class="container content">
+      <br>
+      <h3>Account activation complete</h3>
+      <br>
+      <p>Your account is now activated. You can now <a href="{% url 'login' %}">log in</a>.</p>
+    </div>
+  </section>
+{% endblock %}
