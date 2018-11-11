@@ -84,7 +84,7 @@
         <div class="message-header">
           <p>Example input</p>
         </div>
-        <div class="message-body" style="font-family: monospace; text-align: justify">
+        <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word;">
           {% block input_example %}{% endblock %}
         </div>
       </article>
@@ -93,7 +93,7 @@
         <div class="message-header">
           <p>Example output</p>
         </div>
-        <div class="message-body" style="font-family: monospace; text-align: justify">
+        <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word;">
           {% block output_example %}{% endblock %}
         </div>
       </article>
@@ -399,7 +399,7 @@
       resultsModalBody.innerHTML += '<article class="message">'
           + '<div class="message-header">'
           + '<p>' + testCasePanelTitle + '</p></div>'
-          + '<div class="message-body" style="font-family: monospace; text-align: justify">'
+          + '<div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word;">'
           + processInfoString
           + 'Input:<br>' + r.testCaseDetails[i].inputString + '<br><br>'
           + 'Output:<br>' + r.testCaseDetails[i].outputString
