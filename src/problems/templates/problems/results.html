@@ -7,12 +7,11 @@
       <header class="modal-card-head">
         <p class="modal-card-title">
           {% if results.success %}
-            Success!
+            All tests passed!
           {% else %}
-            Failed!
+            Passed {{ results.numTestCasesPassed }} / {{ results.numTestCases }} test cases.
           {% endif %}
           &nbsp;
-          Passed {{ results.numTestCasesPassed }} / {{ results.numTestCases }} test cases.
         </p>
         <button class="delete" aria-label="close"></button>
       </header>
