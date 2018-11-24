@@ -49,7 +49,7 @@ class DetailView(View):
     @staticmethod
     def get(request, problem_name):
         problem = get_object_or_404(Problem, name=problem_name)
-        template = 'problems/problem_{}.html'.format(str(problem_name))
+        template = 'problems/{}.html'.format(str(problem_name))
         form = CodeSubmissionForm()
 
         logger.info("Adding list of previous submissions to context data...")
