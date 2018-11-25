@@ -51,9 +51,16 @@ def logistic_map(r):
       <li>You can download the script used to generate the plot in the figure as <a href="{% static 'code/Logistic_map_plot.py' %}">Python code</a> or a <a href="{% static 'code/Logistic_map_plot.ipynb' %}">Jupyter notebook</a>.</li>
     </ul>
     {% endif %}
+    <h3>Notes</h3>
     <ul>
-      <li>There's a huge amount of stuff we could say about the logistic map.</li>
+      <li>The sensitivity to initial conditions exhibited by the logistic map is more commonly known as the <a href="https://en.wikipedia.org/wiki/Butterfly_effect">butterfly effect</a>. It means that unless you knew the initial conditions exactly, there will be uncertainty in future predictions and is why we can only predict the weather up to roughly two weeks ahead (much less in many cases).</li>
+      <li>If you plot the value the logistic map ends up at for each value of $r$ you get a <i>bifurcation diagram</i> for the logistic map, which <a href="https://en.wikipedia.org/wiki/Mandelbrot_set#/media/File:Verhulst-Mandelbrot-Bifurcation.jpg">matches up beautifully with the Mandelbrot set</a> if you're into that sort of thing.</li>
     </ul>
+    <h3>References</h3>
+    <dl>
+      <dt>May R.M., <a href="https://doi.org/10.1038/261459a0">Simple mathematical models with very complicated dynamics</a>, Nature 261 (1976)</dt>
+      <dd>The logistic map was first introduced as a simple model of population dynamics with very complicated dynamics.</dd>
+    </dl>
   </div>
 {% endblock %}
 
