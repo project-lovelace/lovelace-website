@@ -16,7 +16,7 @@
       <figure class="image" style="text-align: center;">
         <img src="{% static 'img/caesar_cipher.png' %}">
         <figcaption class="help">
-          A Caesar cipher using a right shift of 3 (which is the same as a left shift of -23). (<a href="https://commons.wikimedia.org/wiki/File:Caesar_cipher_left_shift_of_3.svg">Wikimedia Commons</a>)
+          A Caesar cipher using a right shift of 3 (which is the same as a left shift of 23). (<a href="https://commons.wikimedia.org/wiki/File:Caesar_cipher_left_shift_of_3.svg">Wikimedia Commons</a>)
         </figcaption>
       </figure>
     </div>
@@ -58,15 +58,20 @@ def break_caesar_cipher(ciphertext, known_word):
     {% if solved_by_user %}
       <h3>Solution notes</h3>
       <ul>
-        <li>These kinds of substitution ciphers seem to have been pretty secure up until frequency analysis was discovered.</li>
-        <li>This is why you want to leave no spaces when encrypting a message! But then you can still do frequency analysis.</li>
+        <li>Substitution ciphers such as the Caesar cipher seem to have been pretty secure up until <a href="https://en.wikipedia.org/wiki/Frequency_analysis">frequency analysis</a> was developed by Al-Kindi in the 9th century.</li>
+        <li>One way to make the Caesar cipher slightly more secure is to remove the spaces between words before encryption as it's easy to guess small 1-2 letter words. But even then, your method should still break the Caesar cipher and frequency analysis would still work.</li>
       </ul>
     {% endif %}
     <h3>Notes</h3>
     <ul>
-      <li>It's named after the Roman general and politician Julius Caesar (100-44 BC) who used it to secure military communications.</li>
-      <li>The shift of 13 given in the description corresponds to ROT13.</li>
+      <li>The Caesar cipher is named after the Roman general and politician Julius Caesar (100-44 BC) who used it to secure military communications. He may or may not have been the first to use this kind of substitution cipher, but his writings survive to the present day and give the earliest example so it's named after him.</li>
+      <li>The shift of 13 given in the input example corresponds to <a href="https://en.wikipedia.org/wiki/ROT13">ROT13</a> which uses a shift of 13 to both encrypt and decrypt, which works as there are 26 letters in the English alphabet.</li>
     </ul>
+    <h3>References</h3>
+    <dl>
+      <dt><a href="https://en.wikipedia.org/wiki/The_Code_Book">The Code Book: The Science of Secrecy from Ancient Egypt to Quantum Cryptography</a>, Simon Singh (2000)</dt>
+      <dd>Chapter 1 discusses the Caesar cipher. The rest of the book is an excellent historical account of cryptography.</dd>
+    </dl>
   </div>
 {% endblock %}
 
