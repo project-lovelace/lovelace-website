@@ -126,7 +126,7 @@ class DetailView(View):
             raw_code = str(base64.b64encode(bytes(editor_code, 'utf-8')), 'utf-8')
 
             t = datetime.datetime.now()
-            user_code_filename = "{:}_{:}.py".format(problem_name, t.strftime("%Y%m%d%H%M%S"))
+            user_code_filename = "{:}_{:}_{:}.py".format(problem_name, request.user.username, t.strftime("%Y%m%d%H%M%S"))
             user_code_filepath = os.path.join(settings.MEDIA_ROOT, "uploads", str(t.year), str(t.month), str(t.day), user_code_filename)
 
             user_code_dir = os.path.dirname(user_code_filepath)
