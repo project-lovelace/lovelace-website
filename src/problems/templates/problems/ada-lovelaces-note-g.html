@@ -1,0 +1,122 @@
+{% extends "problems/problem.html" %}
+
+{% load static %}
+
+{% block useful_to_know %}
+	basic math operations.
+{% endblock %}
+
+{% block problem_body %}
+  <div class="columns is-centered is-vcentered">
+    <div class="column is-three-fifths">
+      <p class="has-text-justified">
+      Paragraph 1!!!
+      </p>
+      <br>
+      <p class="has-text-justified">
+      Paragraph 2!!!
+      </p>
+    </div>
+  </div>
+{% endblock %}
+
+{% block input_description %}
+  The velocity $v$ the rocket needs to reach (in meters per second [m/s]) to escape the planet.
+{% endblock %}
+
+{% block output_description %}
+  The mass of fuel $m_\mathrm{fuel}$ needed by the rocket to escape the planet in kilograms (kg).
+{% endblock %}
+
+{% block input_example %}
+  11186.0
+{% endblock %}
+
+{% block output_example %}
+  19843016.2
+{% endblock %}
+
+{% block code_stub %}
+import math
+
+v_e = 2550  # rocket exhaust velocity [m/s]
+M = 250000  # rocket dry mass [kg]
+
+def rocket_fuel(v):
+    return m_fuel
+{% endblock %}
+
+{% block notes_and_references %}
+  <div class="content">
+    {% if solved_by_user %}
+    <h3>Solution notes</h3>
+    <ul>
+      <li>Hey you solved the first problem! You might notice that your estimate for the fuel needed to escape Earth (almost 20 million kg) is much higher than the fully loaded mass of the Saturn V of 2.97 million kg. The Saturn V (and pretty much all rockets) get away with it because they are <a href="https://en.wikipedia.org/wiki/Multistage_rocket">multistage rockets</a>.</li>
+      <li>You can download the script used to generate the plot in the figure as <a href="{% static 'code/Rocket_science_fuel_needed_plot.py' %}">Python code</a> or a <a href="{% static 'code/Rocket_science_fuel_needed_plot.ipynb' %}">Jupyter notebook</a>.</li>
+    </ul>
+    {% endif %}
+    <h3>Derivation of Ada Lovelace's algorithm</h3>
+    To see how Ada derived her formula for the Bernoulli numbers we will have to make use of the fact that $e^t$ can be expressed as an infinite series $\displaystyle e^t = \sum_{n=0}^\infty \frac{t^n}{n!:}$ which is called its Taylor series.
+
+The Bernoulli numbers $B_n$ can be defined as the coefficients of the Taylor series of a generating function
+\begin{equation}
+    \frac{t}{e^t - 1} = \sum_{n=0}^\infty B_n \frac{t^n}{n!}
+\end{equation}
+We now want to solve for $B_n$ to get a formula for the Bernoulli numbers we can use to program a computer. We move both terms to a single side and insert the Taylor series for $e^t$ to get
+\begin{equation}
+    1 = \frac{e^t - 1}{t} \sum_{n=0}^\infty B_n \frac{t^n}{n!}
+      = \sum_{m=0}^\infty \frac{x^m}{(m+1)!} \sum_{n=0}^\infty B_n \frac{t^n}{n!}
+\end{equation}
+We now have the product of two infinite series so let's expand their product up to terms including $t^4$. This gives us
+\begin{align*}
+    1 &= \left( 1 + \frac{t}{2} + \frac{t^2}{2\cdot3} + \frac{t^3}{2\cdot3\cdot4} + \frac{t^4}{2\cdot3\cdot4\cdot5} + \mathcal{O}(t^5) \right) \left( B_0 + B_1t + B_2 \frac{t^2}{2} + B_3\frac{t^3}{2\cdot3} + B_4\frac{t^4}{2\cdot3\cdot4} + \mathcal{O}(t^5) \right) \\
+      &= B_0 + \left( B_1 + \frac{B_0}{2} \right) t + \left( \frac{B_2}{2} + \frac{B_1}{2} + \frac{B_0}{2\cdot3} \right)t^2 + \left( \frac{B_3}{2\cdot3}  + \frac{B_2}{2\cdot2} + \frac{B_1}{2\cdot3} + \frac{B_0}{2\cdot3\cdot4} \right) t^3 \\
+      &\quad + \left( \frac{B_4}{2\cdot3\cdot4} + \frac{B_3}{2\cdot2\cdot3} + \frac{B_2}{2\cdot2\cdot3} + \frac{B_1}{2\cdot3\cdot4} + \frac{B_0}{2\cdot3\cdot4\cdot5} \right) t^4 + \mathcal{O}(t^5)
+\end{align*}
+where we grouped terms with the same powers of $t$.
+
+Now we can start calculating the Bernoulli numbers. The left and right hand sides must be equal so $B_0 = 1$. As $t$ does not appear on the left, we can calculate $B_1$ using
+\begin{equation*}
+    B_1 + \frac{B_0}{2} = 0 \quad \implies \quad B_1 = -\frac{B_0}{2} = -\frac{1}{2}
+\end{equation*}
+and similarly for $B_2$ as $t^2$ does not appear on the left
+\begin{equation*}
+    \frac{B_2}{2} + \frac{B_1}{2} + \frac{B_0}{2\cdot3} \quad \implies \quad B_2 = -2\left( \frac{B_1}{2} + \frac{B_0}{6} \right) = -2\left( -\frac{1}{4} + \frac{1}{6} \right) = \frac{1}{6}
+\end{equation*}
+Repeating the process for the $t^3$ and $t^4$ terms we find $B_3 = 0$ and $\displaystyle B_4 = -\frac{1}{30}$. We also notice a pattern: the coefficient of $t^n$, which is equal to zero, is given by
+\begin{multline}
+    1\cdot\frac{B_n}{2\cdot3\cdot4\cdots(n+1)} + \frac{1}{2} \cdot \frac{B_{n-1}}{2\cdot3\cdot4\cdots n} + \frac{1}{2\cdot3} \cdot \frac{B_{n-2}}{2\cdot3\cdot4\cdots (n-1)} + \cdots \\
+    +  \frac{1}{2\cdot3\cdots(n-2)} \cdot \frac{B_3}{2\cdot3} + \frac{1}{2\cdot3\cdots(n-1)} \cdot \frac{B_2}{2} + \frac{1}{2\cdot3\cdots n} \cdot B_1 + \frac{1}{2\cdot3\cdots(n+1)} \cdot B_0 = 0
+\end{multline}
+which we can write as
+\begin{equation}
+    \sum_{k=0}^n \frac{1}{(n+1-k)!} \cdot \frac{B_n}{k!} = 0
+\end{equation}
+and so if we take out the $B_n$ term we can express it in terms of $B_k$ for $k \lt n$
+\begin{equation}
+    B_n = -\sum_{k=0}^{n-1} \frac{n!}{(n+1-k)!\cdot k!} B_k = -\sum_{k=0}^{n-1} \binom{n}{k} \frac{B_k}{n+1-k}
+\end{equation}
+Using this formula along with $B_0 = 1$ we can calculate any Bernoulli number $B_n$ as long as we know all the lower Bernoulli numbers $B_0, B_1, B_2, \dots, B_{n-1}$.
+
+In Ada Lovelace's Note G, she proposes an algorithm for calculating what we call $B_8$, which she labeled $B_7$. Using our slightly more modern notation Note G is essentially carrying out the following calculation
+\begin{equation*}
+    B_8 =
+\end{equation*}
+    <h3>Notes</h3>
+    <ul>
+      <li>TESTING</li>
+      <li>We basically rearranged the <a href="https://en.wikipedia.org/wiki/Tsiolkovsky_rocket_equation">Tsiolkovsky rocket equation</a> in this problem. Wikipedia shows a pretty common derivation of the rocket equation.</li>
+      <li>Kurzgesagt has a great YouTube video essentially about the rocket equation and why it's so hard to leave Earth: <a href="https://www.youtube.com/watch?v=RVMZxH1TIIQ">Why Earth Is A Prison and How To Escape It</a>.</li>
+      <li>At a launch cost of US<span>$</span>1.16 billion (2016 value) and a low Earth orbit payload of 140,000 kg, it cost <span>$</span>8,286 per kg to send stuff to space using the Saturn V.</li>
+      <li>The input example uses the escape velocity of Earth (11.186 km/s) and Wikipedia has a <a href="https://en.wikipedia.org/wiki/Escape_velocity#List_of_escape_velocities">list of escape velocities</a> for many other celestial bodies.</li>
+    </ul>
+    <h3>References</h3>
+    <dl>
+      <dt><a href="https://history.msfc.nasa.gov/saturn_apollo/documents/F-1_Engine.pdf">F-1 Engine Fact Sheet </a>, NASA Saturn V News Reference (1968)</dt>
+      <dd>This is where we sourced the numbers for the Saturn V in this problem. The full <a href="https://history.msfc.nasa.gov/saturn_apollo/saturnv_press_kit.html">Saturn V Press Kit</a> is also online.</dd>
+    </dl>
+  </div>
+{% endblock %}
+
+{% block discourse_topic_id %}13{% endblock %}
+
