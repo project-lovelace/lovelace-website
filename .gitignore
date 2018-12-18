@@ -104,3 +104,7 @@ mybulma/
 
 # Node.js modules
 mybulma/node_modules
+
+# Django settings file
+# This file should be accessed via sumbolic link
+src/lovelace/settings.py
