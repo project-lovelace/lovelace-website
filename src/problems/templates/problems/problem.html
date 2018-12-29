@@ -18,12 +18,20 @@
     display: block;
   }
 
-  .fa-check-circle {
-    color: green;
+  .fa-check-circle, .fa-smile-beam {
+    color: Lime;
   }
 
   .fa-times-circle {
     color: red;
+  }
+
+  .fa-grin-beam-sweat {
+    color: Gold;
+  }
+
+  .fa-poo {
+    color: Sienna;
   }
 </style>
 {% endblock %}
@@ -88,26 +96,12 @@
       <p><strong>Output</strong>: {% block output_description %}{% endblock %}</p>
       <br>
       
-      <article class="message">
-        <div class="message-header">
-          <p>Example input</p>
-        </div>
-        <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word;">
-          {% block input_example %}{% endblock %}
-        </div>
-      </article>
-
-      <article class="message">
-        <div class="message-header">
-          <p>Example output</p>
-        </div>
-        <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word;">
-          {% block output_example %}{% endblock %}
-        </div>
-      </article>
+      {% block examples %}{% endblock %}
 
       {% if user.is_authenticated %}
-        <p>You can use the editor below or upload a file to submit your code.</p><br>
+        <p>
+          Write a function that accepts the input described above as function parameters and returns the correct output. Make sure to read the description above to produce the correct output in the correct format as exemplified by the examples.
+        </p><br>
       {% else %}
         <p>You must be logged in to submit code but you can play around with the editor.</p><br>
       {% endif %}
@@ -368,14 +362,13 @@
         passes += r.testCaseDetails[i].passed ? 1 : 0;
     }
 
-    if (r.success) {
-      document.getElementById('results-modal-title').innerHTML += 'Success!';
+    if (passes == nTestCases) {
+      document.getElementById('results-modal-title').innerHTML = '<i class="fas fa-smile-beam"></i>' + ' <b>Passed ' + passes + '/' + nTestCases + ' test cases.</b>';
+    } else if (passes == 0) {
+      document.getElementById('results-modal-title').innerHTML = '<i class="fas fa-poo"></i>' + ' <b>Passed ' + passes + '/' + nTestCases + ' test cases.</b>';
     } else {
-      document.getElementById('results-modal-title').innerHTML += 'Failed.';
+      document.getElementById('results-modal-title').innerHTML = '<i class="fas fa-grin-beam-sweat"></i>' + ' <b>Passed ' + passes + '/' + nTestCases + ' test cases.</b>';
     }
-
-    document.getElementById('results-modal-title').innerHTML
-        += ' Passed ' + passes + '/' + nTestCases + ' test cases.';
 
     // Print all the test case details.
     var resultsModalBody = document.getElementById('results-modal-body');
@@ -403,16 +396,16 @@
       max_mem_usage = r.testCaseDetails[i].processInfo.max_mem_usage;
       max_mem_usage_str = String(Math.round(max_mem_usage)) + " kB";
 
-      processInfoString = 'Runtime: ' + runtime_str
-          + ',   Max memory usage: ' + max_mem_usage_str + '<br><br>';
+      processInfoString = '<b>Runtime</b>: ' + runtime_str + '<br>'
+          + '<b>Max memory usage</b>: ' + max_mem_usage_str + '<br>';
 
       resultsModalBody.innerHTML += '<article class="message">'
           + '<div class="message-header">'
           + '<p>' + testCasePanelTitle + '</p></div>'
           + '<div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word;">'
           + processInfoString
-          + 'Input:<br>' + r.testCaseDetails[i].inputString + '<br><br>'
-          + 'Output:<br>' + r.testCaseDetails[i].outputString
+          + '<b>Input</b>:<br>' + r.testCaseDetails[i].inputString + '<br>'
+          + '<b>Output</b>:<br>' + r.testCaseDetails[i].outputString
           + '</div></article>';
     }
 
