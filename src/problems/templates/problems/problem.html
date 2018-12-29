@@ -17,6 +17,14 @@
   #tab-content section.is-active {
     display: block;
   }
+
+  .fa-check-circle {
+    color: green;
+  }
+
+  .fa-times-circle {
+    color: red;
+  }
 </style>
 {% endblock %}
 
@@ -136,41 +144,47 @@
 
     <!-- Submissions tab -->
     <section data-content="2">
-      {% if previous_submissions %}
-        <div class="columns is-centered">
-          <table class="table is-hoverable">
-            <thead>
-              <tr>
-                <th><abbr title="Submission ID">#</abbr></th>
-                <th>Date</th>
-                <th>File</th>
-                <th title="Sum of runtimes of all test cases">Runtime</th>
-                <th title="Maximum memory usage among all test cases">Memory</th>
-                <th>Language</th>
-                <th>Passed</th>
-              </tr>
-            </thead>
-            {% for sub in previous_submissions %}
-              <tbody>
+      {% if user.is_authenticated %}
+        {% if previous_submissions %}
+          <div class="columns is-centered">
+            <table class="table is-hoverable">
+              <thead>
                 <tr>
-                  <td>{{ sub.id }}</td>
-                  <td>{{ sub.date }}</td>
-                  <td><a href="{{ sub.file.url }}">{{ sub.filename }}</a> ({{ sub.file.size }} bytes)</td>
-                  <td>{{ sub.runtime_sum }}</td>
-                  <td>{{ sub.max_mem_usage }}</td>
-                  <td>{{ sub.language }}</td>
-                  {% if sub.test_cases_passed == 0 %}
-                    <td class="has-text-danger">{{ sub.test_cases_passed }}/{{ sub.test_cases_total }}</td>
-                  {% elif sub.test_cases_passed == sub.test_cases_total %}
-                    <td class="has-text-success">{{ sub.test_cases_passed }}/{{ sub.test_cases_total }}</td>
-                  {% else %}
-                    <td class="has-text-warning">{{ sub.test_cases_passed }}/{{ sub.test_cases_total }}</td>
-                  {% endif %}
+                  <th><abbr title="Submission ID">#</abbr></th>
+                  <th>Date</th>
+                  <th>File</th>
+                  <th title="Sum of runtimes of all test cases">Runtime</th>
+                  <th title="Maximum memory usage among all test cases">Memory</th>
+                  <th>Language</th>
+                  <th>Passed</th>
                 </tr>
-              </tbody>
-            {% endfor %}
-          </table>
-        </div>
+              </thead>
+              {% for sub in previous_submissions %}
+                <tbody>
+                  <tr>
+                    <td>{{ sub.id }}</td>
+                    <td>{{ sub.date }}</td>
+                    <td><a href="{{ sub.file.url }}">{{ sub.filename }}</a> ({{ sub.file.size }} bytes)</td>
+                    <td>{{ sub.runtime_sum }}</td>
+                    <td>{{ sub.max_mem_usage }}</td>
+                    <td>{{ sub.language }}</td>
+                    {% if sub.test_cases_passed == 0 %}
+                      <td class="has-text-danger">{{ sub.test_cases_passed }}/{{ sub.test_cases_total }}</td>
+                    {% elif sub.test_cases_passed == sub.test_cases_total %}
+                      <td class="has-text-success">{{ sub.test_cases_passed }}/{{ sub.test_cases_total }}</td>
+                    {% else %}
+                      <td class="has-text-warning">{{ sub.test_cases_passed }}/{{ sub.test_cases_total }}</td>
+                    {% endif %}
+                  </tr>
+                </tbody>
+              {% endfor %}
+            </table>
+          </div>
+        {% else %}
+          <p class="has-text-centered">You have no previous submissions.</p>
+        {% endif %}
+      {% else %}
+        <p class="has-text-centered">You must be logged in to view your submissions.</p>
       {% endif %}
     </section>
 
@@ -348,33 +362,33 @@
 
     r = JSON.parse(this.response).results;
 
-    if (r.success) {
-      document.getElementById('results-modal-title').innerHTML += "Success!";
-    } else {
-      document.getElementById('results-modal-title').innerHTML += "Failed.";
-    }
-
     var nTestCases = r.testCaseDetails.length;
     var passes = 0;
     for (var i = 0; i < nTestCases; i++) {
         passes += r.testCaseDetails[i].passed ? 1 : 0;
     }
 
+    if (r.success) {
+      document.getElementById('results-modal-title').innerHTML += 'Success!';
+    } else {
+      document.getElementById('results-modal-title').innerHTML += 'Failed.';
+    }
+
     document.getElementById('results-modal-title').innerHTML
-        = ' Passed ' + passes + '/' + nTestCases + ' test cases.';
+        += ' Passed ' + passes + '/' + nTestCases + ' test cases.';
 
     // Print all the test case details.
     var resultsModalBody = document.getElementById('results-modal-body');
     resultsModalBody.innerHTML = '';
 
     for (var i = 0; i < nTestCases; i++) {
-      testCasePanelTitle = 'Test case ' + (i+1) + '/' + nTestCases
-          + ' (' + r.testCaseDetails[i].testCaseType + '): ';
 
       if (r.testCaseDetails[i].passed) {
-          testCasePanelTitle += 'passed!<br>';
+          testCasePanelTitle = '<i class="fas fa-check-circle" aria-hidden="true"></i> &nbsp; Test case '
+                             + (i+1) + '/' + nTestCases + ' (' + r.testCaseDetails[i].testCaseType + '): passed!</p><br>';
       } else {
-          testCasePanelTitle += 'failed.<br>';
+          testCasePanelTitle = '<i class="fas fa-times-circle" aria-hidden="true"></i> &nbsp; Test case '
+                             + (i+1) + '/' + nTestCases + ' (' + r.testCaseDetails[i].testCaseType + '): failed.</p><br>';
       }
 
       runtime = r.testCaseDetails[i].processInfo.runtime;
