@@ -61,12 +61,14 @@ class DetailView(View):
             for s in previous_submissions_queryset:
                 logger.info("Found previous submission ID#{:d}".format(s.id))
 
-                if s.runtime_sum < 1e-3:
-                    runtime_sum = "{:d} μs".format(round(s.runtime_sum * 1e6))
+                if s.runtime_sum < 1e-6:
+                    runtime_sum = "{:.3g} ns".format(t * 1e9)
+                elif 1e-6 <= s.runtime_sum < 1e-3:
+                    runtime_sum = "{:.3g} μs".format(t * 1e6)
                 elif 1e-3 < s.runtime_sum < 1:
-                    runtime_sum = "{:d} ms".format(round(s.runtime_sum * 1e3))
+                    runtime_sum = "{:.3g} ms".format(t * 1e3)
                 else:
-                    runtime_sum = "{:d} s".format(round(s.runtime_sum))
+                    runtime_sum = "{:.3g} s".format(t)
 
                 max_mem_usage = "{:d} kB".format(round(s.max_mem_usage))
 
