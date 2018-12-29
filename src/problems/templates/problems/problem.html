@@ -97,6 +97,41 @@
           {% block output_example %}{% endblock %}
         </div>
       </article>
+
+      {% if user.is_authenticated %}
+        <p>You can use the editor below or upload a file to submit your code.</p><br>
+      {% else %}
+        <p>You must be logged in to submit code but you can play around with the editor.</p><br>
+      {% endif %}
+      <form method="post" id="submit-code-or-file-form" enctype="multipart/form-data">
+      <div class="columns is-centered">
+        {% csrf_token %}
+        <div class="column is-three-quarters" style="position: relative;">
+          {% render_field form.code id="editor-textarea" %}
+        </div>
+        <div class="is-divider-vertical" data-content="OR"></div>
+        <div class="column is-one-quarter">
+          <div class="container">
+            {% if user.is_authenticated %}
+              <div class="file has-name is-boxed">
+                <label class="file-label">
+                  {% render_field form.file class+="file-input" %}
+                  <span class="file-cta">
+                    <span class="file-icon"><i class="fas fa-upload"></i></span>
+                    <span class="file-label">Choose file...</span>
+                  </span>
+                  <span class="file-name" id="file-name-span"></span>
+                </label>
+              </div>
+              <br>
+              <button class="button is-primary" type="submit" id="submit-file-button" onclick="this.form.button_clicked=this.id">Submit file</button>
+            {% else %}
+              <p>You must be logged in to upload code.</p>
+            {% endif %}
+          </div>
+        </div>
+        </div>
+      </form>
     </section>
 
     <!-- Submissions tab -->
@@ -137,41 +172,6 @@
           </table>
         </div>
       {% endif %}
-
-      {% if user.is_authenticated %}
-        <p>You can use the editor below or upload a file to submit your code.</p><br>
-      {% else %}
-        <p>You must be logged in to submit code but you can play around with the editor.</p><br>
-      {% endif %}
-      <form method="post" id="submit-code-or-file-form" enctype="multipart/form-data">
-      <div class="columns is-centered">
-        {% csrf_token %}
-        <div class="column is-three-quarters" style="position: relative;">
-          {% render_field form.code id="editor-textarea" %}
-        </div>
-        <div class="is-divider-vertical" data-content="OR"></div>
-        <div class="column is-one-quarter">
-          <div class="container">
-            {% if user.is_authenticated %}
-              <div class="file has-name is-boxed">
-                <label class="file-label">
-                  {% render_field form.file class+="file-input" %}
-                  <span class="file-cta">
-                    <span class="file-icon"><i class="fas fa-upload"></i></span>
-                    <span class="file-label">Choose file...</span>
-                  </span>
-                  <span class="file-name" id="file-name-span"></span>
-                </label>
-              </div>
-              <br>
-              <button class="button is-primary" type="submit" id="submit-file-button" onclick="this.form.button_clicked=this.id">Submit file</button>
-            {% else %}
-              <p>You must be logged in to upload code.</p>
-            {% endif %}
-          </div>
-        </div>
-        </div>
-      </form>
     </section>
 
     <!-- Notes and references tab -->
