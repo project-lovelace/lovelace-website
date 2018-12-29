@@ -37,14 +37,27 @@
   The nominal, minimum, and maximum resistance of the resistor (in that order).
 {% endblock %}
 
-{% block input_example %}
-  ["green", "blue", "yellow", "gold"]<br>
-  ["red", "orange", "violet", "black", "brown"]
-{% endblock %}
-
-{% block output_example %}
-  (560000, 532000, 588000)<br>
-  (237, 234.63, 239.37)
+{% block examples %}
+  <article class="message">
+    <div class="message-header">
+      <p>Example 1</p>
+    </div>
+    <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input resistor band colors</b>: ["green", "blue", "yellow", "gold"]
+───────────────────────────────────────────────────────────────
+<b>Output nominal resistance</b>: 560000
+<b>Output minimum resistance</b>: 532000
+<b>Output maximum resistance</b>: 588000
+  </article>
+  <article class="message">
+    <div class="message-header">
+      <p>Example 2</p>
+    </div>
+    <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input resistor band colors</b>: ["red", "orange", "violet", "black", "brown"]
+─────────────────────────────────────────────────────────────────────────
+<b>Output nominal resistance</b>: 237.00
+<b>Output minimum resistance</b>: 234.63
+<b>Output maximum resistance</b>: 239.37
+  </article>
 {% endblock %}
 
 {% block code_stub %}

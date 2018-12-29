@@ -53,14 +53,25 @@ A two-year range corresponding to a specific winter season (in the Northern Hemi
   Two strings: 1. "El Nino", "La Nina", or "neither" depending whether the season had an El Niño or La Niña event (or neither), and if there was an event, and 2. "weak", "moderate", "strong, or "very strong" depending on the event's intensity. If there was no event, return "none" for the intensity.
 {% endblock %}
 
-{% block input_example %}
-  1997-98<br>
-  1964-54
-{% endblock %}
-
-{% block output_example %}
-  ("el nino", "very strong")<br>
-  ("la nina", "weak")
+{% block examples %}
+  <article class="message">
+    <div class="message-header">
+      <p>Example 1</p>
+    </div>
+    <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input two-year range</b>: "1997-98"
+─────────────────────────────────────────
+<b>Output ENSO classification</b>: "el nino"
+<b>Output ENSO strength</b>:       "very strong"</div>
+  </article>
+  <article class="message">
+    <div class="message-header">
+      <p>Example 2</p>
+    </div>
+    <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input two-year range</b>: "1964-54"
+─────────────────────────────────────
+<b>Output ENSO classification</b>: "la nina"
+<b>Output ENSO strength</b>:       "weak"</div>
+</article>
 {% endblock %}
 
 {% block code_stub %}

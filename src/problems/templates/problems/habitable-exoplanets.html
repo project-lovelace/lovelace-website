@@ -24,19 +24,23 @@
 {% endblock %}
 
 {% block input_description %}
-  The The star's absolute luminosity $L$ and the planet's distance from the star $r$.
+  The star's absolute luminosity $L$ and the planet's distance from the star $r$.
 {% endblock %}
 
 {% block output_description %}
   The string "too cold" if the planet is too far away, "too hot" if it is too close, or "habitable" if it is within the CHZ.
 {% endblock %}
 
-{% block input_example %}
-  (L=1.11, r=1.04)
-{% endblock %}
-
-{% block output_example %}
-  just right
+{% block examples %}
+  <article class="message">
+    <div class="message-header">
+      <p>Example</p>
+    </div>
+    <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input absolute luminosity</b>: 1.11
+<b>Input exoplanet distance</b>:  1.04
+─────────────────────────────────
+<b>Output habitability</b>: "just right"</div>
+  </article>
 {% endblock %}
 
 {% block code_stub %}

@@ -40,12 +40,15 @@
   The RNA sequence corresponding to the input DNA sequence.
 {% endblock %}
 
-{% block input_example %}
-  CCAGGACCAGGCCCCAGGTGGGGCCAGGCCAGGCTC
-{% endblock %}
-
-{% block output_example %}
-  CCAGGACCAGGCCCCAGGUGGGGCCAGGCCAGGCUC
+{% block examples %}
+  <article class="message">
+    <div class="message-header">
+      <p>Example</p>
+    </div>
+    <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input DNA</b>:  "CCAGGACCAGGCCCCAGGTGGGGCCAGGCCAGGCTC"
+──────────────────────────────────────────────────
+<b>Output RNA</b>: "CCAGGACCAGGCCCCAGGUGGGGCCAGGCCAGGCUC"</div>
+  </article>
 {% endblock %}
 
 {% block code_stub %}

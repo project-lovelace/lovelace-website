@@ -33,18 +33,39 @@
   The molecule's mass in atomic mass units (amu).
 {% endblock %}
 
-{% block input_example %}
-  Pa<br>
-  OCS<br>
-  C4H4AsH<br>
-  C20H25N3O
-{% endblock %}
-
-{% block output_example %}
-    231.04<br>
-    60.08<br>
-    128.00<br>
-    323.44
+{% block examples %}
+  <article class="message">
+    <div class="message-header">
+      <p>Example 1</p>
+    </div>
+    <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input chemical formula</b>: Pa
+─────────────────────────────
+<b>Output molecular mass</b>: 231.04</div>
+  </article>
+  <article class="message">
+    <div class="message-header">
+      <p>Example 2</p>
+    </div>
+    <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input chemical formula</b>: OCS
+────────────────────────────
+<b>Output molecular mass</b>: 60.08</div>
+  </article>
+  <article class="message">
+    <div class="message-header">
+      <p>Example 3</p>
+    </div>
+    <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input chemical formula</b>: C4H4AsH
+───────────────────────────────
+<b>Output molecular mass</b>: 128.00</div>
+  </article>
+  <article class="message">
+    <div class="message-header">
+      <p>Example 4</p>
+    </div>
+    <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input chemical formula</b>: C20H25N3O
+─────────────────────────────────
+<b>Output molecular mass</b>: 323.44</div>
+  </article>
 {% endblock %}
 
 {% block code_stub %}
