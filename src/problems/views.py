@@ -154,9 +154,12 @@ class DetailView(View):
         else:
             return HttpResponseBadRequest("Invalid value for button-clicked in POST form.")
 
+        language = request.POST['language']
+        logger.info("Language selected: {:s}".format(language))
+
         submission = {
             'problem': problem_name,
-            'language': 'python3',
+            'language': language,
             'code': raw_code
         }
 

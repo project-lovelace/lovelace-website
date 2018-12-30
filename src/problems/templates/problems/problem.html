@@ -111,7 +111,7 @@
             <div class="select">
               <select id="language-select">
                 <option value="python3">Python (3.6.7)</option>
-                <option value="javascript">Javascript (Nodejs 10.15.0)</option>
+                <option value="javascript">Javascript (Node.js 10.15.0)</option>
                 <option value="julia">Julia (1.0.1)</option>
               </select>
             </div>
@@ -325,8 +325,12 @@
   function sendCodeFile(event, button_clicked) {
     var form = document.forms.namedItem('submit-code-or-file-form');
     var form_data = new FormData(form);
+
+    var language = document.getElementById('language-select').value;
+
     form_data.append('button-clicked', button_clicked)
     form_data.append('raw-code', cm.getValue());
+    form_data.append('language', language);
 
     var xhr = new XMLHttpRequest();
     xhr.open('POST', apiUrl, true);
