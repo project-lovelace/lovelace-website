@@ -106,6 +106,20 @@
         <p>You must be logged in to submit code but you can play around with the editor.</p><br>
       {% endif %}
       <form method="post" id="submit-code-or-file-form" enctype="multipart/form-data">
+        <div class="field">
+          <div class="control has-icons-left">
+            <div class="select">
+              <select id="language-select">
+                <option value="python3">Python (3.6.7)</option>
+                <option value="javascript">Javascript (Nodejs 10.15.0)</option>
+                <option value="julia">Julia (1.0.1)</option>
+              </select>
+            </div>
+            <div class="icon is-small is-left">
+              <i class="fas fa-code"></i>
+            </div>
+          </div>
+        </div>
       <div class="columns is-centered">
         {% csrf_token %}
         <div class="column is-three-quarters" style="position: relative;">
@@ -189,7 +203,10 @@
 
     <!-- Discourse tab -->
     <section data-content="4">
-      <div id='discourse-comments' style="height: 100vh;"></div></section>
+        <p class="has-text-centered">Feel free to discuss the problem, ask questions, and post cool stuff on Discourse. You should be able view the discussion thread below. Feel free to post your solutions but please do your best to <b>organize and document your code well</b> so others can learn from it.</p>
+        <br>
+      <div id='discourse-comments' style="height: 100vh;"></div>
+    </section>
 
     <!-- Solution tab
     <section data-content="5">
