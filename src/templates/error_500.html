@@ -3,14 +3,16 @@
 {% load static %}
 
 {% block page_title %}
-  500 | Project Lovelace
+  HTTP 500 Internal server error | Project Lovelace
 {% endblock %}
 
 
 {% block body %}
 <section classs="section">
   <div class="container">
-    <p class="title is-2 has-text-centered">HTTP Error 500: Internal server error. Sorry, something went wrong...</p>
+    <p class="title is-2"><span style="font-family: monospace;">&rsaquo; HTTP Error 500: Internal server error.</span></p>
+    <br>
+    <p class="subtitle is-3"><span style="font-family: monospace;">Something went wrong. If this should be working, please let us know by posting on <a href="https://discourse.projectlovelace.net/">Discourse</a> under the site feedback category!</span></p>
   </div>
 </section>
 {% endblock %}
