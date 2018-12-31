@@ -18,20 +18,24 @@
     display: block;
   }
 
-  .fa-check-circle, .fa-smile-beam {
-    color: Lime;
+  .fa-check-circle{
+    color: lime;
   }
 
   .fa-times-circle {
     color: red;
   }
 
+  .fa-star {
+      color: gold;
+  }
+
   .fa-grin-beam-sweat {
-    color: Gold;
+    color: gold;
   }
 
   .fa-poo {
-    color: Sienna;
+    color: sienna;
   }
 </style>
 {% endblock %}
@@ -441,7 +445,7 @@
     }
 
     if (passes == nTestCases) {
-      document.getElementById('results-modal-title').innerHTML = '<i class="fas fa-smile-beam"></i>' + ' <b>Passed ' + passes + '/' + nTestCases + ' test cases.</b>';
+      document.getElementById('results-modal-title').innerHTML = '<i class="fas fa-star"></i>' + ' <b>Passed ' + passes + '/' + nTestCases + ' test cases.</b>';
     } else if (passes == 0) {
       document.getElementById('results-modal-title').innerHTML = '<i class="fas fa-poo"></i>' + ' <b>Passed ' + passes + '/' + nTestCases + ' test cases.</b>';
     } else {
