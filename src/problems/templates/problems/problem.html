@@ -99,9 +99,33 @@
       {% block examples %}{% endblock %}
 
       {% if user.is_authenticated %}
-        <p>
-          Write a function that accepts the input described above as function parameters and returns the correct output. Make sure to read the description above to produce the correct output in the correct format as exemplified by the examples.
-        </p><br>
+        <div class="columns is-centered">
+          <div class="column is-two-fifths">
+            <p>Write a function that accepts the input described above as function parameters and returns the correct output. Make sure to read the description above to produce the correct output in the correct format as exemplified by the examples.</p>
+          </div>
+          <div class="column is-three-fifths is-centered">
+            <table class="table is-striped">
+              <tbody>
+                <tr>
+                  <th><i class="fas fa-brain fa-fw"></i>&nbsp;<abbr title="Higher = more math and scientific knowledge required">Difficulty</abbr></th>
+                  <td style="width: 120px;"><progress class="progress is-success" value="3" max="15"></progress></td>
+                  <th><i class="fas fa-hourglass-half fa-fw"></i>&nbsp;<abbr title="Higher = more time needed to code up a solution">Timesink</abbr></th>
+                  <td style="width: 120px;"><progress class="progress is-warning" value="6" max="15"></progress></td>
+                </tr>
+                <tr>
+                  <th><i class="far fa-clock fa-fw"></i>&nbsp;Maximum runtime</th>
+                  <td>500 ms</td>
+                  <th><i class="fas fa-memory fa-fw"></i>&nbsp;Max. memory usage</th>
+                  <td>2 MiB</td>
+                </tr>
+                <tr>
+                  <th><i class="fas fa-file-code fa-fw"></i>&nbsp;Function signature</th>
+                  <td colspan="3"><span style="font-family: monospace;">rocket_fuel(escape_velocity)</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       {% else %}
         <p>You must be logged in to submit code but you can play around with the editor.</p><br>
       {% endif %}
