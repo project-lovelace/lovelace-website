@@ -149,7 +149,7 @@
           <div class="control has-icons-left">
             <div class="select">
               <select id="language-select">
-                <option value="python3">Python (3.6.7)</option>
+                <option value="python3" selected>Python (3.6.7)</option>
                 <option value="javascript">Javascript (Node.js 10.15.0)</option>
                 <option value="julia">Julia (1.0.1)</option>
               </select>
@@ -278,6 +278,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.41.0/theme/monokai.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.41.0/codemirror.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.41.0/mode/python/python.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.41.0/mode/javascript/javascript.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.41.0/mode/julia/julia.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.41.0/addon/display/autorefresh.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.41.0/addon/selection/active-line.js"></script>
 
@@ -292,14 +294,28 @@
 
 <script>
   var editor_textarea = document.getElementById('editor-textarea');
-  var cm = CodeMirror.fromTextArea(editor_textarea, {
+  var editor = CodeMirror.fromTextArea(editor_textarea, {
       autoRefresh:true,
       mode: 'python',
       lineNumbers: true,
       styleActiveLine: true
   });
 
-  cm.setValue(`{% block code_stub %}{% endblock %}`.trim());
+  document.getElementById('language-select').onchange = function() {
+    if (this.value == 'python3') {
+      editor.setValue(`{% block python_code_stub %}{% endblock %}`.trim());
+      editor.setOption('mode', 'python');
+    } else if (this.value == 'javascript') {
+      editor.setValue(`{% block javascript_code_stub %}{% endblock %}`.trim());
+      editor.setOption('mode', 'javascript');
+    } else if (this.value == 'julia') {
+      editor.setValue(`{% block julia_code_stub %}{% endblock %}`.trim());
+      editor.setOption('mode', 'julia');
+    }
+  }
+
+  // Manually trigger so it sets an initial code stube based on what language is initially selected.
+  document.getElementById('language-select').onchange(); 
 </script>
 
 <script>
@@ -368,7 +384,7 @@
     var language = document.getElementById('language-select').value;
 
     form_data.append('button-clicked', button_clicked)
-    form_data.append('raw-code', cm.getValue());
+    form_data.append('raw-code', editor.getValue());
     form_data.append('language', language);
 
     var xhr = new XMLHttpRequest();
