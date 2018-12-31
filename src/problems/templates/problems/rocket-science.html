@@ -51,7 +51,7 @@
 rocket_fuel(escape_velocity)
 {% endblock %}
 
-{% block code_stub %}
+{% block python_code_stub %}
 import math
 
 v_e = 2550  # rocket exhaust velocity [m/s]
@@ -59,6 +59,23 @@ M = 250000  # rocket dry mass [kg]
 
 def rocket_fuel(v):
     return m_fuel
+{% endblock %}
+
+{% block javascript_code_stub %}
+var v_e = 2550  // rocket exhaust velocity [m/s]
+var M = 250000  // rocket dry mass [kg]
+
+function rocket_science(v) {
+  var fuel_mass = M * (Math.exp(v / v_e) - 1);
+  return fuel_mass;
+}
+{% endblock %}
+
+{% block julia_code_stub %}
+JULIA YO!
+
+function rocket_fuel(v)
+    M * (exp(v/v_e) - 1)
 {% endblock %}
 
 {% block notes_and_references %}
