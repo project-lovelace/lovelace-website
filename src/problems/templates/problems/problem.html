@@ -101,22 +101,22 @@
       {% if user.is_authenticated %}
         <div class="columns is-centered">
           <div class="column is-two-fifths">
-            <p>Write a function that accepts the input described above as function parameters and returns the correct output. Make sure to read the description above to produce the correct output in the correct format as exemplified by the examples.</p>
+            <p class="has-text-justified">Write a function that accepts the input as function parameters and returns the correct output. Make sure to read the description above to produce the correct output in the correct format and use the correct function signature so we can run your code. A good first step is to try reproducing the example(s). Your code must not take longer than the maximum runtime to run and must not use more memory than the allowed limit.</p>
           </div>
           <div class="column is-three-fifths is-centered">
             <table class="table is-striped">
               <tbody>
                 <tr>
                   <th><i class="fas fa-brain fa-fw"></i>&nbsp;<abbr title="Higher = more math and scientific knowledge required">Difficulty</abbr></th>
-                  <td style="width: 120px;"><progress class="progress is-success" value="3" max="15"></progress></td>
+                  <td style="width: 120px;"><progress class="progress is-success" value="{{ problem.difficulty  }}" max="15"></progress></td>
                   <th><i class="fas fa-hourglass-half fa-fw"></i>&nbsp;<abbr title="Higher = more time needed to code up a solution">Timesink</abbr></th>
-                  <td style="width: 120px;"><progress class="progress is-warning" value="6" max="15"></progress></td>
+                  <td style="width: 120px;"><progress class="progress is-warning" value="{{ problem.timesink }}" max="15"></progress></td>
                 </tr>
                 <tr>
                   <th><i class="far fa-clock fa-fw"></i>&nbsp;Maximum runtime</th>
-                  <td>500 ms</td>
+                  <td>60 s</td>
                   <th><i class="fas fa-memory fa-fw"></i>&nbsp;Max. memory usage</th>
-                  <td>2 MiB</td>
+                  <td>250 MiB</td>
                 </tr>
                 <tr>
                   <th><i class="fas fa-file-code fa-fw"></i>&nbsp;Function signature</th>
