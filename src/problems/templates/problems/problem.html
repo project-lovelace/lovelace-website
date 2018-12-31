@@ -108,9 +108,24 @@
               <tbody>
                 <tr>
                   <th><i class="fas fa-brain fa-fw"></i>&nbsp;<abbr title="Higher = more math and scientific knowledge required">Difficulty</abbr></th>
-                  <td style="width: 120px;"><progress class="progress is-success" value="{{ problem.difficulty  }}" max="15"></progress></td>
+                  
+                  {% if problem.difficulty <= 5 %}
+                    <td style="width: 120px;"><progress class="progress is-success" value="{{ problem.difficulty  }}" max="15"></progress></td>
+                  {% elif problem.difficulty > 5 and problem.difficulty <= 10 %}
+                    <td style="width: 120px;"><progress class="progress is-warning" value="{{ problem.difficulty  }}" max="15"></progress></td>
+                  {% else %}
+                    <td style="width: 120px;"><progress class="progress is-danger" value="{{ problem.difficulty  }}" max="15"></progress></td>
+                  {% endif %}
+                  
                   <th><i class="fas fa-hourglass-half fa-fw"></i>&nbsp;<abbr title="Higher = more time needed to code up a solution">Timesink</abbr></th>
-                  <td style="width: 120px;"><progress class="progress is-warning" value="{{ problem.timesink }}" max="15"></progress></td>
+                  
+                  {% if problem.timesink <= 5 %}
+                    <td style="width: 120px;"><progress class="progress is-success" value="{{ problem.timesink }}" max="15"></progress></td>
+                  {% elif problem.timesink > 5 and problem.timesink <= 10 %}
+                    <td style="width: 120px;"><progress class="progress is-warning" value="{{ problem.timesink }}" max="15"></progress></td>
+                  {% else %}
+                    <td style="width: 120px;"><progress class="progress is-danger" value="{{ problem.timesink }}" max="15"></progress></td>
+                  {% endif %}
                 </tr>
                 <tr>
                   <th><i class="far fa-clock fa-fw"></i>&nbsp;Maximum runtime</th>
@@ -120,7 +135,7 @@
                 </tr>
                 <tr>
                   <th><i class="fas fa-file-code fa-fw"></i>&nbsp;Function signature</th>
-                  <td colspan="3"><span style="font-family: monospace;">rocket_fuel(escape_velocity)</span></td>
+                  <td colspan="3"><span style="font-family: monospace;">{% block function_signature %}{% endblock %}</span></td>
                 </tr>
               </tbody>
             </table>
