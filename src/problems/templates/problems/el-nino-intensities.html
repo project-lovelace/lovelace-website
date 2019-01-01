@@ -41,7 +41,7 @@
   </p>
   <br>
   <p>
-    A text file (<a href="{% static 'resources/mei_index.txt' %}"><tt>mei_index.txt</tt></a>) containing the MEI index values for each two-month period from 1950 to 2017. See https://www.esrl.noaa.gov/psd/enso/mei/table.html for more details.
+    A text file (<a href="{% static 'resources/mei.ext_index.txt' %}"><tt>mei_index.txt</tt></a>) containing the MEI index values for each two-month period from 1950 to 2017. See https://www.esrl.noaa.gov/psd/enso/mei/table.html for more details.
   </p>
 {% endblock %}
 
@@ -81,15 +81,10 @@ enso_classification(two_year_period)
 {% block python_code_stub %}
 import csv
 
-years = []  # list of two-year ranges, e.g, "1955-56"
-mei = []    # list of lists of MEI values for each two-year range
-
 with open('mei.ext_index.txt') as csvfile:
     reader = csv.reader(csvfile, delimiter='\t')
     next(reader, None)  # skip the header line
-    for row in reader:
-        years.append(int(row[0]))
-        mei.append([float(i) for i in row[1:]])
+    # Your code goes here!
 
 
 def enso_classification(season):

@@ -45,9 +45,28 @@
 logistic_map(r)
 {% endblock %}
 
-{% block code_stub %}
+{% block python_code_stub %}
 def logistic_map(r):
+    x = [0.5]
+
+    # Your code goes here!
+
     return x
+{% endblock %}
+
+{% block javascript_code_stub %}
+function logistic_map(r) {
+  let x = [0.5];
+
+  // Your code goes here!
+
+  return [x];
+}
+{% endblock %}
+
+{% block julia_code_stub %}
+function logistic_map(r)
+end
 {% endblock %}
 
 {% block notes_and_references %}

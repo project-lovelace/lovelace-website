@@ -55,11 +55,28 @@ break_caesar_cipher(ciphertext, known_word)
 {% endblock %}
 
 
-{% block code_stub %}
-import string
-
+{% block python_code_stub %}
 def break_caesar_cipher(ciphertext, known_word):
-    pass
+    alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    plaintext = ''
+
+    # Your code goes here!
+
+    return plaintext
+{% endblock %}
+
+{% block javascript_code_stub %}
+function break_caesar_cipher(ciphertext, known_word) {
+  let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  let plaintext = "";
+
+  // Your code goes here!
+
+  return plaintext;
+}
+{% endblock %}
+
+{% block julia_code_stub %}
 {% endblock %}
 
 {% block notes_and_references %}

@@ -147,9 +147,18 @@
 game_of_life(board, steps)
 {% endblock %}
 
-{% block code_stub %}
+{% block python_code_stub %}
 def game_of_life(board, steps):
-    pass
+    return board
+{% endblock %}
+
+{% block javascript_code_stub %}
+function game_of_life(board, steps) {
+  return board;
+}
+{% endblock %}
+
+{% block julia_code_stub %}
 {% endblock %}
 
 {% block notes_and_references %}

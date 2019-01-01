@@ -47,11 +47,30 @@
 habitable_exoplanet(absolute_luminosity, planet_distance)
 {% endblock %}
 
-{% block code_stub %}
+{% block python_code_stub %}
 from math import sqrt
 
 def habitable_exoplanet(L, r):
-    pass
+    habitability = ''
+
+    # Your code goes here!
+
+    return habitability
+{% endblock %}
+
+{% block javascript_code_stub %}
+function habitable_exoplanet(L, r) {
+  habitability = "";
+
+  // Your code goes here!
+
+  return habitability;
+}
+{% endblock %}
+
+{% block julia_code_stub %}
+function habitable_exoplanet(L, r)
+end
 {% endblock %}
 
 {% block notes_and_references %}

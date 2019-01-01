@@ -72,22 +72,33 @@
 molecular_mass(chemical_formula)
 {% endblock %}
 
-{% block code_stub %}
+{% block python_code_stub %}
 import csv
 
-atomic_masses = {}
-
-# Load atomic masses from periodic table into dictionary.
 with open('periodic_table.csv') as csvfile:
-    ptable_reader = csv.reader(csvfile, delimiter=',')
-    for row in ptable_reader:
-        element_symbol = str(row[0])
-        atomic_mass = float(row[1])
-        atomic_masses[element_symbol] = atomic_mass
-    
+    periodic_table_reader = csv.reader(csvfile, delimiter=',')
+    # Your code goes here!
+
+
 def molecular_mass(chemical_formula):
-    ...
+    mass = 0
+
+    # Your code goes here!
+
     return mass
+{% endblock %}
+
+{% block javascript_code_stub %}
+function molecular_mass(chemical_formula) {
+  let mass = 0;
+
+  // Your code goes here!
+
+  return mass;
+}
+{% endblock %}
+
+{% block julia_code_stub %}
 {% endblock %}
 
 {% block notes_and_references %}
