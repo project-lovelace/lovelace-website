@@ -154,7 +154,7 @@
           <div class="control has-icons-left">
             <div class="select">
               <select id="language-select">
-                <option value="python3" selected>Python (3.6.7)</option>
+                <option value="python" selected>Python (3.6.7)</option>
                 <option value="javascript">Javascript (Node.js 10.15.0)</option>
                 <option value="julia">Julia (1.0.1)</option>
               </select>
@@ -308,7 +308,7 @@
   });
 
   document.getElementById('language-select').onchange = function() {
-    if (this.value == 'python3') {
+    if (this.value == 'python') {
       editor.setValue(`{% block python_code_stub %}{% endblock %}`.trim());
       editor.setOption('mode', 'python');
     } else if (this.value == 'javascript') {

@@ -197,7 +197,7 @@ class DetailView(View):
             user=UserProfile.objects.get(user=request.user),
             problem=problem,
             passed=results['success'],
-            language='Python3',
+            language=language,
             file=file,
             test_cases_passed=test_cases_passed,
             test_cases_total=test_cases_total,
@@ -205,7 +205,7 @@ class DetailView(View):
             max_mem_usage=max_mem_usage,
         )
         submission.save()
-        template = 'problems/results.html'
+        # template = 'problems/results.html'
 
         if button_clicked == "submit-code-button":
             pfile.close()
