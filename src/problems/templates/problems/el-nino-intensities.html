@@ -78,9 +78,45 @@ A two-year range corresponding to a specific winter season (in the Northern Hemi
 enso_classification(two_year_period)
 {% endblock %}
 
-{% block code_stub %}
-def enso_classification(two_year_period):
-    pass
+{% block python_code_stub %}
+import csv
+
+years = []  # list of two-year ranges, e.g, "1955-56"
+mei = []    # list of lists of MEI values for each two-year range
+
+with open('mei.ext_index.txt') as csvfile:
+    reader = csv.reader(csvfile, delimiter='\t')
+    next(reader, None)  # skip the header line
+    for row in reader:
+        years.append(int(row[0]))
+        mei.append([float(i) for i in row[1:]])
+
+
+def enso_classification(season):
+    classification = ''
+    intensity = ''
+    mei = 0.0
+
+    # Your code goes here!
+    # You can also add more code / functions above this function.
+
+    return classification, intensity, mei
+{% endblock %}
+
+{% block javascript_code_stub %}
+function enso_classification(season) {
+  classification = "";
+  intensity = "";
+  mei = 0.0;
+
+  // Your code goes here!
+  // You can also add more code / functions above this function.
+
+  return [classification, intensity, mei];
+}
+{% endblock %}
+
+{% block julia_code_stub %}
 {% endblock %}
 
 {% block notes_and_references %}
