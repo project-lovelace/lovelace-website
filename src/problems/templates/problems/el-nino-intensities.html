@@ -87,7 +87,7 @@ with open('mei.ext_index.txt') as csvfile:
     # Your code goes here!
 
 
-def enso_classification(season):
+def enso_classification(two_year_period):
     classification = ''
     intensity = ''
     mei = 0.0
@@ -99,7 +99,7 @@ def enso_classification(season):
 {% endblock %}
 
 {% block javascript_code_stub %}
-function enso_classification(season) {
+function enso_classification(two_year_period) {
   classification = "";
   intensity = "";
   mei = 0.0;
