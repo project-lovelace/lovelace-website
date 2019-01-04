@@ -7,43 +7,43 @@
 {% endblock %}
 
 {% block problem_body %}
-  <div class="columns is-centered is-vcentered">
-    <div class="column is-three-fifths">
       <p class="has-text-justified">
-      Paragraph 1!!!
+      Ada Lovelace (1815-1852) was an English mathematician who was the first person to realize that computers could be much more than big calculators and published the first complex computer algorithm in 1843. She did this long before any computer existed to execute her algorithm as it was devised for the <a href="https://en.wikipedia.org/wiki/Analytical_Engine">Analytical Engine</a> which never got built. The algorithm, detailed in Note G of <i> Sketch of The Analytical Engine Invented by Charles Babbage by Luigi Menabrea with notes by Ada Lovelace</i> described how the Analytical Engine could calculate the Bernoulli numbers using a recursive algorithm, which you will reproduce here.
       </p>
       <br>
       <p class="has-text-justified">
-      Paragraph 2!!!
+        The Bernoulli numbers $B_n$ are a sequence of rational numbers (fractions) that tend to show up in many places in mathematics, and there are many ways of calculating them. One method is to calculate them recursively where calculating $B_n$ involves knowing $B_0, B_1, \dots, B_{n-1}$. A derivation of how Ada Lovelace came up with the formula is posted in the notes tab, but she essentially used the following formula
+        $$ B_n = -\sum_{k=0}^{n-1} \frac{n!}{(n+1-k)!\cdot k!} B_k = -\sum_{k=0}^{n-1} \binom{n}{k} \frac{B_k}{n+1-k} $$
+        where $B_n$ is calculated from $B_0, B_1, \dots, B_{n-1}$. Here $\displaystyle \binom{n}{k} = \frac{n!}{k!(n-k)!}$ is a binomial coefficient, and $n! = n(n-1)(n-2)\cdots3\cdot2\cdot1$ is the factorial which is the product of all positive integers less than or equal to $n$. $B_0 = 0 $ while there are two choices for $B_1$ corresponding to two conventions and we will choose $\displaystyle B_1 = -\frac{1}{2}$ which most modern textbooks use.
       </p>
-    </div>
-  </div>
+      <br>
+      <figure style="text-align: center;">
+        <img src="{% static 'img/Diagram_for_the_computation_of_Bernoulli_numbers.jpg' %}">
+        <figcaption class="help">
+          Diagram of an algorithm for the Analytical Engine for the computation of Bernoulli numbers, from <i>Sketch of The Analytical Engine Invented by Charles Babbage by Luigi Menabrea with notes by Ada Lovelace</i>. (Source: <a href="https://commons.wikimedia.org/wiki/File:Diagram_for_the_computation_of_Bernoulli_numbers.jpg">Wikimedia Commons</a>)
+        </figcaption>
+      </figure>
+      <br>
+      <p class="has-text-justified">
+      Write a function that calculates $B_n$ and returns the numerator and denominator. If $B_n$ is negative, the minus sign should be included with the numerator.
+      </p>
 {% endblock %}
 
 {% block input_description %}
-  The velocity $v$ the rocket needs to reach (in meters per second [m/s]) to escape the planet.
+  An integer $n$.
 {% endblock %}
 
 {% block output_description %}
-  The mass of fuel $m_\mathrm{fuel}$ needed by the rocket to escape the planet in kilograms (kg).
+  The numerator and denominator of the $n^\textrm{th}$ Bernoulli number $B_n$. If $B_n$ is negative, the minus sign should be included with the numerator.
 {% endblock %}
 
-{% block input_example %}
-  11186.0
+{% block examples %}
 {% endblock %}
 
-{% block output_example %}
-  19843016.2
+{% block python_code_stub %}
 {% endblock %}
 
-{% block code_stub %}
-import math
-
-v_e = 2550  # rocket exhaust velocity [m/s]
-M = 250000  # rocket dry mass [kg]
-
-def rocket_fuel(v):
-    return m_fuel
+{% block javascript_code_stub %}
 {% endblock %}
 
 {% block notes_and_references %}
