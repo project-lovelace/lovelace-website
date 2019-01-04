@@ -89,109 +89,97 @@
   <div class="container" id="tab-content">
     <!-- Description tab -->
     <section data-content="1" class="is-active">
-      <p class="has-text-justified">
-        {% block introduction %}{% endblock %}
-        {% block problem_body %}{% endblock %}
-      </p>
-      <br>
-      
-      <p><strong>Input</strong>: {% block input_description %}{% endblock %}</p>
-      <br>
-      <p><strong>Output</strong>: {% block output_description %}{% endblock %}</p>
-      <br>
-      
-      {% block examples %}{% endblock %}
-
-      <div class="is-divider"></div>
-      <!-- if user.is_authenticated -->
-        <div class="columns is-centered">
-          <div class="column is-two-fifths">
-            <p class="has-text-justified">Write a function that accepts the input as function parameters and returns the correct output. Make sure to read the description above to produce the correct output in the correct format and use the correct function signature so we can run your code. A good first step is to try reproducing the example(s). Your code must not take longer than the maximum runtime to run and must not use more memory than the allowed limit.</p>
-          </div>
-          <div class="column is-three-fifths is-centered">
-            <table class="table is-striped">
-              <tbody>
-                <tr>
-                  <th><i class="fas fa-brain fa-fw"></i>&nbsp;<abbr title="Higher = more math and scientific knowledge required">Difficulty</abbr></th>
-                  
-                  {% if problem.difficulty <= 5 %}
-                    <td style="width: 120px;"><progress class="progress is-success" value="{{ problem.difficulty  }}" max="15"></progress></td>
-                  {% elif problem.difficulty > 5 and problem.difficulty <= 10 %}
-                    <td style="width: 120px;"><progress class="progress is-warning" value="{{ problem.difficulty  }}" max="15"></progress></td>
-                  {% else %}
-                    <td style="width: 120px;"><progress class="progress is-danger" value="{{ problem.difficulty  }}" max="15"></progress></td>
-                  {% endif %}
-                  
-                  <th><i class="fas fa-hourglass-half fa-fw"></i>&nbsp;<abbr title="Higher = more time needed to code up a solution">Timesink</abbr></th>
-                  
-                  {% if problem.timesink <= 5 %}
-                    <td style="width: 120px;"><progress class="progress is-success" value="{{ problem.timesink }}" max="15"></progress></td>
-                  {% elif problem.timesink > 5 and problem.timesink <= 10 %}
-                    <td style="width: 120px;"><progress class="progress is-warning" value="{{ problem.timesink }}" max="15"></progress></td>
-                  {% else %}
-                    <td style="width: 120px;"><progress class="progress is-danger" value="{{ problem.timesink }}" max="15"></progress></td>
-                  {% endif %}
-                </tr>
-                <tr>
-                  <th><i class="far fa-clock fa-fw"></i>&nbsp;Maximum runtime</th>
-                  <td>60 s</td>
-                  <th><i class="fas fa-memory fa-fw"></i>&nbsp;Max. memory usage</th>
-                  <td>250 MiB</td>
-                </tr>
-                <tr>
-                  <th><i class="fas fa-file-code fa-fw"></i>&nbsp;Function signature</th>
-                  <td colspan="3"><span style="font-family: monospace;">{% block function_signature %}{% endblock %}</span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      <!-- else -->
-        <!-- <p>You must be logged in to submit code but you can play around with the editor.</p><br> -->
-      <!-- endif -->
-      <form method="post" id="submit-code-or-file-form" enctype="multipart/form-data">
-        <div class="field">
-          <div class="control has-icons-left">
-            <div class="select">
-              <select id="language-select">
-                <option value="python" selected>Python (3.6.7)</option>
-                <option value="javascript">Javascript (Node.js 10.15.0)</option>
-                <option value="julia">Julia (1.0.1)</option>
-              </select>
-            </div>
-            <div class="icon is-small is-left">
-              <i class="fas fa-code"></i>
-            </div>
-          </div>
-        </div>
       <div class="columns is-centered">
-        {% csrf_token %}
-        <div class="column is-three-quarters" style="position: relative;">
-          {% render_field form.code id="editor-textarea" %}
+        <div class="column is-three-fifths">
+          {% block introduction %}{% endblock %}
+          {% block problem_body %}{% endblock %}
+          <br>
+          <p><strong>Input</strong>: {% block input_description %}{% endblock %}</p>
+          <p><strong>Output</strong>: {% block output_description %}{% endblock %}</p>
+          <br>  
+          {% block examples %}{% endblock %}
         </div>
-        <div class="is-divider-vertical" data-content="OR"></div>
-        <div class="column is-one-quarter">
-          <div class="container">
-            <!-- if user.is_authenticated -->
-              <div class="file has-name is-boxed">
+      </div>
+      <!-- if user.is_authenticated -->
+      <br>
+      <div class="is-divider" style="width: 60%; margin: 0 auto;"></div>
+      <br>
+      <div class="columns is-centered">
+        <div class="column is-three-fifths">
+          <table class="table is-striped is-fullwidth">
+            <tbody>
+              <tr>
+                <th><i class="fas fa-brain fa-fw"></i>&nbsp;<abbr title="Higher = more math and scientific knowledge required">Difficulty</abbr></th>
+                
+                {% if problem.difficulty <= 5 %}
+                  <td style=""><progress class="progress is-success" value="{{ problem.difficulty  }}" max="15"></progress></td>
+                {% elif problem.difficulty > 5 and problem.difficulty <= 10 %}
+                  <td style=""><progress class="progress is-warning" value="{{ problem.difficulty  }}" max="15"></progress></td>
+                {% else %}
+                  <td style=""><progress class="progress is-danger" value="{{ problem.difficulty  }}" max="15"></progress></td>
+                {% endif %}
+                
+                <th><i class="fas fa-hourglass-half fa-fw"></i>&nbsp;<abbr title="Higher = more time needed to code up a solution">Timesink</abbr></th>
+                
+                {% if problem.timesink <= 5 %}
+                  <td style=""><progress class="progress is-success" value="{{ problem.timesink }}" max="15"></progress></td>
+                {% elif problem.timesink > 5 and problem.timesink <= 10 %}
+                  <td style=""><progress class="progress is-warning" value="{{ problem.timesink }}" max="15"></progress></td>
+                {% else %}
+                  <td style=""><progress class="progress is-danger" value="{{ problem.timesink }}" max="15"></progress></td>
+                {% endif %}
+              </tr>
+              <tr>
+                <th><i class="far fa-clock fa-fw"></i>&nbsp;Maximum runtime</th>
+                <td>60 s</td>
+                <th><i class="fas fa-memory fa-fw"></i>&nbsp;Max. memory usage</th>
+                <td>250 MiB</td>
+              </tr>
+              <tr>
+                <th><i class="fas fa-file-code fa-fw"></i>&nbsp;Function signature</th>
+                <td colspan="3"><span style="font-family: monospace;">{% block function_signature %}{% endblock %}</span></td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="has-text-justified">Write a function that accepts the input as function parameters and returns the correct output. Make sure to read the description above to produce the correct output in the correct format and use the correct function signature so we can run your code. A good first step is to try reproducing the example(s). Your code must not take longer than the maximum runtime to run and must not use more memory than the allowed limit.</p>
+          <br>
+          <form method="post" id="submit-code-or-file-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="container">
+              <div class="file has-name is-full-width">
                 <label class="file-label">
                   {% render_field form.file class+="file-input" %}
                   <span class="file-cta">
-                    <span class="file-icon"><i class="fas fa-upload"></i></span>
+                    <span class="file-icon">
+                      <i class="fas fa-upload"></i>
+                    </span>
                     <span class="file-label">Choose file...</span>
                   </span>
                   <span class="file-name" id="file-name-span"></span>
                 </label>
               </div>
-              <br>
-              <button class="button is-primary" type="submit" id="submit-file-button" onclick="this.form.button_clicked=this.id">Submit file</button>
-            <!-- endif -->
-              <!-- <p>You must be logged in to upload code.</p> -->
-            <!-- endif -->
-          </div>
+            </div>
+            <br>
+            <button class="button is-primary" type="submit" id="submit-file-button" onclick="this.form.button_clicked=this.id">Submit file</button>                  
+            <div class="is-divider" data-content="OR"></div>
+            <div class="field">
+              <div class="control has-icons-left">
+                <div class="select">
+                  <select id="language-select">
+                    <option value="python" selected>Python (3.6.7)</option>
+                    <option value="javascript">Javascript (Node.js 10.15.0)</option>
+                    <option value="julia">Julia (1.0.1)</option>
+                  </select>
+                </div>
+                <div class="icon is-small is-left">
+                  <i class="fas fa-code"></i>
+                </div>
+              </div>
+            </div>
+            {% render_field form.code id="editor-textarea" %}
+          </form>
         </div>
-        </div>
-      </form>
+      </div>
       <br> <!-- Leave some space between "Submit code" button and the footer -->
     </section>
 
@@ -243,14 +231,22 @@
 
     <!-- Notes and references tab -->
     <section data-content="3">
-      {% block notes_and_references %}{% endblock %}
+      <div class="columns is-centered">
+        <div class="column is-three-fifths">
+          {% block notes_and_references %}{% endblock %}
+        </div>
+      </div>
     </section>
 
     <!-- Discourse tab -->
     <section data-content="4">
-        <p class="has-text-centered">Feel free to discuss the problem, ask questions, and post cool stuff on Discourse. You should be able view the discussion thread below. Feel free to post your solutions but please do your best to <b>organize and document your code well</b> so others can learn from it.</p>
-        <br>
-      <div id='discourse-comments' style="height: 100vh;"></div>
+      <div class="columns is-centered">
+        <div class="column is-three-fifths">
+          <p class="has-text-centered">Feel free to discuss the problem, ask questions, and post cool stuff on Discourse. You should be able view the discussion thread below. Feel free to post your solutions but please do your best to <b>organize and document your code well</b> so others can learn from it.</p>
+          <br>
+          <div id='discourse-comments' style="height: 100vh;"></div>
+        </div>
+      </div>
     </section>
 
     <!-- Solution tab
