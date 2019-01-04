@@ -12,22 +12,17 @@
     Say an earthquake occurs at some unknown location $(x_0,y_0)$ on a 2D plane. It will emit seismic waves which travel through the Earth and are detected by seismograph stations. More than one type of wave is emitted but we'll just consider the faster compressional P-waves which travel at around $v = 6 \; \text{km/s}$ and arrive at the seismographs first.
   </p>
   <br>
-  <div class="columns is-centered">
-    <div class="column is-one-third">
-      <figure style="text-align: center;">
-        <img src="{% static 'img/earthquake_trilateration.png' %}">
-        <figcaption class="help">
-          To give an idea of the problem, here's a schematic of the domain with the three seismographs at the centers of the colored circles. We can draw a circle around each seismograph whose radius is equal to the distance from the seismograph to the earthquake epicenter.
-      </figure>
-    </div>
-    <div class="column is-one-quarter">
-      <figure style="text-align: center;">
-        <img src="{% static 'img/seismic_waves.jpg' %}">
-        <figcaption class="help">
-          The P-waves are faster and arrive at the seismograph before the shearing S-waves. They are both types of elastic body waves as they travel through the Earth with the P-waves being longitudinal while the S-waves being transverse. You can also think of the P and S as standing for primary and secondary. The surface waves are the slowest of the three and do the most damange as evidenced by the high ground motion registered on the seismograph. (Image credit: <a href="http://library.open.oregonstate.edu/earthquakes/chapter/earthquake-basics/">Living with Earthquakes in the Pacific Northwest, Yeats</a>)
-      </figure>
-    </div>
-  </div>
+  <figure style="text-align: center;">
+    <img style="width: 70%; margin: 0 auto;" src="{% static 'img/earthquake_trilateration.png' %}">
+    <figcaption class="help">
+      To give an idea of the problem, here's a schematic of the domain with the three seismographs at the centers of the colored circles. We can draw a circle around each seismograph whose radius is equal to the distance from the seismograph to the earthquake epicenter.
+  </figure>
+  <figure style="text-align: center;">
+    <img style="width: 50%; margin: 0 auto;"  src="{% static 'img/seismic_waves.jpg' %}">
+    <figcaption class="help">
+      The P-waves are faster and arrive at the seismograph before the shearing S-waves. They are both types of elastic body waves as they travel through the Earth with the P-waves being longitudinal while the S-waves being transverse. You can also think of the P and S as standing for primary and secondary. The surface waves are the slowest of the three and do the most damange as evidenced by the high ground motion registered on the seismograph. (Image credit: <a href="http://library.open.oregonstate.edu/earthquakes/chapter/earthquake-basics/">Living with Earthquakes in the Pacific Northwest, Yeats</a>)
+  </figure>
+  <br>
   <p class="has-text-justified">
     Given the position of three seismographs $(x_i,y_i)$ and arrival time of the seismic waves at each seismograph $t_i$ where $i=1,2,3$ as inputs, determine and return the earthquake's epicenter $(x_0,y_0)$.
   </p>

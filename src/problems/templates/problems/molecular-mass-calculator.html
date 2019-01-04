@@ -11,15 +11,12 @@
     Molecules are made up of atoms, so to calculate the mass of a molecule you just add up the masses of the atoms but each atom has a different mass.Atoms are so light that using grams to describe their mass is pretty annoying so we use other units like the atomic mass unit (amu). 1 amu is defined as one twelevth the mass of a carbon-12 atom, or $1.661 \times 10^{-27} \; \mathrm{kg}$. For example, water (H<sub>2</sub>O) is a molecule made up of two hydrogens and an oxygen. The hydrogen (H) atoms have a mass of 1.008 amu while carbon (C) has a mass of 12.011 amu and the heaviest atom on the periodic table, Oganesson (Og), has a mass of 294 amu while a methane molecule (CH<sub>4</sub>) has a mass of 16.04 amu.
   </p>
   <br>
-  <div class="columns is-centered">
-    <div class="column is-half">
-      <figure style="text-align: center;">
-        <img src="{% static 'img/molecular_masses.png' %}">
-        <figcaption class="help">
-          A bunch of different molecules: trinitrotoluene or TNT (C<sub>7</sub>H<sub>5</sub>N<sub>3</sub>O<sub>6</sub>), ethanol (C<sub>2</sub>H<sub>5</sub>OH), water (H<sub>2</sub>O), chloroform (CHCl<sub>3</sub>), and adenosine triphosphate or ATP (C<sub>10</sub>H<sub>16</sub>N<sub>5</sub>O<sub>13</sub>P<sub>3</sub>). An example calculation is shown for methane (CH<sub>4</sub>). The atoms are colored according to the CPK coloring convention so hydrogen atoms are white, carbon is gray, nitrogen is blue, oxygen is red, chlorine is green, and phosphorus is orange.
-      </figure>
-    </div>
-  </div>
+  <figure style="text-align: center;">
+    <img src="{% static 'img/molecular_masses.png' %}">
+    <figcaption class="help">
+      A bunch of different molecules: trinitrotoluene or TNT (C<sub>7</sub>H<sub>5</sub>N<sub>3</sub>O<sub>6</sub>), ethanol (C<sub>2</sub>H<sub>5</sub>OH), water (H<sub>2</sub>O), chloroform (CHCl<sub>3</sub>), and adenosine triphosphate or ATP (C<sub>10</sub>H<sub>16</sub>N<sub>5</sub>O<sub>13</sub>P<sub>3</sub>). An example calculation is shown for methane (CH<sub>4</sub>). The atoms are colored according to the CPK coloring convention so hydrogen atoms are white, carbon is gray, nitrogen is blue, oxygen is red, chlorine is green, and phosphorus is orange.
+  </figure>
+  <br>
   <p class="has-text-justified">
     Given the chemical formula of a molecule, return its mass in amu. You might find <a href="{% static 'resources/periodic_table.csv' %}"><tt>periodic_table.csv</tt></a> useful. It's a comma-separated file containing all the elements from the periodic table and their masses in amu. The starter code in the submissions tab shows how you can read the data from the file and store it in a dictionary in Python.
   </p>

@@ -20,28 +20,22 @@
     To deal with the finite size of the grid we'll impose periodic (or toroidal) boundary conditions, that is, to treat the left and right edges of the grid to be stitched together so that moving across the right boundary returns you to the left boundary (and we will do the same with the top and bottom edges).
   </p>
   <br>
-  <div class="columns is-centered">
-    <div class="column is-one-third">
-      <figure style="text-align: center;">
-        <video controls>
-          <source src="{% static 'video/still_oscillator_patterns.webm' %}" type="video/webm">
-          <p>Your browser doesn't support HTML5 webm video.</p>
-        </video> 
-        <figcaption class="help">
-          A bunch of still life patterns that do not change shape under the evolution rules, and some oscillator patterns that flip between the same patterns again and again.
-      </figure>
-    </div>
-    <div class="column is-half">
-      <figure style="text-align: center;">
-        <video controls>
-          <source src="{% static 'video/glider_gun_destruction.webm' %}" type="video/webm">
-          <p>Your browser doesn't support HTML5 webm video.</p>
-        </video> 
-        <figcaption class="help">
-          A glider gun pattern that generate gliders, which are spaceship patterns that move across the grid. In this case, the gliders go down the bottom of the grid and reappear at the top due to the periodic boundary conditions. After the gliders go through the right boundary they reappear on the left and destroy the glider gun that created them.
-      </figure>
-    </div>
-  </div>
+  <figure style="text-align: center;">
+    <video controls>
+      <source src="{% static 'video/still_oscillator_patterns.webm' %}" type="video/webm">
+      <p>Your browser doesn't support HTML5 webm video.</p>
+    </video> 
+    <figcaption class="help">
+      A bunch of still life patterns that do not change shape under the evolution rules, and some oscillator patterns that flip between the same patterns again and again.
+  </figure>
+  <figure style="text-align: center;">
+    <video controls>
+      <source src="{% static 'video/glider_gun_destruction.webm' %}" type="video/webm">
+      <p>Your browser doesn't support HTML5 webm video.</p>
+    </video> 
+    <figcaption class="help">
+      A glider gun pattern that generate gliders, which are spaceship patterns that move across the grid. In this case, the gliders go down the bottom of the grid and reappear at the top due to the periodic boundary conditions. After the gliders go through the right boundary they reappear on the left and destroy the glider gun that created them.
+  </figure>
   <p class="has-text-justified">
     Given an initial configuration for the grid, run the Game of Life simulation for $N$ time steps (also an input) and return the state of the grid.
   </p>

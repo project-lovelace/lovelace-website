@@ -7,27 +7,24 @@
 {% endblock %}
 
 {% block problem_body %}
-  <p class="has-text-justified">
-    Ever since ancient civilizations could write letter to each other, people have wanted to keep some messages secret in case they were intercepted by someone else. To do this, they used an encryption scheme or secret code to encrypt their message before sending it. The receiver could then decrypt it and read it if they knew how to decrypt it. In cryptography the original unencrypted message is called the plaintext (usually shown in all lowercase) while the encrypted message is the ciphertext (SHOWN IN ALL UPPERCASE).
-  </p>
-  <br>
-  <div class="columns is-centered">
-    <div class="column is-one-third">
-      <figure class="image" style="text-align: center;">
-        <img src="{% static 'img/caesar_cipher.png' %}">
-        <figcaption class="help">
-          A Caesar cipher using a right shift of 3 (which is the same as a left shift of 23). (<a href="https://commons.wikimedia.org/wiki/File:Caesar_cipher_left_shift_of_3.svg">Wikimedia Commons</a>)
-        </figcaption>
-      </figure>
-    </div>
-  </div>
-  <p class="has-text-justified">
-    A famous method of encrypting a message is the Caesar cipher. It involves using a shifted alphabet instead of the regular alphabet. For example, a shift of 13 will involve changing A to N, B to O, C to P, and so on. It is a very weak cipher that provides no security nowadays but was actually secure at the time when no one knew of cryptography.
-  </p>
-  <br>
-  <p class="has-text-justified">
-    If you knew even a single word that is present in the ciphertext, that would be enough to break the caesar cipher and reveal the secret message. Given the ciphertext and a word that definitely exists in the plaintext, return the plaintext message.
-  </p>
+<p class="has-text-justified">
+  Ever since ancient civilizations could write letter to each other, people have wanted to keep some messages secret in case they were intercepted by someone else. To do this, they used an encryption scheme or secret code to encrypt their message before sending it. The receiver could then decrypt it and read it if they knew how to decrypt it. In cryptography the original unencrypted message is called the plaintext (usually shown in all lowercase) while the encrypted message is the ciphertext (SHOWN IN ALL UPPERCASE).
+</p>
+<br>
+<figure class="image" style="text-align: center;">
+  <img src="{% static 'img/caesar_cipher.png' %}" style="width: 60%; margin: 0 auto;">
+  <figcaption class="help">
+    A Caesar cipher using a right shift of 3 (which is the same as a left shift of 23). (<a href="https://commons.wikimedia.org/wiki/File:Caesar_cipher_left_shift_of_3.svg">Wikimedia Commons</a>)
+  </figcaption>
+</figure>
+<br>
+<p class="has-text-justified">
+  A famous method of encrypting a message is the Caesar cipher. It involves using a shifted alphabet instead of the regular alphabet. For example, a shift of 13 will involve changing A to N, B to O, C to P, and so on. It is a very weak cipher that provides no security nowadays but was actually secure at the time when no one knew of cryptography.
+</p>
+<br>
+<p class="has-text-justified">
+  If you knew even a single word that is present in the ciphertext, that would be enough to break the caesar cipher and reveal the secret message. Given the ciphertext and a word that definitely exists in the plaintext, return the plaintext message.
+</p>
 {% endblock %}
 
 {% block input_description %}
@@ -39,11 +36,11 @@
 {% endblock %}
 
 {% block examples %}
-  <article class="message">
-    <div class="message-header">
-      <p>Example</p>
-    </div>
-    <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input ciphertext</b>: "QEB NRFZH YOLTK CLU GRJMP LSBO QEB IXWV ALD"
+<article class="message">
+  <div class="message-header">
+    <p>Example</p>
+  </div>
+  <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input ciphertext</b>: "QEB NRFZH YOLTK CLU GRJMP LSBO QEB IXWV ALD"
 <b>Input word</b>:       "fox"
 ───────────────────────────────────────────────────────────────
 <b>Output plaintext</b>: "the quick brown fox jumps over the lazy dog"</div>
