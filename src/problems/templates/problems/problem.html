@@ -103,7 +103,7 @@
       {% block examples %}{% endblock %}
 
       <div class="is-divider"></div>
-      {% if user.is_authenticated %}
+      <!-- if user.is_authenticated -->
         <div class="columns is-centered">
           <div class="column is-two-fifths">
             <p class="has-text-justified">Write a function that accepts the input as function parameters and returns the correct output. Make sure to read the description above to produce the correct output in the correct format and use the correct function signature so we can run your code. A good first step is to try reproducing the example(s). Your code must not take longer than the maximum runtime to run and must not use more memory than the allowed limit.</p>
@@ -146,9 +146,9 @@
             </table>
           </div>
         </div>
-      {% else %}
-        <p>You must be logged in to submit code but you can play around with the editor.</p><br>
-      {% endif %}
+      <!-- else -->
+        <!-- <p>You must be logged in to submit code but you can play around with the editor.</p><br> -->
+      <!-- endif -->
       <form method="post" id="submit-code-or-file-form" enctype="multipart/form-data">
         <div class="field">
           <div class="control has-icons-left">
@@ -172,7 +172,7 @@
         <div class="is-divider-vertical" data-content="OR"></div>
         <div class="column is-one-quarter">
           <div class="container">
-            {% if user.is_authenticated %}
+            <!-- if user.is_authenticated -->
               <div class="file has-name is-boxed">
                 <label class="file-label">
                   {% render_field form.file class+="file-input" %}
@@ -185,9 +185,9 @@
               </div>
               <br>
               <button class="button is-primary" type="submit" id="submit-file-button" onclick="this.form.button_clicked=this.id">Submit file</button>
-            {% else %}
-              <p>You must be logged in to upload code.</p>
-            {% endif %}
+            <!-- endif -->
+              <!-- <p>You must be logged in to upload code.</p> -->
+            <!-- endif -->
           </div>
         </div>
         </div>
@@ -487,7 +487,8 @@
           + '<div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word;">'
           + processInfoString
           + '<b>Input</b>:<br>' + r.testCaseDetails[i].inputString + '<br>'
-          + '<b>Output</b>:<br>' + r.testCaseDetails[i].outputString
+          + '<b>Output</b>:<br>' + r.testCaseDetails[i].outputString + '<br>'
+          + '<b>Expected</b>:<br>' + r.testCaseDetails[i].expectedString
           + '</div></article>';
     }
 
@@ -502,7 +503,7 @@
   }
 </script>
 
-{% if user.is_authenticated %}
+<!-- if user.is_authenticated %} -->
 <script>
   // Add a "submit code" button below the CodeMirror editor after the
   // editor has loaded, otherwise when the editor html is inserted it
@@ -518,7 +519,7 @@
   editor_textarea.parentNode.appendChild(document.createElement("br"));
   editor_textarea.parentNode.appendChild(submit_code_button);
 </script>
-{% endif %}
+<!--  endif -->
 
 <script type="text/javascript">
   DiscourseEmbed = {
