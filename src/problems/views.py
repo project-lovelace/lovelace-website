@@ -124,13 +124,17 @@ class DetailView(View):
 
         username = request.user.username or 'anonymous'
 
+        language = request.POST['language']
+        logger.info("Language selected: {:s}".format(language))
+
         if button_clicked == 'submit-code-button':
             editor_code = request.POST['raw-code']
             logger.info("User code:\n{:}".format(editor_code))
             raw_code = str(base64.b64encode(bytes(editor_code, 'utf-8')), 'utf-8')
+            extension = {'python': 'py', 'javascript': 'js', 'julia': 'jl'}.get(language)
 
             t = datetime.datetime.now()
-            user_code_filename = "{:}_{:}_{:}.py".format(problem_name, username, t.strftime("%Y%m%d%H%M%S"))
+            user_code_filename = "{:}_{:}_{:}.{}".format(problem_name, username, t.strftime("%Y%m%d%H%M%S"), extension)
             user_code_filepath = os.path.join(settings.MEDIA_ROOT, "uploads", str(t.year), str(t.month), str(t.day), user_code_filename)
 
             user_code_dir = os.path.dirname(user_code_filepath)
@@ -145,19 +149,27 @@ class DetailView(View):
             pfile.write(editor_code)
             # We close pfile at the end, after the submission has been saved.
 
+            logger.debug("user_code_filepath = {}".format(user_code_filepath))
+            logger.debug("user_code_filename = {}".format(user_code_filename))
+            logger.debug("user_code_dir = {}".format(user_code_dir))
+            logger.debug("django file.name = {}".format(file.name))
+
         elif button_clicked == 'submit-file-button':
-            file = form.files['file']
+            try:
+                file = form.files['file']
+            except KeyError:
+                return JsonResponse({'error': 'Please attach your file before submitting.'})
+                # return HttpResponseBadRequest('Please attach your file before submitting.')
 
             if file.size > MAX_FILE_SIZE_BYTES:
-                return HttpResponseBadRequest('File must be smaller than {} bytes'.format(MAX_FILE_SIZE_BYTES))
+                return JsonResponse({'error': 'File must be smaller than {} bytes.'.format(MAX_FILE_SIZE_BYTES)})
+                # return HttpResponseBadRequest('File must be smaller than {} bytes'.format(MAX_FILE_SIZE_BYTES))
 
             raw_code = str(base64.b64encode(file.read()), 'utf-8')
 
         else:
-            return HttpResponseBadRequest("Invalid value for button-clicked in POST form.")
-
-        language = request.POST['language']
-        logger.info("Language selected: {:s}".format(language))
+            return JsonResponse({'error': 'Invalid value for button-clicked in POST form.'})
+            # return HttpResponseBadRequest("Invalid value for button-clicked in POST form.")
 
         submission = {
             'problem': problem_name,
