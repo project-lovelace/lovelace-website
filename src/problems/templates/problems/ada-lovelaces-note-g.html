@@ -14,7 +14,7 @@
       <p class="has-text-justified">
         The Bernoulli numbers $B_n$ are a sequence of rational numbers (fractions) that tend to show up in many places in mathematics, and there are many ways of calculating them. One method is to calculate them recursively where calculating $B_n$ involves knowing $B_0, B_1, \dots, B_{n-1}$. A derivation of how Ada Lovelace came up with the formula is posted in the notes tab, but she essentially used the following formula
         $$ B_n = -\sum_{k=0}^{n-1} \frac{n!}{(n+1-k)!\cdot k!} B_k = -\sum_{k=0}^{n-1} \binom{n}{k} \frac{B_k}{n+1-k} $$
-        where $B_n$ is calculated from $B_0, B_1, \dots, B_{n-1}$. Here $\displaystyle \binom{n}{k} = \frac{n!}{k!(n-k)!}$ is a binomial coefficient, and $n! = n(n-1)(n-2)\cdots3\cdot2\cdot1$ is the factorial which is the product of all positive integers less than or equal to $n$. $B_0 = 0 $ while there are two choices for $B_1$ corresponding to two conventions and we will choose $\displaystyle B_1 = -\frac{1}{2}$ which most modern textbooks use.
+        where $B_n$ is calculated from $B_0, B_1, \dots, B_{n-1}$. Here $\displaystyle \binom{n}{k} = \frac{n!}{k!(n-k)!}$ is a binomial coefficient, and $n! = n(n-1)(n-2)\cdots3\cdot2\cdot1$ is the factorial which is the product of all positive integers less than or equal to $n$. $B_0 = 1$ while there are two choices for $B_1$ corresponding to two conventions and we will choose $\displaystyle B_1 = -\frac{1}{2}$ which most modern textbooks use.
       </p>
       <br>
       <figure style="text-align: center;">
@@ -34,7 +34,7 @@
 {% endblock %}
 
 {% block output_description %}
-  The numerator and denominator of the $n^\textrm{th}$ Bernoulli number $B_n$. If $B_n$ is negative, the minus sign should be included with the numerator.
+  The numerator and denominator of the $n^\textrm{th}$ Bernoulli number $B_n$. If $B_n$ is negative, the minus sign should be included with the numerator. If $B_n = 0$ then return a numerator of 0 and a denominator of 1.
 {% endblock %}
 
 {% block examples %}
