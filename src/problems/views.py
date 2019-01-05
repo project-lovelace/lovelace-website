@@ -17,6 +17,7 @@ from django.core.files import File
 
 from .forms import CodeSubmissionForm
 from .models import Problem, Submission
+from django.contrib.auth.models import User
 from users.models import UserProfile
 
 ENGINE_URL = 'http://localhost:14714/submit'
@@ -122,16 +123,28 @@ class DetailView(View):
         button_clicked = request.POST['button-clicked']
         logger.info("Button clicked: {:}".format(button_clicked))
 
-        username = request.user.username or 'anonymous'
+        logger.debug("Anon user looks like: {}".format(request.user))
+
+        if request.user.username:
+            username = request.user.username
+            user = request.user
+            user_profile = UserProfile.objects.get(user=user)
+        else:
+            username = 'anonymous'
+            user = User.objects.get(username=username)
+            user_profile = UserProfile.objects.get(user=user)
+
+        logger.info("Submission from user: {}".format(user))
+        logger.info("Submission from user_profile: {}".format(user_profile))
 
         language = request.POST['language']
+        extension = {'python': 'py', 'javascript': 'js', 'julia': 'jl'}.get(language)
         logger.info("Language selected: {:s}".format(language))
 
         if button_clicked == 'submit-code-button':
             editor_code = request.POST['raw-code']
             logger.info("User code:\n{:}".format(editor_code))
             raw_code = str(base64.b64encode(bytes(editor_code, 'utf-8')), 'utf-8')
-            extension = {'python': 'py', 'javascript': 'js', 'julia': 'jl'}.get(language)
 
             t = datetime.datetime.now()
             user_code_filename = "{:}_{:}_{:}.{}".format(problem_name, username, t.strftime("%Y%m%d%H%M%S"), extension)
@@ -207,32 +220,30 @@ class DetailView(View):
             runtime_sum += tc['processInfo']['runtime']
             max_mem_usage = max(max_mem_usage, tc['processInfo']['max_mem_usage'])
 
-        if username != 'anonymous':
-            submission = Submission(
-                user=UserProfile.objects.get(user=request.user),
-                problem=problem,
-                passed=results['success'],
-                language=language,
-                file=file,
-                test_cases_passed=test_cases_passed,
-                test_cases_total=test_cases_total,
-                runtime_sum=runtime_sum,
-                max_mem_usage=max_mem_usage,
-            )
-            submission.save()
+        submission = Submission(
+            user=user_profile,
+            problem=problem,
+            passed=results['success'],
+            language=language,
+            file=file,
+            test_cases_passed=test_cases_passed,
+            test_cases_total=test_cases_total,
+            runtime_sum=runtime_sum,
+            max_mem_usage=max_mem_usage,
+        )
+        submission.save()
 
-            # Increment user's submission count by 1.
-            UserProfile.objects.filter(user=request.user).update(submissions_made=F('submissions_made') + 1)
-
-            # If successful and is user's first successful submission, increment problem's solved_by and user's problems_solved.
-            if results['success']:
-                current_user_profile = UserProfile.objects.get(user=request.user)
-                num_previous_successful_submissions = Submission.objects.filter(user=current_user_profile, passed=True, problem__name=problem_name).count()
-                logger.info("# previous successful submissions: {:}".format(num_previous_successful_submissions))
-                if num_previous_successful_submissions == 1:
-                    logger.info("User {:} successfully solved {:}. Incrementing problem's solved_by 1 to TODO.".format(request.user, problem_name))
-                    Problem.objects.filter(name=problem_name).update(solved_by=F('solved_by') + 1)
-                    UserProfile.objects.filter(user=request.user).update(problems_solved=F('problems_solved') + 1)
+        # Increment user's submission count by 1.
+        # user_profile.update(submissions_made=F('submissions_made') + 1)
+        UserProfile.objects.filter(user=user).update(submissions_made=F('submissions_made') + 1)  # this can be simplified
+        # If successful and is user's first successful submission, increment problem's solved_by and user's problems_solved.
+        if results['success']:
+            num_previous_successful_submissions = Submission.objects.filter(user=user_profile, passed=True, problem__name=problem_name).count()
+            logger.info("# previous successful submissions: {:}".format(num_previous_successful_submissions))
+            if num_previous_successful_submissions == 1:
+                logger.info("User {:} successfully solved {:}. Incrementing problem's solved_by 1 to TODO.".format(user_profile, problem_name))
+                Problem.objects.filter(name=problem_name).update(solved_by=F('solved_by') + 1)
+                UserProfile.objects.filter(user=user).update(problems_solved=F('problems_solved') + 1)  # this can be simplified
 
         if button_clicked == "submit-code-button":
             pfile.close()
