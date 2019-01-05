@@ -464,11 +464,13 @@
 
       runtime = r.testCaseDetails[i].processInfo.runtime;
       if (runtime < 1e-3) {
-        runtime_str = String(Math.round(runtime * 1e6)) + " μs";
+        runtime = runtime * 1e6;
+        runtime_str = String(runtime.toPrecision(3)) + " μs";
       } else if (runtime < 1) {
-        runtime_str = String(Math.round(runtime * 1e3)) + " ms";
+        runtime = runtime * 1e3;
+        runtime_str = String(runtime.toPrecision(3)) + " ms";
       } else {
-        runtime_str = String(Math.round(runtime)) + " s";
+        runtime_str = String(runtime.toPrecision(3)) + " s";
       }
 
       max_mem_usage = r.testCaseDetails[i].processInfo.max_mem_usage;
