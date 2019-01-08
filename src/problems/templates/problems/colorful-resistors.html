@@ -8,7 +8,7 @@
 
 {% block problem_body %}
 <p class="has-text-justified">
-  Let's use dictionaries (you don't have to of course) to look at resistors, which are common electric components found in virtually every electronic circuit. Resistors come with a resistance rating $\;\Omega$ (measured in Ohms) that describes how difficult it is to pass an electric current through the resistor. This resistance rating is indicated by four or five colored bands on the resistor itself (see table).
+  Let's use dictionaries (you don't have to of course) to look at resistors, which are common electric components found in virtually every electronic circuit. Resistors come with a resistance rating $\;\Omega$ (measured in Ohms) that describes how difficult it is to pass an electric current through the resistor. This resistance rating is indicated by four or five colored bands on the resistor itself (see table). A resistor may have only one band, in which case it is a single blank band and the resistor has zero resistance.
 </p>
 <br>
 <figure class="image" style="text-align: center;">
@@ -19,10 +19,11 @@
 </figure>
 <br>
 <p class="has-text-justified">
-  For a four band resistor, the first two color bands indicate the first two digits of the resistance value with the third band indicating a multiplier, and the last band indicates a tolerance. For a five band resistor, the first three color bands indicate the first three digits of the resistance value followed by a fourth band (multiplier) and a fifth band (tolerance). A resistor with a single black band has zero resistance.
+  For a four band resistor, the first two color bands indicate the first two digits of the resistance value with the third band indicating a multiplier, and the last band indicates a tolerance. For a five band resistor, the first three color bands indicate the first three digits of the resistance value followed by a fourth band (multiplier) and a fifth band (tolerance). Keep in mind that the tolerance is a relative tolerance, like ±5&percnt;, which can be written as ±0.05 without the &percnt; sign.
 </p>
+<br>
 <p class="has-text-justified">
-  Using a list of colors as input compute the nominal resistance (i.e. whithout any tolerance), as well as the minimum and maximum resistance value of the resistor, and return them in that order.
+  Using a list of colors as input compute the nominal resistance (i.e. as told by the colored bands, whithout any tolerance), as well as the minimum and maximum resistance value of the resistor, and return them in that order.
 </p>
 {% endblock %}
 
@@ -37,7 +38,7 @@
 {% block examples %}
   <article class="message">
     <div class="message-header">
-      <p>Example 1</p>
+      <p>Example 1 (four-band resistor)</p>
     </div>
     <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input resistor band colors</b>: ["green", "blue", "yellow", "gold"]
 ───────────────────────────────────────────────────────────────
@@ -47,7 +48,7 @@
   </article>
   <article class="message">
     <div class="message-header">
-      <p>Example 2</p>
+      <p>Example 2 (five-band resistor)</p>
     </div>
     <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input resistor band colors</b>: ["red", "orange", "violet", "black", "brown"]
 ─────────────────────────────────────────────────────────────────────────
@@ -178,6 +179,7 @@ let i_drink_kool_aid = True;
 
 {% block notes_and_references %}
   <div class="content">
+    <h3>Notes</h3>
     <ul>
       <li>Since $1\;\Omega$ is a very small resistance, it's more common to express resistance in kilohms ($1\;\text{k}\Omega = 1,000\;\Omega$), megaohms ($1\;\text{M}\Omega = 1,000,000\;\Omega$), or even gigaohms ($1\;\text{G}\Omega = 1,000,000,000\;\Omega$).</li>
       <li>Nowadays it's easier to use a multimeter to measure it's actual resistance value. Calculating a resistor's value and tolerance from the color bands used to be more commonplace in the past when multimeters weren't as widespread or cheap.</li>
