@@ -82,8 +82,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'projectlovelace',
-        'USER': 'admin',
-        'PASSWORD': 'database-password',
+        'USER': 'postgres',
+        'PASSWORD': 'lovelace',
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -137,19 +137,19 @@ LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
 # SSL/HTTPS settings
-SECURE_SSL_REDIRECT = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
+#SECURE_SSL_REDIRECT = True
+#SESSION_COOKIE_SECURE = True
+#CSRF_COOKIE_SECURE = True
 
 # HTTP Strict Transport Security
-SECURE_HSTS_SECONDS = 60
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-# SECURE_HSTS_PRELOAD = True  # KEEP THIS OFF UNLESS YOU UNDERSTAND THE CONSEQUENCES!
+#SECURE_HSTS_SECONDS = 60
+#SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+#SECURE_HSTS_PRELOAD = True  # KEEP THIS OFF UNLESS YOU UNDERSTAND THE CONSEQUENCES!
 
 # More recommended security settings
-SECURE_CONTENT_TYPE_NOSNIFF = True
-SECURE_BROWSER_XSS_FILTER = True
-X_FRAME_OPTIONS = 'DENY'
+#SECURE_CONTENT_TYPE_NOSNIFF = True
+#SECURE_BROWSER_XSS_FILTER = True
+#X_FRAME_OPTIONS = 'DENY'
 
 # Persist database connections for better performance
 # KEEP OFF UNTIL WE KNOW THIS IS LOWER THAN POSTGRES' "IDLE CONNECTION TIMEOUT"
@@ -158,14 +158,14 @@ X_FRAME_OPTIONS = 'DENY'
 # Email server settings
 # See: https://docs.djangoproject.com/en/2.1/topics/email/
 
-EMAIL_HOST = 'smtp.mailgun.org'
-EMAIL_HOST_USER = 'postmaster@mg.projectlovelace.net'
-EMAIL_HOST_PASSWORD = 'mailgun-password'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-# EMAIL_USE_SSL = True
+#EMAIL_HOST = 'smtp.mailgun.org'
+#EMAIL_HOST_USER = 'postmaster@mg.projectlovelace.net'
+#EMAIL_HOST_PASSWORD = 'mailgun-password'
+#EMAIL_PORT = 587
+#EMAIL_USE_TLS = True
+#EMAIL_USE_SSL = True
 
-DEFAULT_FROM_EMAIL = "Ada Lovelace <ada@mg.projectlovelace.net>"
+#DEFAULT_FROM_EMAIL = "Ada Lovelace <ada@mg.projectlovelace.net>"
 
 LOGGING = {
     'version': 1,
@@ -197,5 +197,5 @@ ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window
 
 # Discourse settings.
 # See: https://meta.discourse.org/t/sso-example-for-django/14258
-DISCOURSE_BASE_URL = 'http://discourse.projectlovelace.net'
-DISCOURSE_SSO_SECRET = 'discourse-sso-secret'
+#DISCOURSE_BASE_URL = 'http://discourse.projectlovelace.net'
+#DISCOURSE_SSO_SECRET = 'discourse-sso-secret'
