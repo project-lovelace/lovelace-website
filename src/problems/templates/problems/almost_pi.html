@@ -3,19 +3,19 @@
 {% load static %}
 
 {% block useful_to_know %}
-	???.
+	loops, summation, pi is everywhere.
 {% endblock %}
 
 {% block problem_body %}
-  If you ever flew in a plane, you'd 
+  The number π=3.1415926535897... is the ratio of a circle's circumference to its diameter and shows up absolutely everywhere in math and science.
 {% endblock %}
 
 {% block input_description %}
-  (Latitude, longitude) coordinates of two points.
+  The number of terms to use in calculating π.
 {% endblock %}
 
 {% block output_description %}
-  The distance between the points in kilometers (km).
+  The approximation to π.
 {% endblock %}
 
 {% block examples %}
@@ -23,15 +23,14 @@
     <div class="message-header">
       <p>Example</p>
     </div>
-    <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input point 1 (latitude, longitude) </b>: (a, b)
-<b>Input point 2 (latitude, longitude) </b>: (c, d)
+    <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input N</b>: 100
 ──────────────────────────────
-<b>Output distance</b>: ???</div>
+<b>Output approximation</b>: ???</div>
   </article>
 {% endblock %}
 
 {% block function_signature %}
-shortest_distance(a, b, c, d)
+almost_pi(N)
 {% endblock %}
 
 {% block python_code_stub %}
@@ -55,8 +54,8 @@ shortest_distance(a, b, c, d)
     {<--
     <h3>Notes</h3>
     <ul>
-      <li>https://en.wikipedia.org/wiki/Great-circle_distance</li>
-      <li>https://en.wikipedia.org/wiki/Vincenty%27s_formulae</li>
+      <li>Pi is a transcendental number and its digital expansion contains...</li>
+      <li>Beautiful visualization</li>
     </ul> -->
     
     <--
