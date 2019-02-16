@@ -1,0 +1,72 @@
+{% extends "problems/problem.html" %}
+
+{% load static %}
+
+{% block useful_to_know %}
+	???.
+{% endblock %}
+
+{% block problem_body %}
+
+{% endblock %}
+
+{% block input_description %}
+  (Latitude, longitude) coordinates of two points.
+{% endblock %}
+
+{% block output_description %}
+  The distance between the points in kilometers (km).
+{% endblock %}
+
+{% block examples %}
+  <article class="message">
+    <div class="message-header">
+      <p>Example</p>
+    </div>
+    <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input point 1 (latitude, longitude) </b>: (a, b)
+<b>Input point 2 (latitude, longitude) </b>: (c, d)
+──────────────────────────────
+<b>Output distance</b>: ???</div>
+  </article>
+{% endblock %}
+
+{% block function_signature %}
+haversine(a, b, c, d)
+{% endblock %}
+
+{% block python_code_stub %}
+{% endblock %}
+
+{% block javascript_code_stub %}
+{% endblock %}
+
+{% block julia_code_stub %}
+{% endblock %}
+
+{% block notes_and_references %}
+  <div class="content">
+    {% if solved_by_user %}
+    <h3>Solution notes</h3>
+    <ul>
+      <li></li>
+    </ul>
+    {% endif %}
+
+    {<--
+    <h3>Notes</h3>
+    <ul>
+      <li>https://en.wikipedia.org/wiki/Great-circle_distance</li>
+      <li>https://en.wikipedia.org/wiki/Vincenty%27s_formulae</li>
+    </ul> -->
+    
+    <--
+    <h3>References</h3>
+    <dl>
+      <dt></dt>
+      <dd></dd>
+    </dl> -->
+  </div>
+{% endblock %}
+
+{% block discourse_topic_id %}xx{% endblock %}
+
