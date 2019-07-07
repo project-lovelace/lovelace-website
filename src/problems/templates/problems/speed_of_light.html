@@ -1,0 +1,70 @@
+{% extends "problems/problem.html" %}
+
+{% load static %}
+
+{% block useful_to_know %}
+	submitting code, basic math operations, light is <i>fast</i>.
+{% endblock %}
+
+{% block problem_body %}
+  Light is really fast. 299,792,458 meters per second to be exact. That's almost 300,000 km/s, or ~6 times around the Earth in one second.
+{% endblock %}
+
+{% block input_description %}
+  A distance in meters (m).
+{% endblock %}
+
+{% block output_description %}
+  The time it takes for light to travel the input distance in seconds (s).
+{% endblock %}
+
+{% block examples %}
+  <article class="message">
+    <div class="message-header">
+      <p>Example</p>
+    </div>
+    <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input distance</b>: 40075017
+──────────────────────────────
+<b>Output time</b>: 0.133676</div>
+  </article>
+{% endblock %}
+
+{% block function_signature %}
+light_time(distance)
+{% endblock %}
+
+{% block python_code_stub %}
+{% endblock %}
+
+{% block javascript_code_stub %}
+{% endblock %}
+
+{% block julia_code_stub %}
+{% endblock %}
+
+{% block notes_and_references %}
+  <div class="content">
+    {% if solved_by_user %}
+    <h3>Solution notes</h3>
+    <ul>
+      <li></li>
+    </ul>
+    {% endif %}
+
+    {<--
+    <h3>Notes</h3>
+    <ul>
+      <li>The <a href="https://en.wikipedia.org/wiki/R%C3%B8mer%27s_determination_of_the_speed_of_light">first measurement of the speed of light</a> was made in 1676 by Ole Rømer...</li>
+    </ul> -->
+    
+    <--
+    <h3>References</h3>
+    <dl>
+      <dt></dt>
+      <dd></dd>
+    </dl> -->
+  </div>
+{% endblock %}
+
+{% block discourse_topic_id %}xx{% endblock %}
+

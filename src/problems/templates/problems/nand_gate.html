@@ -1,0 +1,71 @@
+{% extends "problems/problem.html" %}
+
+{% load static %}
+
+{% block useful_to_know %}
+	if statements, logic gates.
+{% endblock %}
+
+{% block problem_body %}
+  You probably have billions of logic gates in your phone and laptop. They are tiny circuits that perform basic boolean operations, usually with 2 inputs. They work with 0's and 1's. An AND operation produces 1 only if both of its inputs are 1, otherwise it produces 0. The NAND (NOT AND) operation is complement to that of an AND operation...
+{% endblock %}
+
+{% block input_description %}
+  The temperature in Fahrenheit (°F).
+{% endblock %}
+
+{% block output_description %}
+  The temperature in Celcius (°C).
+{% endblock %}
+
+{% block examples %}
+  <article class="message">
+    <div class="message-header">
+      <p>Example</p>
+    </div>
+    <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input A</b>: 1
+<b>Input B</b>: 1
+──────────────────────────────
+<b>Output NAND(A, B)</b>: 0</div>
+  </article>
+{% endblock %}
+
+{% block function_signature %}
+NAND(A, B)
+{% endblock %}
+
+{% block python_code_stub %}
+{% endblock %}
+
+{% block javascript_code_stub %}
+{% endblock %}
+
+{% block julia_code_stub %}
+{% endblock %}
+
+{% block notes_and_references %}
+  <div class="content">
+    {% if solved_by_user %}
+    <h3>Solution notes</h3>
+    <ul>
+      <li></li>
+    </ul>
+    {% endif %}
+
+    {<--
+    <h3>Notes</h3>
+    <ul>
+      <li>The NAND gate (and NOR gate) is special in that it's a universal gate so you can build any other gate using a NAND gate.</li>
+    </ul> -->
+    
+    <--
+    <h3>References</h3>
+    <dl>
+      <dt></dt>
+      <dd></dd>
+    </dl> -->
+  </div>
+{% endblock %}
+
+{% block discourse_topic_id %}xx{% endblock %}
+
