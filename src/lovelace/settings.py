@@ -165,7 +165,7 @@ LOGOUT_REDIRECT_URL = 'home'
 # EMAIL_USE_TLS = True
 # EMAIL_USE_SSL = True
 
-DEFAULT_FROM_EMAIL = "Ada Lovelace <ada@mg.projectlovelace.net>"
+#DEFAULT_FROM_EMAIL = "Ada Lovelace <ada@mg.projectlovelace.net>"
 
 LOGGING = {
     'version': 1,
