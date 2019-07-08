@@ -28,7 +28,7 @@
             {% for problem in latest_problem_list %}
               {% if problem.visible %}
                 <tr>
-                  <th>{{ problem.id  }}</th>
+                  <th>{{ problem.order_id  }}</th>
                   <th>
                     {% if user.is_authenticated %}
                       {% if problem.id in problems_solved %}

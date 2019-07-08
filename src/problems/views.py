@@ -31,8 +31,8 @@ class IndexView(generic.ListView):
     context_object_name = 'latest_problem_list'
 
     def get_queryset(self):
-        """Return all problems, sorted chronologically."""
-        return Problem.objects.order_by('date_added')
+        """Return all problems, sorted by order ID."""
+        return Problem.objects.order_by('order_id')
 
     def get_context_data(self, **kwargs):
         """ Add a list of problems solved by the user, if authenticated. """
