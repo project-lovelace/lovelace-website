@@ -29,6 +29,9 @@ class Problem(models.Model):
 
     id = models.AutoField(primary_key=True)
 
+    # The order of the problems in the problem list/table.
+    order_id = models.IntegerField(unique=True, validators=[MinValueValidator(0)], editable=True, null=True)
+
     # Unique name for database and urls, e.g. "earthquake-epicenters".
     name = models.CharField(unique=True, max_length=256, editable=True)
 
