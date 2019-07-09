@@ -7,11 +7,14 @@
 {% endblock %}
 
 {% block problem_body %}
-  Light is really fast. 299,792,458 meters per second to be exact. That's almost 7.5 times around the Earth in one second!
+  Light is really fast: 299,792,458 meters per second to be exact. That's fast enough to make it almost 7.5 times around the Earth in one second! A spacecraft would take a few days to reach the Moon, but a beam of light could do it in 1.255 seconds.
+  <br>
   <br>
   <figure style="text-align: center;">
     <img src="{% static 'img/Earth_to_moon_light_distance.gif' %}">
   </figure>
+  <br>
+  We can calculate how long it takes a beam of light to reach places in space. Since light travels at a constant speed $c$, the time $t$ it takes to travel a distance $d$ is $t = d/c$. Try to submit some code with a function <tt>light_time(distance)</tt> that returns the time it takes light to travel that distance.
   <br>
 {% endblock %}
 
@@ -28,9 +31,9 @@
     <div class="message-header">
       <p>Example</p>
     </div>
-    <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input distance</b>: 40075017
-──────────────────────────────
-<b>Output time</b>: 0.133676</div>
+    <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input distance</b>: 376291900
+─────────────────────────
+<b>Output time</b>: 1.255175</div>
   </article>
 {% endblock %}
 
@@ -39,6 +42,10 @@ light_time(distance)
 {% endblock %}
 
 {% block python_code_stub %}
+def light_time(distance):
+    c = 299792458
+    # Calculate the time taken using t = d/c.
+    return t
 {% endblock %}
 
 {% block javascript_code_stub %}
@@ -58,6 +65,8 @@ light_time(distance)
 
     <h3>Notes</h3>
     <ul>
+      <li>The speed of light is usually denoted by lowercase $c$ in most of science, apparently for "constant" or from the Latin <i>celeritas</i> meaning quickness or swiftness.</li>
+      <li>Light takes 1.255 seconds to travel from the surface of the Earth to the surface of the Moon. The average distance between the Earth and Moon is 384,400 km but the radius of the Earth is 6,371 km and the radius of the Moon is 1,737 km, so in this case light actually travels 384,400 - 6,371, - 1,737 = 376,292 km. </li>
       <li>The <a href="https://en.wikipedia.org/wiki/R%C3%B8mer%27s_determination_of_the_speed_of_light">first measurement of the speed of light</a> was made in 1676 by Ole Rømer...</li>
     </ul>
 
