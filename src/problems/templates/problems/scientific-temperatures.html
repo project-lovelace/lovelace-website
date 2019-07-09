@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block problem_body %}
-  Science in done in Celcius...
+  Science is done in Celcius...
 {% endblock %}
 
 {% block input_description %}
@@ -30,10 +30,13 @@
 {% endblock %}
 
 {% block function_signature %}
-scientific_temperature(f)
+celcius(F)
 {% endblock %}
 
 {% block python_code_stub %}
+def celcius(F):
+    # Your code goes here: calculate the temperature in Celcius, store in a variable (we called it C), and return it!
+    return C
 {% endblock %}
 
 {% block javascript_code_stub %}
@@ -51,18 +54,13 @@ scientific_temperature(f)
     </ul>
     {% endif %}
 
-    {<--
     <h3>Notes</h3>
     <ul>
-      <li>Neither Celcius or Fahrenheit are good for science so there's Kelvin which is zero at the lowest temperature physically possible (-273.15 C, or absolute zero).</li>
-    </ul> -->
-    
-    <--
-    <h3>References</h3>
-    <dl>
-      <dt></dt>
-      <dd></dd>
-    </dl> -->
+      <li>This problem is inspired by the second example in the famous book <a href="https://en.wikipedia.org/wiki/The_C_Programming_Language">The C Programming Language</a>.</li>
+      <li>The Celcius and Farenheit scales read the same temperature at -40! This is one of the test cases.</li>
+      <li>Neither Celcius or Fahrenheit are good for science as a temperature of 0 degrees still means that some thermal energy exists. Scientists use the <a href="https://en.wikipedia.org/wiki/Kelvin">Kelvin scale</a> which is 0 degrees Kelvin (K) at <a href="https://en.wikipedia.org/wiki/Third_law_of_thermodynamics">absolute zero</a> (-273.15°C), the temperature at which all molecular motion ceases. Interestingly, the <a href="https://en.wikipedia.org/wiki/Third_law_of_thermodynamics">third law of thermodynamics</a> says it's impossible to reach absolute zero.</li>
+      <li><b>Weird stuff:</b> You can have weird physical systems with <a href="https://en.wikipedia.org/wiki/Negative_temperature">negative temperatures</a>. Some systems still have some energy at absolute zero due to <a href="https://en.wikipedia.org/wiki/Zero-point_energy">zero-point energy</a> in quantum mechanics.</li>
+    </ul>
   </div>
 {% endblock %}
 
