@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block problem_body %}
-  Science is done in Celcius...
+  Science is done in Celsius...
   <br>
   <figure style="text-align: center;">
     <img src="{% static 'img/fahrenheit_celsius_thermometer.jpg' %}">
@@ -20,7 +20,7 @@
 {% endblock %}
 
 {% block output_description %}
-  The temperature in Celcius (°C).
+  The temperature in Celsius (°C).
 {% endblock %}
 
 {% block examples %}
@@ -30,17 +30,17 @@
     </div>
     <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input Fahrenheit temperature</b>: 77.9
 ──────────────────────────────
-<b>Output Celcius temperature</b>: 25.5</div>
+<b>Output Celsius temperature</b>: 25.5</div>
   </article>
 {% endblock %}
 
 {% block function_signature %}
-celcius(F)
+Celsius(F)
 {% endblock %}
 
 {% block python_code_stub %}
-def celcius(F):
-    # Your code goes here: calculate the temperature in Celcius, store in a variable (we called it C), and return it!
+def Celsius(F):
+    # Your code goes here: calculate the temperature in Celsius, store in a variable (we called it C), and return it!
     return C
 {% endblock %}
 
@@ -62,8 +62,8 @@ def celcius(F):
     <h3>Notes</h3>
     <ul>
       <li>This problem is inspired by the second example in the famous book <a href="https://en.wikipedia.org/wiki/The_C_Programming_Language">The C Programming Language</a>.</li>
-      <li>The Celcius and Farenheit scales read the same temperature at -40! This is one of the test cases.</li>
-      <li>Neither Celcius or Fahrenheit are good for science as a temperature of 0 degrees still means that some thermal energy exists. Scientists use the <a href="https://en.wikipedia.org/wiki/Kelvin">Kelvin scale</a> which is 0 degrees Kelvin (K) at <a href="https://en.wikipedia.org/wiki/Third_law_of_thermodynamics">absolute zero</a> (-273.15°C), the temperature at which all molecular motion ceases. Interestingly, the <a href="https://en.wikipedia.org/wiki/Third_law_of_thermodynamics">third law of thermodynamics</a> says it's impossible to reach absolute zero.</li>
+      <li>The Celsius and Farenheit scales read the same temperature at -40! This is one of the test cases.</li>
+      <li>Neither Celsius or Fahrenheit are good for science as a temperature of 0 degrees still means that some thermal energy exists. Scientists use the <a href="https://en.wikipedia.org/wiki/Kelvin">Kelvin scale</a> which is 0 degrees Kelvin (K) at <a href="https://en.wikipedia.org/wiki/Third_law_of_thermodynamics">absolute zero</a> (-273.15°C), the temperature at which all molecular motion ceases. Interestingly, the <a href="https://en.wikipedia.org/wiki/Third_law_of_thermodynamics">third law of thermodynamics</a> says it's impossible to reach absolute zero.</li>
       <li><b>Weird stuff:</b> You can have weird physical systems with <a href="https://en.wikipedia.org/wiki/Negative_temperature">negative temperatures</a>. Some systems still have some energy at absolute zero due to <a href="https://en.wikipedia.org/wiki/Zero-point_energy">zero-point energy</a> in quantum mechanics.</li>
     </ul>
   </div>
