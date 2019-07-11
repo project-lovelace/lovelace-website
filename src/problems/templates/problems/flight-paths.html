@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block problem_body %}
-  If you ever flew in a plane, you'd
+  If you ever flew in a plane, you probably realized that the plane took a curved path instead of a straight path (if you were looking at a flat map). This is because on a sphere, the shortest distance between two points is along a <i>great circle</i>. This is more obvious when you plot the straight and curved paths on a flat map (which uses the Mercator projection) and on a sphere.
   <br>
   <figure style="text-align: center;">
     <img src="{% static 'img/Flight_paths_Mercator.png' %}">
@@ -18,6 +18,9 @@
     <img src="{% static 'img/Flight_paths_sphere.png' %}">
   </figure>
   <br>
+  The distance of the curved path between two points $(\phi_1, \lambda_1)$ and $(\phi_2, \lambda_2)$ where $\phi$ indicates latitude and $\lambda$ indicates longitude is
+  $$ 2R \sqrt{ \sin^2 \left( \frac{\phi_2 - \phi_1}{2} \right) + \cos\phi_1 \cos\phi_2 \sin^2 \left( \frac{\lambda_2 - \lambda_1}{2} \right)} $$
+  where $R$ = 6372.1 km is the radius of the Earth.
 {% endblock %}
 
 {% block input_description %}
@@ -58,21 +61,14 @@ shortest_distance(a, b, c, d)
     {% if solved_by_user %}
     <h3>Solution notes</h3>
     <ul>
-      <li></li>
+      <li>In this problem we used the <a href="https://en.wikipedia.org/wiki/Haversine_formula">Haversine formula</a> which calculates the <a href="https://en.wikipedia.org/wiki/Great-circle_distance">great-circle distance</a> assuming the Earth is a perfect sphere so it can be off by up to 0.5%. <a href="https://en.wikipedia.org/wiki/Vincenty%27s_formulae">Vincenty's formulae</a> account for the oblate spheroid shape of the Earth and are much more accurate, being off only by <0.5 mm.</li>
     </ul>
     {% endif %}
 
     <h3>Notes</h3>
     <ul>
-      <li>https://en.wikipedia.org/wiki/Great-circle_distance</li>
-      <li>https://en.wikipedia.org/wiki/Vincenty%27s_formulae</li>
+      <li></li>
     </ul>
-
-    <h3>References</h3>
-    <dl>
-      <dt></dt>
-      <dd></dd>
-    </dl>
   </div>
 {% endblock %}
 
