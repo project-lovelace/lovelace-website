@@ -1,0 +1,50 @@
+{% extends "problems/problem.html" %}
+
+{% load static %}
+
+{% block useful_to_know %}
+	statistics, ...?
+{% endblock %}
+
+{% block problem_body %}
+    Stuff about temperature variations
+{% endblock %}
+
+{% block input_description %}
+  A list of temperatures in degrees Celsius.
+{% endblock %}
+
+{% block output_description %}
+  The average temperature, and the temperaure variance.
+{% endblock %}
+
+{% block examples %}
+  <article class="message">
+    <div class="message-header">
+      <p>Example</p>
+    </div>
+    <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input temperatures</b>: [..., ..., ...]
+─────────────────────────
+<b>Output time</b>: 1.255175</div>
+  </article>
+{% endblock %}
+
+{% block function_signature %}
+temperature_statistics(Ts)
+{% endblock %}
+
+{% block python_code_stub %}
+def light_time(distance):
+{% endblock %}
+
+{% block javascript_code_stub %}
+{% endblock %}
+
+{% block julia_code_stub %}
+{% endblock %}
+
+{% block notes_and_references %}
+{% endblock %}
+
+{% block discourse_topic_id %}xx{% endblock %}
+
