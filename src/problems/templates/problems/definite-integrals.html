@@ -7,10 +7,16 @@
 {% endblock %}
 
 {% block problem_body %}
+  <br><br>
+  <figure style="text-align: center;">
+    <img src="{% static 'img/Riemann_sum_convergence.png' %}">
+  </figure>
+  <br>
 {% endblock %}
 
 {% block input_description %}
   A list of rectangle heights. Negative numbers indicate...
+
 {% endblock %}
 
 {% block output_description %}
@@ -50,18 +56,10 @@ definite_integral(n)
     </ul>
     {% endif %}
 
-    {<--
     <h3>Notes</h3>
     <ul>
-      <li></li>
-    </ul> -->
-    
-    <--
-    <h3>References</h3>
-    <dl>
-      <dt></dt>
-      <dd></dd>
-    </dl> -->
+      <li>Thanks to <a href="https://discourse.projectlovelace.net/t/possible-new-problem-definite-integrals/59">rmueller</a> for suggesting this problem!</li>
+    </ul>
   </div>
 {% endblock %}
 

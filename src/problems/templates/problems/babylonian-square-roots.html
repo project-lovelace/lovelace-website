@@ -7,6 +7,13 @@
 {% endblock %}
 
 {% block problem_body %}
+  The basic idea is to start with a guess $x_0$ for $\sqrt{S}$. Then we can improve on this guess: if $x_n$ is an overestimate to $\sqrt{S}$ then $S/x_n$ will be an underestimate, so averaging the two should produce a better guess:
+  $$ x_{n+1} = \frac{1}{2} \left( x_n + \frac{S}{x_n} \right) $$
+  <br><br>
+  <figure style="text-align: center;">
+    <img src="{% static 'img/YBC7289.jpg' %}">
+  </figure>
+  <br>
 {% endblock %}
 
 {% block input_description %}
@@ -50,18 +57,16 @@ babylonian_sqrt(n)
     </ul>
     {% endif %}
 
-    {<--
     <h3>Notes</h3>
     <ul>
       <li></li>
-    </ul> -->
-    
-    <--
+    </ul>
+
     <h3>References</h3>
     <dl>
       <dt></dt>
       <dd></dd>
-    </dl> -->
+    </dl>
   </div>
 {% endblock %}
 

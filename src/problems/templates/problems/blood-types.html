@@ -7,6 +7,13 @@
 {% endblock %}
 
 {% block problem_body %}
+  Each person has different blood depending on which antibodies and antigens bind to the surface of their red blood cells. They can be categorized in many different ways, but the two most important are the ABO group system (with four groups: A, B, AB, O) and the Rh blood group system (with two groups: +, -). They determine whether blood is suitable for transfusion. Determining whether blood is suitable for transfusion isn't super simple but the chart below
+  <br><br>
+  <figure style="text-align: center;">
+    <img src="{% static 'img/blood_types_compatibilities.png' %}">
+  </figure>
+  <br>
+  Hospitals have blood banks that collect blood donations and store them until they're needed by patients. Every time a patient needs a blood transfusion, the hospital needs to check that they have some suitable blood that can be accepted by the patient's body.
 {% endblock %}
 
 {% block input_description %}
@@ -52,18 +59,13 @@ survive(blood_type, available_blood_types)
     </ul>
     {% endif %}
 
-    {<--
     <h3>Notes</h3>
     <ul>
-      <li></li>
-    </ul> -->
-    
-    <--
-    <h3>References</h3>
-    <dl>
-      <dt></dt>
-      <dd></dd>
-    </dl> -->
+      <li>The <a href="https://en.wikipedia.org/wiki/ABO_blood_group_system">ABO blood group system</a> categorizes blood by the presence or absence of two <a href="https://en.wikipedia.org/wiki/Oligosaccharide">oligosaccharides</a>. The A oligosaccharide  is present in A blood, the B oligosaccharide is present in B blood, both are present in AB blood, and neither is present in O blood.</li>
+      <li>The <a href="https://en.wikipedia.org/wiki/Rh_blood_group_system">Rh blood group system</a> categorizes blood by the presence of the Rh(D) antigen. It's present in + blood, and absent in - blood.</li>
+      <li>There are over 200 <a href="https://en.wikipedia.org/wiki/Human_blood_group_systems#Rare_blood_types">rare blood types</a> that can complicate blood transfusions.</li>
+      <li>You could die if your body receives blood that is not suitable.</li>
+    </ul>
   </div>
 {% endblock %}
 

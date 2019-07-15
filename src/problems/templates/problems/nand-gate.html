@@ -7,7 +7,16 @@
 {% endblock %}
 
 {% block problem_body %}
-  You probably have billions of logic gates in your phone and laptop. They are tiny circuits that perform basic boolean operations, usually with 2 inputs. They work with 0's and 1's. An AND operation produces 1 only if both of its inputs are 1, otherwise it produces 0. The NAND (NOT AND) operation is complement to that of an AND operation...
+  You have billions of logic gates in your phone and laptop. They're tiny circuits that work with 0's and 1's and perform basic boolean operations, usually with 2 inputs.
+  <br><br>
+  <figure style="text-align: center;">
+    <img src="{% static 'img/NAND_logic_gates.png' %}">
+  </figure>
+  <br><br>
+  A simple logic gate would be the NOT gate, which inverts the input so a 0 becomes a 1 and vice versa. An AND gate produces 1 only if both of its inputs are 1, otherwise it produces 0.
+  <br><br>
+  The NAND gate is a an AND gate followed by a NOT gate, so it's performing a (NOT AND) operation. Try to write a function <tt>NAND(A, B)</tt> that returns the output of a NAND gate.
+  <br>
 {% endblock %}
 
 {% block input_description %}
@@ -25,7 +34,7 @@
     </div>
     <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input A</b>: 1
 <b>Input B</b>: 1
-──────────────────────────────
+────────────────────
 <b>Output NAND(A, B)</b>: 0</div>
   </article>
 {% endblock %}
@@ -45,26 +54,12 @@ NAND(A, B)
 
 {% block notes_and_references %}
   <div class="content">
-    {% if solved_by_user %}
-    <h3>Solution notes</h3>
-    <ul>
-      <li></li>
-    </ul>
-    {% endif %}
-
-    {<--
     <h3>Notes</h3>
     <ul>
-      <li>The NAND gate (and NOR gate) is special in that it's a universal gate so you can build any other gate using a NAND gate.</li>
-    </ul> -->
-    
-    <--
-    <h3>References</h3>
-    <dl>
-      <dt></dt>
-      <dd></dd>
-    </dl> -->
-  </div>
+      <li>All logic gates are made using <a href="https://en.wikipedia.org/wiki/Transistor">transistors</a> so transistors are the building blocks of all phones and computers.</li>
+      <li>The NAND gate (and NOR gate) is special in that it's a <a href="https://en.wikipedia.org/wiki/NAND_logic">universal gate</a> so you can build any other gate using a NAND gate. You could even build a CPU completely out of NAND gates, although it would probably be bigger and slower than if you just used the actual gates you needed.</li>
+      <li><a href="https://www.nand2tetris.org/">NAND to Tetris</a> teaches you how to build a computer that plays tetris from the ground up starting with NAND gates!</li>
+    </ul>
 {% endblock %}
 
 {% block discourse_topic_id %}xx{% endblock %}
