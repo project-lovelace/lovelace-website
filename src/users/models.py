@@ -9,9 +9,11 @@ from django.core.validators import MinValueValidator, MinLengthValidator, MaxLen
 
 from django_countries.fields import CountryField
 
+
 def avatar_file_name(instance, filename):
     # We want a relative URL, not an absolute URL so I didn't use '/'.join(). Relative to MEDIA_ROOT.
     return "users/" + instance.user.username + "/" + filename
+
 
 class UserProfile(models.Model):
     id = models.AutoField(primary_key=True)
@@ -34,8 +36,11 @@ class UserProfile(models.Model):
             validators=[MaxLengthValidator(50)],
             help_text="Maximum length of 50 characters.")
 
+    subscribe_to_emails = models.BooleanField(default=True, help_text="Subscribe to emails.")
+
     # The default avatar actually resides in media/static/img. I couldn't get it to link to the actual static/...
     avatar = models.ImageField(upload_to=avatar_file_name, max_length=100, default="static/img/default_avatar.png")
+
     problems_solved = models.IntegerField(default=0, validators=[MinValueValidator(0)])
     submissions_made = models.IntegerField(default=0, validators=[MinValueValidator(0)])
 
