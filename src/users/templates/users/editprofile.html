@@ -18,29 +18,36 @@
         {% for field in form.visible_fields %}
             <div class="field">
               <label class="label" for="{{ field.id_for_label }}">{{ field.label }}</label>
-              <div class="control has-icons-left">        
+              <div class="control has-icons-left">
                 {% if field.name == 'country' %}
                   <div class="select">{{ field }}</div>
+                {% elif field.name == 'subscribe_to_emails' %}
+                  {{ field }} Receive emails about new problems and features.
                 {% else %}
                   {{ field | add_class:'input' }}
                 {% endif %}
 
-                <span class="icon is-small is-left">
-                  {% if field.name == 'display_name' %}
-                    <i class="fas fa-user"></i>
-                  {% elif field.name == 'about' %}
-                    <i class="fas fa-pen"></i>
-                  {% elif field.name == 'birthday' %}
-                    <i class="fas fa-calendar"></i>
-                  {% elif field.name == 'location' %}
-                    <i class="fas fa-location-arrow"></i>
-                  {% endif %}
-                </span>
+                {% if field.name != 'subscribe_to_emails' %}
+                  <span class="icon is-small is-left">
+                    {% if field.name == 'display_name' %}
+                      <i class="fas fa-user"></i>
+                    {% elif field.name == 'about' %}
+                      <i class="fas fa-pen"></i>
+                    {% elif field.name == 'birthday' %}
+                      <i class="fas fa-calendar"></i>
+                    {% elif field.name == 'location' %}
+                      <i class="fas fa-location-arrow"></i>
+                    {% endif %}
+                  </span>
+                {% endif %}
               </div>
-              <p class="help">{{ field.help_text }}</p>
-              {% for error in field.errors %}
-                <p class="help is-danger">{{ error }}</p>
-              {% endfor %}
+
+              {% if field.name != 'subscribe_to_emails' %}
+                <p class="help">{{ field.help_text }}</p>
+                {% for error in field.errors %}
+                  <p class="help is-danger">{{ error }}</p>
+                {% endfor %}
+              {% endif %}
             </div>
         {% endfor %}
         <button class="button is-primary" type="submit">Save changes</button>
