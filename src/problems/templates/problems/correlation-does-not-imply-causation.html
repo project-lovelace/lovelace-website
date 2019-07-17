@@ -34,22 +34,23 @@
   where
 
   $$ \operatorname{cov}(X,Y)
-       = \sum_{i=1}^n (x_i - \overline{x})(y_i - \overline{y})
-       = (x_1-\overline{x})(y_1-\overline{y}) + \cdots + (x_n-\overline{x})(y_n-\overline{y}) $$
+       = \frac{1}{n} \sum_{i=1}^n (x_i - \overline{x})(y_i - \overline{y})
+       = \frac{1}{n} \left[ (x_1-\overline{x})(y_1-\overline{y}) + \cdots + (x_n-\overline{x})(y_n-\overline{y})
+         \right] $$
 
   is the covariance between $X$ and $Y$,
 
   \begin{align}
     \sigma_X
-      & = \sqrt{\sum_{i=1}^n (x_i - \overline{x})^2}
-        = \sqrt{(x_1 - \overline{x})^2 + \cdots + (x_n-\overline{x})^2}
+      & = \sqrt{\frac{1}{n} \sum_{i=1}^n (x_i - \overline{x})^2}
+        = \sqrt{\frac{1}{n} \left[ (x_1 - \overline{x})^2 + \cdots + (x_n-\overline{x})^2 \right]}
         \quad \text{and} \\
     \sigma_Y
-      & = \sqrt{\sum_{i=1}^n (y_i - \overline{y})^2}
-        = \sqrt{(y_1 - \overline{y})^2 + \cdots + (y_n-\overline{y})^2}
+      & = \sqrt{\frac{1}{n} \sum_{i=1}^n (y_i - \overline{y})^2}
+        = \sqrt{\frac{1}{n} \left[ (y_1 - \overline{y})^2 + \cdots + (y_n-\overline{y})^2 \right]}
   \end{align}
 
-  are the variances of $X$ and $Y$, and
+  are the standard deviations of $X$ and $Y$, and
 
   $$ \overline{x} = \frac{1}{n} \sum_{i=1}^n x_i = \frac{x_1 + x_2 + \cdots + x_n}{n} \quad \text{and} \quad
      \overline{y} = \frac{1}{n} \sum_{i=1}^n y_i = \frac{y_1 + y_2 + \cdots + y_n}{n} $$
