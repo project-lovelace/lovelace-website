@@ -8,22 +8,32 @@
 
 {% block problem_body %}
 <p class="has-text-justified">
-  Let's use dictionaries (you don't have to of course) to look at resistors, which are common electric components found in virtually every electronic circuit. Resistors come with a resistance rating $\;\Omega$ (measured in Ohms) that describes how difficult it is to pass an electric current through the resistor. This resistance rating is indicated by four or five colored bands on the resistor itself (see table). A resistor may have only one band, in which case it is a single blank band and the resistor has zero resistance.
+  Let's use dictionaries (you don't have to of course) to look at resistors, which are common electric components found
+  in virtually every electronic circuit. Resistors come with a resistance rating $\;\Omega$ (measured in Ohms) that
+  describes how difficult it is to pass an electric current through the resistor. This resistance rating is indicated by
+  four or five colored bands on the resistor itself (see table). A resistor may have only one band, in which case it is
+  a single blank band and the resistor has zero resistance.
 </p>
 <br>
 <figure class="image" style="text-align: center;">
   <img src="{% static 'img/resistor_color_table.png' %}" style="width: 60%; margin: 0 auto;">
   <figcaption class="help">
-    Resistor color table with example calculations for a four-band and a five-band resistor. (Image credit: <a href="https://www.digikey.com/en/articles/techzone/2017/apr/big-boys-race-young-girls-violet-wins-resistors-color-codes">Resistors and Color Codes, Digi-Key</a>)
+    Resistor color table with example calculations for a four-band and a five-band resistor. (Image credit: <a
+          href="https://www.digikey.com/en/articles/techzone/2017/apr/big-boys-race-young-girls-violet-wins-resistors-color-codes">Resistors
+    and Color Codes, Digi-Key</a>)
   </figcaption>
 </figure>
 <br>
 <p class="has-text-justified">
-  For a four band resistor, the first two color bands indicate the first two digits of the resistance value with the third band indicating a multiplier, and the last band indicates a tolerance. For a five band resistor, the first three color bands indicate the first three digits of the resistance value followed by a fourth band (multiplier) and a fifth band (tolerance). Keep in mind that the tolerance is a relative tolerance, like ±5&percnt;.
+  For a four band resistor, the first two color bands indicate the first two digits of the resistance value with the
+  third band indicating a multiplier, and the last band indicates a tolerance. For a five band resistor, the first three
+  color bands indicate the first three digits of the resistance value followed by a fourth band (multiplier) and a fifth
+  band (tolerance). Keep in mind that the tolerance is a relative tolerance, like ±5&percnt;.
 </p>
 <br>
 <p class="has-text-justified">
-  Using a list of colors as input compute the nominal resistance (i.e. as told by the colored bands, whithout any tolerance), as well as the minimum and maximum resistance value of the resistor, and return them in that order.
+  Using a list of colors as input compute the nominal resistance (i.e. as told by the colored bands, whithout any
+  tolerance), as well as the minimum and maximum resistance value of the resistor, and return them in that order.
 </p>
 {% endblock %}
 
@@ -176,14 +186,21 @@ let i_drink_kool_aid = True;
 {% endblock %}
 
 {% block notes_and_references %}
-  <div class="content">
-    <h3>Notes</h3>
-    <ul>
-      <li>Since $1\;\Omega$ is a very small resistance, it's more common to express resistance in kilohms ($1\;\text{k}\Omega = 1,000\;\Omega$), megaohms ($1\;\text{M}\Omega = 1,000,000\;\Omega$), or even gigaohms ($1\;\text{G}\Omega = 1,000,000,000\;\Omega$).</li>
-      <li>Nowadays it's easier to use a multimeter to measure it's actual resistance value. Calculating a resistor's value and tolerance from the color bands used to be more commonplace in the past when multimeters weren't as widespread or cheap.</li>
-      <li>If you need a very specific resistance you can chain resistors in series or parallel. Variable resistors also exist in the form of potentiometers and digital resistors.
-    </ul>
-  </div>
+<div class="content">
+  <h3>Notes</h3>
+  <ul>
+    <li>Since $1\;\Omega$ is a very small resistance, it's more common to express resistance in kilohms
+      ($1\;\text{k}\Omega = 1,000\;\Omega$), megaohms ($1\;\text{M}\Omega = 1,000,000\;\Omega$), or even gigaohms
+      ($1\;\text{G}\Omega = 1,000,000,000\;\Omega$).
+    </li>
+    <li>Nowadays it's easier to use a multimeter to measure it's actual resistance value. Calculating a resistor's value
+      and tolerance from the color bands used to be more commonplace in the past when multimeters weren't as widespread
+      or cheap.
+    </li>
+    <li>If you need a very specific resistance you can chain resistors in series or parallel. Variable resistors also
+      exist in the form of potentiometers and digital resistors.
+  </ul>
+</div>
 {% endblock %}
 
 {% block discourse_topic_id %}18{% endblock %}

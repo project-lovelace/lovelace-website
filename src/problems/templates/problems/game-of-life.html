@@ -7,46 +7,65 @@
 {% endblock %}
 
 {% block problem_body %}
-  <p class="has-text-justified">
-    A cellular automaton is a model used to simulate a wide variety of systems in science. We'll look at one that's supposed to simulate life itself, Conway's Game of Life. You have a two-dimensional rectangular grid of square cells, each of which can be either alive or dead. Each cell interacts with its eight nearest neighbors and evolves according to the following rules:
-    <div class="content">
-      <ol>
-        <li>A live cell with less than two live neighbours dies (due to underpopulation).</li>
-        <li>A live cell with two or three live neighbours continues to live.</li>
-        <li>A live cell with more than three live neighbours dies (due to overpopulation).</li>
-        <li>A dead cell with exactly three live neighbours becomes a live cell (due to reproduction).</li>
-      </ol>
-    </div>
-    To deal with the finite size of the grid we'll impose periodic (or toroidal) boundary conditions, that is, to treat the left and right edges of the grid to be stitched together so that moving across the right boundary returns you to the left boundary (and we will do the same with the top and bottom edges).
-  </p>
-  <br>
-  <figure style="text-align: center;">
-    <video controls>
-      <source src="{% static 'video/still_oscillator_patterns.webm' %}" type="video/webm">
-      <p>Your browser doesn't support HTML5 webm video.</p>
-    </video> 
-    <figcaption class="help">
-      A bunch of still life patterns that do not change shape under the evolution rules, and some oscillator patterns that flip between the same patterns again and again.
-  </figure>
-  <figure style="text-align: center;">
-    <video controls>
-      <source src="{% static 'video/glider_gun_destruction.webm' %}" type="video/webm">
-      <p>Your browser doesn't support HTML5 webm video.</p>
-    </video> 
-    <figcaption class="help">
-      A glider gun pattern that generate gliders, which are spaceship patterns that move across the grid. In this case, the gliders go down the bottom of the grid and reappear at the top due to the periodic boundary conditions. After the gliders go through the right boundary they reappear on the left and destroy the glider gun that created them.
-  </figure>
-  <p class="has-text-justified">
-    Given an initial configuration for the grid, run the Game of Life simulation for $N$ time steps (also an input) and return the state of the grid.
-  </p>
+<p class="has-text-justified">
+  A cellular automaton is a model used to simulate a wide variety of systems in science. We'll look at one that's
+  supposed to simulate life itself, Conway's Game of Life. You have a two-dimensional rectangular grid of square cells,
+  each of which can be either alive or dead. Each cell interacts with its eight nearest neighbors and evolves according
+  to the following rules:
+</p>
+
+<div class="content">
+  <ol>
+    <li>A live cell with less than two live neighbours dies (due to underpopulation).</li>
+    <li>A live cell with two or three live neighbours continues to live.</li>
+    <li>A live cell with more than three live neighbours dies (due to overpopulation).</li>
+    <li>A dead cell with exactly three live neighbours becomes a live cell (due to reproduction).</li>
+  </ol>
+</div>
+
+<p class="has-text-justified">
+  To deal with the finite size of the grid we'll impose periodic (or toroidal) boundary conditions, that is, to treat
+  the left and right edges of the grid to be stitched together so that moving across the right boundary returns you to
+  the left boundary (and we will do the same with the top and bottom edges).
+</p>
+<br>
+
+<figure style="text-align: center;">
+  <video controls>
+    <source src="{% static 'video/still_oscillator_patterns.webm' %}" type="video/webm">
+    <p>Your browser doesn't support HTML5 webm video.</p>
+  </video>
+  <figcaption class="help">
+    A bunch of still life patterns that do not change shape under the evolution rules, and some oscillator patterns that
+    flip between the same patterns again and again.
+  </figcaption>
+</figure>
+
+<figure style="text-align: center;">
+  <video controls>
+    <source src="{% static 'video/glider_gun_destruction.webm' %}" type="video/webm">
+    <p>Your browser doesn't support HTML5 webm video.</p>
+  </video>
+  <figcaption class="help">
+    A glider gun pattern that generate gliders, which are spaceship patterns that move across the grid. In this case,
+    the gliders go down the bottom of the grid and reappear at the top due to the periodic boundary conditions. After
+    the gliders go through the right boundary they reappear on the left and destroy the glider gun that created them.
+  </figcaption>
+</figure>
+
+<p class="has-text-justified">
+  Given an initial configuration for the grid, run the Game of Life simulation for $N$ time steps (also an input) and
+  return the state of the grid.
+</p>
 {% endblock %}
 
 {% block input_description %}
-  A 2D integer array representing the grid where the dead cells are represnted by 0's and the alive cells are 1's, and a number of time steps $N$ to run the Game of Life for.
+A 2D integer array representing the grid where the dead cells are represnted by 0's and the alive cells are 1's, and a
+number of time steps $N$ to run the Game of Life for.
 {% endblock %}
 
 {% block output_description %}
-  A 2D array representing the state of the grid after $N$ time steps.
+A 2D array representing the state of the grid after $N$ time steps.
 {% endblock %}
 
 {% block examples %}
@@ -113,15 +132,23 @@ function game_of_life(board, steps) {
 {% endblock %}
 
 {% block notes_and_references %}
-  <div class="content">
-    <h3>Notes</h3>
-    <ul>
-      <li>There is a <a href="https://www.youtube.com/watch?v=R9Plq-D1gEk">Numberphile video</a> where John Conway himself talks about how he invented the Game of Life!</li>
-      <li>There are many interesting patterns: <a href="https://en.wikipedia.org/wiki/Puffer_train">puffer trains</a>, </li>
-      <li>Since the Game of Life is Turing complete, you can actually make a <a href="https://codegolf.stackexchange.com/questions/88783/build-a-digital-clock-in-conways-game-of-life">digital clock pattern</a> and even an attempt to build a <a href="https://codegolf.stackexchange.com/questions/11880/build-a-working-game-of-tetris-in-conways-game-of-life">working version of Tetris</a>!
-      <li><a href="http://www.conwaylife.com/wiki/Main_Page">LifeWiki</a> has tons more information on the Game of Life, cool patterns, and the latest news (people are still discovering completely new patterns in 2018).
-    </ul>
-  </div>
+<div class="content">
+  <h3>Notes</h3>
+  <ul>
+    <li>There is a <a href="https://www.youtube.com/watch?v=R9Plq-D1gEk">Numberphile video</a> where John Conway himself
+      talks about how he invented the Game of Life!
+    </li>
+    <li>There are many interesting patterns: <a href="https://en.wikipedia.org/wiki/Puffer_train">puffer trains</a>,
+    </li>
+    <li>Since the Game of Life is Turing complete, you can actually make a <a
+            href="https://codegolf.stackexchange.com/questions/88783/build-a-digital-clock-in-conways-game-of-life">digital
+      clock pattern</a> and even an attempt to build a <a
+            href="https://codegolf.stackexchange.com/questions/11880/build-a-working-game-of-tetris-in-conways-game-of-life">working
+      version of Tetris</a>!
+    <li><a href="http://www.conwaylife.com/wiki/Main_Page">LifeWiki</a> has tons more information on the Game of Life,
+      cool patterns, and the latest news (people are still discovering completely new patterns in 2018).
+  </ul>
+</div>
 {% endblock %}
 
 {% block discourse_topic_id %}22{% endblock %}

@@ -50,22 +50,27 @@ def Celsius(F):
 {% endblock %}
 
 {% block notes_and_references %}
-  <div class="content">
-    {% if solved_by_user %}
-    <h3>Solution notes</h3>
-    <ul>
-      <li></li>
-    </ul>
-    {% endif %}
-
-    <h3>Notes</h3>
-    <ul>
-      <li>This problem is inspired by the second example in the famous book <a href="https://en.wikipedia.org/wiki/The_C_Programming_Language">The C Programming Language</a>.</li>
-      <li>The Celsius and Farenheit scales read the same temperature at -40! This is one of the test cases.</li>
-      <li>Neither Celsius or Fahrenheit are good for science as a temperature of 0 degrees still means that some thermal energy exists. Scientists use the <a href="https://en.wikipedia.org/wiki/Kelvin">Kelvin scale</a> which is 0 degrees Kelvin (K) at <a href="https://en.wikipedia.org/wiki/Third_law_of_thermodynamics">absolute zero</a> (-273.15°C), the temperature at which all molecular motion ceases. Interestingly, the <a href="https://en.wikipedia.org/wiki/Third_law_of_thermodynamics">third law of thermodynamics</a> says it's impossible to reach absolute zero.</li>
-      <li><b>Weird stuff:</b> You can have weird physical systems with <a href="https://en.wikipedia.org/wiki/Negative_temperature">negative temperatures</a>. Some systems still have some energy at absolute zero due to <a href="https://en.wikipedia.org/wiki/Zero-point_energy">zero-point energy</a> in quantum mechanics.</li>
-    </ul>
-  </div>
+<div class="content">
+  <h3>Notes</h3>
+  <ul>
+    <li>This problem is inspired by the second example in the famous book <a
+            href="https://en.wikipedia.org/wiki/The_C_Programming_Language">The C Programming Language</a>.
+    </li>
+    <li>The Celsius and Farenheit scales read the same temperature at -40! This is one of the test cases.</li>
+    <li>Neither Celsius or Fahrenheit are good for science as a temperature of 0 degrees still means that some thermal
+      energy exists. Scientists use the <a href="https://en.wikipedia.org/wiki/Kelvin">Kelvin scale</a> which is 0
+      degrees Kelvin (K) at <a href="https://en.wikipedia.org/wiki/Third_law_of_thermodynamics">absolute zero</a>
+      (-273.15°C), the temperature at which all molecular motion ceases. Interestingly, the <a
+              href="https://en.wikipedia.org/wiki/Third_law_of_thermodynamics">third law of thermodynamics</a> says it's
+      impossible to reach absolute zero.
+    </li>
+    <li><b>Weird stuff:</b> You can have weird physical systems with <a
+            href="https://en.wikipedia.org/wiki/Negative_temperature">negative temperatures</a>. Some systems still have
+      some energy at absolute zero due to <a href="https://en.wikipedia.org/wiki/Zero-point_energy">zero-point
+        energy</a> in quantum mechanics.
+    </li>
+  </ul>
+</div>
 {% endblock %}
 
 {% block discourse_topic_id %}xx{% endblock %}

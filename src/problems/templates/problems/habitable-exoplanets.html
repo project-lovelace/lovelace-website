@@ -7,30 +7,45 @@
 {% endblock %}
 
 {% block problem_body %}
-  <p class="has-text-justified">
-    An exoplanet is a planet orbiting a star other than our sun and we can actually detect these planets now! It turns out there are a lot of exoplanets and everyone is wondering whether anything lives there. How far the exoplanet is from its host star can determine whether it can support life or not. If it's too close to the star the planet would be too hot for life to survive there. Too far and now it's too cold to support life. There is a sweet spot in between called the circumstellar habitable zone (CHZ) in which a planet's surface is just the right temperature to support liquid water: not too hot and not too cold.
-  </p>
-  <br>
-  <figure style="text-align: center;">
-    <img src="{% static 'img/circumstellar_habitable_zone.gif' %}">
-    <figcaption class="help">Image credit: <a href="http://planetary-science.org/astrobiology/habitable-zones/">The Center for Planetary Science</a></figcaption>
-  </figure>
-  <br>
-  <p class="has-text-justified">
-    One simple definition is that the CHZ is a ring around the star (the green zone in the figure) with inner radius $\displaystyle r_i = \sqrt{\frac{L}{1.1}}$ and outer radius $\displaystyle r_o = \sqrt{\frac{L}{0.54}}$. The radii $r_i$ and $r_o$ are given in astronomical units or au (1 au is roughly the distance between the Sun and the Earth) and $L$ is the star's luminosity as a multiple of the Sun's luminosity.
-  </p>
-  <br>
-  <p class="has-text-justified">
-    Given a star's absolute luminosity $L$ and the planet's distance from the star $r$ as inputs, return "too hot" if the planet is too close to the star, "too cold" if it's too far away from the star, and "just right" if it's in the CHZ.
-  </p>
+<p class="has-text-justified">
+  An exoplanet is a planet orbiting a star other than our sun and we can actually detect these planets now! It turns out
+  there are a lot of exoplanets and everyone is wondering whether anything lives there. How far the exoplanet is from
+  its host star can determine whether it can support life or not. If it's too close to the star the planet would be too
+  hot for life to survive there. Too far and now it's too cold to support life. There is a sweet spot in between called
+  the circumstellar habitable zone (CHZ) in which a planet's surface is just the right temperature to support liquid
+  water: not too hot and not too cold.
+</p>
+<br>
+
+<figure style="text-align: center;">
+  <img src="{% static 'img/circumstellar_habitable_zone.gif' %}">
+  <figcaption class="help">
+    Image credit: <a href="http://planetary-science.org/astrobiology/habitable-zones/">The Center for Planetary
+    Science</a>
+  </figcaption>
+</figure>
+<br>
+
+<p class="has-text-justified">
+  One simple definition is that the CHZ is a ring around the star (the green zone in the figure) with inner radius
+  $\displaystyle r_i = \sqrt{\frac{L}{1.1}}$ and outer radius $\displaystyle r_o = \sqrt{\frac{L}{0.54}}$. The radii
+  $r_i$ and $r_o$ are given in astronomical units or au (1 au is roughly the distance between the Sun and the Earth) and
+  $L$ is the star's luminosity as a multiple of the Sun's luminosity.
+</p>
+<br>
+<p class="has-text-justified">
+  Given a star's absolute luminosity $L$ and the planet's distance from the star $r$ as inputs, return "too hot" if the
+  planet is too close to the star, "too cold" if it's too far away from the star, and "just right" if it's in the CHZ.
+</p>
 {% endblock %}
 
 {% block input_description %}
-  The star's absolute luminosity $L$ and the planet's distance from the star $r$.
+The star's absolute luminosity $L$ and the planet's distance from the star $r$.
 {% endblock %}
 
 {% block output_description %}
-  The string "too cold" if the planet is too far away, "too hot" if it is too close, or "just right" if it is within the CHZ.
+The string "too cold" if the planet is too far away, "too hot" if it is too close, or "just right" if it is within
+the CHZ.
 {% endblock %}
 
 {% block examples %}
@@ -75,25 +90,44 @@ end
 {% endblock %}
 
 {% block notes_and_references %}
-  <div class="content">
-    {% if solved_by_user %}
-      <h3>Solution notes</h3>
-      <ul>
-        <li>We still don't know much about circumstellar habitable zones so even though your new "habitable zone calculator" is very simple it might still be pretty good for all we know! It's not like we've found extraterristrial life (yet)...</li>
-      </ul>
-    {% endif %}
-    <h3>Notes</h3>
-    <ul>
-      <li>There are <a href="https://simple.wikipedia.org/wiki/Habitable_zone#Circumstellar_habitable_zone">many conditions for habitability</a> other than just distance of an exoplanet from its host star, such as the planet's composition or ability to support vegetation. Here we are just looking at habitable zone distance.</li>
-      <li>There are also <a href="https://en.wikipedia.org/wiki/Circumstellar_habitable_zone#Solar_System_estimates">many different estimates</a> of where the circumstellar habitable zone is for our own solar system.</li>
-      <li>If you have an iPhone, there's a great <a href="http://exoplanetapp.com/">exoplanet app</a> with a huge catalog of known exoplanets that you can visualize. Otherwise Wikipedia has a long <a href="https://en.wikipedia.org/wiki/Lists_of_exoplanets">list of exoplanets</a> and a much shorter <a href="https://en.wikipedia.org/wiki/List_of_potentially_habitable_exoplanets">list of potentially habitable exoplanets</a>.
-    </ul>
-    <h3>References</h3>
-    <dl>
-      <dt>Kasting, J.F. (1996),  <a href="#">Habitable zones around stars: An update.</a> In: Doyle, L. (ed.). Circumstellar Habitable Zones, pp. 117-142.</dt>
-      <dd>Gave the boundaries used in this problem but there are other attempts, including many recent ones. We just used this one for simplicity. We could not find the chapter referenced online so we scanned a copy and uploaded it on here.</dd>
-    </dl>
-  </div>
+<div class="content">
+  {% if solved_by_user %}
+  <h3>Solution notes</h3>
+  <ul>
+    <li>We still don't know much about circumstellar habitable zones so even though your new "habitable zone calculator"
+      is very simple it might still be pretty good for all we know! It's not like we've found extraterristrial life
+      (yet)...
+    </li>
+  </ul>
+  {% endif %}
+
+  <h3>Notes</h3>
+  <ul>
+    <li>There are <a href="https://simple.wikipedia.org/wiki/Habitable_zone#Circumstellar_habitable_zone">many
+      conditions for habitability</a> other than just distance of an exoplanet from its host star, such as the planet's
+      composition or ability to support vegetation. Here we are just looking at habitable zone distance.
+    </li>
+    <li>There are also <a href="https://en.wikipedia.org/wiki/Circumstellar_habitable_zone#Solar_System_estimates">many
+      different estimates</a> of where the circumstellar habitable zone is for our own solar system.
+    </li>
+    <li>If you have an iPhone, there's a great <a href="http://exoplanetapp.com/">exoplanet app</a> with a huge catalog
+      of known exoplanets that you can visualize. Otherwise Wikipedia has a long <a
+              href="https://en.wikipedia.org/wiki/Lists_of_exoplanets">list of exoplanets</a> and a much shorter <a
+              href="https://en.wikipedia.org/wiki/List_of_potentially_habitable_exoplanets">list of potentially
+        habitable exoplanets</a>.
+  </ul>
+
+  <h3>References</h3>
+  <dl>
+    <dt>Kasting, J.F. (1996), <a href="#">Habitable zones around stars: An update.</a> In: Doyle, L. (ed.).
+      Circumstellar Habitable Zones, pp. 117-142.
+    </dt>
+    <dd>Gave the boundaries used in this problem but there are other attempts, including many recent ones. We just used
+      this one for simplicity. We could not find the chapter referenced online so we scanned a copy and uploaded it on
+      here.
+    </dd>
+  </dl>
+</div>
 {% endblock %}
 
 {% block discourse_topic_id %}14{% endblock %}

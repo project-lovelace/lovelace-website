@@ -7,23 +7,32 @@
 {% endblock %}
 
 {% block problem_body %}
-  <p class="has-text-justified">
-    DNA (deoxyribonucleic acid) is the molecule that carries the genetic information of all known living organisms (life on exoplanets might be totally different!). The genetic information is stored as a sequence of nucleotides of which there are four: adenine (A), cytosine (C), guanine (G), and thymine (T). So a DNA sequence can be stored on a computer as a string of <tt>ATCG</tt> characters.
-  </p>
-  <br>
-  <p class="has-text-justified">
-    Certain DNA sequences contain the information required to syntheize proteins, and the first step in the process is to transcribe the DNA sequence into a ribonucleic acid (RNA) sequence. The transcription process is biochemically complex, however the resulting RNA sequence is simple: it's equal to the DNA sequence with all instances of <tt>T</tt> replaced with a <tt>U</tt> (uracil).
-  </p>
-  <br>
-  <p class="has-text-justified">
-    Given the DNA string as input, return the transcribed RNA string. Keep in mind that these sequences can be very long (the human genome is 3,088,286,401 characters or base pairs long!).
-  </p>
-  <figure style="text-align: center;">
-    <img style="width: 75%; margin: 0 auto;" src="{% static 'img/DNA_RNA_difference.png' %}">
-    <figcaption class="help">
-      Comparison of DNA and RNA with their corresponding nucleotides. (<a href="http://planetary-science.org/astrobiology/habitable-zones/">Wikimedia Commons</a> / <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">CC BY-SA 3.0</a>)
-    </figcaption>
-  </figure>
+<p class="has-text-justified">
+  DNA (deoxyribonucleic acid) is the molecule that carries the genetic information of all known living organisms (life
+  on exoplanets might be totally different!). The genetic information is stored as a sequence of nucleotides of which
+  there are four: adenine (A), cytosine (C), guanine (G), and thymine (T). So a DNA sequence can be stored on a computer
+  as a string of <tt>ATCG</tt> characters.
+</p>
+<br>
+<p class="has-text-justified">
+  Certain DNA sequences contain the information required to syntheize proteins, and the first step in the process is to
+  transcribe the DNA sequence into a ribonucleic acid (RNA) sequence. The transcription process is biochemically
+  complex, however the resulting RNA sequence is simple: it's equal to the DNA sequence with all instances of <tt>T</tt>
+  replaced with a <tt>U</tt> (uracil).
+</p>
+<br>
+<p class="has-text-justified">
+  Given the DNA string as input, return the transcribed RNA string. Keep in mind that these sequences can be very long
+  (the human genome is 3,088,286,401 characters or base pairs long!).
+</p>
+<figure style="text-align: center;">
+  <img style="width: 75%; margin: 0 auto;" src="{% static 'img/DNA_RNA_difference.png' %}">
+  <figcaption class="help">
+    Comparison of DNA and RNA with their corresponding nucleotides. (<a
+          href="http://planetary-science.org/astrobiology/habitable-zones/">Wikimedia Commons</a> / <a
+          href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">CC BY-SA 3.0</a>)
+  </figcaption>
+</figure>
 {% endblock %}
 
 {% block input_description %}
@@ -73,21 +82,37 @@ end
 {% endblock %}
 
 {% block notes_and_references %}
-  <div class="content">
+<div class="content">
   {% if solved_by_user %}
-    <h3>Solution notes</h3>
-    <ul>
-      <li>There are lots of genes with cool names like the <a href="https://en.wikipedia.org/wiki/Sonic_hedgehog">Sonic hedgehog (SHH)</a> gene with a potential inhibitor called <a href="https://en.wikipedia.org/wiki/Sonic_hedgehog#Robotnikinin">Robotnikinin</a>!</li>
-    </ul>
-    {% endif %}
-    <h3>Notes</h3>
-    <ul>
-      <li>The <a href="https://en.wikipedia.org/wiki/Central_dogma_of_molecular_biology">central dogma of molecular biology</a> is commonly stated as "DNA makes RNA and RNA makes protein" so we are looking at the first half of it here where DNA gets transcribed into RNA.
-      <li>CrashCourse has an excellent YouTube series on biology with videos on <a href="https://www.youtube.com/watch?v=8kK2zwjRV0M">DNA Structure and Replication</a> and <a href="https://www.youtube.com/watch?v=itsb2SqR-R0">DNA, Hot Pockets, &amp; The Longest Word Ever</a> which explains how DNA is transcribed to RNA in real life.</li>
-      <li>The Walter and Eliza Hall Institute of Medical Research makes <a href="https://www.youtube.com/watch?v=OjPcT1uUZiE">molecular visualizations of DNA</a> (also in <a href="https://www.youtube.com/watch?v=7Hk9jct2ozY">HD with creepy sound effects</a>!) which show in amazing detail how DNA is stored so compactly and how it's replicated and transcribed.</li>
-      <li>The human body has around 10 trillion cells, each of which has 1.8 meters of DNA. If you could stretch out all that DNA it would be 18 billion kilometers long, enough to wrap around the Earth's equator 450,000 times or cover the distance from the Sun to Pluto once or twice (depending on Pluto's current distance)!
-    </ul>
-  </div>
+  <h3>Solution notes</h3>
+  <ul>
+    <li>There are lots of genes with cool names like the <a href="https://en.wikipedia.org/wiki/Sonic_hedgehog">Sonic
+      hedgehog (SHH)</a> gene with a potential inhibitor called <a
+            href="https://en.wikipedia.org/wiki/Sonic_hedgehog#Robotnikinin">Robotnikinin</a>!
+    </li>
+  </ul>
+  {% endif %}
+
+  <h3>Notes</h3>
+  <ul>
+    <li>The <a href="https://en.wikipedia.org/wiki/Central_dogma_of_molecular_biology">central dogma of molecular
+      biology</a> is commonly stated as "DNA makes RNA and RNA makes protein" so we are looking at the first half of it
+      here where DNA gets transcribed into RNA.
+    <li>CrashCourse has an excellent YouTube series on biology with videos on <a
+            href="https://www.youtube.com/watch?v=8kK2zwjRV0M">DNA Structure and Replication</a> and <a
+            href="https://www.youtube.com/watch?v=itsb2SqR-R0">DNA, Hot Pockets, &amp; The Longest Word Ever</a> which
+      explains how DNA is transcribed to RNA in real life.
+    </li>
+    <li>The Walter and Eliza Hall Institute of Medical Research makes <a
+            href="https://www.youtube.com/watch?v=OjPcT1uUZiE">molecular visualizations of DNA</a> (also in <a
+            href="https://www.youtube.com/watch?v=7Hk9jct2ozY">HD with creepy sound effects</a>!) which show in amazing
+      detail how DNA is stored so compactly and how it's replicated and transcribed.
+    </li>
+    <li>The human body has around 10 trillion cells, each of which has 1.8 meters of DNA. If you could stretch out all
+      that DNA it would be 18 billion kilometers long, enough to wrap around the Earth's equator 450,000 times or cover
+      the distance from the Sun to Pluto once or twice (depending on Pluto's current distance)!
+  </ul>
+</div>
 {% endblock %}
 
 {% block discourse_topic_id %}16{% endblock %}
