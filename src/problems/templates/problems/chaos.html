@@ -40,13 +40,29 @@
 {% endblock %}
 
 {% block examples %}
-  <article class="message">
-    <div class="message-header">
-      <p>Example</p>
-    </div>
-    <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input</b>: 2.81
+<article class="message">
+  <div class="message-header">
+    <p>Example 1 (population growth)</p>
+  </div>
+  <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input</b>: 2.81
 <b>Output</b>: [0.500000, 0.702500, 0.587272, ⋯, 0.644125, 0.644130, 0.644126]</div>
-  </article>
+</article>
+
+<article class="message">
+  <div class="message-header">
+    <p>Example 2 (steady state)</p>
+  </div>
+  <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input</b>: 2
+<b>Output</b>: [0.5, 0.5, 0.5, ⋯, 0.5, 0.5, 0.5]</div>
+</article>
+
+<article class="message">
+  <div class="message-header">
+    <p>Example 3 (chaotic behavior)</p>
+  </div>
+  <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input</b>: 3.88
+<b>Output</b>: [0.5, 0.97, 0.112908, ⋯, 0.940932, 0.215644, 0.656271]</div>
+</article>
 {% endblock %}
 
 {% block function_signature %}
