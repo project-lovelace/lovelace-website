@@ -35,14 +35,23 @@
 {% endblock %}
 
 {% block examples %}
-  <article class="message">
-    <div class="message-header">
-      <p>Example</p>
-    </div>
-    <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input blood type</b>: "B+"
+<article class="message">
+  <div class="message-header">
+    <p>Example 1</p>
+  </div>
+  <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input blood type</b>: "B+"
 <b>Input list of available blood types</b>: ["A-", "B+", "AB+", "O+", "B+", "B-"]
-<b>Output survivability</b>: ???</div>
-  </article>
+<b>Output survivability</b>: True</div>
+</article>
+
+<article class="message">
+  <div class="message-header">
+    <p>Example 2</p>
+  </div>
+  <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input blood type</b>: "AB-"
+<b>Input list of available blood types</b>: ["O+", "AB+"]
+<b>Output survivability</b>: False</div>
+</article>
 {% endblock %}
 
 {% block function_signature %}

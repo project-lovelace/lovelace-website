@@ -36,7 +36,7 @@
 {% endblock %}
 
 {% block input_description %}
-(Latitude, longitude) coordinates of two points.
+(Latitude, longitude) coordinates of two points. Latitudes go from -90 to +90. Longitudes go from -180 to +180.
 {% endblock %}
 
 {% block output_description %}
@@ -49,10 +49,9 @@ The distance between the points in kilometers (km).
     <p>Example</p>
   </div>
   <div class="message-body"
-       style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input point 1
-    (latitude, longitude) </b>: (a, b)
-    <b>Input point 2 (latitude, longitude) </b>: (c, d)
-    <b>Output distance</b>: ???
+       style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input point 1 (latitude, longitude) </b>: 46.283, 86.667
+    <b>Input point 2 (latitude, longitude) </b>: -48.877, -123.393
+    <b>Output distance</b>: 17760.054
   </div>
 </article>
 {% endblock %}
