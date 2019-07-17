@@ -59,7 +59,18 @@
 {% block examples %}
 {% endblock %}
 
+{% block function_signature %}
+bernoulli(n)
+{% endblock %}
+
 {% block python_code_stub %}
+from fractions import Fraction
+from math import factorial
+
+def bernoulli(n):
+    numerator, denominator = 0, 0
+
+    return numerator, denominator
 {% endblock %}
 
 {% block javascript_code_stub %}
