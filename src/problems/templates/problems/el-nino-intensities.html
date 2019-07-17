@@ -7,37 +7,56 @@
 {% endblock %}
 
 {% block problem_body %}
-  <p class="has-text-justified">
-    El Niño is a naturally occurring climate oscillation event in the equatorial Pacific which returns every 2&ndash;7 years. Originally, El Niño was the name used for warmer than average sea surface temperatures in the Pacific Ocean off the coast of South America but we now know that it's responsible for a whole complex of Pacific Ocean sea-surface temperature changes and global weather events. The ocean warming and associated wet climate off South America, which brings disastrous flood and reduces fishing stocks, is just one of these events.
-  </p>
-  <br>
-  <figure style="text-align: center;">
-    <img src="{% static 'img/nino_region.jpg' %}">
-    <figcaption class="help">
-      NINO regions.
-  </figure>
-  <br>
-  <p class="has-text-justified">
-    ENSO is the &ldquo;El Niño-Southern Oscillation,&rdquo; the name scientists use for El Niño. The other part of the climate oscillation, the Southern Oscillation, is a see-saw shift in surface air pressure between the eastern and western halves of the Pacific. When pressure rises in the east, it falls in the west and vice versa. In the 1950's scientists realized that El Niño and the Southern Oscillation were parts of the same event.
-  </p>
-  <br>
-  <p class="has-text-justified">
-    Warm water generally appears off the coast of South America close to Christmas, and reaches its peak warmth in fall of the following year. After peaking, the waters will tend to cool slowly through the winter and spring of the next year. The effects can be felt continually around the globe, for more than a year in some places.
-  </p>
-  <br>
-  <p class="has-text-justified">
-    The Multivariate ENSO Index (MEI) is a method used to characterize the intensity of an ENSO event using a single number. It accounts for sea level pressure, zonal and meridional components of the surface wind, sea surface temperature, surface air temperature and cloudiness. The MEI is calculated for each &ldquo;sliding bi-monthly season&rdquo;, which are January-February, February-March, and so on for a total of 12 times per year. A warm El Niño event occurs when the MEI is at or above +0.5 for five consecutive bi-monthly periods, and a cold La Niña event occurs when the MEI is at or below -0.5 for five consecutive bi-monthly periods. The threshold is further broken down into weak (with a 0.5 to 1.0 anomaly), moderate (1.0 to 1.5), strong (1.5 to 2.0) and very strong (≥ 2.0) events.
-  </p>
-  <br>
-  <figure style="text-align: center;">
-    <img src="{% static 'img/mei_time_series.png' %}">
-    <figcaption class="help">
-      Multivariate ENSO Index (MEI) time series.
-  </figure>
-  <br>
-  <p>
-    A text file (<a href="{% static 'resources/mei.ext_index.txt' %}"><tt>mei_index.txt</tt></a>) containing the MEI index values for each two-month period from 1950 to 2017. See https://www.esrl.noaa.gov/psd/enso/mei/table.html for more details.
-  </p>
+<p class="has-text-justified">
+  El Niño is a naturally occurring climate oscillation event in the equatorial Pacific which returns every 2&ndash;7
+  years. Originally, El Niño was the name used for warmer than average sea surface temperatures in the Pacific Ocean off
+  the coast of South America but we now know that it's responsible for a whole complex of Pacific Ocean sea-surface
+  temperature changes and global weather events. The ocean warming and associated wet climate off South America, which
+  brings disastrous flood and reduces fishing stocks, is just one of these events.
+</p>
+<br>
+<figure style="text-align: center;">
+  <img src="{% static 'img/nino_region.jpg' %}">
+  <figcaption class="help">
+    NINO regions.
+  </figcaption>
+</figure>
+<br>
+<p class="has-text-justified">
+  ENSO is the &ldquo;El Niño-Southern Oscillation,&rdquo; the name scientists use for El Niño. The other part of the
+  climate oscillation, the Southern Oscillation, is a see-saw shift in surface air pressure between the eastern and
+  western halves of the Pacific. When pressure rises in the east, it falls in the west and vice versa. In the 1950's
+  scientists realized that El Niño and the Southern Oscillation were parts of the same event.
+</p>
+<br>
+<p class="has-text-justified">
+  Warm water generally appears off the coast of South America close to Christmas, and reaches its peak warmth in fall of
+  the following year. After peaking, the waters will tend to cool slowly through the winter and spring of the next year.
+  The effects can be felt continually around the globe, for more than a year in some places.
+</p>
+<br>
+<p class="has-text-justified">
+  The Multivariate ENSO Index (MEI) is a method used to characterize the intensity of an ENSO event using a single
+  number. It accounts for sea level pressure, zonal and meridional components of the surface wind, sea surface
+  temperature, surface air temperature and cloudiness. The MEI is calculated for each &ldquo;sliding bi-monthly season&rdquo;,
+  which are January-February, February-March, and so on for a total of 12 times per year. A warm El Niño event occurs
+  when the MEI is at or above +0.5 for five consecutive bi-monthly periods, and a cold La Niña event occurs when the MEI
+  is at or below -0.5 for five consecutive bi-monthly periods. The threshold is further broken down into weak (with a
+  0.5 to 1.0 anomaly), moderate (1.0 to 1.5), strong (1.5 to 2.0) and very strong (≥ 2.0) events.
+</p>
+<br>
+<figure style="text-align: center;">
+  <img src="{% static 'img/mei_time_series.png' %}">
+  <figcaption class="help">
+    Multivariate ENSO Index (MEI) time series.
+  </figcaption>
+</figure>
+<br>
+<p>
+  A text file (<a href="{% static 'resources/mei.ext_index.txt' %}"><tt>mei_index.txt</tt></a>) containing the MEI index
+  values for each two-month period from 1950 to 2017. See https://www.esrl.noaa.gov/psd/enso/mei/table.html for more
+  details.
+</p>
 {% endblock %}
 
 {% block input_description %}
@@ -45,25 +64,26 @@ A two-year range corresponding to a specific winter season (in the Northern Hemi
 {% endblock %}
 
 {% block output_description %}
-  Two strings: 1. "El Nino", "La Nina", or "neither" depending whether the season had an El Niño or La Niña event (or neither), and if there was an event, and 2. "weak", "moderate", "strong, or "very strong" depending on the event's intensity. If there was no event, return "none" for the intensity.
+Two strings: 1. "El Nino", "La Nina", or "neither" depending whether the season had an El Niño or La Niña event
+(or neither), and if there was an event, and 2. "weak", "moderate", "strong, or "very strong" depending on the event's
+intensity. If there was no event, return "none" for the intensity.
 {% endblock %}
 
 {% block examples %}
-  <article class="message">
-    <div class="message-header">
-      <p>Example 1</p>
-    </div>
-    <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input two-year range</b>: "1997-98"
-─────────────────────────────────────────
+<article class="message">
+  <div class="message-header">
+    <p>Example 1</p>
+  </div>
+  <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input two-year range</b>: "1997-98"
 <b>Output ENSO classification</b>: "el nino"
 <b>Output ENSO strength</b>:       "very strong"</div>
-  </article>
-  <article class="message">
-    <div class="message-header">
-      <p>Example 2</p>
-    </div>
-    <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input two-year range</b>: "1964-54"
-─────────────────────────────────────
+</article>
+
+<article class="message">
+  <div class="message-header">
+    <p>Example 2</p>
+  </div>
+  <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input two-year range</b>: "1964-54"
 <b>Output ENSO classification</b>: "la nina"
 <b>Output ENSO strength</b>:       "weak"</div>
 </article>

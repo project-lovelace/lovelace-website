@@ -8,13 +8,24 @@
 
 {% block problem_body %}
 <p class="has-text-justified">
-  Let's look at an example of chaos arising from simplicity in nature: the logistic map. It's a simplified model used to describe population sizes and can be written mathematically as $x_{n+1} = rx_n(1 - x_n)$ where $0 < r < 4$ is a parameter and $0 < x_n < 1$ represents the population size at time step $n$. Starting with an initial population size of $x_0 = 0.5$ and $r$ as an input parameter, return a list of the first 50 values of the logistic map $x_0, x_1, x_2, \dots, x_{49}, x_{50}$. You should see different behavior depending on the value of $r$, but we'll leave you to play around with it and we'll have more to say on the solution notes.
+  Let's look at an example of chaos arising from simplicity in nature: the logistic map. It's a simplified model used to
+  describe population sizes and can be written mathematically as
+
+  $$ x_{n+1} = rx_n(1 - x_n) $$
+
+  where $0 < r < 4$ is a parameter and $0 < x_n < 1$ represents the population size at time step $n$. Starting with an
+  initial population size of $x_0 = 0.5$ and $r$ as an input parameter, return a list of the first 50 values of the
+  logistic map $x_0, x_1, x_2, \dots, x_{49}, x_{50}$. You should see different behavior depending on the value of $r$,
+  but we'll leave you to play around with it and we'll have more to say in the solution notes.
 </p>
 <br>
 <figure class="image" style="text-align: center;">
   <img style="width: 60%; margin: 0 auto;" src="{% static 'img/logistic_map_plot.png' %}">
   <figcaption class="help">
-    Logistic map with $r=3.89$ using two initial conditions ($x_0=0.50$ and $x_0=0.49$). It shows two big features of chaotic systems. (1) It's sensitive to initial conditions as the two solutions start close to each other but quickly diverge and look completely different after just several iterations. (2) The solutions don't really repeat so they're nonperiodic which also means it's hard to predict them. (Plot generation code is in solution notes.)
+    Logistic map with $r=3.89$ using two initial conditions ($x_0=0.50$ and $x_0=0.49$). It shows two big features of
+    chaotic systems. (1) It's sensitive to initial conditions as the two solutions start close to each other but quickly
+    diverge and look completely different after just several iterations. (2) The solutions don't really repeat so
+    they're nonperiodic which also means it's hard to predict them. (Plot generation code is in the solution notes.)
   </figcaption>
 </figure>
 <br>
@@ -29,14 +40,29 @@
 {% endblock %}
 
 {% block examples %}
-  <article class="message">
-    <div class="message-header">
-      <p>Example</p>
-    </div>
-    <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input r</b>: 2.81
-────────────────────────────────────────────────────────────────────────────────
-<b>Output iterates</b>: [0.500000, 0.702500, 0.587272, ⋯, 0.644125, 0.644130, 0.644126]</div>
-  </article>
+<article class="message">
+  <div class="message-header">
+    <p>Example 1 (population growth)</p>
+  </div>
+  <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input</b>: 2.81
+<b>Output</b>: [0.500000, 0.702500, 0.587272, ⋯, 0.644125, 0.644130, 0.644126]</div>
+</article>
+
+<article class="message">
+  <div class="message-header">
+    <p>Example 2 (steady state)</p>
+  </div>
+  <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input</b>: 2
+<b>Output</b>: [0.5, 0.5, 0.5, ⋯, 0.5, 0.5, 0.5]</div>
+</article>
+
+<article class="message">
+  <div class="message-header">
+    <p>Example 3 (chaotic behavior)</p>
+  </div>
+  <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input</b>: 3.88
+<b>Output</b>: [0.5, 0.97, 0.112908, ⋯, 0.940932, 0.215644, 0.656271]</div>
+</article>
 {% endblock %}
 
 {% block function_signature %}
@@ -68,24 +94,40 @@ end
 {% endblock %}
 
 {% block notes_and_references %}
-  <div class="content">
+<div class="content">
   {% if solved_by_user %}
-    <h3>Solution notes</h3>
-    <ul>
-      <li>You can download the script used to generate the plot in the figure as <a href="{% static 'code/Logistic_map_plot.py' %}">Python code</a> or a <a href="{% static 'code/Logistic_map_plot.ipynb' %}">Jupyter notebook</a>.</li>
-    </ul>
-    {% endif %}
-    <h3>Notes</h3>
-    <ul>
-      <li>The sensitivity to initial conditions exhibited by the logistic map is more commonly known as the <a href="https://en.wikipedia.org/wiki/Butterfly_effect">butterfly effect</a>. It means that unless you knew the initial conditions exactly, there will be uncertainty in future predictions and is why we can only predict the weather up to roughly two weeks ahead (much less in many cases).</li>
-      <li>If you plot the value the logistic map ends up at for each value of $r$ you get a <i>bifurcation diagram</i> for the logistic map, which <a href="https://en.wikipedia.org/wiki/Mandelbrot_set#/media/File:Verhulst-Mandelbrot-Bifurcation.jpg">matches up beautifully with the Mandelbrot set</a> if you're into that sort of thing.</li>
-    </ul>
-    <h3>References</h3>
-    <dl>
-      <dt>May R.M., <a href="https://doi.org/10.1038/261459a0">Simple mathematical models with very complicated dynamics</a>, Nature 261 (1976)</dt>
-      <dd>The logistic map was first introduced as a simple model of population dynamics with very complicated dynamics.</dd>
-    </dl>
-  </div>
+  <h3>Solution notes</h3>
+  <ul>
+    <li>You can download the script used to generate the plot in the figure as <a
+            href="{% static 'code/Logistic_map_plot.py' %}">Python code</a> or a <a
+            href="{% static 'code/Logistic_map_plot.ipynb' %}">Jupyter notebook</a>.
+    </li>
+  </ul>
+  {% endif %}
+
+  <h3>Notes</h3>
+  <ul>
+    <li>The sensitivity to initial conditions exhibited by the logistic map is more commonly known as the <a
+            href="https://en.wikipedia.org/wiki/Butterfly_effect">butterfly effect</a>. It means that unless you knew
+      the initial conditions exactly, there will be uncertainty in future predictions and is why we can only predict the
+      weather up to roughly two weeks ahead (much less in many cases).
+    </li>
+    <li>If you plot the value the logistic map ends up at for each value of $r$ you get a <i>bifurcation diagram</i> for
+      the logistic map, which <a
+              href="https://en.wikipedia.org/wiki/Mandelbrot_set#/media/File:Verhulst-Mandelbrot-Bifurcation.jpg">matches
+        up beautifully with the Mandelbrot set</a> if you're into that sort of thing.
+    </li>
+  </ul>
+
+  <h3>References</h3>
+  <dl>
+    <dt>May R.M., <a href="https://doi.org/10.1038/261459a0">Simple mathematical models with very complicated
+      dynamics</a>, Nature 261 (1976)
+    </dt>
+    <dd>The logistic map was first introduced as a simple model of population dynamics with very complicated dynamics.
+    </dd>
+  </dl>
+</div>
 {% endblock %}
 
 {% block discourse_topic_id %}15{% endblock %}

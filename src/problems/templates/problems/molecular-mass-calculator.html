@@ -7,19 +7,35 @@
 {% endblock %}
 
 {% block problem_body %}
-  <p class="has-text-justified">
-    Molecules are made up of atoms, so to calculate the mass of a molecule you just add up the masses of the atoms but each atom has a different mass.Atoms are so light that using grams to describe their mass is pretty annoying so we use other units like the atomic mass unit (amu). 1 amu is defined as one twelevth the mass of a carbon-12 atom, or $1.661 \times 10^{-27} \; \mathrm{kg}$. For example, water (H<sub>2</sub>O) is a molecule made up of two hydrogens and an oxygen. The hydrogen (H) atoms have a mass of 1.008 amu while carbon (C) has a mass of 12.011 amu and the heaviest atom on the periodic table, Oganesson (Og), has a mass of 294 amu while a methane molecule (CH<sub>4</sub>) has a mass of 16.04 amu.
-  </p>
-  <br>
-  <figure style="text-align: center;">
-    <img src="{% static 'img/molecular_masses.png' %}">
-    <figcaption class="help">
-      A bunch of different molecules: trinitrotoluene or TNT (C<sub>7</sub>H<sub>5</sub>N<sub>3</sub>O<sub>6</sub>), ethanol (C<sub>2</sub>H<sub>5</sub>OH), water (H<sub>2</sub>O), chloroform (CHCl<sub>3</sub>), and adenosine triphosphate or ATP (C<sub>10</sub>H<sub>16</sub>N<sub>5</sub>O<sub>13</sub>P<sub>3</sub>). An example calculation is shown for methane (CH<sub>4</sub>). The atoms are colored according to the CPK coloring convention so hydrogen atoms are white, carbon is gray, nitrogen is blue, oxygen is red, chlorine is green, and phosphorus is orange.
-  </figure>
-  <br>
-  <p class="has-text-justified">
-    Given the chemical formula of a molecule, return its mass in amu. You might find <a href="{% static 'resources/periodic_table.csv' %}"><tt>periodic_table.csv</tt></a> useful. It's a comma-separated file containing all the elements from the periodic table and their masses in amu. The starter code in the code editor below shows how you can read the data from the file and store it in a dictionary in Python.
-  </p>
+<p class="has-text-justified">
+  Molecules are made up of atoms, so to calculate the mass of a molecule you just add up the masses of the atoms but
+  each atom has a different mass.Atoms are so light that using grams to describe their mass is pretty annoying so we use
+  other units like the atomic mass unit (amu). 1 amu is defined as one twelevth the mass of a carbon-12 atom, or $1.661
+  \times 10^{-27} \; \mathrm{kg}$. For example, water (H<sub>2</sub>O) is a molecule made up of two hydrogens and an
+  oxygen. The hydrogen (H) atoms have a mass of 1.008 amu while carbon (C) has a mass of 12.011 amu and the heaviest
+  atom on the periodic table, Oganesson (Og), has a mass of 294 amu while a methane molecule (CH<sub>4</sub>) has a mass
+  of 16.04 amu.
+</p>
+<br>
+
+<figure style="text-align: center;">
+  <img src="{% static 'img/molecular_masses.png' %}">
+  <figcaption class="help">
+    A bunch of different molecules: trinitrotoluene or TNT (C<sub>7</sub>H<sub>5</sub>N<sub>3</sub>O<sub>6</sub>),
+    ethanol (C<sub>2</sub>H<sub>5</sub>OH), water (H<sub>2</sub>O), chloroform (CHCl<sub>3</sub>), and adenosine
+    triphosphate or ATP (C<sub>10</sub>H<sub>16</sub>N<sub>5</sub>O<sub>13</sub>P<sub>3</sub>). An example calculation
+    is shown for methane (CH<sub>4</sub>). The atoms are colored according to the CPK coloring convention so hydrogen
+    atoms are white, carbon is gray, nitrogen is blue, oxygen is red, chlorine is green, and phosphorus is orange.
+  </figcaption>
+</figure>
+<br>
+
+<p class="has-text-justified">
+  Given the chemical formula of a molecule, return its mass in amu. You might find <a
+        href="{% static 'resources/periodic_table.csv' %}"><tt>periodic_table.csv</tt></a> useful. It's a
+  comma-separated file containing all the elements from the periodic table and their masses in amu. The starter code in
+  the code editor below shows how you can read the data from the file and store it in a dictionary in Python.
+</p>
 {% endblock %}
 
 {% block input_description %}
@@ -31,38 +47,37 @@
 {% endblock %}
 
 {% block examples %}
-  <article class="message">
-    <div class="message-header">
-      <p>Example 1</p>
-    </div>
-    <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input chemical formula</b>: Pa
-─────────────────────────────
-<b>Output molecular mass</b>: 231.04</div>
-  </article>
-  <article class="message">
-    <div class="message-header">
-      <p>Example 2</p>
-    </div>
-    <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input chemical formula</b>: OCS
-────────────────────────────
-<b>Output molecular mass</b>: 60.08</div>
-  </article>
-  <article class="message">
-    <div class="message-header">
-      <p>Example 3</p>
-    </div>
-    <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input chemical formula</b>: C4H4AsH
-───────────────────────────────
-<b>Output molecular mass</b>: 128.00</div>
-  </article>
-  <article class="message">
-    <div class="message-header">
-      <p>Example 4</p>
-    </div>
-    <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input chemical formula</b>: C20H25N3O
-─────────────────────────────────
-<b>Output molecular mass</b>: 323.44</div>
-  </article>
+<article class="message">
+  <div class="message-header">
+    <p>Example 1</p>
+  </div>
+  <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input</b>: Pa
+<b>Output</b>: 231.04</div>
+</article>
+
+<article class="message">
+  <div class="message-header">
+    <p>Example 2</p>
+  </div>
+  <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input</b>: OCS
+<b>Output</b>: 60.08</div>
+</article>
+
+<article class="message">
+  <div class="message-header">
+    <p>Example 3</p>
+  </div>
+  <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input</b>: C4H4AsH
+<b>Output</b>: 128.00</div>
+</article>
+
+<article class="message">
+  <div class="message-header">
+    <p>Example 4</p>
+  </div>
+  <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input</b>: C20H25N3O
+<b>Output</b>: 323.44</div>
+</article>
 {% endblock %}
 
 {% block function_signature %}

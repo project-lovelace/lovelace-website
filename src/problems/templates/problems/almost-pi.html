@@ -7,14 +7,22 @@
 {% endblock %}
 
 {% block problem_body %}
-  The number π=3.1415926535897... is the ratio of a circle's circumference to its diameter and shows up absolutely everywhere in math and science. It's decimal expansion goes on forever but we can actually calculate it by summing up a bunch of fractions
-  $$ \frac{\pi}{4} = 1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} - \frac{1}{11} + \dots = \sum_{k=0}^n \frac{(-1)^k}{2k+1}$$
+<p class="has-text-justified">
+  The number π=3.1415926535897... is the ratio of a circle's circumference to its diameter and shows up absolutely
+  everywhere in math and science. It's decimal expansion goes on forever but we can actually calculate it by summing up
+  a bunch of fractions
+
+  $$ \frac{\pi}{4} = 1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} - \frac{1}{11} + \dots
+     = \sum_{k=0}^n \frac{(-1)^k}{2k+1} $$
+
   By adding more and more terms, you get a better and better approximation to π.
-  <br>
-  <figure style="text-align: center;">
-    <img src="{% static 'img/approximating_pi.png' %}">
-  </figure>
-  <br>
+</p>
+
+<br>
+<figure style="text-align: center;">
+  <img src="{% static 'img/approximating_pi.png' %}">
+</figure>
+<br>
 {% endblock %}
 
 {% block input_description %}
@@ -30,9 +38,8 @@
     <div class="message-header">
       <p>Example</p>
     </div>
-    <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input N</b>: 100
-──────────────────────────────
-<b>Output approximation</b>: ???</div>
+    <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input</b>: 100
+<b>Output</b>: ???</div>
   </article>
 {% endblock %}
 
@@ -50,26 +57,24 @@ almost_pi(N)
 {% endblock %}
 
 {% block notes_and_references %}
-  <div class="content">
-    {% if solved_by_user %}
-    <h3>Solution notes</h3>
-    <ul>
-      <li>The formula we used here is <a href="https://en.wikipedia.org/wiki/Leibniz_formula_for_%CF%80">Leibniz formula for π</a> and is one of the slowest to converge: you need TONS of terms to calculate more and more digits of π. There are <a href="https://en.wikipedia.org/wiki/List_of_formulae_involving_%CF%80#Efficient_infinite_series">crazy looking efficient formulas</a>a that can calculate digits of π much faster.</li>
-    </ul>
-    {% endif %}
+<div class="content">
+  {% if solved_by_user %}
+  <h3>Solution notes</h3>
+  <ul>
+    <li>The formula we used here is <a href="https://en.wikipedia.org/wiki/Leibniz_formula_for_%CF%80">Leibniz formula
+      for π</a> and is one of the slowest to converge: you need TONS of terms to calculate more and more digits of π.
+      There are <a href="https://en.wikipedia.org/wiki/List_of_formulae_involving_%CF%80#Efficient_infinite_series">
+      crazy looking efficient formulas</a>a that can calculate digits of π much faster.
+    </li>
+  </ul>
+  {% endif %}
 
-    <h3>Notes</h3>
-    <ul>
-      <li>Pi is a transcendental number and its digital expansion contains...</li>
-      <li>Beautiful visualization</li>
-    </ul>
-
-    <h3>References</h3>
-    <dl>
-      <dt></dt>
-      <dd></dd>
-    </dl>
-  </div>
+  <h3>Notes</h3>
+  <ul>
+    <li>Pi is a transcendental number and its digital expansion contains...</li>
+    <li>Beautiful visualization</li>
+  </ul>
+</div>
 {% endblock %}
 
 {% block discourse_topic_id %}xx{% endblock %}
