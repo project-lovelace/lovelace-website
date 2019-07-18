@@ -296,12 +296,22 @@
 
 <script>
   var editor_textarea = document.getElementById('editor-textarea');
+
   var editor = CodeMirror.fromTextArea(editor_textarea, {
       autoRefresh:true,
       mode: 'python',
       lineNumbers: true,
       tabSize: 4,
+      indentUnit: 4,
       styleActiveLine: true
+  });
+
+  // Map the Tab key to insert spaces instead of a tab character.
+  editor.setOption("extraKeys", {
+    Tab: function(cm) {
+      var spaces = Array(cm.getOption("indentUnit") + 1).join(" ");
+      cm.replaceSelection(spaces);
+    }
   });
 
   document.getElementById('language-select').onchange = function() {
