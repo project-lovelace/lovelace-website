@@ -57,10 +57,18 @@ The distance between the points in kilometers (km).
 {% endblock %}
 
 {% block function_signature %}
-shortest_distance(a, b, c, d)
+haversine_distance(a, b, c, d)
 {% endblock %}
 
 {% block python_code_stub %}
+from math import radians, sqrt, asin, sin, cos
+
+R  = 6372.1  # Radius of the Earth [km]
+
+def haversine_distance(lat1, lon1, lat2, lon2):
+    d = 0
+    # Your code goes here!
+    return d
 {% endblock %}
 
 {% block javascript_code_stub %}
