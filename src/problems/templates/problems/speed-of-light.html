@@ -57,9 +57,13 @@ light_time(distance)
 {% endblock %}
 
 {% block python_code_stub %}
+c = 299792458  # Speed of light [m/s]
+
 def light_time(distance):
-    c = 299792458
-    # Calculate the time taken using t = d/c.
+    t = 0
+
+    # Calculate the time taken using t = d/c and return it!
+
     return t
 {% endblock %}
 
