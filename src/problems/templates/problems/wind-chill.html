@@ -25,26 +25,26 @@
 {% endblock %}
 
 {% block input_description %}
-  The temperature in Celcius (°C).
+  The air temperature $T_a$ in Celcius (°C) and the wind speed $v$ in kilometers per hour.
 {% endblock %}
 
 {% block output_description %}
-  The wind chill factor.
+  The wind chill factor $T_{wc}$.
 {% endblock %}
 
 {% block examples %}
-  <article class="message">
-    <div class="message-header">
-      <p>Example</p>
-    </div>
-    <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input temperature:</b> -25
+<article class="message">
+  <div class="message-header">
+    <p>Example</p>
+  </div>
+  <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input temperature:</b> -25
 <b>Input wind speed:</b> 30
 <b>Output wind chill index</b>: -39.09</div>
-  </article>
+</article>
 {% endblock %}
 
 {% block function_signature %}
-wind_chill(T)
+wind_chill(T_a, v)
 {% endblock %}
 
 {% block python_code_stub %}
