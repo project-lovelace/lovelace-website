@@ -3,29 +3,51 @@
 {% load static %}
 
 {% block you_will_learn %}
-	numerical algorithms.
+	calculating square roots, iterative algorithms, and Babylonian math.
 {% endblock %}
 
 {% block problem_body %}
 <p class="has-text-justified">
-  The basic idea is to start with a guess $x_0$ for $\sqrt{S}$. Then we can improve on this guess: if $x_n$ is an
-  overestimate to $\sqrt{S}$ then $S/x_n$ will be an underestimate, so averaging the two should produce a better guess:
+  The square root of a number S is denoted $\sqrt{S}$ with the property that $\sqrt{S} \times \sqrt{S} = S$. It's easy
+  to calculate for square numbers, like $3 \times 3 = 9$ so $\sqrt{9} = 3$. For other numbers it's not as easy but the
+  ancient Babylonians seemed to know how to calculate them pretty accurately (see the figure and caption).
+</p>
+<br>
+
+<p class="has-text-justified">
+  We have no idea how they calculated square roots so accurately, but a method they might have used has been called the
+  Babylonian method.
+
+  The basic idea is to start with an initial guess $x_0$ for $\sqrt{S}$. Then we can keep improve on this guess: if
+  our current guess, $x_n$, is an overestimate to $\sqrt{S}$ then $S/x_n$ will be an underestimate and vice versa, so
+  averaging the two should produce a better guess:
+
   $$ x_{n+1} = \frac{1}{2} \left( x_n + \frac{S}{x_n} \right) $$
+
+  We can use this formula to calculate better and better guesses. Given a number $S$, calculate and return its square
+  root using the Babylonian method.
 </p>
 
-<br><br>
+<br>
 <figure style="text-align: center;">
   <img src="{% static 'img/YBC7289.jpg' %}">
+  <figcaption class="help">
+    A photograph of the Babylonian clay tablet <a href="https://en.wikipedia.org/wiki/YBC_7289">YBC 7289</a>. The
+    numbers on the diagonal are actually a pretty accurate approximation of $\sqrt{2}$. They read in sexagesimal
+    (base 60) 1, 24, 51, and 10 which cooresponds to $\sqrt{2} \approx 1 + 24/60 + 51/60^2 + 10/60^3 = 1.41421296...$
+    which is correct to six decimal digits!
+  </figcaption>
 </figure>
 <br>
 {% endblock %}
 
 {% block input_description %}
-  A number.
+A number $S$.
 {% endblock %}
 
 {% block output_description %}
-  It's square root approximated using the babylonian method.
+The square root of $S$ approximated using the babylonian method. If $S$ is a negative number, then return the string
+"undefined".
 {% endblock %}
 
 {% block examples %}
