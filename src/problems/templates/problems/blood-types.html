@@ -3,35 +3,38 @@
 {% load static %}
 
 {% block you_will_learn %}
-	complex if statements.
+	blood types and complex branching statements
 {% endblock %}
 
 {% block problem_body %}
 <p class="has-text-justified">
   Each person has different blood depending on which antibodies and antigens bind to the surface of their red blood
   cells. They can be categorized in many different ways, but the two most important are the ABO group system (with four
-  groups: A, B, AB, O) and the Rh blood group system (with two groups: +, -). They determine whether blood is suitable
-  for transfusion. Determining whether blood is suitable for transfusion isn't super simple but the chart below
+  groups: A, B, AB, O) and the Rh blood group system (with two groups: +, -). The chart below shows how you can
+  determine whether blood is suitable for transfusion.
 </p>
-<br><br>
+
+<br>
 <figure style="text-align: center;">
   <img src="{% static 'img/blood_types_compatibilities.png' %}">
 </figure>
 <br>
+
 <p class="has-text-justified">
   Hospitals have blood banks that collect blood donations and store them until they're needed by patients. Every time a
   patient needs a blood transfusion, the hospital needs to check that they have some suitable blood that can be accepted
   by the patient's body.
+
+  Given a patient's blood type and a list of available blood types figure out if the patient will survive.
 </p>
 {% endblock %}
 
 {% block input_description %}
-  The person's blood type as a string.
-  A list of strings with available blood types.
+The person's blood type as a string, and a list of strings with available blood types.
 {% endblock %}
 
 {% block output_description %}
-  True if the person can be saved, and false otherwise.
+True if the person can be saved, and false otherwise.
 {% endblock %}
 
 {% block examples %}

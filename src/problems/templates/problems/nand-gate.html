@@ -3,29 +3,29 @@
 {% load static %}
 
 {% block you_will_learn %}
-	if statements, logic gates.
+	logic gates and if statements.
 {% endblock %}
 
 {% block problem_body %}
 <p class="has-text-justified">
-  You have billions of logic gates in your phone and laptop. They're tiny circuits that work with 0's and 1's and
-  perform basic boolean operations, usually with 2 inputs.
+  You have hundreds of millions of logic gates in your phone and laptop. They're tiny circuits that work with 0's and
+  1's and perform basic boolean operations, usually with 2 inputs.
 </p>
 <br>
 
 <figure style="text-align: center;">
   <img src="{% static 'img/NAND_logic_gates.png' %}">
+  <figcaption class="help">
+    Truth tables for the NOT, AND, and NAND logic gates.
+  </figcaption>
 </figure>
 <br>
 
 <p class="has-text-justified">
   A simple logic gate would be the NOT gate, which inverts the input so a 0 becomes a 1 and vice versa. An AND gate
-  produces 1 only if both of its inputs are 1, otherwise it produces 0.
-</p>
-
-<p class="has-text-justified">
-  The NAND gate is a an AND gate followed by a NOT gate, so it's performing a (NOT AND) operation. Try to write a
-  function <tt>NAND(A, B)</tt> that returns the output of a NAND gate.
+  produces 1 only if both of its inputs are 1, otherwise it produces 0. The NAND gate is a an AND gate followed by a
+  NOT gate, so it's performing a (NOT AND) operation. Try to write a function <tt>NAND(A, B)</tt> that returns the
+  output of a NAND gate.
 </p>
 {% endblock %}
 

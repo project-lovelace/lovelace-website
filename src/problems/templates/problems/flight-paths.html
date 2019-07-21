@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block you_will_learn %}
-	???.
+
 {% endblock %}
 
 {% block problem_body %}
@@ -14,19 +14,28 @@
   Mercator projection) and on a sphere.
 </p>
 <br>
+
 <figure style="text-align: center;">
   <img src="{% static 'img/Flight_paths_Mercator.png' %}">
+  <figcaption class="help">
+    On a flat map (Mercator projection) the shortest path from New York to Madrid seems to be along a constant latitude,
+    but the Mercator projection inflates areas away from the equator. As a result, the curved path is actually shorter!
+  </figcaption>
 </figure>
 <br>
-<br>
+
 <figure style="text-align: center;">
   <img src="{% static 'img/Flight_paths_sphere.png' %}">
+  <figcaption class="help">
+    Plotting the trajectories on a sphere makes it clearer that the curved path is actually shorter.
+  </figcaption>
 </figure>
 <br>
 
 <p class="has-text-justified">
-  The distance of the curved path between two points $(\phi_1, \lambda_1)$ and $(\phi_2, \lambda_2)$ where $\phi$
-  indicates latitude and $\lambda$ indicates longitude is
+  You can calculate the length of the curved path using the <i>haversine formula</i>. Between two points on the Earth
+  $(\phi_1, \lambda_1)$ and  $(\phi_2, \lambda_2)$ where $\phi$ is latitude and $\lambda$ is longitude, the shortest
+  distance is
 
   $$ 2R \sqrt{ \sin^2 \left( \frac{\phi_2 - \phi_1}{2} \right) + \cos\phi_1 \cos\phi_2 \sin^2 \left( \frac{\lambda_2 -
      \lambda_1}{2} \right)} $$
