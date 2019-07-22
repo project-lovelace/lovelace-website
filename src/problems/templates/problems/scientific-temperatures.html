@@ -7,12 +7,32 @@
 {% endblock %}
 
 {% block problem_body %}
-  Science is done in Celsius...
-  <br>
-  <figure style="text-align: center;">
-    <img src="{% static 'img/fahrenheit_celsius_thermometer.jpg' %}">
-  </figure>
-  <br>
+<p class="has-text-justified">
+  We'll get you familiar with how submitting code to Project Lovelace works by converting some temperatures. Scientists
+  like to use Celsius instead of Fahrenheit but sometimes you're given a temperature in Fahrenheit and you have to
+  convert it to Celsius. It's pretty easy: subtract 32 then multiply by 9/5 or if you like equations
+
+  $$ C = \frac{5}{9} (F - 32) $$
+
+  In the code editor below try to write a function <tt>fahrenheit_to_celsius(F)</tt> that converts Fahrenheit to
+  Celsius and we'll test your code when you submit it to make sure you got it right.
+</p>
+<br>
+
+<figure style="text-align: center;">
+  <img src="{% static 'img/fahrenheit_celsius_thermometer.jpg' %}">
+  <figcaption class="help">
+    Celsius and Fahrenheit are both just scales for measuring temperature. To define a scale, you just need to pick two
+    well-defined temperatures. Celsius defines the 0°C to be the temperature at which water freezes, and 100°C is where
+    water boils. Fahrenheit is older and there are different stories about how it was invented but 0°F was probably the
+    freezing point of some ice, water and salt solution while 96°F was defined as the average human body temperature
+    (later redefined to 98.6°F). (Image credit:
+    <a href="https://www.learner.org/courses/chemistry/text/text.html?dis=U&num=Ym5WdElUQS9NeW89&sec=YzJWaklUQS9NeW89">
+      Annenberg Learner
+    </a>)
+  </figcaption>
+</figure>
+<br>
 {% endblock %}
 
 {% block input_description %}
@@ -50,7 +70,7 @@ def fahrenheit_to_celsius(F):
     C = 0
 
     # Your code goes here: calculate the temperature in Celsius,
-    # store in a variable (we called it C), and return it!
+    # store in a variable (we called it C), and return it.
 
     return C
 {% endblock %}
@@ -63,23 +83,59 @@ def fahrenheit_to_celsius(F):
 
 {% block notes_and_references %}
 <div class="content">
+  {% if solved_by_user %}
+  <h3>Solution notes</h3>
+  <ul>
+    <li>
+      Hey you solved the first problem! Sometimes we'll leave stuff here for when you've solved a problem, but we don't
+      have anything interesting here :(
+    </li>
+  </ul>
+  {% endif %}
+
+  <h3>Videos</h3>
+  <dl>
+    <dt>
+      <a href="https://www.youtube.com/watch?v=LgrXd0NM2y8">What the Fahrenheit?!</a>, Veritasium
+    </dt>
+    <dd>
+      If you're interested in how the weird Fahrenheit scale came about and what it means.
+    </dd>
+  </dl>
+
   <h3>Notes</h3>
   <ul>
-    <li>This problem is inspired by the second example in the famous book <a
-            href="https://en.wikipedia.org/wiki/The_C_Programming_Language">The C Programming Language</a>.
+    <li>
+      This problem is inspired by the second example in
+      <a href="https://en.wikipedia.org/wiki/The_C_Programming_Language">The C Programming Language</a>.
     </li>
-    <li>The Celsius and Farenheit scales read the same temperature at -40! This is one of the test cases.</li>
-    <li>Neither Celsius or Fahrenheit are good for science as a temperature of 0 degrees still means that some thermal
+    <li>
+      The Celsius and Farenheit scales read the same temperature at -40°! This is one of the test cases.
+    </li>
+    <li>
+      Neither Celsius or Fahrenheit are good for science as a temperature of 0 degrees still means that some thermal
       energy exists. Scientists use the <a href="https://en.wikipedia.org/wiki/Kelvin">Kelvin scale</a> which is 0
       degrees Kelvin (K) at <a href="https://en.wikipedia.org/wiki/Third_law_of_thermodynamics">absolute zero</a>
-      (-273.15°C), the temperature at which all molecular motion ceases. Interestingly, the <a
-              href="https://en.wikipedia.org/wiki/Third_law_of_thermodynamics">third law of thermodynamics</a> says it's
+      (-273.15°C), the temperature at which all molecular motion ceases (but some systems still have
+      some energy at absolute zero due to a quantum mechanical
+      <a href="https://en.wikipedia.org/wiki/Zero-point_energy">zero-point energy</a>).
+    </li>
+    <li>
+      Interestingly, the
+      <a href="https://en.wikipedia.org/wiki/Third_law_of_thermodynamics">third law of thermodynamics</a> says it's
       impossible to reach absolute zero.
     </li>
-    <li><b>Weird stuff:</b> You can have weird physical systems with <a
-            href="https://en.wikipedia.org/wiki/Negative_temperature">negative temperatures</a>. Some systems still have
-      some energy at absolute zero due to <a href="https://en.wikipedia.org/wiki/Zero-point_energy">zero-point
-        energy</a> in quantum mechanics.
+    <li>
+      You can have weird physical systems with
+      <a href="https://en.wikipedia.org/wiki/Negative_temperature">negative temperatures</a>.
+    </li>
+    <li>
+      The Celsius scale is technically defined in terms of the Kelvin scale so water actually freezes at −0.0001°C and
+      boils at 99.9839°C (at standard temperature and pressure).
+    </li>
+    <li>
+      Pretty cool list of <a href="https://en.wikipedia.org/wiki/Orders_of_magnitude_(temperature)">
+      temperature orders of magnitude</a>.
     </li>
   </ul>
 </div>
