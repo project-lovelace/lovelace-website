@@ -11,8 +11,13 @@ import os, sys
 
 from django.core.wsgi import get_wsgi_application
 
-#sys.path.append('/lovelace/lovelace-website/src/')
-#sys.path.append('/lovelace/envs/website/lib/python3.7/site-packages/')
+# Development
+# sys.path.append('/lovelace/lovelace-website/src/')
+# sys.path.append('/lovelace/envs/website/lib/python3.7/site-packages/')
+
+# Production
+sys.path.append('/var/www/projectlovelace.net/lovelace-website/src/')
+sys.path.append('/var/www/projectlovelace.net/lovelace_website_env/lib/python3.7/site-packages/')
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "lovelace.settings")
 
