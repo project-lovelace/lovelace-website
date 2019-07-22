@@ -8,9 +8,9 @@
 
 {% block problem_body %}
 <p class="has-text-justified">
-  The number $\pi$=3.1415926535897... is the ratio of a circle's circumference to its diameter and shows absolutely
-  everywhere in math and science. It's decimal expansion goes on forever but we can actually calculate it by summing up
-  a bunch of fractions
+  The number $\pi$=3.1415926535897... is the ratio of a circle's circumference to its diameter and shows basically
+  everywhere in math and science. It's like the most famous number in math. It's decimal expansion goes on forever but
+  we can actually calculate it by summing up a bunch of fractions
 
   $$ \frac{\pi}{4} = 1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} - \frac{1}{11} + \dots
      = \sum_{k=0}^n \frac{(-1)^k}{2k+1} $$
@@ -93,13 +93,19 @@ def almost_pi(N):
   </ul>
   {% endif %}
 
+  <h3>Videos</h3>
+  <dl>
+    <dt>
+      <a href="https://www.youtube.com/watch?v=bcPTiiiYDs8">How pi was almost 6.283185...</a>, 3Blue1Brown
+    </dt>
+  </dl>
+
   <h3>Notes</h3>
   <ul>
     <li>$\pi$ is a transcendental number and its digital expansion contains all possible numbers. 123456789 first shows
       up at the 523,551,502nd decimal place! You can search through the first billion digits at 
       <a href="https://three.onefouronefive.net/">A Billion Digits of Pi</a>.
     </li>
-    <li>Beautiful visualization</li>
   </ul>
 </div>
 {% endblock %}

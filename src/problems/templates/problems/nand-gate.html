@@ -16,7 +16,8 @@
 <figure style="text-align: center;">
   <img src="{% static 'img/NAND_logic_gates.png' %}">
   <figcaption class="help">
-    Truth tables for the NOT, AND, and NAND logic gates.
+    Truth tables for the NOT, AND, and NAND logic gates. (Source: <a href="https://en.wikipedia.org/wiki/NAND_logic">
+    Wikipedia: NAND logic</a>)
   </figcaption>
 </figure>
 <br>
@@ -30,11 +31,11 @@
 {% endblock %}
 
 {% block input_description %}
-  The temperature in Fahrenheit (°F).
+  Two integers A and B that have the value 0 or 1.
 {% endblock %}
 
 {% block output_description %}
-  The temperature in Celcius (°C).
+  The output of a NAND gate with inputs A and B.
 {% endblock %}
 
 {% block examples %}

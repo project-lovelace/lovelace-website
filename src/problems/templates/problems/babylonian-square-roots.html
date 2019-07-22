@@ -35,7 +35,9 @@
     A photograph of the Babylonian clay tablet <a href="https://en.wikipedia.org/wiki/YBC_7289">YBC 7289</a>. The
     numbers on the diagonal are actually a pretty accurate approximation of $\sqrt{2}$. They read in sexagesimal
     (base 60) 1, 24, 51, and 10 which cooresponds to $\sqrt{2} \approx 1 + 24/60 + 51/60^2 + 10/60^3 = 1.41421296...$
-    which is correct to six decimal digits!
+    which is correct to six decimal digits! It also shows a square with sides of length 30 and diagonal of length
+    $30 \sqrt{2} \approx 42 + 25/60 + 35/60^2$.
+    (Source: <a href="https://commons.wikimedia.org/wiki/File:YBC-7289-OBV-labeled.jpg">Wikimedia Commons</a>)
   </figcaption>
 </figure>
 <br>
@@ -86,22 +88,31 @@ def babylonian_sqrt(S):
 
 {% block notes_and_references %}
   <div class="content">
-    {% if solved_by_user %}
-    <h3>Solution notes</h3>
-    <ul>
-      <li></li>
-    </ul>
-    {% endif %}
-
     <h3>Notes</h3>
     <ul>
-      <li></li>
+      <li>
+        The method we used here is also called Heron's method after the Hero of Alexandria who explicitly described it
+        in 60 AD.
+      </li>
+      <li>
+        The Babylonians did lots of other cool stuff that was way ahead of their time like
+        <a href="https://science.sciencemag.org/content/351/6272/482">
+          calculate Jupiter’s position from the area under a time-velocity graph
+        </a>.
+      </li>
     </ul>
 
     <h3>References</h3>
     <dl>
-      <dt></dt>
-      <dd></dd>
+      <dt>
+        <a href="https://johncarlosbaez.wordpress.com/2011/12/02/babylon-and-the-square-root-of-2/">Babylon and the
+        square root of 2</a>, The Azimuth Project
+      </dt>
+      <dt>
+        <a href="https://www.sciencedirect.com/science/article/pii/S0315086098922091?via%3Dihub">
+          Square Root Approximations in Old Babylonian Mathematics: YBC 7289 in Context
+        </a>, David Fowler & Eleanor Robson, Historia Mathematica, Volume 25, Issue 4, pp. 366-378 (1998).
+      </dt>
     </dl>
   </div>
 {% endblock %}
