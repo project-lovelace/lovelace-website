@@ -3,24 +3,55 @@
 {% load static %}
 
 {% block you_will_learn %}
-	calculus and summation.
+	numerical integration.
 {% endblock %}
 
 {% block problem_body %}
-  <br><br>
-  <figure style="text-align: center;">
-    <img src="{% static 'img/Riemann_sum_convergence.png' %}">
-  </figure>
-  <br>
+<p class="has-text-justified">
+  The simple problem here is to sum the area of a bunch of rectangles with different heights but the same width. That's
+  all you need to know. But if you don't mind learning a bit of calculus, read on.
+</p>
+<br>
+
+<p class="has-text-justified">
+  The slightly longer version is that we're trying to calculate the area under a complicated line or curve (the black
+  line in the figure below). One way to do this is to draw rectangles under the curve and just add up the areas of all
+  these rectangles. You can choose the rectangles in a few different ways but the idea is that if you use more and more
+  rectangles, you'll get a more accurate answer (see figure caption).
+</p>
+<br>
+
+<p class="has-text-justified">
+  If the black curve is described by a function $f(x)$ then the area under the curve is the definite integral of $f$
+  between some endpoints $a$ and $b$
+
+  $$ \int_a^b f(x) \, dx \approx \sum_{k=0}^N f(x_i) \Delta x $$
+
+  where we decided to use $N$ rectangles each of width $\Delta x$. The height of the $i^\textrm{th}$ rectangle is
+  $f(x_i)$ which can be chosen in a few different ways but is given in this problem.
+</p>
+
+<figure style="text-align: center;">
+  <img src="{% static 'img/Riemann_sum_convergence.png' %}">
+  <figcaption class="help">
+    You can choose the rectangles in a bunch of different ways. The height of the
+    <span class="has-text-success">green rectangles</span> was chosen to be the maximum value of the function over the
+    width of the rectangle while the <span class="has-text-danger">red rectangles</span> use the minimum value of the
+    function. The <span class="has-text-info">blue rectangles</span> use the value at the left endpoint (where the
+    rectangle starts) while the <span class="has-text-warning">yellow rectangles</span> use the right endpoint (where
+    the rectangle ends). But if you use more and more rectangles, you get a more accurate answer and the are calculated
+    by the four methods all converge to the same number (inset).
+  </figcaption>
+</figure>
+<br>
 {% endblock %}
 
 {% block input_description %}
-  A list of rectangle heights. Negative numbers indicate...
-
+  A list of rectangle heights (negative heights give a rectangle "negative area"), and a rectangle width.
 {% endblock %}
 
 {% block output_description %}
-  The sum of the rectangle areas. Rectangles with negative heights contribute negative area.
+  The sum of the rectangle areas.
 {% endblock %}
 
 {% block examples %}
@@ -67,6 +98,17 @@ def area_of_rectangles(f, dx):
     <li>
       Thanks to <a href="https://discourse.projectlovelace.net/t/possible-new-problem-definite-integrals/59">
       rmueller</a> for suggesting this problem!
+    </li>
+    <li>
+      The method we used to compute the area under the curve here using rectangles is called a
+      <a href="https://en.wikipedia.org/wiki/Riemann_sum">Riemann summation</a>. You could use more complicated shapes:
+      The <a href="https://en.wikipedia.org/wiki/Trapezoidal_rule">trapezoidal rule</a> uses trapezoids and
+      <a href="https://en.wikipedia.org/wiki/Simpson%27s_rule">Simpson's rule</a> uses quadratic polynomials.
+    </li>
+    <li>
+      Instead of using upright rectangles like we did here with the Riemann sum, you can use rectangles placed sideways
+      which is kind of how the area under the curve is interpreted with
+      <a href="https://en.wikipedia.org/wiki/Lebesgue_integration">Lebesgue integration</a>.
     </li>
   </ul>
 </div>
