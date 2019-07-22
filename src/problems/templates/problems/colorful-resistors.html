@@ -182,7 +182,17 @@ function resistance(band_colors) {
 {% endblock %}
 
 {% block julia_code_stub %}
-let i_drink_kool_aid = True;
+function resistance(band_colors)
+    n_bands = length(band_colors)
+
+    nominal_R = 0
+    minimum_R = 0
+    maximum_R = 0
+
+    # Your code goes here!
+
+    return nominal_R, minimum_R, maximum_R
+end
 {% endblock %}
 
 {% block notes_and_references %}
