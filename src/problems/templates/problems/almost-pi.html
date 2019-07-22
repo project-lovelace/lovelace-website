@@ -2,35 +2,41 @@
 
 {% load static %}
 
-{% block useful_to_know %}
-	loops, summation, pi is everywhere.
+{% block you_will_learn %}
+	loops, summation, and 🥧.
 {% endblock %}
 
 {% block problem_body %}
 <p class="has-text-justified">
-  The number π=3.1415926535897... is the ratio of a circle's circumference to its diameter and shows up absolutely
-  everywhere in math and science. It's decimal expansion goes on forever but we can actually calculate it by summing up
-  a bunch of fractions
+  The number $\pi$=3.1415926535897... is the ratio of a circle's circumference to its diameter and shows basically
+  everywhere in math and science. It's like the most famous number in math. It's decimal expansion goes on forever but
+  we can actually calculate it by summing up a bunch of fractions
 
   $$ \frac{\pi}{4} = 1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} - \frac{1}{11} + \dots
      = \sum_{k=0}^n \frac{(-1)^k}{2k+1} $$
 
-  By adding more and more terms, you get a better and better approximation to π.
+  By adding more and more terms, you get a better and better approximation to $\pi$. Given the number of terms $n$,
+  sum the first $n$ terms and return the result.
 </p>
 
 <br>
 <figure style="text-align: center;">
   <img src="{% static 'img/approximating_pi.png' %}">
+  <figcaption class="help">
+    The blue line shows the sum of the first $n$ terms for $0 \le n \le 50$ while the orange dashed line shows the exact
+    value of $\pi$. By adding each term, you end up overestimating then underestimating $\pi$, but it slowly converges to the
+    exact value.
+  </figcaption>
 </figure>
 <br>
 {% endblock %}
 
 {% block input_description %}
-  The number of terms to use in calculating π.
+  An integer $n$ for the number of terms to sum in calculating $\pi$ using the above equation.
 {% endblock %}
 
 {% block output_description %}
-  The approximation to π.
+  The sum of the first $n$ terms giving an approximation to $\pi$.
 {% endblock %}
 
 {% block examples %}
@@ -62,9 +68,17 @@ def almost_pi(N):
 {% endblock %}
 
 {% block javascript_code_stub %}
+function almost_pi(N) {
+    // Your code goes here!
+    return 0
+}
 {% endblock %}
 
 {% block julia_code_stub %}
+function almost_pi(N)
+    # Your code goes here!
+    return 0
+end
 {% endblock %}
 
 {% block notes_and_references %}
@@ -74,7 +88,7 @@ def almost_pi(N):
   <ul>
     <li>
       The formula we used here is <a href="https://en.wikipedia.org/wiki/Leibniz_formula_for_%CF%80">Leibniz formula
-      for π</a> and is one of the slowest to converge: you need TONS of terms to calculate more and more digits of π.
+      for $\pi$</a> and is one of the slowest to converge: you need TONS of terms to calculate more and more digits of $\pi$.
       There are <a href="https://en.wikipedia.org/wiki/List_of_formulae_involving_%CF%80#Efficient_infinite_series">
       crazy looking efficient formulas</a>a that can calculate digits of π much faster.
     </li>
@@ -87,13 +101,22 @@ def almost_pi(N):
   </ul>
   {% endif %}
 
+  <h3>Videos</h3>
+  <dl>
+    <dt>
+      <a href="https://www.youtube.com/watch?v=bcPTiiiYDs8">How pi was almost 6.283185...</a>, 3Blue1Brown
+    </dt>
+  </dl>
+
   <h3>Notes</h3>
   <ul>
-    <li>Pi is a transcendental number and its digital expansion contains...</li>
-    <li>Beautiful visualization</li>
+    <li>$\pi$ is a transcendental number and its digital expansion contains all possible numbers. 123456789 first shows
+      up at the 523,551,502nd decimal place! You can search through the first billion digits at 
+      <a href="https://three.onefouronefive.net/">A Billion Digits of Pi</a>.
+    </li>
   </ul>
 </div>
 {% endblock %}
 
-{% block discourse_topic_id %}xx{% endblock %}
+{% block discourse_topic_id %}262{% endblock %}
 

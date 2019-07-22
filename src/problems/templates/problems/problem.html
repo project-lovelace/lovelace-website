@@ -49,7 +49,7 @@
 <section class="section">
   <br>
   <p class="title is-2 has-text-centered">{{ problem.title }}</p>
-  <p class="subtitle is-5 has-text-centered is-italic"><strong>You will learn about</strong>: {% block useful_to_know %}{% endblock %}</p>
+  <p class="subtitle is-5 has-text-centered is-italic"><strong>You will learn about</strong>: {% block you_will_learn %}{% endblock %}</p>
 
   <div id="tabs" class="tabs is-centered is-boxed">
     <ul>
@@ -242,7 +242,11 @@
     <section data-content="4">
       <div class="columns is-centered">
         <div class="column is-three-fifths">
-          <p class="has-text-centered">Let us know what you think about this problem! Was it too hard? Difficult to understand? Also feel free to discuss the problem, ask questions, and post cool stuff on Discourse. You should be able view the discussion thread below. Feel free to post your solutions but please do your best to <b>organize and document your code well</b> so others can learn from it.</p>
+          <p class="has-text-centered">
+            Let us know what you think about this problem! Was it too hard? Difficult to understand? Also feel free to
+            discuss the problem, ask questions, and post cool stuff on Discourse. You should be able see a discussion
+            thread below. Feel free to post your solutions but if you do please <b>organize and document your code
+            well</b> so others can learn from it.</p>
           <br>
           <div id='discourse-comments' style="height: 100vh;"></div>
         </div>

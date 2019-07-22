@@ -2,12 +2,46 @@
 
 {% load static %}
 
-{% block useful_to_know %}
-	statistics, ...?
+{% block you_will_learn %}
+	statistics and summing lots of numbers.
 {% endblock %}
 
 {% block problem_body %}
-    Stuff about temperature variations
+<p class="has-text-justified">
+  If you live in the tropics, in the rainforest, near the equator or on an island, the temperature doesn't change a huge
+  amount throughout the year. But if you live in the subtropics or temperate zones then you probably get big swings in
+  temperatures between winter and summer. We can use the average and standard deviation to say things about the climate
+  of a city.
+</p>
+<br>
+
+<p class="has-text-justified">
+  The average (or mean) temperature tells us how warm or cold a place is, while the temperature standard deviation tells
+  us how much the temperature varies. For a series of temperature observations $T_1, T_2, \dots, T_n$, the average
+  temperature $\overline{T}$ is calculated as
+
+  $$ \overline{T} = \frac{T_1 + T_2 + \cdots + T_n}{n} = \frac{1}{n} \sum_{i=1}^n T_i $$
+
+  which can then be used to calculated the temperature standard deviation $\sigma_T$ using
+
+  $$ \sigma_T = \sqrt{\frac{(T_1 - \overline{T})^2 + (T_2 - \overline{T})^2 + \cdots + (T_n - \overline{T})^2}{n}}
+              = \sqrt{\frac{1}{n} \sum_{i=1}^n (T_i - \overline{T})^2} $$
+</p>
+<br>
+
+<figure style="text-align: center;">
+  <img src="{% static 'img/temperature_variations.png' %}">
+  <figcaption class="help">
+    Average monthly temperatures for five cities. Saskatoon has warm summers and long cold winters so it has the lowest
+    average temperature out of the five cities and the difference the summer and winter is huge so it also has the
+    largest temperature variations. Baku is warmer than  Saskatoon so it has a higher average temperature and the
+    seasons aren't as extreme so it has smaller temperature variations. Khartoum is even warmer than Baku with even
+    smaller variations although it gets cooler in July and August with the arrival of the moist south westerlies.
+    Singapore has a tropical rainforest climate and small temperature variations. San Juan, being in the Southern
+    Hemisphere, gets the opposite seasons.
+  </figcaption>
+</figure>
+<br>
 {% endblock %}
 
 {% block input_description %}
@@ -15,7 +49,7 @@
 {% endblock %}
 
 {% block output_description %}
-  The average temperature, and the temperaure variance.
+  The average temperature, and the temperaure standard deviation.
 {% endblock %}
 
 {% block examples %}
@@ -23,27 +57,71 @@
     <div class="message-header">
       <p>Example</p>
     </div>
-    <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input temperatures</b>: [..., ..., ...]
-<b>Output time</b>: 1.255175</div>
+    <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input temperatures</b>: [4.4, 4.2, 7.0, 12.9, 18.5, 23.5, 26.4, 26.3, 22.5, 16.6, 11.2, 7.3]
+<b>Output mean</b>: 15.067
+<b>Output standard deviation</b>: 8.021</div>
   </article>
 {% endblock %}
 
 {% block function_signature %}
-temperature_statistics(Ts)
+temperature_statistics(T)
 {% endblock %}
 
 {% block python_code_stub %}
-def light_time(distance):
+def temperature_statistics(T):
+    mean = 0
+    std  = 0
+    # Your code goes here!
+    return mean, std
 {% endblock %}
 
 {% block javascript_code_stub %}
+function temperature_statistics(T) {
+    var mean = 0
+    var std = 0
+    // Your code goes here!
+    return [mean, std]
+}
 {% endblock %}
 
 {% block julia_code_stub %}
+function temperature_statistics(T)
+    mean = 0
+    std  = 0
+    # Your code goes here!
+    return mean, std
+end
 {% endblock %}
 
 {% block notes_and_references %}
+<div class="content">
+  <h3>Notes</h3>
+  <ul>
+    <li>
+      We focused on average monthly temperatures but the difference between the warmest temperature in the middle of
+      the day and the coolest temperature in the middle of the night results in a
+      <a href="https://en.wikipedia.org/wiki/Diurnal_temperature_variation">diurnal temperature variation</a>
+      that's also pretty important.
+    </li>
+    <li>
+      You probably noticed a seasonal lag between the time of year with the most sunlight, the summer solstice around
+      June 21, and the warmest months which are usually 1-2 months afterwards in July and August. This is because it
+      takes time to warm things up, especially water with it's huge heat capacity. Because of this, cities near lots of
+      water have longer <a href="https://en.wikipedia.org/wiki/Seasonal_lag">seasonal lags</a>.
+    </li>
+    <li>
+      A similar lag happens every day where the warmest part of the day is usually around 3-5pm instead of at solar noon
+      when the sun reaches its highest point. As a result, the warmest part of the day is when the sun is setting and
+      is low enough that the surface has started cooling.
+    </li>
+    <li>
+      Wikipedia has a pretty cool <a href="https://en.wikipedia.org/wiki/List_of_cities_by_average_temperature">
+      list of cities by average temperature</a>.
+    </a>
+    </li>
+  </ul>
+</div>
 {% endblock %}
 
-{% block discourse_topic_id %}xx{% endblock %}
+{% block discourse_topic_id %}263{% endblock %}
 

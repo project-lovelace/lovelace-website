@@ -2,8 +2,8 @@
 
 {% load static %}
 
-{% block useful_to_know %}
-	submitting code, basic math operations, light is <i>fast</i>.
+{% block you_will_learn %}
+	submitting code and that light is <i>fast</i>.
 {% endblock %}
 
 {% block problem_body %}
@@ -62,22 +62,71 @@ c = 299792458  # Speed of light [m/s]
 def light_time(distance):
     t = 0
 
-    # Calculate the time taken using t = d/c and return it!
+    # Calculate the time taken using t = d/c and return it.
 
     return t
 {% endblock %}
 
 {% block javascript_code_stub %}
+const c = 299792458  // Speed of light [m/s]
+
+function light_time(distance) {
+    var t = 0
+
+    // Calculate the time taken using t = d/c and return it.
+
+    return t
+}
 {% endblock %}
 
 {% block julia_code_stub %}
+const c = 299792458  # Speed of light [m/s]
+
+function light_time(distance)
+    t = 0
+
+    # Calculate the time taken using t = d/c and return it.
+
+    return t
+end
 {% endblock %}
 
 {% block notes_and_references %}
 <div class="content">
+    {% if solved_by_user %}
+  <h3>Solution notes</h3>
+  <ul>
+    <li>
+      Still nothing interesting here but congrats on solving the second problem!
+    </li>
+  </ul>
+  {% endif %}
+
+  <h3>Videos</h3>
+  <dl>
+    <dt>
+      <a href="https://www.youtube.com/watch?v=CSqFBbNtt9c">Earth-Moon-Mars distances to scale, at LIGHT SPEED!</a>,
+      James O'Donoghue
+    </dt>
+    <dd>
+      Watch a beam of light travel to Mars and back to Earth in real-time.
+    </dd>
+  </dl>
+  <dl>
+    <dt>
+      <a href="https://www.youtube.com/watch?v=0fKBhvDjuy0">Powers of Ten: A Film Dealing with the Relative Size of
+        Things in the Universe and the Effect of Adding Another Zero (1977)</a>, Charles and Ray Eames
+    </dt>
+    <dd>
+      There are also interactive versions: <a href="https://scaleofuniverse.com/">The Scale of the Universe</a> and
+      <a href="https://www.nikon.com/about/sp/universcale/scale.htm#">Universcale</a>. The original book is also
+      online: <a href="http://www.vendian.org/mncharity/cosmicview/">Cosmic View: The Universe in 40 Jumps</a>.
+    </dd>
+  </dl>
+
   <h3>Notes</h3>
   <ul>
-    <li>The speed of light is usually denoted by lowercase $c$ in most of science, apparently for "constant" or from the
+    <li>The speed of light is usually denoted by lowercase $c$, apparently for "constant" or from the
       Latin <i>celeritas</i> meaning quickness or swiftness.
     </li>
     <li>Light takes 1.255 seconds to travel from the surface of the Earth to the surface of the Moon. The average
@@ -85,11 +134,12 @@ def light_time(distance):
       Moon is 1,737 km, so in this case light actually travels 384,400 - 6,371, - 1,737 = 376,292 km.
     </li>
     <li>The <a href="https://en.wikipedia.org/wiki/R%C3%B8mer%27s_determination_of_the_speed_of_light">first measurement
-      of the speed of light</a> was made in 1676 by Ole Rømer...
+      of the speed of light</a> was made in 1676 by Ole Rømer but scientists argued about whether the speed of light
+      was finite or infinite for a long time.
     </li>
   </ul>
 </div>
 {% endblock %}
 
-{% block discourse_topic_id %}xx{% endblock %}
+{% block discourse_topic_id %}258{% endblock %}
 

@@ -2,8 +2,8 @@
 
 {% load static %}
 
-{% block useful_to_know %}
-  2D arrays, reading files.
+{% block you_will_learn %}
+  ENSO, 2D arrays, and reading files.
 {% endblock %}
 
 {% block problem_body %}
@@ -108,7 +108,6 @@ def enso_classification(two_year_period):
     mei = 0.0
 
     # Your code goes here!
-    # You can also add more code / functions above this function.
 
     return classification, intensity, mei
 {% endblock %}
@@ -127,6 +126,8 @@ function enso_classification(two_year_period) {
 {% endblock %}
 
 {% block julia_code_stub %}
+function enso_classification(two_year_period)
+end
 {% endblock %}
 
 {% block notes_and_references %}

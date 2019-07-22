@@ -2,8 +2,8 @@
 
 {% load static %}
 
-{% block useful_to_know %}
-	???.
+{% block you_will_learn %}
+calculating distances on a sphere.
 {% endblock %}
 
 {% block problem_body %}
@@ -14,19 +14,28 @@
   Mercator projection) and on a sphere.
 </p>
 <br>
+
 <figure style="text-align: center;">
   <img src="{% static 'img/Flight_paths_Mercator.png' %}">
+  <figcaption class="help">
+    On a flat map (Mercator projection) the shortest path from New York to Madrid seems to be along a constant latitude,
+    but the Mercator projection inflates areas away from the equator. As a result, the curved path is actually shorter!
+  </figcaption>
 </figure>
 <br>
-<br>
+
 <figure style="text-align: center;">
   <img src="{% static 'img/Flight_paths_sphere.png' %}">
+  <figcaption class="help">
+    Plotting the trajectories on a sphere makes it clearer that the curved path is actually shorter.
+  </figcaption>
 </figure>
 <br>
 
 <p class="has-text-justified">
-  The distance of the curved path between two points $(\phi_1, \lambda_1)$ and $(\phi_2, \lambda_2)$ where $\phi$
-  indicates latitude and $\lambda$ indicates longitude is
+  You can calculate the length of the curved path using the <i>haversine formula</i>. Between two points on the Earth
+  $(\phi_1, \lambda_1)$ and  $(\phi_2, \lambda_2)$ where $\phi$ is latitude and $\lambda$ is longitude, the shortest
+  distance is
 
   $$ 2R \sqrt{ \sin^2 \left( \frac{\phi_2 - \phi_1}{2} \right) + \cos\phi_1 \cos\phi_2 \sin^2 \left( \frac{\lambda_2 -
      \lambda_1}{2} \right)} $$
@@ -50,9 +59,8 @@ The distance between the points in kilometers (km).
   </div>
   <div class="message-body"
        style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input point 1 (latitude, longitude) </b>: 46.283, 86.667
-    <b>Input point 2 (latitude, longitude) </b>: -48.877, -123.393
-    <b>Output distance</b>: 17760.054
-  </div>
+<b>Input point 2 (latitude, longitude) </b>: -48.877, -123.393
+<b>Output distance</b>: 17760.054</div>
 </article>
 {% endblock %}
 
@@ -72,31 +80,39 @@ def haversine_distance(lat1, lon1, lat2, lon2):
 {% endblock %}
 
 {% block javascript_code_stub %}
+const R = 6372.1  // Radius of the Earth [km]
+
+function haversine_distance(lat1, lon1, lat2, lon2) {
+    var d = 0
+    // Your code goes here!
+    return d
+}
 {% endblock %}
 
 {% block julia_code_stub %}
+const R  = 6372.1  # Radius of the Earth [km]
+
+function haversine_distance(lat1, lon1, lat2, lon2)
+    d = 0
+    # Your code goes here!
+    return d
+end
 {% endblock %}
 
 {% block notes_and_references %}
 <div class="content">
-  {% if solved_by_user %}
-  <h3>Solution notes</h3>
-  <ul>
-    <li>In this problem we used the <a href="https://en.wikipedia.org/wiki/Haversine_formula">Haversine formula</a>
-      which calculates the <a href="https://en.wikipedia.org/wiki/Great-circle_distance">great-circle distance</a>
-      assuming the Earth is a perfect sphere so it can be off by up to 0.5%. <a
-              href="https://en.wikipedia.org/wiki/Vincenty%27s_formulae">Vincenty's formulae</a> account for the oblate
-      spheroid shape of the Earth and are much more accurate, being off only by <0.5 mm.
-    </li>
-  </ul>
-  {% endif %}
-
   <h3>Notes</h3>
   <ul>
-    <li></li>
+    <li>
+      In this problem we use the <a href="https://en.wikipedia.org/wiki/Haversine_formula">haversine formula</a>
+      which calculates the <a href="https://en.wikipedia.org/wiki/Great-circle_distance">great-circle distance</a>
+      assuming the Earth is a perfect sphere so it can be off by up to 0.5%.
+      <a href="https://en.wikipedia.org/wiki/Vincenty%27s_formulae">Vincenty's formulae</a> account for the oblate
+      spheroid shape of the Earth and are much more accurate, being off only by <0.5 mm.
+    </li>
   </ul>
 </div>
 {% endblock %}
 
-{% block discourse_topic_id %}xx{% endblock %}
+{% block discourse_topic_id %}261{% endblock %}
 

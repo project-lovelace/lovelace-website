@@ -2,8 +2,8 @@
 
 {% load static %}
 
-{% block useful_to_know %}
-	basic math operations.
+{% block you_will_learn %}
+	Ada Lovelace, the first computer algorithm, and Bernoulli numbers.
 {% endblock %}
 
 {% block problem_body %}
@@ -35,9 +35,10 @@
   <img src="{% static 'img/Diagram_for_the_computation_of_Bernoulli_numbers.jpg' %}">
   <figcaption class="help">
     Diagram of an algorithm for the Analytical Engine for the computation of Bernoulli numbers, from <i>Sketch of The
-    Analytical Engine Invented by Charles Babbage by Luigi Menabrea with notes by Ada Lovelace</i>. (Source: <a
-    href="https://commons.wikimedia.org/wiki/File:Diagram_for_the_computation_of_Bernoulli_numbers.jpg">Wikimedia
-    Commons</a>)
+    Analytical Engine Invented by Charles Babbage by Luigi Menabrea with notes by Ada Lovelace</i>. The steps are
+    describing how the analytical engine would compute $B_8$, which she called $B_7$ in her notation.
+    (Source: <a href="https://commons.wikimedia.org/wiki/File:Diagram_for_the_computation_of_Bernoulli_numbers.jpg">
+    Wikimedia Commons</a>)
   </figcaption>
 </figure>
 <br>
@@ -106,73 +107,72 @@ def bernoulli(n):
 {% endblock %}
 
 {% block notes_and_references %}
-  <div class="content">
+<div class="content">
   <h3>Derivation of Ada Lovelace's algorithm</h3>
-  To see how Ada derived her formula for the Bernoulli numbers we will have to make use of the fact that $e^t$ can be
-  expressed as an infinite series $\displaystyle e^t = \sum_{n=0}^\infty \frac{t^n}{n!:}$ which is called its Taylor
-  series.
+  <p class="has-text-justified">
+    To see how Ada derived her formula for the Bernoulli numbers we will have to make use of the fact that $e^t$ can
+    be expressed as an infinite series $\displaystyle e^t = \sum_{n=0}^\infty \frac{t^n}{n!:}$ which is called its
+    Taylor series.
 
-  The Bernoulli numbers $B_n$ can be defined as the coefficients of the Taylor series of a generating function
+    The Bernoulli numbers $B_n$ can be defined as the coefficients of the Taylor series of a generating function
 
-  $$ \frac{t}{e^t - 1} = \sum_{n=0}^\infty B_n \frac{t^n}{n!} $$
+    $$ \frac{t}{e^t - 1} = \sum_{n=0}^\infty B_n \frac{t^n}{n!} $$
 
-  We now want to solve for $B_n$ to get a formula for the Bernoulli numbers we can use to program a computer. We move
-  both terms to a single side and insert the Taylor series for $e^t$ to get
+    We now want to solve for $B_n$ to get a formula for the Bernoulli numbers we can use to program a computer. We
+    move both terms to a single side and insert the Taylor series for $e^t$ to get
 
-  $$ 1 = \frac{e^t - 1}{t} \sum_{n=0}^\infty B_n \frac{t^n}{n!}
-       = \sum_{m=0}^\infty \frac{x^m}{(m+1)!} \sum_{n=0}^\infty B_n \frac{t^n}{n!} $$
+    $$ 1 = \frac{e^t - 1}{t} \sum_{n=0}^\infty B_n \frac{t^n}{n!}
+         = \sum_{m=0}^\infty \frac{x^m}{(m+1)!} \sum_{n=0}^\infty B_n \frac{t^n}{n!} $$
 
-  We now have the product of two infinite series so let's expand their product up to terms including $t^4$. This
-  gives us
+    We now have the product of two infinite series so let's expand their product up to terms including $t^4$. This
+    gives us
 
-  \begin{align*}
-  1 &= \left( 1 + \frac{t}{2} + \frac{t^2}{2\cdot3} + \frac{t^3}{2\cdot3\cdot4} + \frac{t^4}{2\cdot3\cdot4\cdot5} +
-       \mathcal{O}(t^5) \right) \left( B_0 + B_1t + B_2 \frac{t^2}{2} + B_3\frac{t^3}{2\cdot3} +
-       B_4\frac{t^4}{2\cdot3\cdot4} + \mathcal{O}(t^5) \right) \\
-    &= B_0 + \left( B_1 + \frac{B_0}{2} \right) t + \left( \frac{B_2}{2} + \frac{B_1}{2} + \frac{B_0}{2\cdot3}
-       \right)t^2 + \left( \frac{B_3}{2\cdot3} + \frac{B_2}{2\cdot2} + \frac{B_1}{2\cdot3} + \frac{B_0}{2\cdot3\cdot4}
-       \right) t^3 \\
-    &  \quad + \left( \frac{B_4}{2\cdot3\cdot4} + \frac{B_3}{2\cdot2\cdot3} + \frac{B_2}{2\cdot2\cdot3} +
-       \frac{B_1}{2\cdot3\cdot4} + \frac{B_0}{2\cdot3\cdot4\cdot5} \right) t^4 + \mathcal{O}(t^5)
-  \end{align*}
+    \begin{align*}
+    1 &= \left( 1 + \frac{t}{2} + \frac{t^2}{2\cdot3} + \frac{t^3}{2\cdot3\cdot4} + \frac{t^4}{2\cdot3\cdot4\cdot5}
+         + \mathcal{O}(t^5) \right) \left( B_0 + B_1t + B_2 \frac{t^2}{2} + B_3\frac{t^3}{2\cdot3}
+         + B_4\frac{t^4}{2\cdot3\cdot4} + \mathcal{O}(t^5) \right) \\
+      &= B_0 + \left( B_1 + \frac{B_0}{2} \right) t + \left( \frac{B_2}{2} + \frac{B_1}{2}
+         + \frac{B_0}{2\cdot3} \right)t^2 + \left( \frac{B_3}{2\cdot3} + \frac{B_2}{2\cdot2} + \frac{B_1}{2\cdot3}
+         + \frac{B_0}{2\cdot3\cdot4} \right) t^3 \\
+      &  \quad + \left( \frac{B_4}{2\cdot3\cdot4} + \frac{B_3}{2\cdot2\cdot3} + \frac{B_2}{2\cdot2\cdot3}
+         + \frac{B_1}{2\cdot3\cdot4} + \frac{B_0}{2\cdot3\cdot4\cdot5} \right) t^4 + \mathcal{O}(t^5)
+    \end{align*}
 
-  where we grouped terms with the same powers of $t$.
+    where we grouped terms with the same powers of $t$.
 
-  Now we can start calculating the Bernoulli numbers. The left and right hand sides must be equal so $B_0 = 1$. As $t$
-  does not appear on the left, we can calculate $B_1$ using
+    Now we can start calculating the Bernoulli numbers. The left and right hand sides must be equal so $B_0 = 1$. As
+    $t$ does not appear on the left, we can calculate $B_1$ using
 
-  $$ B_1 + \frac{B_0}{2} = 0 \quad \implies \quad B_1 = -\frac{B_0}{2} = -\frac{1}{2} $$
+    $$ B_1 + \frac{B_0}{2} = 0 \quad \implies \quad B_1 = -\frac{B_0}{2} = -\frac{1}{2} $$
 
-  and similarly for $B_2$ as $t^2$ does not appear on the left
+    and similarly for $B_2$ as $t^2$ does not appear on the left
 
-  $$ \frac{B_2}{2} + \frac{B_1}{2} + \frac{B_0}{2\cdot3} \quad \implies \quad B_2 = -2\left( \frac{B_1}{2} +
-     \frac{B_0}{6} \right) = -2\left( -\frac{1}{4} + \frac{1}{6} \right) = \frac{1}{6} $$
+    $$ \frac{B_2}{2} + \frac{B_1}{2} + \frac{B_0}{2\cdot3} \quad \implies \quad B_2 = -2\left( \frac{B_1}{2}
+       + \frac{B_0}{6} \right) = -2\left( -\frac{1}{4} + \frac{1}{6} \right) = \frac{1}{6} $$
 
-  Repeating the process for the $t^3$ and $t^4$ terms we find $B_3 = 0$ and $\displaystyle B_4 = -\frac{1}{30}$. We
-  also notice a pattern: the coefficient of $t^n$, which is equal to zero, is given by
+    Repeating the process for the $t^3$ and $t^4$ terms we find $B_3 = 0$ and $\displaystyle B_4 = -\frac{1}{30}$. We
+    also notice a pattern: the coefficient of $t^n$, which is equal to zero, is given by
 
-  \begin{multline}
-    1\cdot\frac{B_n}{2\cdot3\cdot4\cdots(n+1)} + \frac{1}{2} \cdot \frac{B_{n-1}}{2\cdot3\cdot4\cdots n} +
-    \frac{1}{2\cdot3} \cdot \frac{B_{n-2}}{2\cdot3\cdot4\cdots (n-1)} + \cdots \\
-    + \frac{1}{2\cdot3\cdots(n-2)} \cdot \frac{B_3}{2\cdot3} + \frac{1}{2\cdot3\cdots(n-1)} \cdot \frac{B_2}{2} +
-    \frac{1}{2\cdot3\cdots n} \cdot B_1 + \frac{1}{2\cdot3\cdots(n+1)} \cdot B_0 = 0
-  \end{multline}
+    \begin{multline}
+      1\cdot\frac{B_n}{2\cdot3\cdot4\cdots(n+1)} + \frac{1}{2} \cdot \frac{B_{n-1}}{2\cdot3\cdot4\cdots n}
+      + \frac{1}{2\cdot3} \cdot \frac{B_{n-2}}{2\cdot3\cdot4\cdots (n-1)} + \cdots \\
+      + \frac{1}{2\cdot3\cdots(n-2)} \cdot \frac{B_3}{2\cdot3} + \frac{1}{2\cdot3\cdots(n-1)} \cdot \frac{B_2}{2}
+      + \frac{1}{2\cdot3\cdots n} \cdot B_1 + \frac{1}{2\cdot3\cdots(n+1)} \cdot B_0 = 0
+    \end{multline}
 
-  which we can write as
+    which we can write as
 
-  $$ \sum_{k=0}^n \frac{1}{(n+1-k)!} \cdot \frac{B_n}{k!} = 0 $$
+    $$ \sum_{k=0}^n \frac{1}{(n+1-k)!} \cdot \frac{B_n}{k!} = 0 $$
 
-  and so if we take out the $B_n$ term we can express it in terms of $B_k$ for $k \lt n$
+    and so if we take out the $B_n$ term we can express it in terms of $B_k$ for $k \lt n$
 
-  $$ B_n = -\sum_{k=0}^{n-1} \frac{n!}{(n+1-k)!\cdot k!} B_k = -\sum_{k=0}^{n-1} \binom{n}{k} \frac{B_k}{n+1-k} $$
+    $$ B_n = -\sum_{k=0}^{n-1} \frac{n!}{(n+1-k)!\cdot k!} B_k = -\sum_{k=0}^{n-1} \binom{n}{k} \frac{B_k}{n+1-k} $$
 
-  Using this formula along with $B_0 = 1$ we can calculate any Bernoulli number $B_n$ as long as we know all the lower
-  Bernoulli numbers $B_0, B_1, B_2, \dots, B_{n-1}$.
+    Using this formula along with $B_0 = 1$ we can calculate any Bernoulli number $B_n$ as long as we know all the
+    lower Bernoulli numbers $B_0, B_1, B_2, \dots, B_{n-1}$.
 
-  In Ada Lovelace's Note G, she proposes an algorithm for calculating what we call $B_8$, which she labeled $B_7$.
-  Using our slightly more modern notation Note G is essentially carrying out the following calculation
-
-  $$ B_8 = $$
+    In Ada Lovelace's Note G, she proposes an algorithm for calculating what we call $B_8$, which she labeled $B_7$.
+  </p>
 
   <h3>Notes</h3>
   <ul>

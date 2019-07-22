@@ -2,39 +2,40 @@
 
 {% load static %}
 
-{% block useful_to_know %}
-	if statements, logic gates.
+{% block you_will_learn %}
+	logic gates and if statements.
 {% endblock %}
 
 {% block problem_body %}
 <p class="has-text-justified">
-  You have billions of logic gates in your phone and laptop. They're tiny circuits that work with 0's and 1's and
-  perform basic boolean operations, usually with 2 inputs.
+  You have hundreds of millions of logic gates in your phone and laptop. They're tiny circuits that work with 0's and
+  1's and perform basic boolean operations, usually with 2 inputs.
 </p>
 <br>
 
 <figure style="text-align: center;">
   <img src="{% static 'img/NAND_logic_gates.png' %}">
+  <figcaption class="help">
+    Truth tables for the NOT, AND, and NAND logic gates. (Source: <a href="https://en.wikipedia.org/wiki/NAND_logic">
+    Wikipedia: NAND logic</a>)
+  </figcaption>
 </figure>
 <br>
 
 <p class="has-text-justified">
   A simple logic gate would be the NOT gate, which inverts the input so a 0 becomes a 1 and vice versa. An AND gate
-  produces 1 only if both of its inputs are 1, otherwise it produces 0.
-</p>
-
-<p class="has-text-justified">
-  The NAND gate is a an AND gate followed by a NOT gate, so it's performing a (NOT AND) operation. Try to write a
-  function <tt>NAND(A, B)</tt> that returns the output of a NAND gate.
+  produces 1 only if both of its inputs are 1, otherwise it produces 0. The NAND gate is a an AND gate followed by a
+  NOT gate, so it's performing a (NOT AND) operation. Try to write a function <tt>NAND(A, B)</tt> that returns the
+  output of a NAND gate.
 </p>
 {% endblock %}
 
 {% block input_description %}
-  The temperature in Fahrenheit (°F).
+  Two integers A and B that have the value 0 or 1.
 {% endblock %}
 
 {% block output_description %}
-  The temperature in Celcius (°C).
+  The output of a NAND gate with inputs A and B.
 {% endblock %}
 
 {% block examples %}
@@ -60,9 +61,19 @@ def NAND(A, B):
 {% endblock %}
 
 {% block javascript_code_stub %}
+function NAND(A, B) {
+    var nand = 0
+    // Your code goes here!
+    return nand
+}
 {% endblock %}
 
 {% block julia_code_stub %}
+function NAND(A, B)
+    nand = 0
+    # Your code goes here!
+    return nand
+end
 {% endblock %}
 
 {% block notes_and_references %}
@@ -83,5 +94,5 @@ def NAND(A, B):
 </div>
 {% endblock %}
 
-{% block discourse_topic_id %}xx{% endblock %}
+{% block discourse_topic_id %}259{% endblock %}
 

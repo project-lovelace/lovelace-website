@@ -2,30 +2,54 @@
 
 {% load static %}
 
-{% block useful_to_know %}
-	numerical algorithms.
+{% block you_will_learn %}
+	calculating square roots, iterative algorithms, and Babylonian math.
 {% endblock %}
 
 {% block problem_body %}
 <p class="has-text-justified">
-  The basic idea is to start with a guess $x_0$ for $\sqrt{S}$. Then we can improve on this guess: if $x_n$ is an
-  overestimate to $\sqrt{S}$ then $S/x_n$ will be an underestimate, so averaging the two should produce a better guess:
+  The square root of a number S is denoted $\sqrt{S}$ with the property that $\sqrt{S} \times \sqrt{S} = S$. It's easy
+  to calculate for square numbers, like $3 \times 3 = 9$ so $\sqrt{9} = 3$. For other numbers it's not as easy but the
+  ancient Babylonians seemed to know how to calculate them pretty accurately (see the figure and caption).
+</p>
+<br>
+
+<p class="has-text-justified">
+  We have no idea how they calculated square roots so accurately, but a method they might have used has been called the
+  Babylonian method.
+
+  The basic idea is to start with an initial guess $x_0$ for $\sqrt{S}$. Then we can keep improve on this guess: if
+  our current guess, $x_n$, is an overestimate to $\sqrt{S}$ then $S/x_n$ will be an underestimate and vice versa, so
+  averaging the two should produce a better guess:
+
   $$ x_{n+1} = \frac{1}{2} \left( x_n + \frac{S}{x_n} \right) $$
+
+  We can use this formula to calculate better and better guesses. Given a number $S$, calculate and return its square
+  root using the Babylonian method.
 </p>
 
-<br><br>
+<br>
 <figure style="text-align: center;">
   <img src="{% static 'img/YBC7289.jpg' %}">
+  <figcaption class="help">
+    A photograph of the Babylonian clay tablet <a href="https://en.wikipedia.org/wiki/YBC_7289">YBC 7289</a>. The
+    numbers on the diagonal are actually a pretty accurate approximation of $\sqrt{2}$. They read in sexagesimal
+    (base 60) 1, 24, 51, and 10 which cooresponds to $\sqrt{2} \approx 1 + 24/60 + 51/60^2 + 10/60^3 = 1.41421296...$
+    which is correct to six decimal digits! It also shows a square with sides of length 30 and diagonal of length
+    $30 \sqrt{2} \approx 42 + 25/60 + 35/60^2$.
+    (Source: <a href="https://commons.wikimedia.org/wiki/File:YBC-7289-OBV-labeled.jpg">Wikimedia Commons</a>)
+  </figcaption>
 </figure>
 <br>
 {% endblock %}
 
 {% block input_description %}
-  A number.
+A number $S$.
 {% endblock %}
 
 {% block output_description %}
-  It's square root approximated using the babylonian method.
+The square root of $S$ approximated using the babylonian method. If $S$ is a negative number, then return the string
+"undefined".
 {% endblock %}
 
 {% block examples %}
@@ -57,32 +81,49 @@ def babylonian_sqrt(S):
 {% endblock %}
 
 {% block javascript_code_stub %}
+function babylonian_sqrt(S) {
+    # Your code goes here!
+    return 0
+}
 {% endblock %}
 
 {% block julia_code_stub %}
+function babylonian_sqrt(S)
+    # Your code goes here!
+    return 0
+end
 {% endblock %}
 
 {% block notes_and_references %}
   <div class="content">
-    {% if solved_by_user %}
-    <h3>Solution notes</h3>
-    <ul>
-      <li></li>
-    </ul>
-    {% endif %}
-
     <h3>Notes</h3>
     <ul>
-      <li></li>
+      <li>
+        The method we used here is also called Heron's method after the Hero of Alexandria who explicitly described it
+        in 60 AD.
+      </li>
+      <li>
+        The Babylonians did lots of other cool stuff that was way ahead of their time like
+        <a href="https://science.sciencemag.org/content/351/6272/482">
+          calculate Jupiter’s position from the area under a time-velocity graph
+        </a>.
+      </li>
     </ul>
 
     <h3>References</h3>
     <dl>
-      <dt></dt>
-      <dd></dd>
+      <dt>
+        <a href="https://johncarlosbaez.wordpress.com/2011/12/02/babylon-and-the-square-root-of-2/">Babylon and the
+        square root of 2</a>, The Azimuth Project
+      </dt>
+      <dt>
+        <a href="https://www.sciencedirect.com/science/article/pii/S0315086098922091?via%3Dihub">
+          Square Root Approximations in Old Babylonian Mathematics: YBC 7289 in Context
+        </a>, David Fowler & Eleanor Robson, Historia Mathematica, Volume 25, Issue 4, pp. 366-378 (1998).
+      </dt>
     </dl>
   </div>
 {% endblock %}
 
-{% block discourse_topic_id %}xx{% endblock %}
+{% block discourse_topic_id %}265{% endblock %}
 
