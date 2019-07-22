@@ -8,11 +8,10 @@
 
 {% block problem_body %}
 <p class="has-text-justified">
-  We'll get you familiar with how submitting code to Project Lovelace works by doing some rocket science! Moving stuff
-  to outer space is super expensive and takes a lot of energy, which is part of the reason why colonizing the moon or
-  terraforming Mars is extremely hard. To move something heavy into space you need a rocket with enough fuel. But adding
-  fuel makes the rocket even heavier... And if you wanted to visit Mars and come back, you would need enough fuel to
-  leave both Earth and Mars.
+  Moving stuff to outer space is super expensive and takes a lot of energy, which is part of the reason why colonizing
+  the moon or terraforming Mars is extremely hard. To move something heavy into space you need a rocket with enough
+  fuel. But adding fuel makes the rocket even heavier... And if you wanted to visit Mars and come back, you would need
+  enough fuel to leave both Earth and Mars.
 </p>
 <br>
 
@@ -105,10 +104,9 @@ end
   {% if solved_by_user %}
   <h3>Solution notes</h3>
   <ul>
-    <li>Hey you solved the first problem! You might notice that your estimate for the fuel needed to escape Earth
-      (almost 20 million kg) is much higher than the fully loaded mass of the Saturn V of 2.97 million kg. The Saturn V
-      (and pretty much all rockets) get away with it because they are
-      <a href="https://en.wikipedia.org/wiki/Multistage_rocket">multistage rockets</a>.
+    <li>You might notice that your estimate for the fuel needed to escape Earth (almost 20 million kg) is much higher
+      than the fully loaded mass of the Saturn V of 2.97 million kg. The Saturn V (and pretty much all rockets) get
+      away with it because they are <a href="https://en.wikipedia.org/wiki/Multistage_rocket">multistage rockets</a>.
     </li>
     <li>
       The Jupyter notebook used to generate the plot in the figure is on GitHub:
@@ -119,30 +117,46 @@ end
   </ul>
   {% endif %}
 
+    <h3>Videos</h3>
+  <dl>
+    <dt>
+      <a href="https://www.youtube.com/watch?v=RVMZxH1TIIQ">Why Earth Is A Prison and How To Escape It</a>
+    </dt>
+    <dd>
+      Kurzgesagt has a great YouTube video essentially about the rocket equation and why it's so hard to leave Earth
+    </dd>
+  </dl>
+
   <h3>Notes</h3>
   <ul>
-    <li>We basically rearranged the <a href="https://en.wikipedia.org/wiki/Tsiolkovsky_rocket_equation">Tsiolkovsky
+    <li>
+      We basically rearranged the <a href="https://en.wikipedia.org/wiki/Tsiolkovsky_rocket_equation">Tsiolkovsky
       rocket equation</a> in this problem. Wikipedia shows a pretty common derivation of the rocket equation.
     </li>
-    <li>Kurzgesagt has a great YouTube video essentially about the rocket equation and why it's so hard to leave Earth:
-      <a href="https://www.youtube.com/watch?v=RVMZxH1TIIQ">Why Earth Is A Prison and How To Escape It</a>.
-    </li>
-    <li>At a launch cost of US<span>$</span>1.16 billion (2016 value) and a low Earth orbit payload of 140,000 kg, it
+    <li>
+      At a launch cost of US<span>$</span>1.16 billion (2016 value) and a low Earth orbit payload of 140,000 kg, it
       cost <span>$</span>8,286 per kg to send stuff to space using the Saturn V.
     </li>
-    <li>The input example uses the escape velocity of Earth (11.186 km/s) and Wikipedia has a <a
-            href="https://en.wikipedia.org/wiki/Escape_velocity#List_of_escape_velocities">list of escape velocities</a>
+    <li>
+      The input example uses the escape velocity of Earth (11.186 km/s) and Wikipedia has a
+      <a href="https://en.wikipedia.org/wiki/Escape_velocity#List_of_escape_velocities">list of escape velocities</a>
       for many other celestial bodies.
+    </li>
+    <li>
+      Awesome xkcd graphic showing the depths of <a href="https://xkcd.com/681_large/">gravity wells</a> in our
+      solar system.
     </li>
   </ul>
 
   <h3>References</h3>
   <dl>
-    <dt><a href="https://history.msfc.nasa.gov/saturn_apollo/documents/F-1_Engine.pdf">F-1 Engine Fact Sheet </a>, NASA
+    <dt>
+      <a href="https://history.msfc.nasa.gov/saturn_apollo/documents/F-1_Engine.pdf">F-1 Engine Fact Sheet </a>, NASA
       Saturn V News Reference (1968)
     </dt>
-    <dd>This is where we sourced the numbers for the Saturn V in this problem. The full <a
-            href="https://history.msfc.nasa.gov/saturn_apollo/saturnv_press_kit.html">Saturn V Press Kit</a> is also
+    <dd>
+      This is where we sourced the numbers for the Saturn V in this problem. The full
+      <a href="https://history.msfc.nasa.gov/saturn_apollo/saturnv_press_kit.html">Saturn V Press Kit</a> is also
       online.
     </dd>
   </dl>
