@@ -37,7 +37,7 @@ calculating distances on a sphere.
   $(\phi_1, \lambda_1)$ and  $(\phi_2, \lambda_2)$ where $\phi$ is latitude and $\lambda$ is longitude, the shortest
   distance is
 
-  $$ 2R \sqrt{ \sin^2 \left( \frac{\phi_2 - \phi_1}{2} \right) + \cos\phi_1 \cos\phi_2 \sin^2 \left( \frac{\lambda_2 -
+  $$ 2R \arcsin \sqrt{ \sin^2 \left( \frac{\phi_2 - \phi_1}{2} \right) + \cos\phi_1 \cos\phi_2 \sin^2 \left( \frac{\lambda_2 -
      \lambda_1}{2} \right)} $$
 
   where $R$ = 6372.1 km is the radius of the Earth.
@@ -45,7 +45,8 @@ calculating distances on a sphere.
 {% endblock %}
 
 {% block input_description %}
-(Latitude, longitude) coordinates of two points. Latitudes go from -90 to +90. Longitudes go from -180 to +180.
+(Latitude, longitude) coordinates of two points. Latitudes go from -90 to +90. Longitudes go from -180 to +180. Remember
+to convert your angles from degrees to radians before using the sine and cosine functions!
 {% endblock %}
 
 {% block output_description %}
