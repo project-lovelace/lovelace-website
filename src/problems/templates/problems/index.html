@@ -26,7 +26,7 @@
             <th><abbr title="Problem ID">#</abbr></th>
             <th></th>
             <th>Problem</th>
-            <th>Solved by</th>
+            <th>Submissions</th>
             <th style="width: 120px;"><abbr title="Higher = more math and scientific knowledge required">Difficulty</abbr></th>
             <th style="width: 120px;"><abbr title="Higher = more time needed to code up a solution">Timesink</abbr></th>
           </tr>
@@ -45,7 +45,7 @@
                     {% endif %}
                   </th>
                   <td>
-                    <a href="{% url 'problems:detail' problem.name %}">{{ problem.title  }}</a>
+                    <a href="{% url 'problems:detail' problem.name %}">{{ problem.title }}</a>
 
                     {% if problem.subject == 'physics' %}  
                       <span class="tag is-info">physics</span>
@@ -66,7 +66,7 @@
                     {% endif %}
                   
                   </td>
-                  <td align="center">{{ problem.solved_by }}</td>
+                  <td align="center">{{ problem_submissions | get_item:problem.id }}</td>
 
                   {% if problem.difficulty <= 5 %}
                     <td><progress class="progress is-success" value="{{ problem.difficulty }}" max="15"></progress></td>

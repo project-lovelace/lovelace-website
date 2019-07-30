@@ -14,6 +14,7 @@ from django.views import generic, View
 from django.db.models import F
 from django.conf import settings
 from django.core.files import File
+from django.template.defaulttags import register
 
 from .forms import CodeSubmissionForm
 from .models import Problem, Submission
@@ -24,6 +25,11 @@ ENGINE_URL = 'http://localhost:14714/submit'
 MAX_FILE_SIZE_BYTES = 65536
 
 logger = logging.getLogger('django.' + __name__)
+
+
+@register.filter
+def get_item(dictionary, key):
+    return dictionary.get(key)
 
 
 class IndexView(generic.ListView):
@@ -38,6 +44,12 @@ class IndexView(generic.ListView):
         """ Add a list of problems solved by the user, if authenticated. """
         data = super().get_context_data(**kwargs)
 
+        problem_submissions = {}
+        for problem in Problem.objects.order_by('order_id'):
+            problem_submissions[problem.id] = Submission.objects.filter(problem=problem).count()
+            print(f"problem_submissions[{problem.id:d}] = {problem_submissions[problem.id]:d}")
+        data['problem_submissions'] = problem_submissions
+
         if self.request.user.is_authenticated:
             current_user_profile = UserProfile.objects.get(user=self.request.user)
             problems_solved = Submission.objects.filter(user=current_user_profile, passed=True).distinct().values_list('problem', flat=True)
@@ -45,6 +57,7 @@ class IndexView(generic.ListView):
             data['problems_solved'] = problems_solved
 
         return data
+
 
 class DetailView(View):
     @staticmethod
