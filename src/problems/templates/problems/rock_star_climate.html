@@ -1,0 +1,109 @@
+{% extends "problems/problem.html" %}
+
+{% load static %}
+
+{% block you_will_learn %}
+	the simplest climate model ever.
+{% endblock %}
+
+{% block problem_body %}
+<p class="has-text-justified">
+  Simplest climate model
+
+  Zero-dimensional energy balance model where we'll assume that the energy absorbed by the Earth is equal to the energy
+  being radiated out by the Earth. We can actually calculate the Earth's temperature in this case.
+
+  We can call this state <i>radiative equilibrium</i> where
+
+  $$ \mathrm{Energy in} = \mathrm{Energy out} $$
+
+  Rock star model because we're treating the planet as a very ideal floating rock in space without
+
+  The solar power per unit area at the top of Earth's atmosphere is given by the Solar constant
+  $S = 1361 \; \mathrm{W/m}^2$. The sun shines on half of the Earth at a time which corresponds to be a cross-sectional
+  area of $\pi R^2$ where $R$ = 6371 km. And some fraction $a$ of that is reflected back to space, where $a$ is the
+  albedo of the Earth. So the energy absorbed by the Earth from the Sun is
+
+  $$ \mathrm{Energy in} = (1 - a) S \pi R^2 $$
+
+  Treating the Earth as a blackbody it radiates energy out everywhere on its surface according to the Stefan-Boltzmann
+  law $\sigma \varepsilon T^4$ where $\sigma$ is the Stefan-Boltzmann constant, $\varepsilon$ is the emissivity of the
+  Earth, and $T$ is the temperature of the Earth we want to solve for. To get the total energy radiated out by the Earth
+  we multiply by the surface area of the Earth, $4\pi R^2$, to get
+
+  $$ \mathrm{Energy out} = 4\pi R^2 \sigma \varepsilon T^4 $$
+
+  We now get the following balance and can solve for $T$
+
+  $$ (1 - a) S \pi R^2 = 4\pi R^2 \sigma \varepsilon T^4 \implies T = \sqrt[4]{\frac{(1 - a) S}{4\sigma\varepsilon}} $$
+</p>
+{% endblock %}
+
+{% block input_description %}
+  A solar constant $S$ in W/m^2, albedo $0 \le a \le 1$, and an emissivity $0 \le \varepsilon \le 1$.
+{% endblock %}
+
+{% block output_description %}
+  The temperature of the rock/planet in Celsius (°C).
+{% endblock %}
+
+{% block examples %}
+<article class="message">
+  <div class="message-header">
+    <p>Example (Earth)</p>
+  </div>
+  <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input solar constant:</b> 1361<br>
+<b>Input albedo:</b> 0.306<br>
+<b>Input emissivity:</b> 0.612<br>
+<b>Output rock temperature</b>: 14.059374</div>
+</article>
+{% endblock %}
+
+{% block function_signature %}
+rock_temperature(solar_constant, albedo, emissivity)
+{% endblock %}
+
+{% block python_code_stub %}
+def rock_temperature(S, a, e):
+    T = 0
+
+    # Your code goes here!
+
+    return T
+{% endblock %}
+
+{% block javascript_code_stub %}
+function rock_temperature(S, a, e) {
+    var T = 0
+
+    // Your code goes here!
+
+    return T
+}
+{% endblock %}
+
+{% block julia_code_stub %}
+function rock_temperature(S, a, e)
+    T = 0
+
+    # Your code goes here!
+
+    return T
+end
+{% endblock %}
+
+{% block notes_and_references %}
+<div class="content">
+    {% if solved_by_user %}
+  <h3>Solution notes</h3>
+  <ul>
+    <li>
+      Still nothing interesting here but congrats on solving the second problem!
+    </li>
+  </ul>
+  {% endif %}
+</div>
+{% endblock %}
+
+{% block discourse_topic_id %}258{% endblock %}
+
