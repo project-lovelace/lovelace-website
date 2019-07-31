@@ -47,13 +47,11 @@ class IndexView(generic.ListView):
         problem_submissions = {}
         for problem in Problem.objects.order_by('order_id'):
             problem_submissions[problem.id] = Submission.objects.filter(problem=problem).count()
-            print(f"problem_submissions[{problem.id:d}] = {problem_submissions[problem.id]:d}")
         data['problem_submissions'] = problem_submissions
 
         if self.request.user.is_authenticated:
             current_user_profile = UserProfile.objects.get(user=self.request.user)
             problems_solved = Submission.objects.filter(user=current_user_profile, passed=True).distinct().values_list('problem', flat=True)
-            # logger.info("problems_solved by {:} = {:}".format(self.request.user, problems_solved))
             data['problems_solved'] = problems_solved
 
         return data
