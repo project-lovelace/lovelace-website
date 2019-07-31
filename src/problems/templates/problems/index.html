@@ -48,21 +48,21 @@
                     <a href="{% url 'problems:detail' problem.name %}">{{ problem.title }}</a>
 
                     {% if problem.subject == 'physics' %}  
-                      <span class="tag is-info">physics</span>
+                      <span class="tag is-info">{{ problem.subfield }}</span>
                     {% elif problem.subject == 'math' %}
-                      <span class="tag is-warning">math</span>
+                      <span class="tag is-warning">{{ problem.subfield }}</span>
                     {% elif problem.subject == 'earth science' %}
-                      <span class="tag is-success">earth science</span>
+                      <span class="tag is-success">{{ problem.subfield }}</span>
                     {% elif problem.subject == 'chemistry' %}
-                      <span class="tag is-danger">chemistry</span>
+                      <span class="tag is-danger">{{ problem.subfield }}</span>
                     {% elif problem.subject == 'biology' %}
-                      <span class="tag is-primary">biology</span>
+                      <span class="tag is-primary">{{ problem.subfield }}</span>
                     {% elif problem.subject == 'astronomy' %}
-                      <span class="tag is-black">astronomy</span>
+                      <span class="tag is-black">{{ problem.subfield }}</span>
                     {% elif problem.subject == 'engineering' %}
-                      <span class="tag is-light">engineering</span>
+                      <span class="tag is-light">{{ problem.subfield }}</span>
                     {% elif problem.subject == 'computer science' %}
-                      <span class="tag is-dark">computer science</span>
+                      <span class="tag is-dark">{{ problem.subfield }}</span>
                     {% endif %}
                   
                   </td>
