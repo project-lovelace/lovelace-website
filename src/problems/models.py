@@ -7,6 +7,9 @@ from users.models import UserProfile
 
 
 class Problem(models.Model):
+    def __str__(self):
+        return self.title
+
     PHYSICS = 'physics'
     MATH = 'math'
     EARTH_SCIENCE = 'earth science'
@@ -40,6 +43,9 @@ class Problem(models.Model):
 
     subject = models.CharField(max_length=32, choices=SUBJECT_CHOICES, default=PHYSICS, editable=True)
 
+    # Bit more specific than the subject, e.g. "climate science" or "cryptography".
+    subfield = models.CharField(max_length=64, default="", editable=True)
+
     date_added = models.DateField(default=date.today, editable=True)
 
     solved_by = models.IntegerField(default=0, validators=[MinValueValidator(0)], editable=True)
@@ -51,9 +57,6 @@ class Problem(models.Model):
         validators=[MinValueValidator(1), MaxValueValidator(15)], editable=True)
 
     visible = models.BooleanField(default=False)
-
-    def __str__(self):
-        return self.title
 
 
 class Submission(models.Model):
