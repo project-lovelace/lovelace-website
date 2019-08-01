@@ -3,48 +3,74 @@
 {% load static %}
 
 {% block you_will_learn %}
-	the simplest climate model ever.
+	the simplest climate model.
 {% endblock %}
 
 {% block problem_body %}
 <p class="has-text-justified">
-  Simplest climate model
+  In this first problem on climate modeling we'll look at the simplest posible climate model of the Earth, which ends up
+	being one equation. It's a zero-dimensional energy balance model where we'll assume that the energy absorbed by the
+	Earth is equal to the energy being radiated out by the Earth. We can use it to calculate the Earth's average
+	temperature. We can call it the <i>rock-star</i> model because we basically have a star that's heating up a rocky
+	planet floating through space.
 
-  Zero-dimensional energy balance model where we'll assume that the energy absorbed by the Earth is equal to the energy
-  being radiated out by the Earth. We can actually calculate the Earth's temperature in this case.
-
-  We can call this state <i>radiative equilibrium</i> where
+  We can call this balanced state <i>radiative equilibrium</i> where
 
   $$ \mathrm{Energy in} = \mathrm{Energy out} $$
+</p>
 
-  Rock star model because we're treating the planet as a very ideal floating rock in space without
+<h3>Calculating energy in</h3>
+<p class="has-text-justified">
+  The solar power hitting the top of the atmosphere is given by the
+	<a href="https://en.wikipedia.org/wiki/Solar_constant">solar constant</a> $S = 1361 \; \mathrm{W/m}^2$. It's
+	very high at the top of the atmosphere but a lot of it gets absorbed by the atmosphere, especially by clouds, so the
+	solar power hitting the Earth's surface is lower than $S$.
 
-  The solar power per unit area at the top of Earth's atmosphere is given by the Solar constant
-  $S = 1361 \; \mathrm{W/m}^2$. The sun shines on half of the Earth at a time which corresponds to be a cross-sectional
-  area of $\pi R^2$ where $R$ = 6371 km. And some fraction $a$ of that is reflected back to space, where $a$ is the
-  albedo of the Earth. So the energy absorbed by the Earth from the Sun is
+	The sun shines on only half of the Earth at a time so all that solar power is incident on a circular area $\pi R^2$
+	where $R$ = 6371 km is the radius of the Earth. So the total solar energy reaching the Earth is $S\pi R^2$.
+
+	But some of the solar energy is reflected back to space by stuff like clouds, snow, and sand. The fraction reflected
+	back is called the <a href="https://en.wikipedia.org/wiki/Albedo">albedo</a> $a$ which is between 0 (everything is
+	absorbed) and 1 (everything is reflected). Clouds and snow have a pretty high albedo while forests and the ocean have
+	a pretty low albedo, but on average Earth's albedo is $a \approx 0.306$. So the total energy absorbed by the Earth is
 
   $$ \mathrm{Energy in} = (1 - a) S \pi R^2 $$
+</p>
 
-  Treating the Earth as a blackbody it radiates energy out everywhere on its surface according to the Stefan-Boltzmann
-  law $\sigma \varepsilon T^4$ where $\sigma$ is the Stefan-Boltzmann constant, $\varepsilon$ is the emissivity of the
-  Earth, and $T$ is the temperature of the Earth we want to solve for. To get the total energy radiated out by the Earth
-  we multiply by the surface area of the Earth, $4\pi R^2$, to get
+<h3>Calculating energy out</h3>
+<p class="has-text-justified">
+	We can treat the Earth as a gray body that radiates thermal energy (or heat) everywhere on its surface according to the
+	<a href="https://en.wikipedia.org/wiki/Stefan%E2%80%93Boltzmann_law">Stefan-Boltzmann law</a> $\sigma \varepsilon T^4$
+	where $\sigma = 5.670374419 \times 10^{-8} \mathrm{W} \cdotp \mathrm{m}^{-2} \cdotp \mathrm{K}^{-4}$ is the
+	Stefan-Boltzmann constant and $T$ is the temperature of the Earth.
 
+	$\varepsilon \approx 0.612$ is the <a href="https://en.wikipedia.org/wiki/Emissivity">emissivity</a> which is a
+	measure of how good a body is at emitting thermal energy and is also a number between 0 (perfect absorber that emits
+	no heat) and 1 (perfect emitter). The emissivity of the Earth varies but on average it's $\varepsilon \approx 0.612$.
+
+	This energy is being emitted everywhere on the Earth's surface so to get the total energy emitted we multiply by the
+	surface area of the Earth $4\pi R^2$ to get
   $$ \mathrm{Energy out} = 4\pi R^2 \sigma \varepsilon T^4 $$
+</p>
 
-  We now get the following balance and can solve for $T$
+<h3>Calculating the Earth's temperature</h3>
+<p class="has-text-justified">
+  From $\mathrm{Energy in} = \mathrm{Energy out}$ we get the following balance
 
-  $$ (1 - a) S \pi R^2 = 4\pi R^2 \sigma \varepsilon T^4 \implies T = \sqrt[4]{\frac{(1 - a) S}{4\sigma\varepsilon}} $$
+  $$ (1 - a) S \pi R^2 = 4\pi R^2 \sigma \varepsilon T^4 $$
+
+	so we can solve for T to get
+
+	$$ T = \sqrt[4]{\frac{(1 - a) S}{4\sigma\varepsilon}} $$
 </p>
 {% endblock %}
 
 {% block input_description %}
-  A solar constant $S$ in W/m^2, albedo $0 \le a \le 1$, and an emissivity $0 \le \varepsilon \le 1$.
+  A solar constant $S$ in $\mathrm{W}/\mathrm{m}^2$, albedo $0 \le a \le 1$, and an emissivity $0 \le \varepsilon \le 1$.
 {% endblock %}
 
 {% block output_description %}
-  The temperature of the rock/planet in Celsius (°C).
+  The temperature of the rocky planet in Celsius (°C).
 {% endblock %}
 
 {% block examples %}
@@ -94,16 +120,32 @@ end
 
 {% block notes_and_references %}
 <div class="content">
-    {% if solved_by_user %}
+  {% if solved_by_user %}
   <h3>Solution notes</h3>
   <ul>
     <li>
-      Still nothing interesting here but congrats on solving the second problem!
+      The average temperature of the Earth is actually ~14°C so this model does pretty well all things considered! Of
+			course, this is probably because you can tune the albedo $a$ and emissivity $\varepsilon$ to get a better answer
+			and it's pretty hard to assign the Earth an "average albedo" as it's made up of
     </li>
   </ul>
   {% endif %}
+
+	<h3>Notes</h3>
+	<ul>
+		<li>
+			The average temperature of the Earth is actually ~14°C so this model does pretty well all things considered! Of
+			course, this is probably because you can tune the albedo $a$ and emissivity $\varepsilon$ to get a better answer
+			and it's pretty hard to assign the Earth an "average albedo" as it's made up of so many different surfaces, snow
+			and sea ice form and thaw, etc.
+		</li>
+		<li>
+		  If you want to get technical, we're using the bond albedo here.
+		</li>
+	</ul>
 </div>
+
+Ref for <T> ~ 14 C: https://earthobservatory.nasa.gov/world-of-change/decadaltemp.php
 {% endblock %}
 
 {% block discourse_topic_id %}258{% endblock %}
-
