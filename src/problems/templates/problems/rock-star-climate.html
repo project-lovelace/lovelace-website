@@ -142,44 +142,28 @@ end
 
 {% block notes_and_references %}
 <div class="content">
-  {% if solved_by_user %}
-  <h3>Solution notes</h3>
-  <ul>
-    <li>
-      The average temperature of the Earth is actually ~14°C so this model does pretty well all things considered! Of
-			course, this is probably because you can tune the albedo $a$ and emissivity $\varepsilon$ to get a better answer
-			and it's pretty hard to assign the Earth an "average albedo" as it's made up of
-    </li>
-  </ul>
-  {% endif %}
-
 	<h3>Notes</h3>
 	<ul>
 		<li>
 			The average temperature of the Earth is actually ~14°C so this simple  model does pretty well! Of
 			course, this is probably because you can tune the albedo $a$ and emissivity $\varepsilon$ to get a better answer
 			and it's pretty hard to assign the Earth an "average albedo" as it's made up of so many different surfaces, snow
-			and sea ice form and thaw, etc.
-		</li>
-		<li>
-		  If you want to get technical, we're using the bond albedo here.
+			and sea ice keep forming and thawing, etc.
 		</li>
 	</ul>
+
+	<h3>References</h3>
+  <dl>
+    <dt>
+      <a href="https://doi.org/10.1029/2010GL045777">A new, lower value of total solar irradiance: Evidence and climate
+			significance</a>, Greg Kopp & Judith L. Lean, Geophysical Research Letters 38(1), 2011.
+    </dt>
+    <dd>
+			They measured the most accurate value of the solar constant during the 2008 solar minimum period to be
+			1360.8 ± 0.5 W/m² which is where we got the value of 1361 W/m².
+    </dd>
+  </dl>
 </div>
-
-https://en.wikipedia.org/wiki/Planetary_equilibrium_temperature
-
-A new, lower value of total solar irradiance: Evidence and climate significance
-Greg Kopp & Judith L. Lean
-Geophysical Research Letters 38(1), 2011.
-https://doi.org/10.1029/2010GL045777
-
-They measured the most accurate value of the solar constant during the 2008 solar minimum period to be 1360.8 ± 0.5 W m−2.
-
-https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html
-For Earth albedo value.
-
-Ref for <T> ~ 14 C: https://earthobservatory.nasa.gov/world-of-change/decadaltemp.php
 {% endblock %}
 
 {% block discourse_topic_id %}258{% endblock %}
