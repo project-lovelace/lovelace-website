@@ -48,27 +48,19 @@ A number $S$.
 {% endblock %}
 
 {% block output_description %}
-The square root of $S$ approximated using the babylonian method. If $S$ is a negative number, then return the string
-"undefined". Your answer should be accurate to 10 significant figures. That is, it should be correct to within 1 part
-in 10 billion, or the relative error should be lower than $10^{-10}$). You can calculate the relative error of your
-guess $x_n$ using $|x_n^2 - S| / S$ where $|\cdotp|$ is the absolute value (or <tt>abs</tt>) function.
+The square root of $S$ approximated using the babylonian method. Your answer should be accurate to 10 significant
+figures. That is, it should be correct to within 1 part in 10 billion, or the relative error should be lower than
+$10^{-10}$). You can calculate the relative error of your guess $x_n$ using $|x_n^2 - S| / S$ where $|\cdotp|$ is
+the absolute value (or <tt>abs</tt>) function.
 {% endblock %}
 
 {% block examples %}
 <article class="message">
   <div class="message-header">
-    <p>Example 1</p>
+    <p>Example</p>
   </div>
   <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input</b>: 420
 <b>Output</b>: 20.493901531919196</div>
-</article>
-
-<article class="message">
-  <div class="message-header">
-    <p>Example 2</p>
-  </div>
-  <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input</b>: -10
-<b>Output</b>: "undefined"</div>
 </article>
 {% endblock %}
 
