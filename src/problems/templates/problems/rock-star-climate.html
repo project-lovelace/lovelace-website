@@ -111,6 +111,32 @@
 rock_temperature(solar_constant, albedo, emissivity)
 {% endblock %}
 
+{% block notes_and_references %}
+<div class="content">
+	<h3>Notes</h3>
+	<ul>
+		<li>
+			The average temperature of the Earth is actually ~14°C so this simple  model does pretty well! Of
+			course, this is probably because you can tune the albedo $a$ and emissivity $\varepsilon$ to get a better answer
+			and it's pretty hard to assign the Earth an "average albedo" as it's made up of so many different surfaces, snow
+			and sea ice keep forming and thawing, etc.
+		</li>
+	</ul>
+
+	<h3>References</h3>
+  <dl>
+    <dt>
+      <a href="https://doi.org/10.1029/2010GL045777">A new, lower value of total solar irradiance: Evidence and climate
+			significance</a>, Greg Kopp & Judith L. Lean, Geophysical Research Letters 38(1), 2011.
+    </dt>
+    <dd>
+			They measured the most accurate value of the solar constant during the 2008 solar minimum period to be
+			1360.8 ± 0.5 W/m² which is where we got the value of 1361 W/m².
+    </dd>
+  </dl>
+</div>
+{% endblock %}
+
 {% block python_code_stub %}
 def rock_temperature(S, a, e):
     T = 0
@@ -140,30 +166,14 @@ function rock_temperature(S, a, e)
 end
 {% endblock %}
 
-{% block notes_and_references %}
-<div class="content">
-	<h3>Notes</h3>
-	<ul>
-		<li>
-			The average temperature of the Earth is actually ~14°C so this simple  model does pretty well! Of
-			course, this is probably because you can tune the albedo $a$ and emissivity $\varepsilon$ to get a better answer
-			and it's pretty hard to assign the Earth an "average albedo" as it's made up of so many different surfaces, snow
-			and sea ice keep forming and thawing, etc.
-		</li>
-	</ul>
+{% block javascript_code_stub %}
+double rock_temperature(double S, double a, double e) {
+    double T = 0.0;
 
-	<h3>References</h3>
-  <dl>
-    <dt>
-      <a href="https://doi.org/10.1029/2010GL045777">A new, lower value of total solar irradiance: Evidence and climate
-			significance</a>, Greg Kopp & Judith L. Lean, Geophysical Research Letters 38(1), 2011.
-    </dt>
-    <dd>
-			They measured the most accurate value of the solar constant during the 2008 solar minimum period to be
-			1360.8 ± 0.5 W/m² which is where we got the value of 1361 W/m².
-    </dd>
-  </dl>
-</div>
+    // Your code goes here!
+
+    return T;
+}
 {% endblock %}
 
 {% block discourse_topic_id %}281{% endblock %}

@@ -93,6 +93,14 @@ intensity. If there was no event, return "none" for the intensity.
 enso_classification(two_year_period)
 {% endblock %}
 
+{% block notes_and_references %}
+  <div class="content">
+    <ul>
+      <li>Should be tons of really good videos on this!</li>
+    </ul>
+  </div>
+{% endblock %}
+
 {% block python_code_stub %}
 import csv
 
@@ -130,12 +138,9 @@ function enso_classification(two_year_period)
 end
 {% endblock %}
 
-{% block notes_and_references %}
-  <div class="content">
-    <ul>
-      <li>Should be tons of really good videos on this!</li>
-    </ul>
-  </div>
+{% block c_code_stub %}
+void enso_classification(char* two_year_period, char* classification, char* intensity, double* mei) {
+}
 {% endblock %}
 
 {% block discourse_topic_id %}21{% endblock %}

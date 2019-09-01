@@ -166,9 +166,10 @@
               <div class="control has-icons-left">
                 <div class="select">
                   <select id="language-select">
-                    <option value="python" selected>Python (3.7.2)</option>
-                    <option value="javascript">Javascript (Node.js 11.6.0)</option>
+                    <option value="python" selected>Python (3.7.3)</option>
+                    <option value="javascript">Javascript (Node.js 10.15.2)</option>
                     <option value="julia">Julia (1.0.3)</option>
+                    <option value="c">C (gcc 8.3.0)</option>
                   </select>
                 </div>
                 <div class="icon is-small is-left">
@@ -280,14 +281,15 @@
 
 {% block postload_javascript %}
 <!-- CodeMirror editor -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.41.0/codemirror.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.41.0/theme/monokai.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.41.0/codemirror.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.41.0/mode/python/python.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.41.0/mode/javascript/javascript.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.41.0/mode/julia/julia.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.41.0/addon/display/autorefresh.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.41.0/addon/selection/active-line.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/codemirror.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/theme/monokai.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/codemirror.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/mode/python/python.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/mode/javascript/javascript.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/mode/julia/julia.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/mode/clike/clike.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/addon/display/autorefresh.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/addon/selection/active-line.js"></script>
 
 <style>
   .CodeMirror {
@@ -328,6 +330,9 @@
     } else if (this.value == 'julia') {
       editor.setValue(`{% block julia_code_stub %}{% endblock %}`.trim());
       editor.setOption('mode', 'julia');
+    } else if (this.value == 'c') {
+      editor.setValue(`{% block c_code_stub %}{% endblock %}`.trim());
+      editor.setOption('mode', 'clike');
     }
   }
 

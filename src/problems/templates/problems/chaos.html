@@ -69,30 +69,6 @@
 logistic_map(r)
 {% endblock %}
 
-{% block python_code_stub %}
-def logistic_map(r):
-    x = [0.5]
-
-    # Your code goes here!
-
-    return x
-{% endblock %}
-
-{% block javascript_code_stub %}
-function logistic_map(r) {
-  let x = [0.5];
-
-  // Your code goes here!
-
-  return [x];
-}
-{% endblock %}
-
-{% block julia_code_stub %}
-function logistic_map(r)
-end
-{% endblock %}
-
 {% block notes_and_references %}
 <div class="content">
   {% if solved_by_user %}
@@ -130,6 +106,36 @@ end
     </dd>
   </dl>
 </div>
+{% endblock %}
+
+{% block python_code_stub %}
+def logistic_map(r):
+    x = [0.5]
+
+    # Your code goes here!
+
+    return x
+{% endblock %}
+
+{% block javascript_code_stub %}
+function logistic_map(r) {
+  let x = [0.5];
+
+  // Your code goes here!
+
+  return [x];
+}
+{% endblock %}
+
+{% block julia_code_stub %}
+function logistic_map(r)
+end
+{% endblock %}
+
+{% block c_code_stub %}
+void logistic_map(double r, double* x) {
+    // x is a pre-allocated array with 51 entries.
+}
 {% endblock %}
 
 {% block discourse_topic_id %}15{% endblock %}
