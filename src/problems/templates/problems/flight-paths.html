@@ -69,6 +69,21 @@ The distance between the points in kilometers (km).
 haversine_distance(lat1, lon1, lat2, lon2)
 {% endblock %}
 
+{% block notes_and_references %}
+<div class="content">
+  <h3>Notes</h3>
+  <ul>
+    <li>
+      In this problem we use the <a href="https://en.wikipedia.org/wiki/Haversine_formula">haversine formula</a>
+      which calculates the <a href="https://en.wikipedia.org/wiki/Great-circle_distance">great-circle distance</a>
+      assuming the Earth is a perfect sphere so it can be off by up to 0.5%.
+      <a href="https://en.wikipedia.org/wiki/Vincenty%27s_formulae">Vincenty's formulae</a> account for the oblate
+      spheroid shape of the Earth and are much more accurate, being off only by <0.5 mm.
+    </li>
+  </ul>
+</div>
+{% endblock %}
+
 {% block python_code_stub %}
 from math import radians, sqrt, asin, sin, cos
 
@@ -108,21 +123,6 @@ double haversine_distance(double lat1, double lon1, double lat2, double lon2) {
     // Your code goes here!
     return d;
 }
-{% endblock %}
-
-{% block notes_and_references %}
-<div class="content">
-  <h3>Notes</h3>
-  <ul>
-    <li>
-      In this problem we use the <a href="https://en.wikipedia.org/wiki/Haversine_formula">haversine formula</a>
-      which calculates the <a href="https://en.wikipedia.org/wiki/Great-circle_distance">great-circle distance</a>
-      assuming the Earth is a perfect sphere so it can be off by up to 0.5%.
-      <a href="https://en.wikipedia.org/wiki/Vincenty%27s_formulae">Vincenty's formulae</a> account for the oblate
-      spheroid shape of the Earth and are much more accurate, being off only by <0.5 mm.
-    </li>
-  </ul>
-</div>
 {% endblock %}
 
 {% block discourse_topic_id %}261{% endblock %}

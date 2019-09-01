@@ -117,6 +117,26 @@ A 2D array representing the state of the grid after $N$ time steps.
 game_of_life(board, steps)
 {% endblock %}
 
+{% block notes_and_references %}
+<div class="content">
+  <h3>Notes</h3>
+  <ul>
+    <li>There is a <a href="https://www.youtube.com/watch?v=R9Plq-D1gEk">Numberphile video</a> where John Conway himself
+      talks about how he invented the Game of Life!
+    </li>
+    <li>There are many interesting patterns: <a href="https://en.wikipedia.org/wiki/Puffer_train">puffer trains</a>,
+    </li>
+    <li>Since the Game of Life is Turing complete, you can actually make a <a
+            href="https://codegolf.stackexchange.com/questions/88783/build-a-digital-clock-in-conways-game-of-life">digital
+      clock pattern</a> and even an attempt to build a <a
+            href="https://codegolf.stackexchange.com/questions/11880/build-a-working-game-of-tetris-in-conways-game-of-life">working
+      version of Tetris</a>!
+    <li><a href="http://www.conwaylife.com/wiki/Main_Page">LifeWiki</a> has tons more information on the Game of Life,
+      cool patterns, and the latest news (people are still discovering completely new patterns in 2018).
+  </ul>
+</div>
+{% endblock %}
+
 {% block python_code_stub %}
 def game_of_life(board, steps):
     return board
@@ -137,26 +157,6 @@ end
 {% block c_code_stub %}
 void game_of_life(int** board, int N, int M, int steps, int** final_board) {
 }
-{% endblock %}
-
-{% block notes_and_references %}
-<div class="content">
-  <h3>Notes</h3>
-  <ul>
-    <li>There is a <a href="https://www.youtube.com/watch?v=R9Plq-D1gEk">Numberphile video</a> where John Conway himself
-      talks about how he invented the Game of Life!
-    </li>
-    <li>There are many interesting patterns: <a href="https://en.wikipedia.org/wiki/Puffer_train">puffer trains</a>,
-    </li>
-    <li>Since the Game of Life is Turing complete, you can actually make a <a
-            href="https://codegolf.stackexchange.com/questions/88783/build-a-digital-clock-in-conways-game-of-life">digital
-      clock pattern</a> and even an attempt to build a <a
-            href="https://codegolf.stackexchange.com/questions/11880/build-a-working-game-of-tetris-in-conways-game-of-life">working
-      version of Tetris</a>!
-    <li><a href="http://www.conwaylife.com/wiki/Main_Page">LifeWiki</a> has tons more information on the Game of Life,
-      cool patterns, and the latest news (people are still discovering completely new patterns in 2018).
-  </ul>
-</div>
 {% endblock %}
 
 {% block discourse_topic_id %}22{% endblock %}

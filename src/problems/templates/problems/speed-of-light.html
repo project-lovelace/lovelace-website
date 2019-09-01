@@ -56,53 +56,6 @@
 light_time(distance)
 {% endblock %}
 
-{% block python_code_stub %}
-c = 299792458  # Speed of light [m/s]
-
-def light_time(distance):
-    t = 0
-
-    # Calculate the time taken using t = d/c and return it.
-
-    return t
-{% endblock %}
-
-{% block javascript_code_stub %}
-const c = 299792458  // Speed of light [m/s]
-
-function light_time(distance) {
-    var t = 0
-
-    // Calculate the time taken using t = d/c and return it.
-
-    return t
-}
-{% endblock %}
-
-{% block julia_code_stub %}
-const c = 299792458  # Speed of light [m/s]
-
-function light_time(distance)
-    t = 0
-
-    # Calculate the time taken using t = d/c and return it.
-
-    return t
-end
-{% endblock %}
-
-{% block javascript_code_stub %}
-const double c = 299792458.0;  // Speed of light [m/s]
-
-double light_time(double distance) {
-    double t = 0.0;
-
-    // Calculate the time taken using t = d/c and return it.
-
-    return t;
-}
-{% endblock %}
-
 {% block notes_and_references %}
 <div class="content">
     {% if solved_by_user %}
@@ -151,6 +104,53 @@ double light_time(double distance) {
     </li>
   </ul>
 </div>
+{% endblock %}
+
+{% block python_code_stub %}
+c = 299792458  # Speed of light [m/s]
+
+def light_time(distance):
+    t = 0
+
+    # Calculate the time taken using t = d/c and return it.
+
+    return t
+{% endblock %}
+
+{% block javascript_code_stub %}
+const c = 299792458  // Speed of light [m/s]
+
+function light_time(distance) {
+    var t = 0
+
+    // Calculate the time taken using t = d/c and return it.
+
+    return t
+}
+{% endblock %}
+
+{% block julia_code_stub %}
+const c = 299792458  # Speed of light [m/s]
+
+function light_time(distance)
+    t = 0
+
+    # Calculate the time taken using t = d/c and return it.
+
+    return t
+end
+{% endblock %}
+
+{% block javascript_code_stub %}
+const double c = 299792458.0;  // Speed of light [m/s]
+
+double light_time(double distance) {
+    double t = 0.0;
+
+    // Calculate the time taken using t = d/c and return it.
+
+    return t;
+}
 {% endblock %}
 
 {% block discourse_topic_id %}258{% endblock %}

@@ -78,6 +78,29 @@
 area_of_rectangles(rectangle_heights, rectangle_width)
 {% endblock %}
 
+{% block notes_and_references %}
+<div class="content">
+  <h3>Notes</h3>
+  <ul>
+    <li>
+      Thanks to <a href="https://discourse.projectlovelace.net/t/possible-new-problem-definite-integrals/59">
+      rmueller</a> for suggesting this problem!
+    </li>
+    <li>
+      The method we used to compute the area under the curve here using rectangles is called a
+      <a href="https://en.wikipedia.org/wiki/Riemann_sum">Riemann summation</a>. You could use more complicated shapes:
+      The <a href="https://en.wikipedia.org/wiki/Trapezoidal_rule">trapezoidal rule</a> uses trapezoids and
+      <a href="https://en.wikipedia.org/wiki/Simpson%27s_rule">Simpson's rule</a> uses quadratic polynomials.
+    </li>
+    <li>
+      Instead of using upright rectangles like we did here with the Riemann sum, you can use rectangles placed sideways
+      which is kind of how the area under the curve is interpreted with
+      <a href="https://en.wikipedia.org/wiki/Lebesgue_integration">Lebesgue integration</a>.
+    </li>
+  </ul>
+</div>
+{% endblock %}
+
 {% block python_code_stub %}
 def area_of_rectangles(rects, dx):
     area = 0
@@ -101,7 +124,7 @@ function area_of_rectangles(rects, dx)
 end
 {% endblock %}
 
-{% block javascript_code_stub %}
+{% block c_code_stub %}
 double area_of_rectangles(double* f, int N, double dx) {
     double area = 0;
 
@@ -109,29 +132,6 @@ double area_of_rectangles(double* f, int N, double dx) {
 
     return area;
 }
-{% endblock %}
-
-{% block notes_and_references %}
-<div class="content">
-  <h3>Notes</h3>
-  <ul>
-    <li>
-      Thanks to <a href="https://discourse.projectlovelace.net/t/possible-new-problem-definite-integrals/59">
-      rmueller</a> for suggesting this problem!
-    </li>
-    <li>
-      The method we used to compute the area under the curve here using rectangles is called a
-      <a href="https://en.wikipedia.org/wiki/Riemann_sum">Riemann summation</a>. You could use more complicated shapes:
-      The <a href="https://en.wikipedia.org/wiki/Trapezoidal_rule">trapezoidal rule</a> uses trapezoids and
-      <a href="https://en.wikipedia.org/wiki/Simpson%27s_rule">Simpson's rule</a> uses quadratic polynomials.
-    </li>
-    <li>
-      Instead of using upright rectangles like we did here with the Riemann sum, you can use rectangles placed sideways
-      which is kind of how the area under the curve is interpreted with
-      <a href="https://en.wikipedia.org/wiki/Lebesgue_integration">Lebesgue integration</a>.
-    </li>
-  </ul>
-</div>
 {% endblock %}
 
 {% block discourse_topic_id %}266{% endblock %}

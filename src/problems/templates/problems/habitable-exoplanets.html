@@ -72,47 +72,6 @@ the CHZ.
 habitable_exoplanet(absolute_luminosity, planet_distance)
 {% endblock %}
 
-{% block python_code_stub %}
-from math import sqrt
-
-def habitable_exoplanet(L, r):
-    habitability = ''
-
-    # Your code goes here!
-
-    return habitability
-{% endblock %}
-
-{% block javascript_code_stub %}
-function habitable_exoplanet(L, r) {
-  habitability = "";
-
-  // Your code goes here!
-
-  return habitability;
-}
-{% endblock %}
-
-{% block julia_code_stub %}
-function habitable_exoplanet(L, r)
-    habitability = ""
-
-    # Your code goes here!
-
-    return habitability
-end
-{% endblock %}
-
-{% block c_code_stub %}
-char* habitable_exoplanet(double L, double r) {
-  char* habitability = "";
-
-  // Your code goes here!
-
-  return habitability;
-}
-{% endblock %}
-
 {% block notes_and_references %}
 <div class="content">
   {% if solved_by_user %}
@@ -152,6 +111,47 @@ char* habitable_exoplanet(double L, double r) {
     </dd>
   </dl>
 </div>
+{% endblock %}
+
+{% block python_code_stub %}
+from math import sqrt
+
+def habitable_exoplanet(L, r):
+    habitability = ''
+
+    # Your code goes here!
+
+    return habitability
+{% endblock %}
+
+{% block javascript_code_stub %}
+function habitable_exoplanet(L, r) {
+  habitability = "";
+
+  // Your code goes here!
+
+  return habitability;
+}
+{% endblock %}
+
+{% block julia_code_stub %}
+function habitable_exoplanet(L, r)
+    habitability = ""
+
+    # Your code goes here!
+
+    return habitability
+end
+{% endblock %}
+
+{% block c_code_stub %}
+char* habitable_exoplanet(double L, double r) {
+  char* habitability = "";
+
+  // Your code goes here!
+
+  return habitability;
+}
 {% endblock %}
 
 {% block discourse_topic_id %}14{% endblock %}

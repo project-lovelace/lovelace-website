@@ -70,6 +70,24 @@
 resistance(band_colors)
 {% endblock %}
 
+{% block notes_and_references %}
+<div class="content">
+  <h3>Notes</h3>
+  <ul>
+    <li>Since $1\;\Omega$ is a very small resistance, it's more common to express resistance in kilohms
+      ($1\;\text{k}\Omega = 1,000\;\Omega$), megaohms ($1\;\text{M}\Omega = 1,000,000\;\Omega$), or even gigaohms
+      ($1\;\text{G}\Omega = 1,000,000,000\;\Omega$).
+    </li>
+    <li>Nowadays it's easier to use a multimeter to measure it's actual resistance value. Calculating a resistor's value
+      and tolerance from the color bands used to be more commonplace in the past when multimeters weren't as widespread
+      or cheap.
+    </li>
+    <li>If you need a very specific resistance you can chain resistors in series or parallel. Variable resistors also
+      exist in the form of potentiometers and digital resistors.
+  </ul>
+</div>
+{% endblock %}
+
 {% block python_code_stub %}
 digits = {
     'black': 0,
@@ -175,7 +193,7 @@ function resistance(band_colors) {
   let maximum_R = 0;
 
   // Your code goes here!
-  
+
   solution = [nominal_R, minimum_R, maximum_R];
   return solution;
 }
@@ -199,24 +217,6 @@ end
 void resistance(char** band_colors, int n_bands, double* nominal_R, double* minimum_R, double* maximum_R) {
     // Your code goes here!
 }
-{% endblock %}
-
-{% block notes_and_references %}
-<div class="content">
-  <h3>Notes</h3>
-  <ul>
-    <li>Since $1\;\Omega$ is a very small resistance, it's more common to express resistance in kilohms
-      ($1\;\text{k}\Omega = 1,000\;\Omega$), megaohms ($1\;\text{M}\Omega = 1,000,000\;\Omega$), or even gigaohms
-      ($1\;\text{G}\Omega = 1,000,000,000\;\Omega$).
-    </li>
-    <li>Nowadays it's easier to use a multimeter to measure it's actual resistance value. Calculating a resistor's value
-      and tolerance from the color bands used to be more commonplace in the past when multimeters weren't as widespread
-      or cheap.
-    </li>
-    <li>If you need a very specific resistance you can chain resistors in series or parallel. Variable resistors also
-      exist in the form of potentiometers and digital resistors.
-  </ul>
-</div>
 {% endblock %}
 
 {% block discourse_topic_id %}18{% endblock %}

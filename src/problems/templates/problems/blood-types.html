@@ -61,6 +61,26 @@ True if the person can be saved, and false otherwise.
 survive(blood_type, available_blood_types)
 {% endblock %}
 
+{% block notes_and_references %}
+<div class="content">
+  <h3>Notes</h3>
+  <ul>
+    <li>The <a href="https://en.wikipedia.org/wiki/ABO_blood_group_system">ABO blood group system</a> categorizes blood
+      by the presence or absence of two <a href="https://en.wikipedia.org/wiki/Oligosaccharide">oligosaccharides</a>.
+      The A oligosaccharide is present in A blood, the B oligosaccharide is present in B blood, both are present in AB
+      blood, and neither is present in O blood.
+    </li>
+    <li>The <a href="https://en.wikipedia.org/wiki/Rh_blood_group_system">Rh blood group system</a> categorizes blood by
+      the presence of the Rh(D) antigen. It's present in + blood, and absent in - blood.
+    </li>
+    <li>There are over 200 <a href="https://en.wikipedia.org/wiki/Human_blood_group_systems#Rare_blood_types">rare blood
+      types</a> that can complicate blood transfusions.
+    </li>
+    <li>You could die if your body receives blood that is not suitable.</li>
+  </ul>
+</div>
+{% endblock %}
+
 {% block python_code_stub %}
 def survive(blood_type, donated_blood):
     # Your code goes here!
@@ -86,26 +106,6 @@ bool survive(char* blood_type, char** donated_blood) {
     // Your code goes here!
     return true;
 }
-{% endblock %}
-
-{% block notes_and_references %}
-<div class="content">
-  <h3>Notes</h3>
-  <ul>
-    <li>The <a href="https://en.wikipedia.org/wiki/ABO_blood_group_system">ABO blood group system</a> categorizes blood
-      by the presence or absence of two <a href="https://en.wikipedia.org/wiki/Oligosaccharide">oligosaccharides</a>.
-      The A oligosaccharide is present in A blood, the B oligosaccharide is present in B blood, both are present in AB
-      blood, and neither is present in O blood.
-    </li>
-    <li>The <a href="https://en.wikipedia.org/wiki/Rh_blood_group_system">Rh blood group system</a> categorizes blood by
-      the presence of the Rh(D) antigen. It's present in + blood, and absent in - blood.
-    </li>
-    <li>There are over 200 <a href="https://en.wikipedia.org/wiki/Human_blood_group_systems#Rare_blood_types">rare blood
-      types</a> that can complicate blood transfusions.
-    </li>
-    <li>You could die if your body receives blood that is not suitable.</li>
-  </ul>
-</div>
 {% endblock %}
 
 {% block discourse_topic_id %}264{% endblock %}

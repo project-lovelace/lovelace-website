@@ -87,6 +87,14 @@
 correlation_coefficient(x, y)
 {% endblock %}
 
+{% block notes_and_references %}
+  <div class="content">
+    <ul>
+      <li>There are some really good websites for this stuff.</li>
+    </ul>
+  </div>
+{% endblock %}
+
 {% block python_code_stub %}
 import numpy as np
 
@@ -124,14 +132,6 @@ double correlation_coefficient(double* x, double* y) {
 
     return r
 }
-{% endblock %}
-
-{% block notes_and_references %}
-  <div class="content">
-    <ul>
-      <li>There are some really good websites for this stuff.</li>
-    </ul>
-  </div>
 {% endblock %}
 
 {% block discourse_topic_id %}19{% endblock %}

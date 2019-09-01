@@ -84,6 +84,14 @@
 molecular_mass(chemical_formula)
 {% endblock %}
 
+{% block notes_and_references %}
+  <div class="content">
+    <ul>
+      <li>Would be good to include the regex in post-problem notes.</li>
+    </ul>
+  </div>
+{% endblock %}
+
 {% block python_code_stub %}
 import csv
 
@@ -123,14 +131,6 @@ double molecular_mass(char* chemical_formula) {
 
   return mass;
 }
-{% endblock %}
-
-{% block notes_and_references %}
-  <div class="content">
-    <ul>
-      <li>Would be good to include the regex in post-problem notes.</li>
-    </ul>
-  </div>
 {% endblock %}
 
 {% block discourse_topic_id %}20{% endblock %}

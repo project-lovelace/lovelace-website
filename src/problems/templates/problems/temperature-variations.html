@@ -67,6 +67,36 @@
 temperature_statistics(T)
 {% endblock %}
 
+{% block notes_and_references %}
+<div class="content">
+  <h3>Notes</h3>
+  <ul>
+    <li>
+      We focused on average monthly temperatures but the difference between the warmest temperature in the middle of
+      the day and the coolest temperature in the middle of the night results in a
+      <a href="https://en.wikipedia.org/wiki/Diurnal_temperature_variation">diurnal temperature variation</a>
+      that's also pretty important.
+    </li>
+    <li>
+      You probably noticed a seasonal lag between the time of year with the most sunlight, the summer solstice around
+      June 21, and the warmest months which are usually 1-2 months afterwards in July and August. This is because it
+      takes time to warm things up, especially water with it's huge heat capacity. Because of this, cities near lots of
+      water have longer <a href="https://en.wikipedia.org/wiki/Seasonal_lag">seasonal lags</a>.
+    </li>
+    <li>
+      A similar lag happens every day where the warmest part of the day is usually around 3-5pm instead of at solar noon
+      when the sun reaches its highest point. As a result, the warmest part of the day is when the sun is setting and
+      is low enough that the surface has started cooling.
+    </li>
+    <li>
+      Wikipedia has a pretty cool <a href="https://en.wikipedia.org/wiki/List_of_cities_by_average_temperature">
+      list of cities by average temperature</a>.
+    </a>
+    </li>
+  </ul>
+</div>
+{% endblock %}
+
 {% block python_code_stub %}
 def temperature_statistics(T):
     mean = 0
@@ -101,36 +131,6 @@ void temperature_statistics(double* T, int N, double* mean, double* std) {
     // Your code goes here!
 
 }
-{% endblock %}
-
-{% block notes_and_references %}
-<div class="content">
-  <h3>Notes</h3>
-  <ul>
-    <li>
-      We focused on average monthly temperatures but the difference between the warmest temperature in the middle of
-      the day and the coolest temperature in the middle of the night results in a
-      <a href="https://en.wikipedia.org/wiki/Diurnal_temperature_variation">diurnal temperature variation</a>
-      that's also pretty important.
-    </li>
-    <li>
-      You probably noticed a seasonal lag between the time of year with the most sunlight, the summer solstice around
-      June 21, and the warmest months which are usually 1-2 months afterwards in July and August. This is because it
-      takes time to warm things up, especially water with it's huge heat capacity. Because of this, cities near lots of
-      water have longer <a href="https://en.wikipedia.org/wiki/Seasonal_lag">seasonal lags</a>.
-    </li>
-    <li>
-      A similar lag happens every day where the warmest part of the day is usually around 3-5pm instead of at solar noon
-      when the sun reaches its highest point. As a result, the warmest part of the day is when the sun is setting and
-      is low enough that the surface has started cooling.
-    </li>
-    <li>
-      Wikipedia has a pretty cool <a href="https://en.wikipedia.org/wiki/List_of_cities_by_average_temperature">
-      list of cities by average temperature</a>.
-    </a>
-    </li>
-  </ul>
-</div>
 {% endblock %}
 
 {% block discourse_topic_id %}263{% endblock %}
