@@ -104,6 +104,27 @@ def bernoulli(n):
 {% endblock %}
 
 {% block javascript_code_stub %}
+def bernoulli(n) {
+    numerator, denominator = 0, 0
+
+    return numerator, denominator
+}
+{% endblock %}
+
+{% block julia_code_stub %}
+function bernoulli(n)
+
+end
+{% endblock %}
+
+{% block c_code_stub %}
+void bernoulli(int n, int* numerator, int* denominator) {
+    // Your code goes here.
+
+    // Store answers (instead of returning as the answer is made of two parts).
+    *numerator = 0;
+    *denominator = 0;
+}
 {% endblock %}
 
 {% block notes_and_references %}

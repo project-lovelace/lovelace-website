@@ -89,6 +89,16 @@ function break_caesar_cipher(ciphertext, known_word)
 end
 {% endblock %}
 
+{% block c_code_stub %}
+char* break_caesar_cipher(char* ciphertext, char* known_word) {
+    plaintext = "";
+
+    // Your code goes here!
+
+    return plaintext;
+}
+{% endblock %}
+
 {% block notes_and_references %}
 <div class="content">
   {% if solved_by_user %}

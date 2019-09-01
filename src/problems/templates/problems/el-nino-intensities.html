@@ -130,6 +130,11 @@ function enso_classification(two_year_period)
 end
 {% endblock %}
 
+{% block c_code_stub %}
+void enso_classification(char* two_year_period, char* classification, char* intensity, double* mei) {
+}
+{% endblock %}
+
 {% block notes_and_references %}
   <div class="content">
     <ul>

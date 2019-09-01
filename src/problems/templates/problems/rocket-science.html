@@ -107,6 +107,21 @@ function rocket_fuel(v)
 end
 {% endblock %}
 
+{% block c_code_stub %}
+#include <math.h>
+
+const double v_e = 2550.0;  // rocket exhaust velocity [m/s]
+const double M = 250000.0;  // rocket dry mass [kg]
+
+double rocket_fuel(double v) {
+  double m_fuel = 0.0;
+
+  // Your code goes here!
+
+  return m_fuel;
+}
+{% endblock %}
+
 {% block notes_and_references %}
 <div class="content">
   {% if solved_by_user %}

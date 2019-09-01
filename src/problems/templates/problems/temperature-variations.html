@@ -93,6 +93,16 @@ function temperature_statistics(T)
 end
 {% endblock %}
 
+{% block c_code_stub %}
+#include <math.h>
+
+void temperature_statistics(double* T, int N, double* mean, double* std) {
+
+    // Your code goes here!
+
+}
+{% endblock %}
+
 {% block notes_and_references %}
 <div class="content">
   <h3>Notes</h3>

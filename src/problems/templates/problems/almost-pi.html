@@ -82,6 +82,13 @@ function almost_pi(N)
 end
 {% endblock %}
 
+{% block c_code_stub %}
+double almost_pi(int N) {
+    // Your code goes here!
+    return 0;
+}
+{% endblock %}
+
 {% block notes_and_references %}
 <div class="content">
   {% if solved_by_user %}

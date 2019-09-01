@@ -115,6 +115,17 @@ function correlation_coefficient(x, y)
 end
 {% endblock %}
 
+{% block c_code_stub %}
+double correlation_coefficient(double* x, double* y) {
+    let N = x.length;
+    let r = 0;
+
+    // Your code goes here!
+
+    return r
+}
+{% endblock %}
+
 {% block notes_and_references %}
   <div class="content">
     <ul>

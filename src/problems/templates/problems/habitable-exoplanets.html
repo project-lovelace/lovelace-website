@@ -103,6 +103,16 @@ function habitable_exoplanet(L, r)
 end
 {% endblock %}
 
+{% block c_code_stub %}
+char* habitable_exoplanet(double L, double r) {
+  char* habitability = "";
+
+  // Your code goes here!
+
+  return habitability;
+}
+{% endblock %}
+
 {% block notes_and_references %}
 <div class="content">
   {% if solved_by_user %}

@@ -93,6 +93,12 @@ function logistic_map(r)
 end
 {% endblock %}
 
+{% block c_code_stub %}
+void logistic_map(double r, double* x) {
+    // x is a pre-allocated array with 51 entries.
+}
+{% endblock %}
+
 {% block notes_and_references %}
 <div class="content">
   {% if solved_by_user %}
