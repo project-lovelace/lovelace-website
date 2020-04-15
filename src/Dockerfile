@@ -11,7 +11,7 @@ ENV PYTHONUNBUFFERED 1
 # Install dependencies
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-        postgresql-client \
+        postgresql-client netcat \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Python dependencies
@@ -22,5 +22,5 @@ RUN pip install -r requirements.txt
 # Copy project
 COPY . /usr/src/app/
 
-EXPOSE 8000
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# run entrypoint.sh
+ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
