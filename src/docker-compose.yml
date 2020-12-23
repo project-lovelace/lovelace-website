@@ -33,5 +33,4 @@ services:
       - 14714
 
 volumes:
-  engine_data:
   postgres_data:
