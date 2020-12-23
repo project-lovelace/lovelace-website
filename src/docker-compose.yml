@@ -20,6 +20,18 @@ services:
       - POSTGRES_USER=hello_django
       - POSTGRES_PASSWORD=hello_django
       - POSTGRES_DB=hello_django_dev
+    depends_on:
+      - engine
+  engine:
+    image: projectlovelace/lovelace-engine
+    command: gunicorn --worker-tmp-dir /dev/shm --workers 1 --log-level debug --timeout 600 --preload --reload --bind 0.0.0.0:14714 engine.api:app
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 14714:14714
+    expose:
+      - 14714
 
 volumes:
+  engine_data:
   postgres_data:
