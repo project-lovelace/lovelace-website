@@ -1,13 +1,10 @@
 import os
 
 # Consult the deployment checklist before deploying to production:
-# https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
+# https://docs.djangoproject.com/en/stable/howto/deployment/checklist/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-# Consult the deployment checklist before deploying to production:
-# https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("SECRET_KEY")
@@ -72,23 +69,22 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'lovelace.wsgi.application'
 
-
 # Database
-# https://docs.djangoproject.com/en/2.1/ref/settings/#databases
+# https://docs.djangoproject.com/en/stable/ref/settings/#databases
 
 DATABASES = {
     "default": {
-        "ENGINE": os.environ.get("SQL_ENGINE", "django.db.backends.sqlite3"),
-        "NAME": os.environ.get("SQL_DATABASE", os.path.join(BASE_DIR, "db.sqlite3")),
-        "USER": os.environ.get("SQL_USER", "user"),
+          "ENGINE": os.environ.get("SQL_ENGINE", "django.db.backends.sqlite3"),
+            "NAME": os.environ.get("SQL_DATABASE", os.path.join(BASE_DIR, "db.sqlite3")),
+            "USER": os.environ.get("SQL_USER", "user"),
         "PASSWORD": os.environ.get("SQL_PASSWORD", "password"),
-        "HOST": os.environ.get("SQL_HOST", "localhost"),
-        "PORT": os.environ.get("SQL_PORT", "5432"),
+            "HOST": os.environ.get("SQL_HOST", "localhost"),
+            "PORT": os.environ.get("SQL_PORT", "5432"),
     }
 }
 
 # Password validation
-# https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
+# https://docs.djangoproject.com/en/stable/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',},
@@ -98,7 +94,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Internationalization
-# https://docs.djangoproject.com/en/2.1/topics/i18n/
+# https://docs.djangoproject.com/en/stable/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'America/Toronto'
@@ -113,7 +109,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.1/howto/static-files/
+# https://docs.djangoproject.com/en/stable/howto/static-files/
 
 # Look for static files in the project-level static files directory
 STATICFILES_DIRS = [
@@ -153,7 +149,7 @@ LOGOUT_REDIRECT_URL = 'home'
 # CONN_MAX_AGE = 600
 
 # Email server settings
-# See: https://docs.djangoproject.com/en/2.1/topics/email/
+# See: https://docs.djangoproject.com/en/stable/topics/email/
 
 # EMAIL_HOST = 'smtp.mailgun.org'
 # EMAIL_HOST_USER = 'postmaster@mg.projectlovelace.net'
