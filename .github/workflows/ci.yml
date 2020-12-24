@@ -1,0 +1,44 @@
+name: lovelace-website CI
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.7, 3.8]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install Python dependencies
+        run: |
+          cd src/
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Build Docker container
+        run: |
+          cd src/
+          docker-compose build
+
+      - name: Run Docker container
+        run: |
+          cd src/
+          docker-compose up --detach
+
+      - name: Waiting for containers to spin up
+        run: |
+          sleep 30
+          docker ps
+
+      - name: Test that 4 containers are up
+        run: "[[ $(docker ps | tail -n +2 | wc -l) == 4 ]]"
