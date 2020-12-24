@@ -36,4 +36,6 @@ jobs:
           docker-compose up --detach
 
       - name: Test that 4 containers are up
-        run: "[[ $(docker ps | tail -n +2 | wc -l) == 4 ]]"
+        run: |
+          docker ps
+          "[[ $(docker ps | tail -n +2 | wc -l) == 4 ]]"
