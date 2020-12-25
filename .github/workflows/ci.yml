@@ -17,7 +17,7 @@ jobs:
       - name: Install test dependencies
         run: |
           sudo apt update
-          sudo apt install install -y --no-install-recommends nmap
+          sudo apt install -y --no-install-recommends nmap
 
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
