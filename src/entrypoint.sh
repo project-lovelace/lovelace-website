@@ -10,7 +10,6 @@ then
     echo "PostgreSQL started"
 fi
 
-# We only want to flush and migrate the first time we spin up the container.
 echo "Flushing Django database..."
 python manage.py flush --no-input
 
@@ -21,4 +20,3 @@ echo "Loading Django data..."
 python manage.py loaddata lovelace_website.json
 
 exec "$@"
-
