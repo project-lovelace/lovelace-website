@@ -10,11 +10,10 @@ ENV PYTHONUNBUFFERED 1
 
 # Install dependencies
 RUN apt-get update &&\
-    apt-get install -y --no-install-recommends postgresql-client netcat &&\
-    rm -rf /var/lib/apt/lists/*
+    apt-get install -y --no-install-recommends postgresql-client netcat
 
 # Install Python dependencies
-COPY requirements.txt /usr/src/app/requirements.txt
+COPY requirements.txt .
 RUN pip install --upgrade pip &&\
     pip install -r requirements.txt
 

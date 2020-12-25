@@ -10,9 +10,7 @@ then
     echo "PostgreSQL started"
 fi
 
-# We want to do this manually via
-# $ docker-compose exec web python manage.py flush --no-input
-# $ docker-compose exec web python manage.py migrate
+# We only want to flush and migrate the first time we spin up the container.
 echo "Flushing Django database..."
 python manage.py flush --no-input
 

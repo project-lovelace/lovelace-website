@@ -116,8 +116,8 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
-# When running collectstatic in production, put all static files into src/prod_static
-STATIC_ROOT = os.path.join(BASE_DIR, 'prod_static')
+# When running collectstatic in production, put all static files into src/static_prod
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_prod')
 
 # When client requests files under projectlovelace.net/static, look for them in STATIC_ROOT
 STATIC_URL = '/static/'
