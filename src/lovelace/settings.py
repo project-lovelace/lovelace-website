@@ -120,7 +120,7 @@ STATICFILES_DIRS = [
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_prod')
 
 # When client requests files under projectlovelace.net/static, look for them in STATIC_ROOT
-STATIC_URL = '/static/'
+STATIC_URL = '/static_prod/'
 
 # Login URL used especially by @login_required decorator.
 LOGIN_URL = '/accounts/login/'

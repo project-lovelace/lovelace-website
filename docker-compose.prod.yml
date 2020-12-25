@@ -3,6 +3,8 @@ version: '3.7'
 services:
   nginx:
     build: ./nginx
+    volumes:
+      - static_volume:/home/app/django/static_prod
     ports:
       - 1337:80
     depends_on:
@@ -13,6 +15,8 @@ services:
       context: ./src
       dockerfile: Dockerfile.prod
     command: gunicorn lovelace.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - static_volume:/home/app/django/static_prod
     expose:
       - 8000
     env_file:
@@ -38,3 +42,4 @@ services:
 
 volumes:
   postgres_data:
+  static_volume:
