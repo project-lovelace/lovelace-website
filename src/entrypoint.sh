@@ -17,7 +17,7 @@ echo "Flushing Django database..."
 python manage.py flush --no-input
 
 echo "Migrating Django changes..."
-python manage.py migrate
+python manage.py migrate --no-input
 
 echo "Loading Django data..."
 python manage.py loaddata lovelace_website.json
