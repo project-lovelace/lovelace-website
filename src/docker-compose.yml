@@ -12,6 +12,7 @@ services:
       - .env.dev
     depends_on:
       - db
+      - engine
 
   db:
     image: postgres:12.2
@@ -21,8 +22,6 @@ services:
       - POSTGRES_USER=hello_django
       - POSTGRES_PASSWORD=hello_django
       - POSTGRES_DB=hello_django_dev
-    depends_on:
-      - engine
 
   engine:
     image: projectlovelace/lovelace-engine
