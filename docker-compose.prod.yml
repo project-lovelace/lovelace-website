@@ -5,6 +5,7 @@ services:
     build: ./nginx
     volumes:
       - static_volume:/home/app/django/static_prod
+      - media_volume:/home/app/django/media
     ports:
       - 1337:80
     depends_on:
@@ -17,6 +18,7 @@ services:
     command: gunicorn lovelace.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - static_volume:/home/app/django/static_prod
+      - media_volume:/home/app/django/media
     expose:
       - 8000
     env_file:
@@ -43,3 +45,4 @@ services:
 volumes:
   postgres_data:
   static_volume:
+  media_volume:
