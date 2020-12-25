@@ -1,6 +1,6 @@
 FROM python:3.7
 
-WORKDIR /usr/src/app
+WORKDIR /usr/src/django
 
 # Prevents Python from writing pyc files to disc (equivalent to python -B option)
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -18,7 +18,7 @@ RUN pip install --upgrade pip &&\
     pip install -r requirements.txt
 
 # Copy project
-COPY . /usr/src/app/
+COPY . .
 
 # run entrypoint.sh
-ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
+ENTRYPOINT ["/usr/src/django/entrypoint.sh"]

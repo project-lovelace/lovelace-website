@@ -9,7 +9,7 @@ RUN addgroup --system app &&\
 
 # create the appropriate directories
 ENV HOME=/home/app
-ENV APP_HOME=/home/app/web
+ENV APP_HOME=/home/app/django
 RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
 
@@ -41,4 +41,4 @@ RUN chown -R app:app $APP_HOME
 USER app
 
 # run entrypoint.prod.sh
-ENTRYPOINT ["/home/app/web/entrypoint.prod.sh"]
+ENTRYPOINT ["/home/app/django/entrypoint.prod.sh"]
