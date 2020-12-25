@@ -37,7 +37,7 @@ jobs:
 
       - name: Waiting for containers to spin up
         run: |
-          sleep 30
+          sleep 60
           docker ps
 
       - name: Test that 4 containers are up
