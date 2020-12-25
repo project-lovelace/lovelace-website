@@ -10,7 +10,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = int(os.environ.get("DEBUG", default=0))
+DEBUG = bool(int(os.environ.get("DEBUG")))
 
 # 'DJANGO_ALLOWED_HOSTS' should be a single string of hosts with a space between each.
 # For example: 'DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]'
@@ -41,12 +41,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-# CACHES = {
-#     'default': {
-#         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-#     }
-# }
-
 ROOT_URLCONF = 'lovelace.urls'
 
 TEMPLATES = [
@@ -74,12 +68,12 @@ WSGI_APPLICATION = 'lovelace.wsgi.application'
 
 DATABASES = {
     "default": {
-          "ENGINE": os.environ.get("SQL_ENGINE", "django.db.backends.sqlite3"),
-            "NAME": os.environ.get("SQL_DATABASE", os.path.join(BASE_DIR, "db.sqlite3")),
-            "USER": os.environ.get("SQL_USER", "user"),
-        "PASSWORD": os.environ.get("SQL_PASSWORD", "password"),
-            "HOST": os.environ.get("SQL_HOST", "localhost"),
-            "PORT": os.environ.get("SQL_PORT", "5432"),
+          "ENGINE": os.environ.get("SQL_ENGINE"),
+            "NAME": os.environ.get("SQL_DATABASE"),
+            "USER": os.environ.get("SQL_USER"),
+        "PASSWORD": os.environ.get("SQL_PASSWORD"),
+            "HOST": os.environ.get("SQL_HOST"),
+            "PORT": os.environ.get("SQL_PORT"),
     }
 }
 
@@ -128,35 +122,36 @@ LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
 # SSL/HTTPS settings
-# SECURE_SSL_REDIRECT = True
-# SESSION_COOKIE_SECURE = True
-# CSRF_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = bool(int(os.environ.get("USE_SSL")))
+SESSION_COOKIE_SECURE = bool(int(os.environ.get("USE_SSL")))
+CSRF_COOKIE_SECURE = bool(int(os.environ.get("USE_SSL")))
 
-# HTTP Strict Transport Security
-# SECURE_HSTS_SECONDS = 60
-# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-# SECURE_HSTS_PRELOAD = True  # KEEP THIS OFF UNLESS YOU UNDERSTAND THE CONSEQUENCES!
-
-# More recommended security settings
-# SECURE_CONTENT_TYPE_NOSNIFF = True
-# SECURE_BROWSER_XSS_FILTER = True
-# X_FRAME_OPTIONS = 'DENY'
-
-# Persist database connections for better performance
-# KEEP OFF UNTIL WE KNOW THIS IS LOWER THAN POSTGRES' "IDLE CONNECTION TIMEOUT"
-# CONN_MAX_AGE = 600
+# # More recommended security settings
+SECURE_CONTENT_TYPE_NOSNIFF = bool(int(os.environ.get("USE_SSL")))
+SECURE_BROWSER_XSS_FILTER = bool(int(os.environ.get("USE_SSL")))
 
 # Email server settings
 # See: https://docs.djangoproject.com/en/stable/topics/email/
 
-# EMAIL_HOST = 'smtp.mailgun.org'
-# EMAIL_HOST_USER = 'postmaster@mg.projectlovelace.net'
-# EMAIL_HOST_PASSWORD = 'mailgun-password'
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
+EMAIL_HOST = os.environ.get("EMAIL_HOST")
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 # EMAIL_USE_SSL = True
 
-#DEFAULT_FROM_EMAIL = "Ada Lovelace <ada@mg.projectlovelace.net>"
+# These are used by send_mass_email.py
+LOVELACE_FROM_EMAIL = os.environ.get("LOVELACE_FROM_EMAIL")
+MAILGUN_API_URL = os.environ.get("MAILGUN_API_URL")
+MAILGUN_API_KEY = os.environ.get("MAILGUN_API_KEY")
+
+# django-registration settings
+ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window
+
+# Discourse settings.
+# See: https://meta.discourse.org/t/sso-example-for-django/14258
+DISCOURSE_BASE_URL = 'http://discourse.projectlovelace.net'
+DISCOURSE_SSO_SECRET = 'discourse-sso-secret'
 
 LOGGING = {
     'version': 1,
@@ -182,11 +177,3 @@ LOGGING = {
         },
     },
 }
-
-# django-registration settings
-ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window
-
-# Discourse settings.
-# See: https://meta.discourse.org/t/sso-example-for-django/14258
-# DISCOURSE_BASE_URL = 'http://discourse.projectlovelace.net'
-# DISCOURSE_SSO_SECRET = 'discourse-sso-secret'

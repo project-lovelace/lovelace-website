@@ -40,5 +40,8 @@ jobs:
           sleep 300
           docker ps
 
+      - name: Test that server is online
+        run: nmap -p 8000 localhost
+
       - name: Test that 4 containers are up
         run: "[[ $(docker ps | tail -n +2 | wc -l) == 4 ]]"
