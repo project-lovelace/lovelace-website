@@ -1,0 +1,52 @@
+name: lovelace-website CI
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.7, 3.8]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install test dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y --no-install-recommends nmap
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install Python dependencies
+        run: |
+          cd src/
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Build Docker container
+        run: |
+          cd src/
+          docker-compose build
+
+      - name: Run Docker container
+        run: |
+          cd src/
+          docker-compose up --detach
+
+      - name: Waiting for containers to spin up
+        run: |
+          sleep 300
+          docker ps
+
+      - name: Test that server is online
+        run: nmap -p 8000 localhost
+
+      - name: Test that 4 containers are up
+        run: "[[ $(docker ps | tail -n +2 | wc -l) == 4 ]]"

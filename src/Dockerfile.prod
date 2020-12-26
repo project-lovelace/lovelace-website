@@ -1,0 +1,46 @@
+FROM python:3.7
+
+# create directory for the app user
+RUN mkdir -p /home/app
+
+# create the app user
+RUN addgroup --system app &&\
+    adduser --system app --ingroup app
+
+# create the appropriate directories
+ENV HOME=/home/app
+ENV APP_HOME=/home/app/django
+RUN mkdir $APP_HOME
+RUN mkdir $APP_HOME/static_prod
+RUN mkdir $APP_HOME/media
+WORKDIR $APP_HOME
+
+# Prevents Python from writing pyc files to disc (equivalent to python -B option)
+ENV PYTHONDONTWRITEBYTECODE 1
+
+# Prevents Python from buffering stdout and stderr (equivalent to python -u option)
+ENV PYTHONUNBUFFERED 1
+
+# Install dependencies
+RUN apt-get update &&\
+    apt-get install -y --no-install-recommends postgresql-client netcat
+
+# Install Python dependencies
+COPY requirements.txt .
+RUN pip install --upgrade pip &&\
+    pip install -r requirements.txt
+
+# copy entrypoint-prod.sh
+COPY ./entrypoint.prod.sh $APP_HOME
+
+# copy project
+COPY . $APP_HOME
+
+# chown all the files to the app user
+RUN chown -R app:app $APP_HOME
+
+# change to the app user
+USER app
+
+# run entrypoint.prod.sh
+ENTRYPOINT ["/home/app/django/entrypoint.prod.sh"]

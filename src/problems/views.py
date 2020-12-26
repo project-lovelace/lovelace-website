@@ -21,7 +21,7 @@ from .models import Problem, Submission
 from django.contrib.auth.models import User
 from users.models import UserProfile
 
-ENGINE_URL = 'http://localhost:14714/submit'
+ENGINE_URL = 'http://engine:14714/submit'
 MAX_FILE_SIZE_BYTES = 65536
 
 logger = logging.getLogger('django.' + __name__)

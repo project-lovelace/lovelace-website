@@ -41,7 +41,7 @@ class UserRegistrationView(RegistrationView):
         return render(request, self.template_name, {'form': form})
 
 
-def error_404(request):
+def error_404(request, exception):
         data = {}
         return render(request, 'error_404.html', data)
 
