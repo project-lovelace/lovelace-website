@@ -1,0 +1,9 @@
+location /static_prod/ {
+    alias /home/app/django/static_prod/;
+    add_header Access-Control-Allow-Origin *;
+}
+
+location /media/ {
+    alias /home/app/django/media/;
+    add_header Access-Control-Allow-Origin *;
+}

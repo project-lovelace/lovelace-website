@@ -122,13 +122,15 @@ LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
 # SSL/HTTPS settings
-SECURE_SSL_REDIRECT = bool(int(os.environ.get("USE_SSL")))
-SESSION_COOKIE_SECURE = bool(int(os.environ.get("USE_SSL")))
-CSRF_COOKIE_SECURE = bool(int(os.environ.get("USE_SSL")))
+USE_SSL = bool(int(os.environ.get("USE_SSL")))
+SECURE_SSL_REDIRECT = USE_SSL
+SESSION_COOKIE_SECURE = USE_SSL
+CSRF_COOKIE_SECURE = USE_SSL
 
 # # More recommended security settings
-SECURE_CONTENT_TYPE_NOSNIFF = bool(int(os.environ.get("USE_SSL")))
-SECURE_BROWSER_XSS_FILTER = bool(int(os.environ.get("USE_SSL")))
+SECURE_CONTENT_TYPE_NOSNIFF = USE_SSL
+SECURE_BROWSER_XSS_FILTER = USE_SSL
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https") if USE_SSL else None
 
 # Email server settings
 # See: https://docs.djangoproject.com/en/stable/topics/email/

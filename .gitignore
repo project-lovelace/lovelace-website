@@ -106,5 +106,5 @@ mybulma/
 mybulma/node_modules
 
 # Production secrets
-.env.prod
-.env.prod.db
+.env.prod*
+.env.staging*
