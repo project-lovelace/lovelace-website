@@ -19,9 +19,9 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     environment:
-      - POSTGRES_USER=hello_django
-      - POSTGRES_PASSWORD=hello_django
-      - POSTGRES_DB=hello_django_dev
+      - POSTGRES_USER=lovelace
+      - POSTGRES_PASSWORD=lovelace
+      - POSTGRES_DB=lovelace_dev
 
   engine:
     image: projectlovelace/lovelace-engine

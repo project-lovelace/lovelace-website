@@ -16,3 +16,7 @@ docker-compose -f docker-compose.prod.yml exec django python manage.py loaddata 
 
 echo "Collecting static files..."
 docker-compose -f docker-compose.prod.yml exec django python manage.py collectstatic
+
+# Not sure how to get this working from the command line.
+# docker-compose -f docker-compose.prod.yml exec django echo "Size of media directory: `du -hs media | cut -f 1` (`find media -type f | wc -l` files)"
+
