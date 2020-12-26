@@ -38,9 +38,6 @@ class UserProfile(models.Model):
 
     subscribe_to_emails = models.BooleanField(default=True, help_text="Subscribe to emails.")
 
-    # The default avatar actually resides in media/static/img. I couldn't get it to link to the actual static/...
-    avatar = models.ImageField(upload_to=avatar_file_name, max_length=100, default="static/img/default_avatar.png")
-
     problems_solved = models.IntegerField(default=0, validators=[MinValueValidator(0)])
     submissions_made = models.IntegerField(default=0, validators=[MinValueValidator(0)])
 
