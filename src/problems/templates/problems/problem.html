@@ -77,12 +77,14 @@
           <span>Discourse</span>
         </a>
       </li>
-<!--  <li data-tab="5">
+      <!--
+      <li data-tab="5">
         <a>
           <span class="icon is-small"><i class="fas fa-check-double" aria-hidden="true"></i></span>
           <span>Solution</span>
         </a>
-      </li> -->
+      </li>
+      -->
     </ul>
   </div>
 
@@ -96,7 +98,7 @@
           <br>
           <p><strong>Input</strong>: {% block input_description %}{% endblock %}</p>
           <p><strong>Output</strong>: {% block output_description %}{% endblock %}</p>
-          <br>  
+          <br>
           {% block examples %}{% endblock %}
         </div>
       </div>
@@ -110,17 +112,17 @@
             <tbody>
               <tr>
                 <th><i class="fas fa-brain fa-fw"></i>&nbsp;<abbr title="Higher = more math and scientific knowledge required">Difficulty</abbr></th>
-                
+
                 {% if problem.difficulty <= 5 %}
-                  <td style=""><progress class="progress is-success" value="{{ problem.difficulty  }}" max="15"></progress></td>
+                  <td style=""><progress class="progress is-success" value="{{ problem.difficulty }}" max="15"></progress></td>
                 {% elif problem.difficulty > 5 and problem.difficulty <= 10 %}
-                  <td style=""><progress class="progress is-warning" value="{{ problem.difficulty  }}" max="15"></progress></td>
+                  <td style=""><progress class="progress is-warning" value="{{ problem.difficulty }}" max="15"></progress></td>
                 {% else %}
-                  <td style=""><progress class="progress is-danger" value="{{ problem.difficulty  }}" max="15"></progress></td>
+                  <td style=""><progress class="progress is-danger" value="{{ problem.difficulty }}" max="15"></progress></td>
                 {% endif %}
-                
+
                 <th><i class="fas fa-hourglass-half fa-fw"></i>&nbsp;<abbr title="Higher = more time needed to code up a solution">Timesink</abbr></th>
-                
+
                 {% if problem.timesink <= 5 %}
                   <td style=""><progress class="progress is-success" value="{{ problem.timesink }}" max="15"></progress></td>
                 {% elif problem.timesink > 5 and problem.timesink <= 10 %}
@@ -160,7 +162,7 @@
               </div>
             </div>
             <br>
-            <button class="button is-primary" type="submit" id="submit-file-button" onclick="this.form.button_clicked=this.id">Submit file</button>                  
+            <button class="button is-primary" type="submit" id="submit-file-button" onclick="this.form.button_clicked=this.id">Submit file</button>
             <div class="is-divider" data-content="OR"></div>
             <div class="field">
               <div class="control has-icons-left">
@@ -260,7 +262,8 @@
       <div>
         <p>Solution goes here!</p>
       </div>
-    </section> -->
+    </section>
+    -->
 
   </div>
 
@@ -337,7 +340,7 @@
   }
 
   // Manually trigger so it sets an initial code stube based on what language is initially selected.
-  document.getElementById('language-select').onchange(); 
+  document.getElementById('language-select').onchange();
 </script>
 
 <script>
@@ -396,8 +399,8 @@
       document.getElementById('results-modal').classList.toggle('is-active');
     });
 
-  var apiUrl = '{% url 'problems:detail' problem.name %}';
-  var csrf_token = '{{ csrf_token }}';
+  var apiUrl = "{% url 'problems:detail' problem.name %}";
+  var csrf_token = "{{ csrf_token }}";
 
   function sendCodeFile(event, button_clicked) {
     var form = document.forms.namedItem('submit-code-or-file-form');
@@ -445,7 +448,7 @@
 
       var resultsModalBody = document.getElementById('results-modal-body');
       resultsModalBody.innerHTML = "<pre>" + error_str + "</pre>";
-      
+
       document.getElementById('submit-file-button').classList.remove('is-loading');
       document.getElementById('submit-code-button').classList.remove('is-loading');
       document.getElementById('results-modal').classList.add('is-active');

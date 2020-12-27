@@ -47,7 +47,7 @@
                   <td>
                     <a href="{% url 'problems:detail' problem.name %}">{{ problem.title }}</a>
 
-                    {% if problem.subject == 'physics' %}  
+                    {% if problem.subject == 'physics' %}
                       <span class="tag is-info">{{ problem.subfield }}</span>
                     {% elif problem.subject == 'math' %}
                       <span class="tag is-warning">{{ problem.subfield }}</span>
@@ -64,7 +64,7 @@
                     {% elif problem.subject == 'computer science' %}
                       <span class="tag is-dark">{{ problem.subfield }}</span>
                     {% endif %}
-                  
+
                   </td>
                   <td align="center">{{ problem_submissions | get_item:problem.id }}</td>
 
@@ -75,7 +75,7 @@
                   {% else %}
                     <td><progress class="progress is-danger" value="{{ problem.difficulty }}" max="15"></progress></td>
                   {% endif %}
-                  
+
                   {% if problem.timesink <= 5 %}
                     <td><progress class="progress is-success" value="{{ problem.timesink }}" max="15"></progress></td>
                   {% elif problem.timesink > 5 and problem.timesink <= 10 %}
