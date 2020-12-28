@@ -1,7 +1,11 @@
 {% extends "base.html" %}
+
+{% load static %}
 {% load widget_tweaks %}
 
 {% block preload_javascript %}
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
 <!-- MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
@@ -373,12 +377,16 @@
   initTabs();
 </script>
 
+{% with 'visualization/'|add:problem.name|add:'.js' as visualization_script %}
+  <script src="{% static visualization_script %}"></script>
+{% endwith %}
+
 <script>
-    var modal = document.getElementById('modal-close');
-    modal.addEventListener('click', function(event) {
-      event.stopPropagation();
-      document.getElementById('results-modal').classList.toggle('is-active');
-    });
+  var modal = document.getElementById('modal-close');
+  modal.addEventListener('click', function(event) {
+    event.stopPropagation();
+    document.getElementById('results-modal').classList.toggle('is-active');
+  });
 
   var apiUrl = "{% url 'problems:detail' problem.name %}";
   var csrf_token = "{{ csrf_token }}";
@@ -482,7 +490,7 @@
       max_mem_usage = r.testCaseDetails[i].processInfo.max_mem_usage;
       max_mem_usage_str = String(Math.round(max_mem_usage)) + " kB";
 
-      processInfoString = '<b>Runtime</b>: ' + runtime_str + '<br>'
+      processInfoString = '<b>Runtime</b>: ' + runtime_str + ' | '
           + '<b>Max memory usage</b>: ' + max_mem_usage_str + '<br>';
 
       resultsModalBody.innerHTML += '<article class="message">'
@@ -490,10 +498,15 @@
           + '<p>' + testCasePanelTitle + '</p></div>'
           + '<div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word;">'
           + processInfoString
-          + '<b>Input</b>:<br>' + r.testCaseDetails[i].inputString + '<br>'
-          + '<b>Output</b>:<br>' + r.testCaseDetails[i].outputString + '<br>'
-          + '<b>Expected</b>:<br>' + r.testCaseDetails[i].expectedString
+          + `<div id="input${i}"></div>`
+          + `<div id="output${i}"></div>`
           + '</div></article>';
+
+      var input = r.testCaseDetails[i].input
+      var output = r.testCaseDetails[i].output
+      var expected = r.testCaseDetails[i].expected
+      format_input(input, output, expected, i)
+      format_output(input, output, expected, i)
     }
 
     document.getElementById('submit-file-button').classList.remove('is-loading');
