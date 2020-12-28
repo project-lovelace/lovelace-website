@@ -1,0 +1,35 @@
+/* Show active tab and hide inactive tabs. */
+#tab-content section {
+    display: none;
+}
+
+#tab-content section.is-active {
+    display: block;
+}
+
+.fa-check-circle{
+    color: lime;
+}
+
+.fa-times-circle {
+    color: red;
+}
+
+.fa-star {
+    color: gold;
+}
+
+.fa-grin-beam-sweat {
+    color: gold;
+}
+
+.fa-poo {
+    color: sienna;
+}
+
+.CodeMirror {
+    border: 1px solid black;
+    font-size:13px;
+    height: 100%;
+    width: 100%;
+}

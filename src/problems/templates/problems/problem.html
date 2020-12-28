@@ -4,6 +4,7 @@
 {% load widget_tweaks %}
 
 {% block preload_javascript %}
+<!-- Plotly -->
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
 <!-- MathJax -->
@@ -12,36 +13,7 @@
 </script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
 
-<!-- CSS to show active tab and hide inactive tabs. -->
-<style>
-  #tab-content section {
-    display: none;
-  }
-
-  #tab-content section.is-active {
-    display: block;
-  }
-
-  .fa-check-circle{
-    color: lime;
-  }
-
-  .fa-times-circle {
-    color: red;
-  }
-
-  .fa-star {
-      color: gold;
-  }
-
-  .fa-grin-beam-sweat {
-    color: gold;
-  }
-
-  .fa-poo {
-    color: sienna;
-  }
-</style>
+<link rel="stylesheet" href="{% static 'css/problem.css' %}">
 {% endblock %}
 
 {% block page_title %}
@@ -272,6 +244,7 @@
 <!-- CodeMirror editor -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/codemirror.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/theme/monokai.css">
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/codemirror.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/mode/python/python.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/mode/javascript/javascript.js"></script>
@@ -279,15 +252,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/mode/clike/clike.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/addon/display/autorefresh.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/addon/selection/active-line.js"></script>
-
-<style>
-  .CodeMirror {
-      border: 1px solid black;
-      font-size:13px;
-      height: 100%;
-      width: 100%;
-  }
-</style>
 
 <script>
   var editor_textarea = document.getElementById('editor-textarea');
