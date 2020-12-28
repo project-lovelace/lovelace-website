@@ -77,14 +77,6 @@
           <span>Discourse</span>
         </a>
       </li>
-      <!--
-      <li data-tab="5">
-        <a>
-          <span class="icon is-small"><i class="fas fa-check-double" aria-hidden="true"></i></span>
-          <span>Solution</span>
-        </a>
-      </li>
-      -->
     </ul>
   </div>
 
@@ -102,7 +94,6 @@
           {% block examples %}{% endblock %}
         </div>
       </div>
-      <!-- if user.is_authenticated -->
       <br>
       <div class="is-divider" style="width: 60%; margin: 0 auto;"></div>
       <br>
@@ -256,15 +247,6 @@
       </div>
     </section>
 
-    <!-- Solution tab
-    <section data-content="5">
-      <p>I wonder if you can see the text below...</p><br>
-      <div>
-        <p>Solution goes here!</p>
-      </div>
-    </section>
-    -->
-
   </div>
 
   <!-- Modal for showing test case results -->
@@ -352,8 +334,7 @@
 </script>
 
 <script>
-  // Tab switching.
-  // Credit to sol @ https://stackoverflow.com/a/47591788
+  // Tab switching. Code credit: https://stackoverflow.com/a/47591788
   const TABS = [...document.querySelectorAll('#tabs li')];
   const CONTENT = [...document.querySelectorAll('#tab-content section')];
   const ACTIVE_CLASS = 'is-active';
@@ -436,7 +417,6 @@
   });
 
   function injectTestCaseResults() {
-    console.log("Inside injectTestCaseResults()...")
 
     if (JSON.parse(this.response).hasOwnProperty('error')) {
       document.getElementById('results-modal-title').innerHTML = "Code execution failed.";
@@ -464,11 +444,14 @@
     }
 
     if (passes == nTestCases) {
-      document.getElementById('results-modal-title').innerHTML = '<i class="fas fa-star"></i>' + ' <b>Passed ' + passes + '/' + nTestCases + ' test cases.</b>';
+      document.getElementById('results-modal-title').innerHTML =
+        '<i class="fas fa-star"></i>' + ' <b>Passed ' + passes + '/' + nTestCases + ' test cases.</b>';
     } else if (passes == 0) {
-      document.getElementById('results-modal-title').innerHTML = '<i class="fas fa-poo"></i>' + ' <b>Passed ' + passes + '/' + nTestCases + ' test cases.</b>';
+      document.getElementById('results-modal-title').innerHTML =
+        '<i class="fas fa-poo"></i>' + ' <b>Passed ' + passes + '/' + nTestCases + ' test cases.</b>';
     } else {
-      document.getElementById('results-modal-title').innerHTML = '<i class="fas fa-grin-beam-sweat"></i>' + ' <b>Passed ' + passes + '/' + nTestCases + ' test cases.</b>';
+      document.getElementById('results-modal-title').innerHTML =
+        '<i class="fas fa-grin-beam-sweat"></i>' + ' <b>Passed ' + passes + '/' + nTestCases + ' test cases.</b>';
     }
 
     // Print all the test case details.
@@ -524,7 +507,6 @@
   }
 </script>
 
-<!-- if user.is_authenticated %} -->
 <script>
   // Add a "submit code" button below the CodeMirror editor after the
   // editor has loaded, otherwise when the editor html is inserted it
@@ -540,7 +522,6 @@
   editor_textarea.parentNode.appendChild(document.createElement("br"));
   editor_textarea.parentNode.appendChild(submit_code_button);
 </script>
-<!--  endif -->
 
 <script type="text/javascript">
   DiscourseEmbed = {
