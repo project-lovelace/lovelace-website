@@ -2,6 +2,7 @@
 
 {% load static %}
 {% load widget_tweaks %}
+{% load code_stub %}
 
 {% block preload_javascript %}
 <!-- Plotly -->
@@ -61,7 +62,6 @@
     <section data-content="1" class="is-active">
       <div class="columns is-centered">
         <div class="column is-three-fifths">
-          {% block introduction %}{% endblock %}
           {% block problem_body %}{% endblock %}
           <br>
           <p><strong>Input</strong>: {% block input_description %}{% endblock %}</p>
@@ -137,7 +137,7 @@
                   <select id="language-select">
                     <option value="python" selected>Python (3.7.3)</option>
                     <option value="javascript">Javascript (Node.js 10.15.2)</option>
-                    <option value="julia">Julia (1.0.3)</option>
+                    <option value="julia">Julia (1.5.3)</option>
                     <option value="c">C (gcc 8.3.0)</option>
                   </select>
                 </div>
@@ -275,16 +275,16 @@
 
   document.getElementById('language-select').onchange = function() {
     if (this.value == 'python') {
-      editor.setValue(`{% block python_code_stub %}{% endblock %}`.trim());
+      editor.setValue(`{% stringify_code_stub problem.name "python" %}`.trim());
       editor.setOption('mode', 'python');
     } else if (this.value == 'javascript') {
-      editor.setValue(`{% block javascript_code_stub %}{% endblock %}`.trim());
+      editor.setValue(`{% stringify_code_stub problem.name "javascript" %}`.trim());
       editor.setOption('mode', 'javascript');
     } else if (this.value == 'julia') {
-      editor.setValue(`{% block julia_code_stub %}{% endblock %}`.trim());
+      editor.setValue(`{% stringify_code_stub problem.name "julia" %}`.trim());
       editor.setOption('mode', 'julia');
     } else if (this.value == 'c') {
-      editor.setValue(`{% block c_code_stub %}{% endblock %}`.trim());
+      editor.setValue(`{% stringify_code_stub problem.name "c" %}`.trim());
       editor.setOption('mode', 'clike');
     }
   }
