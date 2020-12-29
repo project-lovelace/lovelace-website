@@ -12,7 +12,7 @@ function format_output(input, output, expected, n) {
 
 function make_wind_chill_figure() {
     var n = 200 // number of points
-    var v = new Array(100)
+    var v = new Array(n)
 
     var v_min = 0
     var v_max = 100
