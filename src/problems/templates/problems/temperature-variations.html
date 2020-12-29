@@ -97,41 +97,4 @@ temperature_statistics(T)
 </div>
 {% endblock %}
 
-{% block python_code_stub %}
-def temperature_statistics(T):
-    mean = 0
-    std  = 0
-    # Your code goes here!
-    return mean, std
-{% endblock %}
-
-{% block javascript_code_stub %}
-function temperature_statistics(T) {
-    var mean = 0
-    var std = 0
-    // Your code goes here!
-    return [mean, std]
-}
-{% endblock %}
-
-{% block julia_code_stub %}
-function temperature_statistics(T)
-    mean = 0
-    std  = 0
-    # Your code goes here!
-    return mean, std
-end
-{% endblock %}
-
-{% block c_code_stub %}
-#include <math.h>
-
-void temperature_statistics(double* T, int N, double* mean, double* std) {
-
-    // Your code goes here!
-
-}
-{% endblock %}
-
 {% block discourse_topic_id %}263{% endblock %}
-

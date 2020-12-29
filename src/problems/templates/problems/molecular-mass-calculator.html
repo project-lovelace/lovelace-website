@@ -92,46 +92,4 @@ molecular_mass(chemical_formula)
   </div>
 {% endblock %}
 
-{% block python_code_stub %}
-import csv
-
-with open('periodic_table.csv') as csvfile:
-    periodic_table_reader = csv.reader(csvfile, delimiter=',')
-    # Your code goes here!
-
-
-def molecular_mass(chemical_formula):
-    mass = 0
-
-    # Your code goes here!
-
-    return mass
-{% endblock %}
-
-{% block javascript_code_stub %}
-function molecular_mass(chemical_formula) {
-  let mass = 0;
-
-  // Your code goes here!
-
-  return mass;
-}
-{% endblock %}
-
-{% block julia_code_stub %}
-function molecular_mass(chemical_formula)
-end
-{% endblock %}
-
-{% block c_code_stub %}
-double molecular_mass(char* chemical_formula) {
-  double mass = 0;
-
-  // Your code goes here!
-
-  return mass;
-}
-{% endblock %}
-
 {% block discourse_topic_id %}20{% endblock %}
-
