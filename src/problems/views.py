@@ -120,9 +120,6 @@ class DetailView(View):
         if not form.is_valid():
             return HttpResponseBadRequest('Unknown problem with the submitted file')
 
-        # if not request.user.is_authenticated:
-        #     return HttpResponseBadRequest("You must be registered and logged in to submit code.")
-
         logger.info("Received submission for problem={:}. Request:\n{:}"
                 .format(problem_name, pprint.pformat(request.__dict__)))
 
@@ -183,17 +180,14 @@ class DetailView(View):
                 file = form.files['file']
             except KeyError:
                 return JsonResponse({'error': 'Please attach your file before submitting.'})
-                # return HttpResponseBadRequest('Please attach your file before submitting.')
 
             if file.size > MAX_FILE_SIZE_BYTES:
                 return JsonResponse({'error': 'File must be smaller than {} bytes.'.format(MAX_FILE_SIZE_BYTES)})
-                # return HttpResponseBadRequest('File must be smaller than {} bytes'.format(MAX_FILE_SIZE_BYTES))
 
             raw_code = str(base64.b64encode(file.read()), 'utf-8')
 
         else:
             return JsonResponse({'error': 'Invalid value for button-clicked in POST form.'})
-            # return HttpResponseBadRequest("Invalid value for button-clicked in POST form.")
 
         submission = {
             'problem': problem_name,
@@ -209,13 +203,11 @@ class DetailView(View):
             error_msg = error_resp['error']
             logging.warning("Engine returned HTTP 400. Probably due to bad user code. Error: {:}".format(error_msg))
             return JsonResponse({'error': error_msg})
-            # return HttpResponseBadRequest(error_msg)
         elif status == 500:
             error_resp = engine_resp.json()
             error_msg = error_resp['error']
             logging.warning("Engine returned HTTP 500. Probably due to bad file push or pull. Error: {:}".format(error_msg))
             return JsonResponse({'error': error_msg})
-            # return HttpResponseServerError(error_msg)
 
         results = engine_resp.json()
 
