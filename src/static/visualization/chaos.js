@@ -1,9 +1,6 @@
-function format_input(input, output, expected, n) {
+function visualize_test_case(input, output, expected, n) {
     document.getElementById(`input${n}`).innerHTML = `<b>Input</b>: r = ${input[0]} <br>`
-    return
-}
 
-function format_output(input, output, expected, n) {
     var r = input[0]
     var x_expected = expected[0]
     var x_output = output[0]

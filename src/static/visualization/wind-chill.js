@@ -1,12 +1,10 @@
-function format_input(input, output, expected, n) {
+function visualize_test_case(input, output, expected, n) {
     document.getElementById(`input${n}`).innerHTML =
         `<b>Input</b>: T_a = ${input[0]} °C, v = ${input[1]} km/h <br>`
-    return
-}
 
-function format_output(input, output, expected, n) {
     document.getElementById(`output${n}`).innerHTML =
         `<b>Output</b>: T_wc = ${output[0]} °C (expected ${expected[0]} °C) <br>`
+
     return
 }
 

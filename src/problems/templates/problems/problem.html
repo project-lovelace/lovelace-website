@@ -469,8 +469,9 @@
       var input = r.testCaseDetails[i].input
       var output = r.testCaseDetails[i].output
       var expected = r.testCaseDetails[i].expected
-      format_input(input, output, expected, i)
-      format_output(input, output, expected, i)
+
+      // This will populate the input and output divs defined above.
+      visualize_test_case(input, output, expected, i)
     }
 
     document.getElementById('submit-file-button').classList.remove('is-loading');
