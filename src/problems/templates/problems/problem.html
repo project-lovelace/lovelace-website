@@ -273,6 +273,8 @@
     }
   });
 
+  {% comment %} Don't escape code stubs to preserve all characters. {% endcomment %}
+  {% autoescape off %}
   document.getElementById('language-select').onchange = function() {
     if (this.value == 'python') {
       editor.setValue(`{% stringify_code_stub problem.name "python" %}`.trim());
@@ -288,6 +290,7 @@
       editor.setOption('mode', 'clike');
     }
   }
+  {% endautoescape %}
 
   // Manually trigger so it sets an initial code stube based on what language is initially selected.
   document.getElementById('language-select').onchange();
@@ -460,7 +463,7 @@
       resultsModalBody.innerHTML += '<article class="message">'
           + '<div class="message-header">'
           + '<p>' + testCasePanelTitle + '</p></div>'
-          + '<div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word;">'
+          + '<div class="message-body" style="font-family: monospace; word-wrap: break-word;">'
           + processInfoString
           + `<div id="input${i}"></div>`
           + `<div id="output${i}"></div>`
