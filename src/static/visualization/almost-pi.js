@@ -44,6 +44,7 @@ function make_almost_pi_figure() {
         shapes: shapes,
         paper_bgcolor: 'rgba(0, 0, 0, 0)',
         plot_bgcolor: 'rgba(0, 0, 0, 0)',
+        modebar: { bgcolor: 'white' },
         width: '100%',
         height: '100%'
     }

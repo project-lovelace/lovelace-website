@@ -27,7 +27,8 @@ function visualize_test_case(input, output, expected, n) {
         xaxis: { title: 'iterations' },
         yaxis: { title: 'x' },
         paper_bgcolor: 'rgba(0, 0, 0, 0)',
-        plot_bgcolor: 'rgba(0, 0, 0, 0)'
+        plot_bgcolor: 'rgba(0, 0, 0, 0)',
+        modebar: { bgcolor: 'white' },
     }
 
     document.getElementById(`output${n}`).innerHTML = `<b>Output</b>: <br> <div id="output${n}plot"></div>`
