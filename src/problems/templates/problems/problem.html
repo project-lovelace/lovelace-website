@@ -242,16 +242,16 @@
 
 {% block postload_javascript %}
 <!-- CodeMirror editor -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/codemirror.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/theme/monokai.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.1/codemirror.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.1/theme/monokai.css">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/codemirror.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/mode/python/python.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/mode/javascript/javascript.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/mode/julia/julia.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/mode/clike/clike.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/addon/display/autorefresh.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/addon/selection/active-line.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.1/codemirror.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.1/mode/python/python.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.1/mode/javascript/javascript.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.1/mode/julia/julia.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.1/mode/clike/clike.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.1/addon/display/autorefresh.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.1/addon/selection/active-line.js"></script>
 
 <script>
   var editor_textarea = document.getElementById('editor-textarea');
@@ -287,7 +287,7 @@
       editor.setOption('mode', 'julia');
     } else if (this.value == 'c') {
       editor.setValue(`{% stringify_code_stub problem.name "c" %}`.trim());
-      editor.setOption('mode', 'clike');
+      editor.setOption('mode', 'text/x-csrc');
     }
   }
   {% endautoescape %}
