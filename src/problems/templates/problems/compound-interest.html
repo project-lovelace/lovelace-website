@@ -1,0 +1,74 @@
+{% extends "problems/problem.html" %}
+
+{% load static %}
+
+{% block you_will_learn %}
+  cold moose are plump.
+{% endblock %}
+
+{% block problem_body %}
+<p class="has-text-justified">
+  Compound interest is when interest on a loan or investment is added back to the loan or investment. So it's like
+  interest on interest! Compounding leads to exponential growth so it makes your investments grow big over time but
+  also makes it much harder to pay off predatory loans and credit card debt.
+
+  If you start with an amount of money $m$ and the compound interest is calculated once a year with interest rate $r$
+  (as a fraction) then after $n$ years you end up with new amount $M$ given by
+
+  $$ M = m (1 + r)^n $$
+</p>
+<br>
+
+<figure style="text-align: center;">
+  <div id="compound-interest-app"></id>
+</figure>
+<br>
+
+<p class="has-text-justified">
+  Submit some code with a function <tt>compound_interest(m, r, n)</tt> that computes $M$ given $m$, $r$, and $n$.
+</p>
+{% endblock %}
+
+{% block input_description %}
+m, r, n
+{% endblock %}
+
+{% block output_description %}
+M
+{% endblock %}
+
+{% block examples %}
+<article class="message">
+  <div class="message-header">
+    <p>Example</p>
+  </div>
+  <div class="message-body"
+       style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input</b>: $1,000, 0.07, 25
+<b>Output</b>: $5,427.43</div>
+</article>
+{% endblock %}
+
+{% block function_signature %}
+compound_interest(m, r, n)
+{% endblock %}
+
+{% block notes_and_references %}
+<div class="content">
+  <h3>Notes</h3>
+  <ul>
+    <li>
+      Compound interest was and is considered a kind of usury by many religions and even by Roman law.
+    </li>
+    <li>
+      The number e was actually discovered by Jacob Bernoulli in 1683 when investigating compound interest.
+      Now of course called Euler's number because of Stigler's law.
+    </li>
+    <li>
+      The <a href="https://en.wikipedia.org/wiki/Rule_of_72">Rule of 72</a> is a quick rule/approximation for figuring
+      out how long it would take for the amount to double: it's $72/r$ where $r$ is the interest rate as a percentage.
+    </li>
+  </ul>
+</div>
+{% endblock %}
+
+{% block discourse_topic_id %}x{% endblock %}
