@@ -1,43 +1,20 @@
 {% extends "base.html" %}
+
+{% load static %}
 {% load widget_tweaks %}
+{% load code_stub %}
 
 {% block preload_javascript %}
+<!-- Plotly -->
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
 <!-- MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
 </script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
 
-<!-- CSS to show active tab and hide inactive tabs. -->
-<style>
-  #tab-content section {
-    display: none;
-  }
-
-  #tab-content section.is-active {
-    display: block;
-  }
-
-  .fa-check-circle{
-    color: lime;
-  }
-
-  .fa-times-circle {
-    color: red;
-  }
-
-  .fa-star {
-      color: gold;
-  }
-
-  .fa-grin-beam-sweat {
-    color: gold;
-  }
-
-  .fa-poo {
-    color: sienna;
-  }
-</style>
+<link rel="stylesheet" href="{% static 'css/problem.css' %}">
 {% endblock %}
 
 {% block page_title %}
@@ -77,12 +54,6 @@
           <span>Discourse</span>
         </a>
       </li>
-<!--  <li data-tab="5">
-        <a>
-          <span class="icon is-small"><i class="fas fa-check-double" aria-hidden="true"></i></span>
-          <span>Solution</span>
-        </a>
-      </li> -->
     </ul>
   </div>
 
@@ -91,16 +62,14 @@
     <section data-content="1" class="is-active">
       <div class="columns is-centered">
         <div class="column is-three-fifths">
-          {% block introduction %}{% endblock %}
           {% block problem_body %}{% endblock %}
           <br>
           <p><strong>Input</strong>: {% block input_description %}{% endblock %}</p>
           <p><strong>Output</strong>: {% block output_description %}{% endblock %}</p>
-          <br>  
+          <br>
           {% block examples %}{% endblock %}
         </div>
       </div>
-      <!-- if user.is_authenticated -->
       <br>
       <div class="is-divider" style="width: 60%; margin: 0 auto;"></div>
       <br>
@@ -110,17 +79,17 @@
             <tbody>
               <tr>
                 <th><i class="fas fa-brain fa-fw"></i>&nbsp;<abbr title="Higher = more math and scientific knowledge required">Difficulty</abbr></th>
-                
+
                 {% if problem.difficulty <= 5 %}
-                  <td style=""><progress class="progress is-success" value="{{ problem.difficulty  }}" max="15"></progress></td>
+                  <td style=""><progress class="progress is-success" value="{{ problem.difficulty }}" max="15"></progress></td>
                 {% elif problem.difficulty > 5 and problem.difficulty <= 10 %}
-                  <td style=""><progress class="progress is-warning" value="{{ problem.difficulty  }}" max="15"></progress></td>
+                  <td style=""><progress class="progress is-warning" value="{{ problem.difficulty }}" max="15"></progress></td>
                 {% else %}
-                  <td style=""><progress class="progress is-danger" value="{{ problem.difficulty  }}" max="15"></progress></td>
+                  <td style=""><progress class="progress is-danger" value="{{ problem.difficulty }}" max="15"></progress></td>
                 {% endif %}
-                
+
                 <th><i class="fas fa-hourglass-half fa-fw"></i>&nbsp;<abbr title="Higher = more time needed to code up a solution">Timesink</abbr></th>
-                
+
                 {% if problem.timesink <= 5 %}
                   <td style=""><progress class="progress is-success" value="{{ problem.timesink }}" max="15"></progress></td>
                 {% elif problem.timesink > 5 and problem.timesink <= 10 %}
@@ -160,7 +129,7 @@
               </div>
             </div>
             <br>
-            <button class="button is-primary" type="submit" id="submit-file-button" onclick="this.form.button_clicked=this.id">Submit file</button>                  
+            <button class="button is-primary" type="submit" id="submit-file-button" onclick="this.form.button_clicked=this.id">Submit file</button>
             <div class="is-divider" data-content="OR"></div>
             <div class="field">
               <div class="control has-icons-left">
@@ -168,7 +137,7 @@
                   <select id="language-select">
                     <option value="python" selected>Python (3.7.3)</option>
                     <option value="javascript">Javascript (Node.js 10.15.2)</option>
-                    <option value="julia">Julia (1.0.3)</option>
+                    <option value="julia">Julia (1.5.3)</option>
                     <option value="c">C (gcc 8.3.0)</option>
                   </select>
                 </div>
@@ -254,14 +223,6 @@
       </div>
     </section>
 
-    <!-- Solution tab
-    <section data-content="5">
-      <p>I wonder if you can see the text below...</p><br>
-      <div>
-        <p>Solution goes here!</p>
-      </div>
-    </section> -->
-
   </div>
 
   <!-- Modal for showing test case results -->
@@ -281,24 +242,16 @@
 
 {% block postload_javascript %}
 <!-- CodeMirror editor -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/codemirror.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/theme/monokai.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/codemirror.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/mode/python/python.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/mode/javascript/javascript.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/mode/julia/julia.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/mode/clike/clike.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/addon/display/autorefresh.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/addon/selection/active-line.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.1/codemirror.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.1/theme/monokai.css">
 
-<style>
-  .CodeMirror {
-      border: 1px solid black;
-      font-size:13px;
-      height: 100%;
-      width: 100%;
-  }
-</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.1/codemirror.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.1/mode/python/python.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.1/mode/javascript/javascript.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.1/mode/julia/julia.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.1/mode/clike/clike.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.1/addon/display/autorefresh.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.1/addon/selection/active-line.js"></script>
 
 <script>
   var editor_textarea = document.getElementById('editor-textarea');
@@ -320,24 +273,27 @@
     }
   });
 
+  {% comment %} Don't escape code stubs to preserve all characters. {% endcomment %}
+  {% autoescape off %}
   document.getElementById('language-select').onchange = function() {
     if (this.value == 'python') {
-      editor.setValue(`{% block python_code_stub %}{% endblock %}`.trim());
+      editor.setValue(`{% stringify_code_stub problem.name "python" %}`.trim());
       editor.setOption('mode', 'python');
     } else if (this.value == 'javascript') {
-      editor.setValue(`{% block javascript_code_stub %}{% endblock %}`.trim());
+      editor.setValue(`{% stringify_code_stub problem.name "javascript" %}`.trim());
       editor.setOption('mode', 'javascript');
     } else if (this.value == 'julia') {
-      editor.setValue(`{% block julia_code_stub %}{% endblock %}`.trim());
+      editor.setValue(`{% stringify_code_stub problem.name "julia" %}`.trim());
       editor.setOption('mode', 'julia');
     } else if (this.value == 'c') {
-      editor.setValue(`{% block c_code_stub %}{% endblock %}`.trim());
-      editor.setOption('mode', 'clike');
+      editor.setValue(`{% stringify_code_stub problem.name "c" %}`.trim());
+      editor.setOption('mode', 'text/x-csrc');
     }
   }
+  {% endautoescape %}
 
   // Manually trigger so it sets an initial code stube based on what language is initially selected.
-  document.getElementById('language-select').onchange(); 
+  document.getElementById('language-select').onchange();
 </script>
 
 <script>
@@ -349,8 +305,7 @@
 </script>
 
 <script>
-  // Tab switching.
-  // Credit to sol @ https://stackoverflow.com/a/47591788
+  // Tab switching. Code credit: https://stackoverflow.com/a/47591788
   const TABS = [...document.querySelectorAll('#tabs li')];
   const CONTENT = [...document.querySelectorAll('#tab-content section')];
   const ACTIVE_CLASS = 'is-active';
@@ -389,15 +344,19 @@
   initTabs();
 </script>
 
-<script>
-    var modal = document.getElementById('modal-close');
-    modal.addEventListener('click', function(event) {
-      event.stopPropagation();
-      document.getElementById('results-modal').classList.toggle('is-active');
-    });
+{% with 'visualization/'|add:problem.name|add:'.js' as visualization_script %}
+  <script src="{% static visualization_script %}"></script>
+{% endwith %}
 
-  var apiUrl = '{% url 'problems:detail' problem.name %}';
-  var csrf_token = '{{ csrf_token }}';
+<script>
+  var modal = document.getElementById('modal-close');
+  modal.addEventListener('click', function(event) {
+    event.stopPropagation();
+    document.getElementById('results-modal').classList.toggle('is-active');
+  });
+
+  var apiUrl = "{% url 'problems:detail' problem.name %}";
+  var csrf_token = "{{ csrf_token }}";
 
   function sendCodeFile(event, button_clicked) {
     var form = document.forms.namedItem('submit-code-or-file-form');
@@ -433,7 +392,6 @@
   });
 
   function injectTestCaseResults() {
-    console.log("Inside injectTestCaseResults()...")
 
     if (JSON.parse(this.response).hasOwnProperty('error')) {
       document.getElementById('results-modal-title').innerHTML = "Code execution failed.";
@@ -445,7 +403,7 @@
 
       var resultsModalBody = document.getElementById('results-modal-body');
       resultsModalBody.innerHTML = "<pre>" + error_str + "</pre>";
-      
+
       document.getElementById('submit-file-button').classList.remove('is-loading');
       document.getElementById('submit-code-button').classList.remove('is-loading');
       document.getElementById('results-modal').classList.add('is-active');
@@ -461,11 +419,14 @@
     }
 
     if (passes == nTestCases) {
-      document.getElementById('results-modal-title').innerHTML = '<i class="fas fa-star"></i>' + ' <b>Passed ' + passes + '/' + nTestCases + ' test cases.</b>';
+      document.getElementById('results-modal-title').innerHTML =
+        '<i class="fas fa-star"></i>' + ' <b>Passed ' + passes + '/' + nTestCases + ' test cases.</b>';
     } else if (passes == 0) {
-      document.getElementById('results-modal-title').innerHTML = '<i class="fas fa-poo"></i>' + ' <b>Passed ' + passes + '/' + nTestCases + ' test cases.</b>';
+      document.getElementById('results-modal-title').innerHTML =
+        '<i class="fas fa-poo"></i>' + ' <b>Passed ' + passes + '/' + nTestCases + ' test cases.</b>';
     } else {
-      document.getElementById('results-modal-title').innerHTML = '<i class="fas fa-grin-beam-sweat"></i>' + ' <b>Passed ' + passes + '/' + nTestCases + ' test cases.</b>';
+      document.getElementById('results-modal-title').innerHTML =
+        '<i class="fas fa-grin-beam-sweat"></i>' + ' <b>Passed ' + passes + '/' + nTestCases + ' test cases.</b>';
     }
 
     // Print all the test case details.
@@ -496,18 +457,24 @@
       max_mem_usage = r.testCaseDetails[i].processInfo.max_mem_usage;
       max_mem_usage_str = String(Math.round(max_mem_usage)) + " kB";
 
-      processInfoString = '<b>Runtime</b>: ' + runtime_str + '<br>'
+      processInfoString = '<b>Runtime</b>: ' + runtime_str + ' | '
           + '<b>Max memory usage</b>: ' + max_mem_usage_str + '<br>';
 
       resultsModalBody.innerHTML += '<article class="message">'
           + '<div class="message-header">'
           + '<p>' + testCasePanelTitle + '</p></div>'
-          + '<div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word;">'
+          + '<div class="message-body" style="font-family: monospace; word-wrap: break-word;">'
           + processInfoString
-          + '<b>Input</b>:<br>' + r.testCaseDetails[i].inputString + '<br>'
-          + '<b>Output</b>:<br>' + r.testCaseDetails[i].outputString + '<br>'
-          + '<b>Expected</b>:<br>' + r.testCaseDetails[i].expectedString
+          + `<div id="input${i}"></div>`
+          + `<div id="output${i}"></div>`
           + '</div></article>';
+
+      var input = r.testCaseDetails[i].input
+      var output = r.testCaseDetails[i].output
+      var expected = r.testCaseDetails[i].expected
+
+      // This will populate the input and output divs defined above.
+      visualize_test_case(input, output, expected, i)
     }
 
     document.getElementById('submit-file-button').classList.remove('is-loading');
@@ -521,7 +488,6 @@
   }
 </script>
 
-<!-- if user.is_authenticated %} -->
 <script>
   // Add a "submit code" button below the CodeMirror editor after the
   // editor has loaded, otherwise when the editor html is inserted it
@@ -537,7 +503,6 @@
   editor_textarea.parentNode.appendChild(document.createElement("br"));
   editor_textarea.parentNode.appendChild(submit_code_button);
 </script>
-<!--  endif -->
 
 <script type="text/javascript">
   DiscourseEmbed = {

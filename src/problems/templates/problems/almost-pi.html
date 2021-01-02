@@ -22,7 +22,7 @@
 
 <br>
 <figure style="text-align: center;">
-  <img src="{% static 'img/approximating_pi.png' %}">
+  <div id="almost-pi-plot">
   <figcaption class="help">
     The blue line shows the sum of the first $n$ terms for $0 \le n \le 50$ while the orange dashed line shows the exact
     value of $\pi$. By adding each term, you end up overestimating then underestimating $\pi$, but it slowly converges to the
@@ -92,39 +92,11 @@ almost_pi(N)
   <h3>Notes</h3>
   <ul>
     <li>$\pi$ is a transcendental number and its digital expansion contains all possible numbers. 123456789 first shows
-      up at the 523,551,502nd decimal place! You can search through the first billion digits at 
+      up at the 523,551,502nd decimal place! You can search through the first billion digits at
       <a href="https://three.onefouronefive.net/">A Billion Digits of Pi</a>.
     </li>
   </ul>
 </div>
 {% endblock %}
 
-{% block python_code_stub %}
-def almost_pi(N):
-    # Your code goes here!
-    return 0
-{% endblock %}
-
-{% block javascript_code_stub %}
-function almost_pi(N) {
-    // Your code goes here!
-    return 0
-}
-{% endblock %}
-
-{% block julia_code_stub %}
-function almost_pi(N)
-    # Your code goes here!
-    return 0
-end
-{% endblock %}
-
-{% block c_code_stub %}
-double almost_pi(int N) {
-    // Your code goes here!
-    return 0;
-}
-{% endblock %}
-
 {% block discourse_topic_id %}262{% endblock %}
-

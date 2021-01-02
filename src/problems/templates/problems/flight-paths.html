@@ -84,46 +84,4 @@ haversine_distance(lat1, lon1, lat2, lon2)
 </div>
 {% endblock %}
 
-{% block python_code_stub %}
-from math import radians, sqrt, asin, sin, cos
-
-R  = 6372.1  # Radius of the Earth [km]
-
-def haversine_distance(lat1, lon1, lat2, lon2):
-    d = 0
-    # Your code goes here!
-    return d
-{% endblock %}
-
-{% block javascript_code_stub %}
-const R = 6372.1  // Radius of the Earth [km]
-
-function haversine_distance(lat1, lon1, lat2, lon2) {
-    var d = 0
-    // Your code goes here!
-    return d
-}
-{% endblock %}
-
-{% block julia_code_stub %}
-const R  = 6372.1  # Radius of the Earth [km]
-
-function haversine_distance(lat1, lon1, lat2, lon2)
-    d = 0
-    # Your code goes here!
-    return d
-end
-{% endblock %}
-
-{% block c_code_stub %}
-const double R = 6372.1;  // Radius of the Earth [km]
-
-double haversine_distance(double lat1, double lon1, double lat2, double lon2) {
-    double d = 0.0;
-    // Your code goes here!
-    return d;
-}
-{% endblock %}
-
 {% block discourse_topic_id %}261{% endblock %}
-
