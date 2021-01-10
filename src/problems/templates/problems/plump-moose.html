@@ -9,10 +9,12 @@
 {% block problem_body %}
 <p class="has-text-justified">
   Bergmann's rule says that animals living in colder climates tend to be larger in size. Swedish scientists measured
-  the mass of different moose populations in Sweden and found that the further north you go, the bigger the moose get!
-  Taking their data we can fit a line through it to predict the mass of a moose at some latitude
+  the body mass of different moose populations in Sweden and found that the further north you go, the bigger the moose
+  get! Taking their data we can fit a line through it to predict the body mass of a moose at some latitude
 
   $$ \text{mass} = a \times \text{latitude} + b $$
+
+  where $a = 2.757$ and $b = 16.793$.
 </p>
 <br>
 
@@ -22,8 +24,8 @@
 <br>
 
 <p class="has-text-justified">
-  Submit some code with a function <tt>moose_mass(latitude)</tt> that returns the expected mass of a moose living at
-  a given latitude using the fitted line from above.
+  Submit some code with a function <tt>moose_body_mass(latitude)</tt> that returns the expected body mass of a moose
+  living at the input latitude using the linear line of best fit from above.
 </p>
 {% endblock %}
 
@@ -32,7 +34,7 @@ Latitude
 {% endblock %}
 
 {% block output_description %}
-The expected mass of a moose living at the input latitude.
+The expected body mass of a moose living at the input latitude.
 {% endblock %}
 
 {% block examples %}
@@ -41,14 +43,13 @@ The expected mass of a moose living at the input latitude.
     <p>Example</p>
   </div>
   <div class="message-body"
-       style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input point 1 (latitude, longitude) </b>: 46.283, 86.667
-<b>Input point 2 (latitude, longitude) </b>: -48.877, -123.393
-<b>Output distance</b>: 17760.054</div>
+       style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input latitude</b>: 60.5
+<b>Output body mass</b>: 183.5915</div>
 </article>
 {% endblock %}
 
 {% block function_signature %}
-moose_mass(latitude)
+moose_body_mass(latitude)
 {% endblock %}
 
 {% block notes_and_references %}
@@ -74,7 +75,8 @@ moose_mass(latitude)
       Geographical and latitudinal variation in growth patterns and adult body size of Swedish moose (Alces alces)</a>,
       Oecologia <b>102</b>, 433–442 (1995).
     </dt>
-    <dd>This is where we got the data and calculate the line of best fit.</dd>
+    <dd>This is where we got the data from.</dd>
+    <br>
 
     <dt>
       Carl Bergmann, <a href="https://books.google.com/books?id=EHo-AAAAcAAJ&amp;pg=PA3">
@@ -84,16 +86,19 @@ moose_mass(latitude)
       This is the original article by Bergmann in German at over a 100 pages long! Google translates the title to English
       as "About the relation of the heat economy of animals to their size".
     </dd>
+    <br>
 
     <dt>
       Meiri and Dayan, <a href="https://doi.org/10.1046/j.1365-2699.2003.00837.x">On the validity of Bergmann's rule</a>,
       Journal of Biogeography <b>30</b>, 331-351 (2003).
     </dt>
+    <br>
 
     <dt>
       Kyle G. Ashton, Mark C. Tracy, &amp; Alan de Queiroz, <a href="https://doi.org/10.1086/303400 ">
       Is Bergmann’s Rule Valid for Mammals?</a>, The American Naturalist <b>156</b>(4), 390-415 (2000).
   </dl>
+  <br>
 </div>
 {% endblock %}
 
