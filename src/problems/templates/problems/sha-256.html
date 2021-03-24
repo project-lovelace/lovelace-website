@@ -1,0 +1,174 @@
+{% extends "problems/problem.html" %}
+
+{% load static %}
+
+{% block you_will_learn %}
+	secure cryptographic hash functions.
+{% endblock %}
+
+{% block problem_body %}
+<p class="has-text-justified">
+    SHA-256 intro
+</p>
+<br>
+
+<h2 class="subtitle is-4">Initializing hash values and round constants</h2>
+<p class="has-text-justified">
+    The hash values are modified depending on the message to produce the final hash. For SHA-256 there are 8 hash values
+    and they are initialized to the first 32 bits of the fractional parts of the square roots of the first 8 primes.
+</p>
+<br>
+
+<p class="has-text-justified">
+    If $p_n$ denotes the $n^\text{th}$ prime number, then the hash values can be computed by taking the fractional part of
+    $\sqrt{p_n}$, multiplying it by $2^{32}$ and converting the result to an integer. They are usually written out in
+    hexadecimal.
+</p>
+<br>
+
+<article class="message">
+    <div class="message-header">
+        <p>Initial SHA-256 hash values</p>
+    </div>
+    <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;">h = [0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a,
+     0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19]</div>
+</article>
+
+<p class="has-text-justified">
+    SHA-256 also has 64 <i>round constants</i> that are used by the algorithm during each round of the compression
+    function. Their values are given by the first 32 bits of the fractional parts of the cube roots of the first 64
+    primes. They are computed similarly to the initial hash values.
+</p>
+<br>
+
+<article class="message">
+    <div class="message-header">
+        <p>SHA-256 round constants</p>
+    </div>
+    <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;">k = [0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5,
+     0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5,
+     0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3,
+     0x72be5d74, 0x80deb1fe, 0x9bdc06a7, 0xc19bf174,
+     0xe49b69c1, 0xefbe4786, 0x0fc19dc6, 0x240ca1cc,
+     0x2de92c6f, 0x4a7484aa, 0x5cb0a9dc, 0x76f988da,
+     0x983e5152, 0xa831c66d, 0xb00327c8, 0xbf597fc7,
+     0xc6e00bf3, 0xd5a79147, 0x06ca6351, 0x14292967,
+     0x27b70a85, 0x2e1b2138, 0x4d2c6dfc, 0x53380d13,
+     0x650a7354, 0x766a0abb, 0x81c2c92e, 0x92722c85,
+     0xa2bfe8a1, 0xa81a664b, 0xc24b8b70, 0xc76c51a3,
+     0xd192e819, 0xd6990624, 0xf40e3585, 0x106aa070,
+     0x19a4c116, 0x1e376c08, 0x2748774c, 0x34b0bcb5,
+     0x391c0cb3, 0x4ed8aa4a, 0x5b9cca4f, 0x682e6ff3,
+     0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208,
+     0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2]</div>
+</article>
+
+<h2 class="subtitle is-4">Message pre-processing</h2>
+<p class="has-text-justified">
+    SHA-256 processes the message in 512-bit blocks so the message length must be a multiple of 512 bits. If its length is
+    not a multiple of 512, it needs to be padded. If the message is $L$ bits long, you append a single <texttt>1</texttt>
+    bit, followed by $K$ <texttt>0</texttt> bits where $K$ is the minimum number such that $L + 1 + K + 64$ is a multiple of
+    512. Then append $L$ as a 64-bit big-endian integer, making the total post-processed length a multiple of 512 bits.
+</p>
+<br>
+
+<figure style="text-align: center;">
+  <img src="{% static 'img/sha-2-schematic.png' %}">
+  <figcaption class="help">
+    SHA-2 schematic
+  </figcaption>
+</figure>
+<br>
+{% endblock %}
+
+{% block input_description %}
+  A string.
+{% endblock %}
+
+{% block output_description %}
+  The SHA-256 hash of the input string as a hexadecimal string.
+{% endblock %}
+
+{% block examples %}
+  <article class="message">
+    <div class="message-header">
+      <p>Example</p>
+    </div>
+    <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input temperatures</b>: [4.4, 4.2, 7.0, 12.9, 18.5, 23.5, 26.4, 26.3, 22.5, 16.6, 11.2, 7.3]
+<b>Output mean</b>: 15.067
+<b>Output standard deviation</b>: 8.021</div>
+  </article>
+{% endblock %}
+
+{% block function_signature %}
+sha256(s)
+{% endblock %}
+
+{% block notes_and_references %}
+<div class="content">
+  <h3>Notes</h3>
+  <ul>
+    <li>
+      We focused on average monthly temperatures but the difference between the warmest temperature in the middle of
+      the day and the coolest temperature in the middle of the night results in a
+      <a href="https://en.wikipedia.org/wiki/Diurnal_temperature_variation">diurnal temperature variation</a>
+      that's also pretty important.
+    </li>
+    <li>
+      You probably noticed a seasonal lag between the time of year with the most sunlight, the summer solstice around
+      June 21, and the warmest months which are usually 1-2 months afterwards in July and August. This is because it
+      takes time to warm things up, especially water with it's huge heat capacity. Because of this, cities near lots of
+      water have longer <a href="https://en.wikipedia.org/wiki/Seasonal_lag">seasonal lags</a>.
+    </li>
+    <li>
+      A similar lag happens every day where the warmest part of the day is usually around 3-5pm instead of at solar noon
+      when the sun reaches its highest point. As a result, the warmest part of the day is when the sun is setting and
+      is low enough that the surface has started cooling.
+    </li>
+    <li>
+      Wikipedia has a pretty cool <a href="https://en.wikipedia.org/wiki/List_of_cities_by_average_temperature">
+      list of cities by average temperature</a>.
+    </a>
+    </li>
+  </ul>
+</div>
+{% endblock %}
+
+{% block python_code_stub %}
+def temperature_statistics(T):
+    mean = 0
+    std  = 0
+    # Your code goes here!
+    return mean, std
+{% endblock %}
+
+{% block javascript_code_stub %}
+function temperature_statistics(T) {
+    var mean = 0
+    var std = 0
+    // Your code goes here!
+    return [mean, std]
+}
+{% endblock %}
+
+{% block julia_code_stub %}
+function temperature_statistics(T)
+    mean = 0
+    std  = 0
+    # Your code goes here!
+    return mean, std
+end
+{% endblock %}
+
+{% block c_code_stub %}
+#include <math.h>
+
+void temperature_statistics(double* T, int N, double* mean, double* std) {
+
+    // Your code goes here!
+
+}
+{% endblock %}
+
+{% block discourse_topic_id %}263{% endblock %}
+
