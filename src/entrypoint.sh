@@ -17,6 +17,9 @@ echo "Migrating Django changes..."
 python manage.py migrate --no-input
 
 echo "Populating Django database..."
-python manage.py loaddata lovelace_website.json
+python manage.py loaddata lovelace_django_dumpdata.json
+
+echo "Collecting static files..."
+python manage.py collectstatic
 
 exec "$@"
