@@ -10,7 +10,8 @@
 <p class="has-text-justified">
   Bergmann's rule says that animals living in colder climates tend to be larger in size. Swedish scientists measured
   the body mass of different moose populations in Sweden and found that the further north you go, the bigger the moose
-  get! Taking their data we can fit a line through it to predict the body mass of a moose at some latitude
+  get! Taking their data we can fit a line through it to predict the body mass of a moose at some latitude using the
+  equation
 
   $$ \text{mass} = a \times \text{latitude} + b $$
 
@@ -25,7 +26,7 @@
 
 <p class="has-text-justified">
   Submit some code with a function <tt>moose_body_mass(latitude)</tt> that returns the expected body mass of a moose
-  living at the input latitude using the linear line of best fit from above.
+  living at the input latitude using the equation from above.
 </p>
 {% endblock %}
 
@@ -71,16 +72,16 @@ moose_body_mass(latitude)
   <h3>References</h3>
   <dl>
     <dt>
-      Håkan Sand, Göran Cederlund &amp; Kjell Danell, <a href="https://doi.org/10.1007/BF00341355">
+      Sand, Cederlund &amp; Danell (1995), <a href="https://doi.org/10.1007/BF00341355">
       Geographical and latitudinal variation in growth patterns and adult body size of Swedish moose (Alces alces)</a>,
-      Oecologia <b>102</b>, 433–442 (1995).
+      Oecologia <b>102</b>, 433–442.
     </dt>
     <dd>This is where we got the data from.</dd>
     <br>
 
     <dt>
-      Carl Bergmann, <a href="https://books.google.com/books?id=EHo-AAAAcAAJ&amp;pg=PA3">
-      Über die Verhältnisse der Wärmeökonomie der Thiere zu ihrer Grösse</a>, Göttinger Studien <b>3</b>(1), 595–708 (1847).
+      Bergmann (1847), <a href="https://books.google.com/books?id=EHo-AAAAcAAJ&amp;pg=PA3">
+      Über die Verhältnisse der Wärmeökonomie der Thiere zu ihrer Grösse</a>, Göttinger Studien <b>3</b>(1), 595–708.
     </dt>
     <dd>
       This is the original article by Bergmann in German at over a 100 pages long! Google translates the title to English
@@ -89,14 +90,14 @@ moose_body_mass(latitude)
     <br>
 
     <dt>
-      Meiri and Dayan, <a href="https://doi.org/10.1046/j.1365-2699.2003.00837.x">On the validity of Bergmann's rule</a>,
-      Journal of Biogeography <b>30</b>, 331-351 (2003).
+      Meiri and Dayan (2003), <a href="https://doi.org/10.1046/j.1365-2699.2003.00837.x">On the validity of Bergmann's rule</a>,
+      Journal of Biogeography <b>30</b>, 331-351.
     </dt>
     <br>
 
     <dt>
-      Kyle G. Ashton, Mark C. Tracy, &amp; Alan de Queiroz, <a href="https://doi.org/10.1086/303400 ">
-      Is Bergmann’s Rule Valid for Mammals?</a>, The American Naturalist <b>156</b>(4), 390-415 (2000).
+      Ashton, Tracy, &amp; de Queiroz (2000), <a href="https://doi.org/10.1086/303400 ">
+      Is Bergmann’s Rule Valid for Mammals?</a>, The American Naturalist <b>156</b>(4), 390-415.
   </dl>
   <br>
 </div>
