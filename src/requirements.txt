@@ -12,4 +12,4 @@ psycopg2==2.8.6
 pytz==2020.4
 requests==2.25.1
 sqlparse==0.4.1
-urllib3==1.26.2
+urllib3==1.26.3
