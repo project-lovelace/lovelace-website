@@ -505,9 +505,13 @@
 </script>
 
 <script type="text/javascript">
+  // Embedding Discourse threads
+  // See: https://meta.discourse.org/t/embedding-discourse-comments-via-javascript/31963
+
   DiscourseEmbed = {
     discourseUrl: 'https://discourse.projectlovelace.net/',
-    topicId: {% block discourse_topic_id %}{% endblock %}
+    topicId: {% block discourse_topic_id %}{% endblock %},
+    discourseReferrerPolicy: 'strict-origin-when-cross-origin'
   };
 
   (function() {

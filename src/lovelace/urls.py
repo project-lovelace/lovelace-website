@@ -10,7 +10,6 @@ from django.conf.urls import handler404, handler500
 
 from . import views, forms
 from users.views import EditUserProfileView
-from discourse import views as discourse_views
 
 urlpatterns = [
     # Administration
