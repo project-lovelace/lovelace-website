@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block you_will_learn %}
-  cold moose are plump.
+  the most powerful force in the world according to Einstein. <sup>[<a href="https://quoteinvestigator.com/2019/09/09/interest/">citation needed</a>]</sup>
 {% endblock %}
 
 {% block problem_body %}
@@ -15,11 +15,13 @@
 <br>
 <p class="has-text-justified">
   If you start with an amount of money $m$ and the compound interest is calculated once a year with interest rate $r$
-  (as a fraction) then after $n$ years you end up with new amount $M$ given by
+  (as a fraction between 0 and 1) then after $n$ years you end up with a new amount $M$ given by
 
   $$ M = m (1 + r)^n $$
 </p>
 <br>
+
+This plot shows the growth of $m = 1,000$ dollars compounded every year at 10% ($r = 0.1$) for $n = 25$ years.
 
 <figure style="text-align: center;">
   <div id="compound-interest-figure"></id>
@@ -27,16 +29,17 @@
 <br>
 
 <p class="has-text-justified">
-  Submit some code with a function <tt>compound_interest(m, r, n)</tt> that computes $M$ given $m$, $r$, and $n$.
+  Submit some code with a function <tt>compound_interest(m, r, n)</tt> that computes the final amount $M$ after
+  starting with an amount $m$ compounded yearly at a rate $r$ for $n$ years.
 </p>
 {% endblock %}
 
 {% block input_description %}
-m, r, n
+Starting amount $m$, rate $r$, and number of years $n$.
 {% endblock %}
 
 {% block output_description %}
-M
+Final amount $M$.
 {% endblock %}
 
 {% block examples %}
@@ -45,8 +48,8 @@ M
     <p>Example</p>
   </div>
   <div class="message-body"
-       style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input</b>: $1,000, 0.07, 25
-<b>Output</b>: $5,427.43</div>
+       style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input</b>: 1000, 0.07, 25
+<b>Output</b>: 5427.43</div>
 </article>
 {% endblock %}
 
@@ -59,11 +62,14 @@ compound_interest(m, r, n)
   <h3>Notes</h3>
   <ul>
     <li>
-      Compound interest was and is considered a kind of usury by many religions and even by Roman law.
+      Charging compound interest on loans was and is still considered a kind of <a href="https://en.wikipedia.org/wiki/Usury">usury</a>
+      by many religions and societies. The Romans and the Christian Bible condemn charging interest on loans to poor people as
+      it is seen as a form of exploitation. On the extreme end, Islam forbids the charging of any kind of interest as it sees borrowing
+      and lending as social transactions aimed at benefiting others and thus should not be profitable.
     </li>
     <li>
-      The number e was actually discovered by Jacob Bernoulli in 1683 when investigating compound interest.
-      Now of course called Euler's number because of Stigler's law.
+      The number $e$ was actually discovered by Jacob Bernoulli in 1683 when investigating compound interest.
+      Now of course called Euler's number because of <a href="https://en.wikipedia.org/wiki/Stigler%27s_law_of_eponymy">Stigler's law</a>.
     </li>
     <li>
       The <a href="https://en.wikipedia.org/wiki/Rule_of_72">Rule of 72</a> is a quick rule/approximation for figuring

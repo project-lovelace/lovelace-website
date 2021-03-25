@@ -1,3 +1,13 @@
+function visualize_test_case(input, output, expected, n) {
+    document.getElementById(`input${n}`).innerHTML =
+        `<b>Input</b>: m = ${input[0]}, r = ${input[1]}, n = ${input[2]} <br>`
+
+    document.getElementById(`output${n}`).innerHTML =
+        `<b>Output</b>: ${output[0]} (expected ${expected[0]}) <br>`
+
+    return
+}
+
 function compound_interest(amount, rate, years) {
     return amount * (1 + rate) ** years
 }
@@ -8,7 +18,7 @@ function make_compound_interest_figure() {
     var years = 25
 
     var year = new Array(years)
-    for (n = 1; n <= years; n++) {
+    for (n = 0; n <= years; n++) {
         year[n] = n
     }
 
