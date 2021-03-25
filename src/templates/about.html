@@ -5,69 +5,78 @@
 About | Project Lovelace
 {% endblock %}
 
+{% block preload_javascript %}
+<!-- MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+{% endblock %}
+
 {% block body %}
 <section classs="section">
   <div class="container">
     <br>
     <h1 class="title is-spaced is-size-1-desktop is-size-2-tablet is-size-3-mobile">About Project Lovelace</h1>
 
-    <p class="is-spaced">
+    <p>
       <strong>What exactly is Project Lovelace?</strong><br>
       Project Lovelace is an open online platform for learning about science and developing computational thinking through programming and problem solving. It is a collection of computational science problems and tutorials taken from all branches of the natural, social, and mathematical sciences. Each problem teaches a scientific application (e.g. locating earthquakes, DNA splicing) and requires the use of scientific insight and some programming skills to solve. Tutorials teach computational methods that students and researchers may find useful (e.g. solving differential equations, Bayesian inference) and may be required knowledge for some problems. Project Lovelace draws inspiration from similar projects such as <a href="https://projecteuler.net/" target="_blank">Project Euler</a> and <a href="http://rosalind.info/" target="_blank">Rosalind</a>.
     </p>
     <br>
+
     <p>
       <strong>Who was Ada Lovelace?</strong><br>
       Ada Lovelace (1815-1852) was an English mathematician who was the first person to realize that computers could be much more than big calculators and published the first complex computer algorithm in 1843. She did this long before any computer existed to execute her algorithm as it was devised for the <a href="https://en.wikipedia.org/wiki/Analytical_Engine">Analytical Engine</a> which never got built. The algorithm described how the Analytical Engine could calculate the Bernoulli numbers using a recursive algorithm, which you can reproduce in <a href="{% url 'problems:detail' 'ada-lovelaces-note-g' %}">Ada Lovelace's Note G</a>. If you're interested in learning more about her the BBC made a documentary, <a href="https://www.youtube.com/watch?v=QgUVrzkQgds">Calculating Ada - The Countess of Computing</a>, where Hannah Fry (of Numberphile fame) tells the story of her life.
     </p>
     <br>
+
     <p>
-      <strong>Do I need to know a lot of science and math?</strong><br>
-      Depends on the problem. We try to introduce all the science you need to know to solve the problem, and you'll learn more by working through them. We also try to include useful notes and links to videos that might introduce the concepts in a better way. Some problems don't include much math, and we'll try to include many of these especially the ones that have cool visualizations. Scientific computing involves lots of math, especially in the form of solving differential equations, so math is impossible to avoid. If you feel a problem is unclear or could be improved, let us know on <a href="https://discourse.projectlovelace.net/">Discourse</a>!
+      <strong>Do I need to know a lot of science and math to solve problems?</strong><br>
+      Depends on the problem. A higher difficulty rating means more math and science involved. We try to introduce all the science you need to know to solve the problem, and you'll learn more by working through them. We also try to include useful notes and links to videos that might introduce the concepts in a better way. Some problems don't include much math, and we'll try to include many of these especially the ones that have cool visualizations. Scientific computing involves lots of math, especially in the form of solving differential equations, so math is impossible to avoid. If you feel a problem is unclear or could be improved, please let us know!
     </p>
     <br>
+
     <p>
-      <strong>What programming languages can I use?</strong><br>
-      Right now you can only submit solutions in Python, Javascript, and Julia. We are planning to support other languages in the near future based on user demand. Let us know on <a href="https://discourse.projectlovelace.net/">Discourse</a> if you have a favorite language you want to see supported.
+      <strong>I have a suggestion or idea for a new problem, or something is broken.</strong><br>
+      Please let us know on Discourse, Discord, or GitHub! We'll do our best to fix things and add in new features.
     </p>
     <br>
+
     <p>
-      <strong>I don't like something, or have a suggestion or idea for a new problem, or something is broken.</strong><br>
-      Please let us know on <a href="https://discourse.projectlovelace.net/">Discourse</a>! We'll do our best to fix things and add in new features.
+      <strong>Can I post my solutions online?</strong><br>
+      Sure, we can't stop you! But if you do post your solutions online then try to post good code: well-documented and quality code that others can learn from by reading. A lot of our problems are well-known and not neccessarily original so there are probably already many solutions posted online for those.
     </p>
     <br>
-    <!--
-     <p>
-      <strong>What is the logo supposed to be?</strong><br>
-      Short answer: An artistic rendering of one of the hydrogen atom's atomic orbitals inside curly braces (science + programming!).
-      Longer answer: ...
-    </p>
-    <br>
-    -->
+
     <p>
       <strong>Why make another programming website when there are so many others?</strong><br>
-      Seeing as science has seen a proliferation of computer modeling and simulation for a long time we wanted to get into computational science but could not find any good resources for starting off besides long, dry textbooks.  We really liked Project Euler as a way of learning math and improving our programming skills but not being number theory experts we found it hard to solve the problems past the first page or two as we had no idea where to start. Their problems are very well thought out and you can learn a lot, but somewhat contrived in our opinion. Other websites like Leetcode (and many others) just teach super boring and generic algorithms (in our opinion) that may be useful for passing technical interviews but not so much in the real world. Since there are so many interesting real-world and applied problems in all branches of science we think this is a really good opportunity to learn both science and programming at the same time, so we put up a website to do just that.
+      We didn't find any good resources for learning about computational science so we thought we'd make one. We liked Project Euler as a way of learning math and improving our programming skills but not being number theory experts we found it hard to solve the problems past the first page or two as we had no idea where to start. Their problems are very well thought out and you can learn a lot, but pretty contrived in our opinion. Other websites like Leetcode (and many others) just teach super boring and generic algorithms (in our opinion) that may be useful for passing technical interviews but maybe not so much in the real world. Since there are so many interesting real-world and applied problems in all branches of science we think this is a good opportunity to learn both science and programming at the same time.
     </p>
     <br>
+
     <p>
       <strong>Why call it Project Lovelace?</strong><br>
       We wanted to follow in the footsteps of Project Euler and Rosalind and found it difficult to decide on a founding figure for computational science mostly because it's hard to pinpoint the first time a computer was used to solve a scientific problem.
       <br><br>
       Analog computers were around long before electronic computers, so you could argue that the ancient Greek <a href="https://en.wikipedia.org/wiki/Antikythera_mechanism">Antikythera mechanism</a>, which was used to predict the location of the planets in the sky and the timing of lunar eclipses, was the first automated calculation of scientific interest. Many other examples can be found including the <a href="https://en.wikipedia.org/wiki/Torquetum">torquetum</a>, an astronomical instrument probably from the medieval Arab world that could measure and convert between different spherical coordinate systems, <a href="https://en.wikipedia.org/wiki/Tide-predicting_machine">tide-predicting machines</a> which were first built in the 1870's, and the <a href="https://en.wikipedia.org/wiki/Differential_analyser">differential analyser</a> which was first built in the early 1930's and used to calculate firing tables.
       <br><br>
-      It's not too hard to argue that the modern computer came out of World War II. Electro-mechanical <a href="https://en.wikipedia.org/wiki/Bombe">Bombe</a> computers were famously used by the Allies to break the Enigma machine cipher used by the German army. The first programmable, electronic, digital computer, the <a href="https://en.wikipedia.org/wiki/Colossus_computer">Colossus</a>, was built in 1943 and is best known for its use in breaking the Lorenz cipher used to encrypt high-level messages by the German army. The ENIAC, another early general-purpose electronic computer, was initially designed to calculate firing tables but ended up running hydrogen bomb simulations for the Manhattan Project.
+      It's not too hard to argue that the modern computer came out of World War II. Electro-mechanical <a href="https://en.wikipedia.org/wiki/Bombe">Bombe</a> computers were famously used by the Allies to break the Enigma machine cipher used by the German army. The first programmable, electronic, digital computer, the <a href="https://en.wikipedia.org/wiki/Colossus_computer">Colossus</a>, was built in 1943 and is best known for its use in breaking the Lorenz cipher used to encrypt high-level messages by the German army. The <a href="https://en.wikipedia.org/wiki/ENIAC">ENIAC</a>, another early general-purpose electronic computer, was initially designed to calculate firing tables but ended up running atomic bomb simulations for the Manhattan Project.
       <br><br>
-      We're getting a little sidetracked here but essentially since we wanted to cover a wide range of topics from computational physics and biology to cryptography and statistics, and no one can agree on what the first computer was, let alone the first computational scientific calculation, so it made sense to just name it after the first programmer.
+      We're getting a little sidetracked here but essentially since we wanted to cover a wide range of topics, and no one can agree on what the first computer was, let alone the first computational scientific calculation, so it made sense to just name it after the first programmer.
     </p>
     <br>
+
     <p>
-      <strong>Can I post my solutions online?</strong><br>
-      We think the most enjoyable part of solving the problems is that moment when you figure out how to finally solve it. Spending the time and effort on problem solving is what makes you a better scientist and programmer. So in an ideal world everyone would figure out each problem themselves, maximizing their learning. But people will always post their solutions online no matter what we say, and some people can learn from solutions especially after being stuck for a while, so all we ask is that if you do post your solution online that you post quality work: well-documented and quality code that others can learn from by following your code. A lot of our problems are well-known and not neccessarily original so there are probably already many solutions posted online for those.
+      <strong>What is the logo supposed to be?</strong><br>
+      Short answer: It's one of the hydrogen atom's <a href="https://en.wikipedia.org/wiki/Atomic_orbital">atomic orbitals</a> inside curly braces (science + programming!).
+      <br><br>
+      Longer answer: The red and blue thing is an artistic rendering of the hydrogen atom's 3d<sub><i>z<sup>2</sup></i></sub> atomic orbital. The red and blue regions show where an electron in this atomic orbital can be found with 90% probability. The red region is where the orbital's quantum wavefunction is positive, and the blue region is where it's negative.
+      <br><br>
+      The logo corresponds to the orbital with principal quantum number $n = 3$, azimuthal quantum number $\ell = 2$, and magnetic quantum number $m_\ell = 0$. Wikipedia has a table showing the <a href="https://en.wikipedia.org/wiki/Atomic_orbital#Orbitals_table">shapes of these atomic orbitals</a>. It also looks like the <a href="https://en.wikipedia.org/wiki/Spherical_harmonics">spherical harmonic</a> with $\ell = 2$ and $m = 0$ since the hydrogen atom's atomic orbitals can be expressed mathematically using spherical harmonics.
     </p>
-    <p>
     <br>
-    <strong>How does the submission engine (code checker) and website work?</strong><br>
-    The code for the Lovelace engine is hosted online in a GitHub repository at <a href="https://github.com/project-lovelace/lovelace-engine">project-lovelace/lovelace-engine</a> and the code for the website is at <a href="https://github.com/project-lovelace/lovelace-website">project-lovelace/lovelace-website</a>.
+
   </div>
 </section>
 {% endblock %}
