@@ -1,0 +1,106 @@
+{% extends "problems/problem.html" %}
+
+{% load static %}
+
+{% block you_will_learn %}
+  cold moose have more fat
+{% endblock %}
+
+{% block problem_body %}
+<p class="has-text-justified">
+  Bergmann's rule says that animals living in colder climates tend to be larger in size. Swedish scientists measured
+  the body mass of different moose populations in Sweden and found that the further north you go, the bigger the moose
+  get! Taking their data we can fit a line through it to predict the body mass of a moose at some latitude using the
+  equation
+
+  $$ \text{mass} = a \times \text{latitude} + b $$
+
+  where $a = 2.757$ and $b = 16.793$.
+</p>
+<br>
+
+<figure style="text-align: center;">
+  <div id="moose-mass-figure"></id>
+</figure>
+<br>
+
+<p class="has-text-justified">
+  Submit some code with a function <tt>moose_body_mass(latitude)</tt> that returns the expected body mass of a moose
+  living at the input latitude using the equation from above.
+</p>
+{% endblock %}
+
+{% block input_description %}
+Latitude
+{% endblock %}
+
+{% block output_description %}
+The expected body mass of a moose living at the input latitude.
+{% endblock %}
+
+{% block examples %}
+<article class="message">
+  <div class="message-header">
+    <p>Example</p>
+  </div>
+  <div class="message-body"
+       style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input latitude</b>: 60.5
+<b>Output body mass</b>: 183.5915</div>
+</article>
+{% endblock %}
+
+{% block function_signature %}
+moose_body_mass(latitude)
+{% endblock %}
+
+{% block notes_and_references %}
+<div class="content">
+  <h3>Notes</h3>
+  <ul>
+    <li>
+      Bergmann's rule is a generalization and so it doesn't apply to every species. In fact many counter-examples to
+      Bergmann's rule exist but it seems to hold true in many cases (Meiri and Dayan, 2003).
+    </li>
+    <li>
+      The original explanation given by Bergmann (1847) for why animals are larger in colder climates is due to the need to
+      conserve heat. Since larger animals have a lower surface area to volume ratio, they lose less body heat per
+      unit mass helping to keep them warmer when it's cold. More recent studies don't support this hypothesis though
+      (Ashton et al., 2000).
+    </li>
+  </ul>
+
+  <h3>References</h3>
+  <dl>
+    <dt>
+      Sand, Cederlund &amp; Danell (1995), <a href="https://doi.org/10.1007/BF00341355">
+      Geographical and latitudinal variation in growth patterns and adult body size of Swedish moose (Alces alces)</a>,
+      Oecologia <b>102</b>, 433–442.
+    </dt>
+    <dd>This is where we got the data from.</dd>
+    <br>
+
+    <dt>
+      Bergmann (1847), <a href="https://books.google.com/books?id=EHo-AAAAcAAJ&amp;pg=PA3">
+      Über die Verhältnisse der Wärmeökonomie der Thiere zu ihrer Grösse</a>, Göttinger Studien <b>3</b>(1), 595–708.
+    </dt>
+    <dd>
+      This is the original article by Bergmann in German at over a 100 pages long! Google translates the title to English
+      as "About the relation of the heat economy of animals to their size".
+    </dd>
+    <br>
+
+    <dt>
+      Meiri and Dayan (2003), <a href="https://doi.org/10.1046/j.1365-2699.2003.00837.x">On the validity of Bergmann's rule</a>,
+      Journal of Biogeography <b>30</b>, 331-351.
+    </dt>
+    <br>
+
+    <dt>
+      Ashton, Tracy, &amp; de Queiroz (2000), <a href="https://doi.org/10.1086/303400 ">
+      Is Bergmann’s Rule Valid for Mammals?</a>, The American Naturalist <b>156</b>(4), 390-415.
+  </dl>
+  <br>
+</div>
+{% endblock %}
+
+{% block discourse_topic_id %}x{% endblock %}

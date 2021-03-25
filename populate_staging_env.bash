@@ -12,7 +12,7 @@ echo "Migrating Django changes..."
 docker-compose -f docker-compose.staging.yml exec django python manage.py migrate --no-input
 
 echo "Populating Django database..."
-docker-compose -f docker-compose.staging.yml exec django python manage.py loaddata lovelace_website.json
+docker-compose -f docker-compose.staging.yml exec django python manage.py loaddata lovelace_django_dumpdata.json
 
 echo "Collecting static files..."
 docker-compose -f docker-compose.staging.yml exec django python manage.py collectstatic
