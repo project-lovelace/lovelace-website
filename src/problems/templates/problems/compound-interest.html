@@ -2,6 +2,11 @@
 
 {% load static %}
 
+{% block problem_javascript %}
+<!-- Only load Plotly for problems that use it since it's a big dependency. -->
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+{% endblock %}
+
 {% block you_will_learn %}
   the most powerful force in the world according to Einstein. <sup>[<a href="https://quoteinvestigator.com/2019/09/09/interest/">citation needed</a>]</sup>
 {% endblock %}
