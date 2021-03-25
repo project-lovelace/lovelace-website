@@ -10,7 +10,6 @@ from django.conf.urls import handler404, handler500
 
 from . import views, forms
 from users.views import EditUserProfileView
-from discourse import views as discourse_views
 
 urlpatterns = [
     # Administration
@@ -34,11 +33,7 @@ urlpatterns = [
 
     # Favicon. See: http://staticfiles.productiondjango.com/blog/failproof-favicons/
     re_path(r'^favicon.ico$', RedirectView.as_view(url='/static/img/favicon.ico', permanent=False), name='favicon'),
-
-    # Discourse SSO login
-    path('discourse/sso/', discourse_views.sso),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
 
 handler404 = views.error_404
 handler500 = views.error_500

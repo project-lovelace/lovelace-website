@@ -153,11 +153,6 @@ MAILGUN_API_KEY = os.environ.get("MAILGUN_API_KEY")
 # django-registration settings
 ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window
 
-# Discourse settings.
-# See: https://meta.discourse.org/t/sso-example-for-django/14258
-DISCOURSE_BASE_URL = 'http://discourse.projectlovelace.net'
-DISCOURSE_SSO_SECRET = 'discourse-sso-secret'
-
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
