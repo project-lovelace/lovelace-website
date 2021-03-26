@@ -108,3 +108,6 @@ mybulma/node_modules
 # Production secrets
 .env.prod*
 .env.staging*
+
+# Django dumpdata
+lovelace_django_data.json
