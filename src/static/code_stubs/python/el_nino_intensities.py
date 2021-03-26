@@ -6,11 +6,10 @@ with open('mei.ext_index.txt') as csvfile:
     # Your code goes here!
 
 
-def enso_classification(two_year_period):
+def enso_classification(year):
     classification = ''
     intensity = ''
-    mei = 0.0
 
     # Your code goes here!
 
-    return classification, intensity, mei
+    return classification, intensity

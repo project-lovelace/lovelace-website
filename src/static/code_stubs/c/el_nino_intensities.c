@@ -1,2 +1,2 @@
-void enso_classification(char* two_year_period, char* classification, char* intensity, double* mei) {
+void enso_classification(int year, char* classification, char* intensity) {
 }

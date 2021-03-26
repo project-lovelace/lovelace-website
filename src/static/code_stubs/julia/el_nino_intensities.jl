@@ -1,2 +1,2 @@
-function enso_classification(two_year_period)
+function enso_classification(year)
 end

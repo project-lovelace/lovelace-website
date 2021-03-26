@@ -3,22 +3,26 @@
 {% load static %}
 
 {% block you_will_learn %}
-  ENSO, 2D arrays, and reading files.
+  El Niño&ndash;Southern Oscillation, 2D arrays, and reading files.
 {% endblock %}
 
 {% block problem_body %}
 <p class="has-text-justified">
   El Niño is a naturally occurring climate oscillation event in the equatorial Pacific which returns every 2&ndash;7
   years. Originally, El Niño was the name used for warmer than average sea surface temperatures in the Pacific Ocean off
-  the coast of South America but we now know that it's responsible for a whole complex of Pacific Ocean sea-surface
-  temperature changes and global weather events. The ocean warming and associated wet climate off South America, which
-  brings disastrous flood and reduces fishing stocks, is just one of these events.
+  the coast of South America but we now know that it's responsible for sea-surface temperature changes in the Pacific
+  Ocean and global weather events. The ocean warming and associated wet climate off the coast of South America, which
+  brings disastrous floods and reduces fishing stocks, is one of these events.
 </p>
 <br>
 <figure style="text-align: center;">
   <img src="{% static 'img/nino_region.jpg' %}">
   <figcaption class="help">
-    NINO regions.
+    El Niño is associated with warm sea surface temperatures (SSTs) in the Equatorial Pacific. Scientists look at these SST
+    anomalies in specific regions to determine whether El Niño is in effect. This map shows 4 regions. Scientists most often
+    use SST anomalies in the Niño 3.4 region to compute the Oceanic Niño Index (ONI) which tells you how strong El Niño is
+    when it is positive, and how strong La Niña is when it is negative. The ONI is computed using a 3-month running mean of
+    SST anomalies in the Niño 3.4 region (5°N-5°S, 120°-170°W).
   </figcaption>
 </figure>
 <br>
@@ -37,36 +41,49 @@
 <br>
 <p class="has-text-justified">
   The Multivariate ENSO Index (MEI) is a method used to characterize the intensity of an ENSO event using a single
-  number. It accounts for sea level pressure, zonal and meridional components of the surface wind, sea surface
-  temperature, surface air temperature and cloudiness. The MEI is calculated for each &ldquo;sliding bi-monthly season&rdquo;,
-  which are January-February, February-March, and so on for a total of 12 times per year. A warm El Niño event occurs
-  when the MEI is at or above +0.5 for five consecutive bi-monthly periods, and a cold La Niña event occurs when the MEI
-  is at or below -0.5 for five consecutive bi-monthly periods. The threshold is further broken down into weak (with a
-  0.5 to 1.0 anomaly), moderate (1.0 to 1.5), strong (1.5 to 2.0) and very strong (≥ 2.0) events.
+  number. It is more comprehensive than the Oceanic Niño Index (ONI) described above. The MEI accounts for sea level pressure,
+  zonal and meridional components of the surface wind, sea surface temperature, surface air temperature and cloudiness.
+</p>
+<br>
+<p class="has-text-justified">
+  The MEI is calculated for each &ldquo;sliding bi-monthly period&rdquo; (December-January, January-February, February-March, etc.)
+  for a total of 12 per year. A warm El Niño event occurs when the MEI is at or above +0.5, and a cold La Niña event occurs when
+  the MEI is at or below -0.5. The threshold is further broken down into weak (with a 0.5 to 1.0 anomaly), moderate (1.0 to 1.5),
+  strong (1.5 to 2.0) and very strong (≥ 2.0) events.
 </p>
 <br>
 <figure style="text-align: center;">
   <img src="{% static 'img/mei_time_series.png' %}">
   <figcaption class="help">
-    Multivariate ENSO Index (MEI) time series.
+    Multivariate ENSO Index (MEI) time series since 1950. Positive MEI is in red and corresponds to El Niño events while negative MEI
+    is in blue and corresponds to La Niña events.
   </figcaption>
 </figure>
 <br>
 <p>
-  A text file (<a href="{% static 'resources/mei.ext_index.txt' %}"><tt>mei_index.txt</tt></a>) containing the MEI index
-  values for each two-month period from 1950 to 2017. See https://www.esrl.noaa.gov/psd/enso/mei/table.html for more
-  details.
+  Write a function that reads in this text file (<a href="{% static 'resources/mei.ext_index.txt' %}"><tt>mei_index.txt</tt></a>)
+  containing the MEI index values from 1871 to 2016 and determines whether a specific year experienced an El Niño event or a
+  La Niña event (and the strength of the event). The file is provided by NOAA (<a href="https://psl.noaa.gov/enso/mei/">source</a>).
+</p>
+<br>
+<p>
+  To determine whether a particular year experienced an El Niño or a La Niña event, use the maximum absolute MEI value in that year. So
+  if one year saw a maximum MEI value of +1.8 and a minimum MEI value of -1.2, then it would be a strong El Niño event.
 </p>
 {% endblock %}
 
 {% block input_description %}
-A two-year range corresponding to a specific winter season (in the Northern Hemisphere).
+Year as an integer.
 {% endblock %}
 
 {% block output_description %}
-Two strings: 1. "El Nino", "La Nina", or "neither" depending whether the season had an El Niño or La Niña event
-(or neither), and if there was an event, and 2. "weak", "moderate", "strong, or "very strong" depending on the event's
-intensity. If there was no event, return "none" for the intensity.
+<p>
+Two strings:
+<ol>
+  <li>"El Nino", "La Nina", or "Neither" depending whether the year had an El Niño or La Niña event (or neither).</li>
+  <li>"weak", "moderate", "strong, or "very strong" depending on the event's intensity. If there was no event, return "none" for the intensity.</li>
+</ol>
+</p>
 {% endblock %}
 
 {% block examples %}
@@ -74,8 +91,8 @@ intensity. If there was no event, return "none" for the intensity.
   <div class="message-header">
     <p>Example 1</p>
   </div>
-  <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input two-year range</b>: "1997-98"
-<b>Output ENSO classification</b>: "el nino"
+  <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input year</b>: 2016
+<b>Output ENSO classification</b>: "El Nino"
 <b>Output ENSO strength</b>:       "very strong"</div>
 </article>
 
@@ -83,22 +100,27 @@ intensity. If there was no event, return "none" for the intensity.
   <div class="message-header">
     <p>Example 2</p>
   </div>
-  <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input two-year range</b>: "1964-54"
-<b>Output ENSO classification</b>: "la nina"
-<b>Output ENSO strength</b>:       "weak"</div>
+  <div class="message-body" style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input two-year range</b>: 1996
+<b>Output ENSO classification</b>: "Neither"
+<b>Output ENSO strength</b>:       "none"</div>
 </article>
 {% endblock %}
 
 {% block function_signature %}
-enso_classification(two_year_period)
+enso_classification(year)
 {% endblock %}
 
 {% block notes_and_references %}
-  <div class="content">
-    <ul>
-      <li>Should be tons of really good videos on this!</li>
-    </ul>
-  </div>
+<div class="content">
+  <h3>References</h3>
+  <dl>
+    <dt>
+      Wolter &amp; Timlin (2011), <a href="https://doi.org/10.1002/joc.2336">El Niño/Southern Oscillation behaviour since
+      1871 as diagnosed in an extended multivariate ENSO index (MEI.ext)</a>, International Journal of Climatology <b>31</b>, 1074-1087.
+    </dt>
+  </dl>
+  <br>
+</div>
 {% endblock %}
 
 {% block discourse_topic_id %}21{% endblock %}

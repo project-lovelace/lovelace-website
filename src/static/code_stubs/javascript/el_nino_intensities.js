@@ -1,10 +1,9 @@
-function enso_classification(two_year_period) {
+function enso_classification(year) {
     classification = "";
     intensity = "";
-    mei = 0.0;
 
     // Your code goes here!
     // You can also add more code / functions above this function.
 
-    return [classification, intensity, mei];
+    return [classification, intensity];
 }
