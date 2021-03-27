@@ -52,4 +52,4 @@ jobs:
         run: "[[ $(docker ps | tail -n +2 | wc -l) == 4 ]]"
 
       - name: Test Django custom commands
-        run: docker-compose exec -T django python manage.py send_mass_email
+        run: docker-compose exec -T django python manage.py send_mass_email --help
