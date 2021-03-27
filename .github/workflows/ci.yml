@@ -50,3 +50,6 @@ jobs:
 
       - name: Test that 4 containers are up
         run: "[[ $(docker ps | tail -n +2 | wc -l) == 4 ]]"
+
+      - name: Test Django custom commands
+        run: docker-compose exec django python manage.py send_mass_email
