@@ -92,4 +92,24 @@
     {% else %}
       <p>No questions are available.</p>
     {% endif %}
+
+<script>
+// Sortable tables
+// Source: https://stackoverflow.com/a/49041392 and https://stackoverflow.com/a/53880407
+// Might need this fix in the future: https://stackoverflow.com/questions/14267781/sorting-html-table-with-javascript#comment87524833_49041392
+
+const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent || tr.children[idx].querySelector('progress').value;
+
+const comparer = (idx, asc) => (a, b) => ((v1, v2) =>
+    v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v1 - v2 : v1.toString().localeCompare(v2)
+    )(getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
+
+document.querySelectorAll('th').forEach(th => th.addEventListener('click', (() => {
+  const table = th.closest('table');
+  const tbody = table.querySelector('tbody');
+  Array.from(tbody.querySelectorAll('tr'))
+    .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
+    .forEach(tr => tbody.appendChild(tr) );
+})));
+</script>
 {% endblock %}
