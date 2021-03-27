@@ -1,4 +1,5 @@
 asgiref==3.3.1
+beautifulsoup4==4.9.3
 certifi==2020.12.5
 chardet==4.0.0
 confusable-homoglyphs==3.2.0
@@ -8,8 +9,9 @@ django-registration==3.1.1
 django-widget-tweaks==1.4.8
 gunicorn==20.0.4
 idna==2.10
-psycopg2==2.8.6
+psycopg2-binary==2.8.6
 pytz==2020.4
 requests==2.25.1
+soupsieve==2.2.1
 sqlparse==0.4.1
 urllib3==1.26.3
