@@ -20,6 +20,6 @@ echo "Populating Django database..."
 python manage.py loaddata lovelace_django_dumpdata.json
 
 echo "Collecting static files..."
-python manage.py collectstatic
+python manage.py collectstatic --no-input
 
 exec "$@"
