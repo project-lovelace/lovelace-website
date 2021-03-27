@@ -21,8 +21,6 @@ ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 
 # Application definition
 INSTALLED_APPS = [
-    'problems.apps.ProblemsConfig',
-    'users.apps.UsersConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -32,6 +30,9 @@ INSTALLED_APPS = [
     'django.contrib.postgres',
     'django_countries',
     'widget_tweaks',
+    "lovelace",
+    "problems",
+    "users"
 ]
 
 MIDDLEWARE = [
