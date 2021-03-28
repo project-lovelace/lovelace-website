@@ -7,16 +7,9 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 
 from django_registration.backends.activation.views import RegistrationView
-# from django_registration.views import RegistrationView
 
 from .forms import CustomRegistrationForm
 from users.models import UserProfile
-
-# from django.contrib.auth import login
-# from django.core.exceptions import ValidationError
-# from django.shortcuts import render, redirect
-# from django.contrib.auth import login, authenticate
-
 
 logger = logging.getLogger('django.' + __name__)
 
