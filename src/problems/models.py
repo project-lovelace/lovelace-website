@@ -1,3 +1,6 @@
+import os
+import datetime
+
 from datetime import date
 
 from django.db import models
@@ -58,6 +61,19 @@ class Problem(models.Model):
 
     visible = models.BooleanField(default=False)
 
+# This is used to determine media filepaths for code files submitted via the "submit file" button.
+def user_timestamped_filepath(instance, filename):
+    datetime_now = datetime.datetime.now()
+    year = datetime_now.strftime("%Y")
+    month = datetime_now.strftime("%m")
+    day = datetime_now.strftime("%d")
+
+    base_filename, extension = os.path.splitext(filename)
+    username = instance.user.user.username
+    timestamp = datetime_now.strftime("%Y%m%d%H%M%S")
+    user_timestamped_filename = f"{base_filename}_{username}_{timestamp}{extension}"
+
+    return f"uploads/{year}/{month}/{day}/{user_timestamped_filename}"
 
 class Submission(models.Model):
     id = models.AutoField(primary_key=True)
@@ -68,7 +84,7 @@ class Submission(models.Model):
     passed = models.BooleanField()
     date = models.DateTimeField(auto_now_add=True, verbose_name='submission date')
     language = models.CharField(max_length=256, verbose_name='programming language')
-    file = models.FileField(upload_to='uploads/%Y/%m/%d', verbose_name='source code file')
+    file = models.FileField(upload_to=user_timestamped_filepath, verbose_name='source code file')
     runtime_sum = models.FloatField(default=0.0)
     max_mem_usage = models.FloatField(default=0.0)
 
