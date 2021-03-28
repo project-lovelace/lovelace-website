@@ -146,7 +146,7 @@ class DetailView(View):
         logger.info("Submission from user_profile: {}".format(user_profile))
 
         language = request.POST['language']
-        extension = {'python': 'py', 'javascript': 'js', 'julia': 'jl'}.get(language)
+        extension = {'python': 'py', 'javascript': 'js', 'julia': 'jl', 'c': 'c'}.get(language)
         logger.info("Language selected: {:s}".format(language))
 
         if button_clicked == 'submit-code-button':
