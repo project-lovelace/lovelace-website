@@ -44,6 +44,10 @@
         inlineMath: [['$', '$'], ['\\(', '\\)']]
       }
     };
+
+    // Needed so Plotly.js can be loaded with MathJax3.
+    // See: https://github.com/plotly/plotly.js/issues/4563#issuecomment-647047186
+    window.PlotlyConfig = {MathJaxConfig: 'local'}
   </script>
 
   <!-- Google Analytics -->
