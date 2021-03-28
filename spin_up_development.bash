@@ -2,4 +2,4 @@
 
 cd src/
 docker-compose build
-docker-compose up --detach
+docker-compose up
