@@ -6,15 +6,10 @@
 
 {% block preload_javascript %}
 
+<link rel="stylesheet" href="{% static 'css/problem.css' %}">
+
 {% block problem_javascript %}{% endblock %}
 
-<!-- MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
-</script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
-
-<link rel="stylesheet" href="{% static 'css/problem.css' %}">
 {% endblock %}
 
 {% block page_title %}
