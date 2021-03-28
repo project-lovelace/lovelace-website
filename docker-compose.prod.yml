@@ -1,4 +1,4 @@
-version: '3.7'
+version: '3.8'
 
 services:
   nginx-proxy-letsencrypt:
@@ -10,6 +10,7 @@ services:
       - certs:/etc/nginx/certs
       - html:/usr/share/nginx/html
       - vhost:/etc/nginx/vhost.d
+      - acme:/etc/acme.sh
     depends_on:
       - nginx-proxy
 
@@ -68,3 +69,4 @@ volumes:
   certs:
   html:
   vhost:
+  acme:
