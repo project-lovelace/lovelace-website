@@ -155,21 +155,35 @@ class DetailView(View):
             logger.info("User code:\n{:}".format(editor_code))
             raw_code = str(base64.b64encode(bytes(editor_code, 'utf-8')), 'utf-8')
 
-            t = datetime.datetime.now()
-            user_code_filename = "{:}_{:}_{:}.{}".format(problem_name, username, t.strftime("%Y%m%d%H%M%S"), extension)
-            user_code_filepath = os.path.join(settings.MEDIA_ROOT, "uploads_YO", str(t.year), str(t.month), str(t.day), user_code_filename)
+            datetime_now = datetime.datetime.now()
+            year = datetime_now.strftime("%Y")
+            month = datetime_now.strftime("%m")
+            day = datetime_now.strftime("%d")
+            timestamp = datetime_now.strftime("%Y%m%d%H%M%S")
+
+            user_code_filename = f"{problem_name}_{username}_{timestamp}.{extension}"
+            user_code_filepath = os.path.join(settings.MEDIA_ROOT, "uploads", year, month, day, user_code_filename)
 
             user_code_dir = os.path.dirname(user_code_filepath)
             if not os.path.exists(user_code_dir):
-                logger.info("Creating directory: {:}".format(user_code_dir))
+                logger.info(f"Creating directory: {user_code_dir}")
                 os.makedirs(user_code_dir)
 
-            logger.info("Writing user code to file: {:s}".format(user_code_filepath))
-            pfile = open(user_code_filepath, 'w+')  # Python file
-            file = File(pfile)  # Creating Django file from Python file
-            file.name = os.path.join("uploads", str(t.year), str(t.month), str(t.day), user_code_filename)
+            logger.info(f"Writing user code to file: {user_code_filepath}")
+
+            # Not sure if there's a simpler way to do this but we first create a Python File
+            # and write the code into it. We then create a Django File from the Python File
+            # so we can pass it to Django when creating the `Submission` below.
+            # We then delete the Python File at the end lol.
+
+            pfile = open(user_code_filepath, 'w+')  # Python File
             pfile.write(editor_code)
-            # We close pfile at the end, after the submission has been saved.
+
+            file = File(pfile)  # Creating Django File from Python file
+
+            # Apparently this will use the user_timestamped_filepath function to determine the filepath
+            # so we give it a generic filename like "chaos.py" and Django figures out the rest.
+            file.name = problem_name + "." + extension
 
             logger.debug("user_code_filepath = {}".format(user_code_filepath))
             logger.debug("user_code_filename = {}".format(user_code_filename))
@@ -245,6 +259,10 @@ class DetailView(View):
         )
         submission.save()
 
+        if button_clicked == "submit-code-button":
+            pfile.close()
+            os.remove(pfile.name)
+
         # Increment user's submission count by 1.
         UserProfile.objects.filter(user=user).update(submissions_made=F('submissions_made') + 1)  # this can be simplified
 
@@ -256,8 +274,5 @@ class DetailView(View):
                 logger.info("User {:} successfully solved {:}. Incrementing problem's solved_by 1.".format(user_profile, problem_name))
                 Problem.objects.filter(name=problem_name).update(solved_by=F('solved_by') + 1)
                 UserProfile.objects.filter(user=user).update(problems_solved=F('problems_solved') + 1)  # this can be simplified
-
-        if button_clicked == "submit-code-button":
-            pfile.close()
 
         return JsonResponse({'results': results})
