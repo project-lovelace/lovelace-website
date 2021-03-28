@@ -1,5 +1,27 @@
 # Changelog
 
+## [Unreleased](https://github.com/project-lovelace/lovelace-website/tree/HEAD)
+
+[Full Changelog](https://github.com/project-lovelace/lovelace-website/compare/v3.0.0...HEAD)
+
+**Closed issues:**
+
+- Add a "Back to problems" button if all tests pass [\#90](https://github.com/project-lovelace/lovelace-website/issues/90)
+- Upgrade to latest bulma [\#83](https://github.com/project-lovelace/lovelace-website/issues/83)
+- Submitting code via upload button doesn't work [\#57](https://github.com/project-lovelace/lovelace-website/issues/57)
+- Add instructions for changing the bulma CSS. [\#23](https://github.com/project-lovelace/lovelace-website/issues/23)
+
+**Merged pull requests:**
+
+- Update to MathJax3 rolling release [\#95](https://github.com/project-lovelace/lovelace-website/pull/95) ([ali-ramadhan](https://github.com/ali-ramadhan))
+- Upgrade to Bulma v0.9.2 [\#94](https://github.com/project-lovelace/lovelace-website/pull/94) ([ali-ramadhan](https://github.com/ali-ramadhan))
+- Run CI tests with Python 3.9 [\#93](https://github.com/project-lovelace/lovelace-website/pull/93) ([ali-ramadhan](https://github.com/ali-ramadhan))
+- Sortable columns for table of problems [\#92](https://github.com/project-lovelace/lovelace-website/pull/92) ([ali-ramadhan](https://github.com/ali-ramadhan))
+- Update requirements and test custom Django commands [\#91](https://github.com/project-lovelace/lovelace-website/pull/91) ([ali-ramadhan](https://github.com/ali-ramadhan))
+- Revise El Niño intensities problem [\#89](https://github.com/project-lovelace/lovelace-website/pull/89) ([ali-ramadhan](https://github.com/ali-ramadhan))
+- Only load Plotly for problems that use it: [\#88](https://github.com/project-lovelace/lovelace-website/pull/88) ([ali-ramadhan](https://github.com/ali-ramadhan))
+- Update about page [\#87](https://github.com/project-lovelace/lovelace-website/pull/87) ([ali-ramadhan](https://github.com/ali-ramadhan))
+
 ## [v3.0.0](https://github.com/project-lovelace/lovelace-website/tree/v3.0.0) (2021-03-25)
 
 [Full Changelog](https://github.com/project-lovelace/lovelace-website/compare/v2.0...v3.0.0)
