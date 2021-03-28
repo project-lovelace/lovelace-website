@@ -145,18 +145,19 @@ class DetailView(View):
         logger.info("Submission from user: {}".format(user))
         logger.info("Submission from user_profile: {}".format(user_profile))
 
-        language = request.POST['language']
-        extension = {'python': 'py', 'javascript': 'js', 'julia': 'jl', 'c': 'c'}.get(language)
-        logger.info("Language selected: {:s}".format(language))
-
         if button_clicked == 'submit-code-button':
+            language = request.POST['language']
+            logger.info("Language selected: {:s}".format(language))
+
+            extension = {'python': 'py', 'javascript': 'js', 'julia': 'jl', 'c': 'c'}.get(language)
+
             editor_code = request.POST['raw-code']
             logger.info("User code:\n{:}".format(editor_code))
             raw_code = str(base64.b64encode(bytes(editor_code, 'utf-8')), 'utf-8')
 
             t = datetime.datetime.now()
             user_code_filename = "{:}_{:}_{:}.{}".format(problem_name, username, t.strftime("%Y%m%d%H%M%S"), extension)
-            user_code_filepath = os.path.join(settings.MEDIA_ROOT, "uploads", str(t.year), str(t.month), str(t.day), user_code_filename)
+            user_code_filepath = os.path.join(settings.MEDIA_ROOT, "uploads_YO", str(t.year), str(t.month), str(t.day), user_code_filename)
 
             user_code_dir = os.path.dirname(user_code_filepath)
             if not os.path.exists(user_code_dir):
@@ -179,10 +180,18 @@ class DetailView(View):
             try:
                 file = form.files['file']
             except KeyError:
-                return JsonResponse({'error': 'Please attach your file before submitting.'})
+                return JsonResponse({'error': 'Please choose and attach your file before submitting.'})
 
             if file.size > MAX_FILE_SIZE_BYTES:
-                return JsonResponse({'error': 'File must be smaller than {} bytes.'.format(MAX_FILE_SIZE_BYTES)})
+                return JsonResponse({'error': f'File must be smaller than {MAX_FILE_SIZE_BYTES} bytes.'})
+
+            base_filename, extension = os.path.splitext(file.name)
+            ext2language = {'.py': 'python', '.js': 'javascript', '.jl': 'julia', '.c': 'c'}
+            language = ext2language.get(extension)
+
+            if language is None:
+                supported_extensions = "".join([lang + " -> " + ext + "\n" for ext, lang in ext2language.items()])
+                return JsonResponse({'error': f'Invalid file extension: {extension}. Supported languages and extensions are\n' + supported_extensions})
 
             raw_code = str(base64.b64encode(file.read()), 'utf-8')
 
@@ -237,14 +246,14 @@ class DetailView(View):
         submission.save()
 
         # Increment user's submission count by 1.
-        # user_profile.update(submissions_made=F('submissions_made') + 1)
         UserProfile.objects.filter(user=user).update(submissions_made=F('submissions_made') + 1)  # this can be simplified
-        # If successful and is user's first successful submission, increment problem's solved_by and user's problems_solved.
+
+        # If successful and is user's first successful submission, increment problem's solved_by by 1 and user's problems_solved by 1.
         if results['success']:
             num_previous_successful_submissions = Submission.objects.filter(user=user_profile, passed=True, problem__name=problem_name).count()
             logger.info("# previous successful submissions: {:}".format(num_previous_successful_submissions))
             if num_previous_successful_submissions == 1:
-                logger.info("User {:} successfully solved {:}. Incrementing problem's solved_by 1 to TODO.".format(user_profile, problem_name))
+                logger.info("User {:} successfully solved {:}. Incrementing problem's solved_by 1.".format(user_profile, problem_name))
                 Problem.objects.filter(name=problem_name).update(solved_by=F('solved_by') + 1)
                 UserProfile.objects.filter(user=user).update(problems_solved=F('problems_solved') + 1)  # this can be simplified
 
