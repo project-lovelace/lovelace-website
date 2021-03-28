@@ -9,7 +9,7 @@ from django_registration.forms import RegistrationForm
 
 class CustomRegistrationForm(RegistrationForm):
     """
-    Subclass of ``RegistrationForm`` that enforces case-insensitive unique usernames
+    Subclass of `RegistrationForm` that enforces case-insensitive unique usernames
     and unique email addresses.
     """
     def __init__(self, *args, **kwargs):

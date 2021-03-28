@@ -10,16 +10,4 @@ then
     echo "PostgreSQL started"
 fi
 
-echo "Flushing Django database..."
-python manage.py flush --no-input
-
-echo "Migrating Django changes..."
-python manage.py migrate --no-input
-
-echo "Populating Django database..."
-python manage.py loaddata lovelace_django_dumpdata.json
-
-echo "Collecting static files..."
-python manage.py collectstatic --no-input
-
 exec "$@"

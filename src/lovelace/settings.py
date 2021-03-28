@@ -146,7 +146,7 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 # EMAIL_USE_SSL = True
 
-# These are used by send_mass_email.py
+# These are used by the send_mass_email.py custom command
 LOVELACE_FROM_EMAIL = os.environ.get("LOVELACE_FROM_EMAIL")
 MAILGUN_API_URL = os.environ.get("MAILGUN_API_URL")
 MAILGUN_API_KEY = os.environ.get("MAILGUN_API_KEY")
