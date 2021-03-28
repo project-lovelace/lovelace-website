@@ -31,7 +31,7 @@ RUN pip install --upgrade pip &&\
     pip install -r requirements.txt
 
 # copy entrypoint-prod.sh
-COPY ./entrypoint.prod.sh $APP_HOME
+COPY ./entrypoint.sh $APP_HOME
 
 # copy project
 COPY . $APP_HOME
@@ -42,5 +42,5 @@ RUN chown -R app:app $APP_HOME
 # change to the app user
 USER app
 
-# run entrypoint.prod.sh
-ENTRYPOINT ["/home/app/django/entrypoint.prod.sh"]
+# run entrypoint.sh
+ENTRYPOINT ["/home/app/django/entrypoint.sh"]

@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# This might be dangerous... I once accidently flushed production lol.
 # echo "Flushing Django database..."
 # docker-compose exec django python manage.py flush --no-input
 
@@ -10,4 +11,4 @@ echo "Populating Django database..."
 docker-compose exec django python manage.py loaddata lovelace_django_dumpdata.json
 
 echo "Collecting static files..."
-python manage.py collectstatic --no-input
+docker-compose exec django python manage.py collectstatic --no-input
