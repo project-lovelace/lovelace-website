@@ -476,6 +476,16 @@
       visualize_test_case(input, output, expected, i)
     }
 
+    if (passes == nTestCases) {
+      var resultsModalCard = document.getElementById('results-modal-card');
+
+      resultsModalCard.insertAdjacentHTML('beforeend',
+          `<footer class="modal-card-foot">`
+        + `<a class="button is-success" href="{% url 'problems:index' %}">Back to problems</a>`
+        + `</footer>`
+      )
+    }
+
     document.getElementById('submit-file-button').classList.remove('is-loading');
     document.getElementById('submit-code-button').classList.remove('is-loading');
     document.getElementById('results-modal').classList.add('is-active');
