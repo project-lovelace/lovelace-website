@@ -1,8 +1,24 @@
 # Changelog
 
-## [Unreleased](https://github.com/project-lovelace/lovelace-website/tree/HEAD)
+## [v3.2.0](https://github.com/project-lovelace/lovelace-website/tree/v3.2.0) (2021-03-28)
 
-[Full Changelog](https://github.com/project-lovelace/lovelace-website/compare/v3.0.0...HEAD)
+[Full Changelog](https://github.com/project-lovelace/lovelace-website/compare/v3.1.0...v3.2.0)
+
+**Closed issues:**
+
+- Multiple media directories for uploads [\#104](https://github.com/project-lovelace/lovelace-website/issues/104)
+- Persist certificates between container restarts [\#103](https://github.com/project-lovelace/lovelace-website/issues/103)
+
+**Merged pull requests:**
+
+- Bunch of fixes for code submission backend [\#108](https://github.com/project-lovelace/lovelace-website/pull/108) ([ali-ramadhan](https://github.com/ali-ramadhan))
+- Add ACME volume for `nginx-proxy-letsencrypt` container [\#106](https://github.com/project-lovelace/lovelace-website/pull/106) ([ali-ramadhan](https://github.com/ali-ramadhan))
+- Some Django cleanup [\#97](https://github.com/project-lovelace/lovelace-website/pull/97) ([ali-ramadhan](https://github.com/ali-ramadhan))
+- Plotly.js + MathJax3 hotfix [\#96](https://github.com/project-lovelace/lovelace-website/pull/96) ([ali-ramadhan](https://github.com/ali-ramadhan))
+
+## [v3.1.0](https://github.com/project-lovelace/lovelace-website/tree/v3.1.0) (2021-03-28)
+
+[Full Changelog](https://github.com/project-lovelace/lovelace-website/compare/v3.0.0...v3.1.0)
 
 **Closed issues:**
 
