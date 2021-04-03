@@ -17,218 +17,213 @@
 {% endblock %}
 
 {% block body %}
-<meta name="problem_name" content="problem.name">
-<section class="section">
-  <br>
-  <p class="title is-2 has-text-centered">{{ problem.title }}</p>
-  <p class="subtitle is-5 has-text-centered is-italic"><strong>You will learn about</strong>: {% block you_will_learn %}{% endblock %}</p>
+<meta name="problem_name" content="{{ problem.name }}">
+<h1 class="title is-2 has-text-centered">{{ problem.title }}</h1>
+<h2 class="subtitle is-5 has-text-centered is-italic"><strong>You will learn about</strong>: {% block you_will_learn %}{% endblock %}</h2>
+<div id="tabs" class="tabs is-centered is-boxed">
+  <ul>
+    <li data-tab="1" class="is-active">
+      <a>
+        <span class="icon is-small"><i class="fas fa-align-justify" aria-hidden="true"></i></span>
+        <span>Description</span>
+      </a>
+    </li>
+    <li data-tab="2">
+      <a>
+        <span class="icon is-small"><i class="fas fa-history" aria-hidden="true"></i></span>
+        <span>Submissions</span>
+      </a>
+    </li>
+    <li data-tab="3">
+      <a>
+        <span class="icon is-small"><i class="fas fa-book" aria-hidden="true"></i></span>
+        <span>Notes and references</span>
+      </a>
+    </li>
+    <li data-tab="4">
+      <a>
+        <span class="icon is-small"><i class="fab fa-discourse" aria-hidden="true"></i></span>
+        <span>Discourse</span>
+      </a>
+    </li>
+  </ul>
+</div>
 
-  <div id="tabs" class="tabs is-centered is-boxed">
-    <ul>
-      <li data-tab="1" class="is-active">
-        <a>
-          <span class="icon is-small"><i class="fas fa-align-justify" aria-hidden="true"></i></span>
-          <span>Description</span>
-        </a>
-      </li>
-      <li data-tab="2">
-        <a>
-          <span class="icon is-small"><i class="fas fa-history" aria-hidden="true"></i></span>
-          <span>Submissions</span>
-        </a>
-      </li>
-      <li data-tab="3">
-        <a>
-          <span class="icon is-small"><i class="fas fa-book" aria-hidden="true"></i></span>
-          <span>Notes and references</span>
-        </a>
-      </li>
-      <li data-tab="4">
-        <a>
-          <span class="icon is-small"><i class="fab fa-discourse" aria-hidden="true"></i></span>
-          <span>Discourse</span>
-        </a>
-      </li>
-    </ul>
-  </div>
+<div class="container" id="tab-content">
+  <!-- Description tab -->
+  <section data-content="1" class="is-active">
+    <div class="columns is-centered">
+      <div class="column is-half">
+        {% block problem_body %}{% endblock %}
+        <br>
+        <p><strong>Input</strong>: {% block input_description %}{% endblock %}</p>
+        <p><strong>Output</strong>: {% block output_description %}{% endblock %}</p>
+        <br>
+        {% block examples %}{% endblock %}
+      </div>
 
-  <div class="container" id="tab-content">
-    <!-- Description tab -->
-    <section data-content="1" class="is-active">
-      <div class="columns is-centered">
-        <div class="column is-half">
-          {% block problem_body %}{% endblock %}
-          <br>
-          <p><strong>Input</strong>: {% block input_description %}{% endblock %}</p>
-          <p><strong>Output</strong>: {% block output_description %}{% endblock %}</p>
-          <br>
-          {% block examples %}{% endblock %}
-        </div>
+      <div class="is-divider-vertical"></div>
 
-        <div class="is-divider-vertical"></div>
+      <!-- Sticky second column. See: https://github.com/jgthms/bulma/issues/1351 -->
+      <div class="column is-half" style="height:90vh; position: sticky; top: 3.2rem;">
+        <table class="table is-striped is-fullwidth" style="table-layout: fixed;">
+          <tbody>
+            <tr>
+              <th><i class="fas fa-brain fa-fw"></i>&nbsp;<abbr title="Higher = more math and scientific knowledge required">Difficulty</abbr></th>
 
-        <!-- Sticky second column. See: https://github.com/jgthms/bulma/issues/1351 -->
-        <div class="column is-half" style="height:90vh; position: sticky; top: 3.2rem;">
-          <table class="table is-striped is-fullwidth" style="table-layout: fixed;">
-            <tbody>
-              <tr>
-                <th><i class="fas fa-brain fa-fw"></i>&nbsp;<abbr title="Higher = more math and scientific knowledge required">Difficulty</abbr></th>
+              {% if problem.difficulty <= 5 %}
+                <td style=""><progress class="progress is-success" value="{{ problem.difficulty }}" max="15"></progress></td>
+              {% elif problem.difficulty > 5 and problem.difficulty <= 10 %}
+                <td style=""><progress class="progress is-warning" value="{{ problem.difficulty }}" max="15"></progress></td>
+              {% else %}
+                <td style=""><progress class="progress is-danger" value="{{ problem.difficulty }}" max="15"></progress></td>
+              {% endif %}
 
-                {% if problem.difficulty <= 5 %}
-                  <td style=""><progress class="progress is-success" value="{{ problem.difficulty }}" max="15"></progress></td>
-                {% elif problem.difficulty > 5 and problem.difficulty <= 10 %}
-                  <td style=""><progress class="progress is-warning" value="{{ problem.difficulty }}" max="15"></progress></td>
-                {% else %}
-                  <td style=""><progress class="progress is-danger" value="{{ problem.difficulty }}" max="15"></progress></td>
-                {% endif %}
+              <th><i class="fas fa-hourglass-half fa-fw"></i>&nbsp;<abbr title="Higher = more time needed to code up a solution">Timesink</abbr></th>
 
-                <th><i class="fas fa-hourglass-half fa-fw"></i>&nbsp;<abbr title="Higher = more time needed to code up a solution">Timesink</abbr></th>
+              {% if problem.timesink <= 5 %}
+                <td style=""><progress class="progress is-success" value="{{ problem.timesink }}" max="15"></progress></td>
+              {% elif problem.timesink > 5 and problem.timesink <= 10 %}
+                <td style=""><progress class="progress is-warning" value="{{ problem.timesink }}" max="15"></progress></td>
+              {% else %}
+                <td style=""><progress class="progress is-danger" value="{{ problem.timesink }}" max="15"></progress></td>
+              {% endif %}
+            </tr>
+            <tr>
+              <th><i class="far fa-clock fa-fw"></i>&nbsp;Max runtime</th>
+              <td>60 s</td>
 
-                {% if problem.timesink <= 5 %}
-                  <td style=""><progress class="progress is-success" value="{{ problem.timesink }}" max="15"></progress></td>
-                {% elif problem.timesink > 5 and problem.timesink <= 10 %}
-                  <td style=""><progress class="progress is-warning" value="{{ problem.timesink }}" max="15"></progress></td>
-                {% else %}
-                  <td style=""><progress class="progress is-danger" value="{{ problem.timesink }}" max="15"></progress></td>
-                {% endif %}
-              </tr>
-              <tr>
-                <th><i class="far fa-clock fa-fw"></i>&nbsp;Max runtime</th>
-                <td>60 s</td>
-
-                <th><i class="fas fa-memory fa-fw"></i>&nbsp;Max memory</th>
-                <td>250 MiB</td>
-              </tr>
-              <tr>
-                <th><i class="fas fa-file-code fa-fw"></i>&nbsp;Function</th>
-                <td colspan="3"><span style="font-family: monospace;">{% block function_signature %}{% endblock %}</span></td>
-              </tr>
-            </tbody>
-          </table>
-          <form method="post" id="submit-code-or-file-form" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="container">
-              <div class="file has-name is-full-width">
-                <label class="file-label">
-                  {% render_field form.file class+="file-input" %}
-                  <span class="file-cta">
-                    <span class="file-icon">
-                      <i class="fas fa-upload"></i>
-                    </span>
-                    <span class="file-label">Choose file...</span>
+              <th><i class="fas fa-memory fa-fw"></i>&nbsp;Max memory</th>
+              <td>250 MiB</td>
+            </tr>
+            <tr>
+              <th><i class="fas fa-file-code fa-fw"></i>&nbsp;Function</th>
+              <td colspan="3"><span style="font-family: monospace;">{% block function_signature %}{% endblock %}</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <form method="post" id="submit-code-or-file-form" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="container">
+            <div class="file has-name is-full-width">
+              <label class="file-label">
+                {% render_field form.file class+="file-input" %}
+                <span class="file-cta">
+                  <span class="file-icon">
+                    <i class="fas fa-upload"></i>
                   </span>
-                  <span class="file-name" id="file-name-span"></span>
-                </label>
-                <button class="button is-primary" type="submit" id="submit-file-button" onclick="this.form.button_clicked=this.id" style="margin-left: 20px;">Submit file</button>
-              </div>
+                  <span class="file-label">Choose file...</span>
+                </span>
+                <span class="file-name" id="file-name-span"></span>
+              </label>
+              <button class="button is-primary" type="submit" id="submit-file-button" onclick="this.form.button_clicked=this.id" style="margin-left: 20px;">Submit file</button>
             </div>
-            <div class="is-divider" data-content="OR"></div>
-            <div class="field">
-              <div class="control has-icons-left">
-                <div class="select">
-                  <select id="language-select">
-                    <option value="python" selected>Python (3.7.3)</option>
-                    <option value="javascript">Javascript (Node.js 10.15.2)</option>
-                    <option value="julia">Julia (1.5.3)</option>
-                    <option value="c">C (gcc 8.3.0)</option>
-                  </select>
-                </div>
-                <div class="icon is-small is-left">
-                  <i class="fas fa-code"></i>
-                </div>
-              </div>
-            </div>
-            {% render_field form.code id="editor-textarea" %}
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <!-- Submissions tab -->
-    <section data-content="2">
-      {% if user.is_authenticated %}
-        {% if previous_submissions %}
-          <div class="columns is-centered">
-            <table class="table is-hoverable">
-              <thead>
-                <tr>
-                  <th><abbr title="Submission ID">#</abbr></th>
-                  <th>Date</th>
-                  <th>File</th>
-                  <th title="Sum of runtimes of all test cases">Runtime</th>
-                  <th title="Maximum memory usage among all test cases">Memory</th>
-                  <th>Language</th>
-                  <th>Passed</th>
-                </tr>
-              </thead>
-              {% for sub in previous_submissions %}
-                <tbody>
-                  <tr>
-                    <td>{{ sub.id }}</td>
-                    <td>{{ sub.date }}</td>
-                    <td><a href="{{ sub.file.url }}">{{ sub.filename }}</a> ({{ sub.file.size }} bytes)</td>
-                    <td>{{ sub.runtime_sum }}</td>
-                    <td>{{ sub.max_mem_usage }}</td>
-                    <td>{{ sub.language }}</td>
-                    {% if sub.test_cases_passed == 0 %}
-                      <td class="has-text-danger">{{ sub.test_cases_passed }}/{{ sub.test_cases_total }}</td>
-                    {% elif sub.test_cases_passed == sub.test_cases_total %}
-                      <td class="has-text-success">{{ sub.test_cases_passed }}/{{ sub.test_cases_total }}</td>
-                    {% else %}
-                      <td class="has-text-warning">{{ sub.test_cases_passed }}/{{ sub.test_cases_total }}</td>
-                    {% endif %}
-                  </tr>
-                </tbody>
-              {% endfor %}
-            </table>
           </div>
-        {% else %}
-          <p class="has-text-centered">You have no previous submissions.</p>
-        {% endif %}
-      {% else %}
-        <p class="has-text-centered">You must be logged in to view your submissions.</p>
-      {% endif %}
-    </section>
-
-    <!-- Notes and references tab -->
-    <section data-content="3">
-      <div class="columns is-centered">
-        <div class="column is-three-fifths">
-          {% block notes_and_references %}{% endblock %}
-        </div>
+          <div class="is-divider" data-content="OR"></div>
+          <div class="field">
+            <div class="control has-icons-left">
+              <div class="select">
+                <select id="language-select">
+                  <option value="python" selected>Python (3.7.3)</option>
+                  <option value="javascript">Javascript (Node.js 10.15.2)</option>
+                  <option value="julia">Julia (1.5.3)</option>
+                  <option value="c">C (gcc 8.3.0)</option>
+                </select>
+              </div>
+              <div class="icon is-small is-left">
+                <i class="fas fa-code"></i>
+              </div>
+            </div>
+          </div>
+          {% render_field form.code id="editor-textarea" %}
+        </form>
       </div>
-    </section>
-
-    <!-- Discourse tab -->
-    <section data-content="4">
-      <div class="columns is-centered">
-        <div class="column is-three-fifths">
-          <p class="has-text-centered">
-            Let us know what you think about this problem! Was it too hard? Difficult to understand? Also feel free to
-            discuss the problem, ask questions, and post cool stuff on Discourse. You should be able see a discussion
-            thread below. Would be nice if you don't post solutions in there but if you do then  please organize and
-            document your code well so others can learn from it.</p>
-          <br>
-          <div id='discourse-comments' style="height: 100vh;"></div>
-        </div>
-      </div>
-    </section>
-
-  </div>
-
-  <!-- Modal for showing test case results -->
-  <div class="modal" id="results-modal">
-    <div class="modal-background"></div>
-    <div class="modal-card" id="results-modal-card" style="width: 70%;">
-      <header class="modal-card-head">
-        <p class="modal-card-title" id="results-modal-title"></p>
-        <button class="delete" aria-label="close" id="modal-close"></button>
-      </header>
-      <section class="modal-card-body" id="results-modal-body"></section>
     </div>
-  </div>
+  </section>
 
-</section>
+  <!-- Submissions tab -->
+  <section data-content="2">
+    {% if user.is_authenticated %}
+      {% if previous_submissions %}
+        <div class="columns is-centered">
+          <table class="table is-hoverable">
+            <thead>
+              <tr>
+                <th><abbr title="Submission ID">#</abbr></th>
+                <th>Date</th>
+                <th>File</th>
+                <th title="Sum of runtimes of all test cases">Runtime</th>
+                <th title="Maximum memory usage among all test cases">Memory</th>
+                <th>Language</th>
+                <th>Passed</th>
+              </tr>
+            </thead>
+            {% for sub in previous_submissions %}
+              <tbody>
+                <tr>
+                  <td>{{ sub.id }}</td>
+                  <td>{{ sub.date }}</td>
+                  <td><a href="{{ sub.file.url }}">{{ sub.filename }}</a> ({{ sub.file.size }} bytes)</td>
+                  <td>{{ sub.runtime_sum }}</td>
+                  <td>{{ sub.max_mem_usage }}</td>
+                  <td>{{ sub.language }}</td>
+                  {% if sub.test_cases_passed == 0 %}
+                    <td class="has-text-danger">{{ sub.test_cases_passed }}/{{ sub.test_cases_total }}</td>
+                  {% elif sub.test_cases_passed == sub.test_cases_total %}
+                    <td class="has-text-success">{{ sub.test_cases_passed }}/{{ sub.test_cases_total }}</td>
+                  {% else %}
+                    <td class="has-text-warning">{{ sub.test_cases_passed }}/{{ sub.test_cases_total }}</td>
+                  {% endif %}
+                </tr>
+              </tbody>
+            {% endfor %}
+          </table>
+        </div>
+      {% else %}
+        <p class="has-text-centered">You have no previous submissions.</p>
+      {% endif %}
+    {% else %}
+      <p class="has-text-centered">You must be logged in to view your submissions.</p>
+    {% endif %}
+  </section>
+
+  <!-- Notes and references tab -->
+  <section data-content="3">
+    <div class="columns is-centered">
+      <div class="column is-three-fifths">
+        {% block notes_and_references %}{% endblock %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Discourse tab -->
+  <section data-content="4">
+    <div class="columns is-centered">
+      <div class="column is-three-fifths">
+        <p class="has-text-centered">
+          Let us know what you think about this problem! Was it too hard? Difficult to understand? Also feel free to
+          discuss the problem, ask questions, and post cool stuff on Discourse. You should be able see a discussion
+          thread below. Would be nice if you don't post solutions in there but if you do then  please organize and
+          document your code well so others can learn from it.</p>
+        <br>
+        <div id='discourse-comments' style="height: 100vh;"></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- Modal for showing test case results -->
+<div class="modal" id="results-modal">
+  <div class="modal-background"></div>
+  <div class="modal-card" id="results-modal-card" style="width: 70%;">
+    <header class="modal-card-head">
+      <p class="modal-card-title" id="results-modal-title"></p>
+      <button class="delete" aria-label="close" id="modal-close"></button>
+    </header>
+    <section class="modal-card-body" id="results-modal-body"></section>
+  </div>
+</div>
 {% endblock %}
 
 {% block postload_javascript %}
