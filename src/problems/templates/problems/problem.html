@@ -69,7 +69,7 @@
 
         <!-- Sticky second column. See: https://github.com/jgthms/bulma/issues/1351 -->
         <div class="column is-half" style="height:90vh; position: sticky; top: 3.2rem;">
-          <table class="table is-striped is-fullwidth">
+          <table class="table is-striped is-fullwidth" style="table-layout: fixed;">
             <tbody>
               <tr>
                 <th><i class="fas fa-brain fa-fw"></i>&nbsp;<abbr title="Higher = more math and scientific knowledge required">Difficulty</abbr></th>
@@ -95,11 +95,12 @@
               <tr>
                 <th><i class="far fa-clock fa-fw"></i>&nbsp;Max runtime</th>
                 <td>60 s</td>
+
                 <th><i class="fas fa-memory fa-fw"></i>&nbsp;Max memory</th>
                 <td>250 MiB</td>
               </tr>
               <tr>
-                <th><i class="fas fa-file-code fa-fw"></i>&nbsp;Function signature</th>
+                <th><i class="fas fa-file-code fa-fw"></i>&nbsp;Function</th>
                 <td colspan="3"><span style="font-family: monospace;">{% block function_signature %}{% endblock %}</span></td>
               </tr>
             </tbody>
