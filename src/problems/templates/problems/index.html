@@ -5,10 +5,8 @@
 {% endblock %}
 
 {% block body %}
-<br>
-<section classs="section">
-  <div class="columns is-centered">
-    <div class="column is-narrow">
+<div class="columns is-centered">
+  <div class="column is-narrow">
     {% if latest_problem_list %}
     <div class="table-container">
       <table class="table is-hoverable">
@@ -24,66 +22,68 @@
         </thead>
 
         <tbody>
-            {% for problem in latest_problem_list %}
-              {% if problem.visible %}
-                <tr>
-                  <th>{{ problem.order_id  }}</th>
-                  <th>
-                    {% if user.is_authenticated %}
-                      {% if problem.id in problems_solved %}
-                        <i class="fas fa-check has-text-success"></i>
-                      {% endif %}
+          {% for problem in latest_problem_list %}
+            {% if problem.visible %}
+              <tr>
+                <th>{{ problem.order_id  }}</th>
+                <th>
+                  {% if user.is_authenticated %}
+                    {% if problem.id in problems_solved %}
+                      <i class="fas fa-check has-text-success"></i>
                     {% endif %}
-                  </th>
-                  <td>
-                    <a href="{% url 'problems:detail' problem.name %}">{{ problem.title }}</a>
+                  {% endif %}
+                </th>
+                <td>
+                  <a href="{% url 'problems:detail' problem.name %}">{{ problem.title }}</a>
 
-                    {% if problem.subject == 'physics' %}
-                      <span class="tag is-info">{{ problem.subfield }}</span>
-                    {% elif problem.subject == 'math' %}
-                      <span class="tag is-warning">{{ problem.subfield }}</span>
-                    {% elif problem.subject == 'earth science' %}
-                      <span class="tag is-success">{{ problem.subfield }}</span>
-                    {% elif problem.subject == 'chemistry' %}
-                      <span class="tag is-danger">{{ problem.subfield }}</span>
-                    {% elif problem.subject == 'biology' %}
-                      <span class="tag is-primary">{{ problem.subfield }}</span>
-                    {% elif problem.subject == 'astronomy' %}
-                      <span class="tag is-black">{{ problem.subfield }}</span>
-                    {% elif problem.subject == 'engineering' %}
-                      <span class="tag is-light">{{ problem.subfield }}</span>
-                    {% elif problem.subject == 'computer science' %}
-                      <span class="tag is-dark">{{ problem.subfield }}</span>
-                    {% endif %}
-
-                  </td>
-                  <td align="center">{{ problem_submissions | get_item:problem.id }}</td>
-
-                  {% if problem.difficulty <= 5 %}
-                    <td><progress class="progress is-success" value="{{ problem.difficulty }}" max="15"></progress></td>
-                  {% elif problem.difficulty > 5 and problem.difficulty <= 10 %}
-                    <td><progress class="progress is-warning" value="{{ problem.difficulty }}" max="15"></progress></td>
-                  {% else %}
-                    <td><progress class="progress is-danger" value="{{ problem.difficulty }}" max="15"></progress></td>
+                  {% if problem.subject == 'physics' %}
+                    <span class="tag is-info">{{ problem.subfield }}</span>
+                  {% elif problem.subject == 'math' %}
+                    <span class="tag is-warning">{{ problem.subfield }}</span>
+                  {% elif problem.subject == 'earth science' %}
+                    <span class="tag is-success">{{ problem.subfield }}</span>
+                  {% elif problem.subject == 'chemistry' %}
+                    <span class="tag is-danger">{{ problem.subfield }}</span>
+                  {% elif problem.subject == 'biology' %}
+                    <span class="tag is-primary">{{ problem.subfield }}</span>
+                  {% elif problem.subject == 'astronomy' %}
+                    <span class="tag is-black">{{ problem.subfield }}</span>
+                  {% elif problem.subject == 'engineering' %}
+                    <span class="tag is-light">{{ problem.subfield }}</span>
+                  {% elif problem.subject == 'computer science' %}
+                    <span class="tag is-dark">{{ problem.subfield }}</span>
                   {% endif %}
 
-                  {% if problem.timesink <= 5 %}
-                    <td><progress class="progress is-success" value="{{ problem.timesink }}" max="15"></progress></td>
-                  {% elif problem.timesink > 5 and problem.timesink <= 10 %}
-                    <td><progress class="progress is-warning" value="{{ problem.timesink }}" max="15"></progress></td>
-                  {% else %}
-                    <td><progress class="progress is-danger" value="{{ problem.timesink }}" max="15"></progress></td>
-                  {% endif %}
-                </tr>
-              {% endif %}
-            {% endfor %}
+                </td>
+
+                <td align="center">{{ problem_submissions | get_item:problem.id }}</td>
+
+                {% if problem.difficulty <= 5 %}
+                  <td><progress class="progress is-success" value="{{ problem.difficulty }}" max="15"></progress></td>
+                {% elif problem.difficulty > 5 and problem.difficulty <= 10 %}
+                  <td><progress class="progress is-warning" value="{{ problem.difficulty }}" max="15"></progress></td>
+                {% else %}
+                  <td><progress class="progress is-danger" value="{{ problem.difficulty }}" max="15"></progress></td>
+                {% endif %}
+
+                {% if problem.timesink <= 5 %}
+                  <td><progress class="progress is-success" value="{{ problem.timesink }}" max="15"></progress></td>
+                {% elif problem.timesink > 5 and problem.timesink <= 10 %}
+                  <td><progress class="progress is-warning" value="{{ problem.timesink }}" max="15"></progress></td>
+                {% else %}
+                  <td><progress class="progress is-danger" value="{{ problem.timesink }}" max="15"></progress></td>
+                {% endif %}
+              </tr>
+            {% endif %}
+          {% endfor %}
         </tbody>
       </table>
     </div>
     {% else %}
       <p>No questions are available.</p>
     {% endif %}
-
+  </div>
+</div>
 <script>
 // Sortable tables
 // Source: https://stackoverflow.com/a/49041392 and https://stackoverflow.com/a/53880407
