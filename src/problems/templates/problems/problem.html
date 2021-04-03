@@ -56,7 +56,7 @@
     <!-- Description tab -->
     <section data-content="1" class="is-active">
       <div class="columns is-centered">
-        <div class="column is-three-fifths">
+        <div class="column is-half">
           {% block problem_body %}{% endblock %}
           <br>
           <p><strong>Input</strong>: {% block input_description %}{% endblock %}</p>
@@ -64,13 +64,12 @@
           <br>
           {% block examples %}{% endblock %}
         </div>
-      </div>
-      <br>
-      <div class="is-divider" style="width: 60%; margin: 0 auto;"></div>
-      <br>
-      <div class="columns is-centered">
-        <div class="column is-three-fifths">
-          <table class="table is-striped is-fullwidth">
+
+        <div class="is-divider-vertical"></div>
+
+        <!-- Sticky second column. See: https://github.com/jgthms/bulma/issues/1351 -->
+        <div class="column is-half" style="height:90vh; position: sticky; top: 3.2rem;">
+          <table class="table is-striped is-fullwidth" style="table-layout: fixed;">
             <tbody>
               <tr>
                 <th><i class="fas fa-brain fa-fw"></i>&nbsp;<abbr title="Higher = more math and scientific knowledge required">Difficulty</abbr></th>
@@ -94,19 +93,18 @@
                 {% endif %}
               </tr>
               <tr>
-                <th><i class="far fa-clock fa-fw"></i>&nbsp;Maximum runtime</th>
+                <th><i class="far fa-clock fa-fw"></i>&nbsp;Max runtime</th>
                 <td>60 s</td>
-                <th><i class="fas fa-memory fa-fw"></i>&nbsp;Max. memory usage</th>
+
+                <th><i class="fas fa-memory fa-fw"></i>&nbsp;Max memory</th>
                 <td>250 MiB</td>
               </tr>
               <tr>
-                <th><i class="fas fa-file-code fa-fw"></i>&nbsp;Function signature</th>
+                <th><i class="fas fa-file-code fa-fw"></i>&nbsp;Function</th>
                 <td colspan="3"><span style="font-family: monospace;">{% block function_signature %}{% endblock %}</span></td>
               </tr>
             </tbody>
           </table>
-          <p class="has-text-justified">Write a function that accepts the input as function parameters and returns the correct output. Make sure to read the description above to produce the correct output in the correct format and use the correct function signature so we can run your code. A good first step is to try reproducing the example(s). Your code must not take longer than the maximum runtime to run and must not use more memory than the allowed limit.</p>
-          <br>
           <form method="post" id="submit-code-or-file-form" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="container">
@@ -144,7 +142,6 @@
           </form>
         </div>
       </div>
-      <br> <!-- Leave some space between "Submit code" button and the footer -->
     </section>
 
     <!-- Submissions tab -->
@@ -292,7 +289,7 @@
 
 <script>
   document.getElementById('{{ form.file.auto_id }}').onchange = function() {
-      // See: https://stackoverflow.com/a/9234894
+      // Extracting file name. See: https://stackoverflow.com/a/9234894
       var filename = this.value.split(/(\\|\/)/g).pop();
       document.getElementById('file-name-span').innerHTML = filename;
   };
@@ -364,7 +361,6 @@
 
     var xhr = new XMLHttpRequest();
     xhr.open('POST', apiUrl, true);
-    // xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
     xhr.setRequestHeader('X-CSRFToken', csrf_token);
     xhr.onload = injectTestCaseResults;

@@ -35,23 +35,23 @@
 </p>
 <br>
 
-<figure style="text-align: center;">
+<figure class="has-text-centered">
   <video controls>
     <source src="{% static 'video/still_oscillator_patterns.webm' %}" type="video/webm">
     <p>Your browser doesn't support HTML5 webm video.</p>
   </video>
-  <figcaption class="help">
+  <figcaption class="is-italic">
     A bunch of still life patterns that do not change shape under the evolution rules, and some oscillator patterns that
     flip between the same patterns again and again.
   </figcaption>
 </figure>
 
-<figure style="text-align: center;">
+<figure class="has-text-centered">
   <video controls>
     <source src="{% static 'video/glider_gun_destruction.webm' %}" type="video/webm">
     <p>Your browser doesn't support HTML5 webm video.</p>
   </video>
-  <figcaption class="help">
+  <figcaption class="is-italic">
     A glider gun pattern that generate gliders, which are spaceship patterns that move across the grid. In this case,
     the gliders go down the bottom of the grid and reappear at the top due to the periodic boundary conditions. After
     the gliders go through the right boundary they reappear on the left and destroy the glider gun that created them.
