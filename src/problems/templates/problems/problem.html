@@ -289,7 +289,7 @@
 
 <script>
   document.getElementById('{{ form.file.auto_id }}').onchange = function() {
-      // See: https://stackoverflow.com/a/9234894
+      // Extracting file name. See: https://stackoverflow.com/a/9234894
       var filename = this.value.split(/(\\|\/)/g).pop();
       document.getElementById('file-name-span').innerHTML = filename;
   };
