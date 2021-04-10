@@ -1,0 +1,54 @@
+{% extends "problems/problem.html" %}
+
+{% load static %}
+
+{% block you_will_learn %}
+  genetics and strings.
+{% endblock %}
+
+{% block problem_body %}
+<p class="has-text-justified">
+  As you learned in <a href"dna-transcription.html">DNA transcription</a>, the first step in converting DNA to proteins
+  is transcribing the DNA into RNA. The second step is translating the RNA into a chain of amino acids, called a
+  polypeptide. The process is biochemically complex but the resulting amino acid sequence is quite simple: each set of
+  three base pairs (called a nucleotide triplet or codon) is translated to a single amino acid. The chart below shows
+  how to translate each codon to an amino acid.
+</p>
+<br>
+
+<figure class="has-text-centered">
+  <img style="width: 75%; margin: 0 auto;" src="{% static 'img/codon_table.png' %}">
+  <figcaption class="is-italic">
+  </figcaption>
+</figure>
+{% endblock %}
+
+All sequences begin with the start codon and end with one of the end codons.
+
+{% block input_description %}
+An RNA sequence.
+{% endblock %}
+
+{% block output_description %}
+A sequence of amino acids.
+{% endblock %}
+
+{% block examples %}
+<article class="message">
+  <div class="message-header">
+    <p>Example</p>
+  </div>
+  <div class="message-body"
+       style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input</b>: $1,000, 0.07, 25
+<b>Output</b>: $5,427.43</div>
+</article>
+{% endblock %}
+
+{% block function_signature %}
+translate(rna)
+{% endblock %}
+
+{% block notes_and_references %}
+{% endblock %}
+
+{% block discourse_topic_id %}x{% endblock %}
