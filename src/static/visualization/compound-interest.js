@@ -80,9 +80,9 @@ function remakeCompoundInterestFigure() {
     var rate = parseFloat(sliderRate.noUiSlider.get());
     var years = parseFloat(sliderYears.noUiSlider.get());
 
-    labelAmount.innerHTML = `Amount: ${amount}`;
-    labelRate.innerHTML = `Rate: ${rate}`;
-    labelYears.innerHTML = `Years: ${years}`;
+    labelAmount.innerHTML = amount;
+    labelRate.innerHTML = rate;
+    labelYears.innerHTML = years;
 
     makeCompoundInterestFigure(amount, rate, years)
 
