@@ -1,0 +1,87 @@
+{% extends "problems/problem.html" %}
+
+{% load static %}
+
+{% block you_will_learn %}
+  more genetics and strings.
+{% endblock %}
+
+{% block problem_body %}
+<p class="has-text-justified">
+  <i>You might want to solve <a href="{% url 'problems:detail' 'dna-transcription' %}">DNA transcription</a> first to learn how to transcribe DNA into RNA.</i>
+</p>
+<br>
+
+<p class="has-text-justified">
+  Once DNA has been transcribed into RNA, the RNA is translated into a sequence of amino acids that can then fold into a protein. The <i>genetic code</i> describes
+  how RNA is translated into amino acids. Translation happens one codon at a time where each codon consists of three nucleotides, such as <code>GUA</code> or
+  <code>ACG</code>, and gets translated into one amino acid.
+</p>
+<br>
+
+<figure class="has-text-centered">
+  <img src="{% static 'img/codon_wheel.png' %}">
+  <figcaption class="is-italic">
+    The genetic code organized in a wheel showing each combination of three nucleotides or codon and the amino acid it translates to. For example, the <code>GCA</code>
+    codon translate to the <code>Ala</code> (Alanine) amino acid.
+  </figcaption>
+</figure>
+<br>
+
+<p class="has-text-justified">
+  Write some code to translate an RNA sequence into a sequence of amino acids. If you encounter a stop codon, then stop translation and return the amino acid sequence up
+  until the stop codon (but not including it).
+</p>
+{% endblock %}
+
+{% block input_description %}
+An RNA sequence.
+{% endblock %}
+
+{% block output_description %}
+A sequence of amino acids.
+{% endblock %}
+
+{% block examples %}
+<article class="message">
+  <div class="message-header">
+    <p>Example 1 (one codon)</p>
+  </div>
+  <div class="message-body example-body">
+    <b>Input</b>: CCU
+    <br>
+    <b>Output</b>: Pro
+  </div>
+</article>
+
+<article class="message">
+  <div class="message-header">
+    <p>Example 2 (stop codon at the end)</p>
+  </div>
+  <div class="message-body example-body">
+    <b>Input</b>: AUGCCAAAGGGUUGA
+    <br>
+    <b>Output</b>: "MetProLysGly"
+  </div>
+</article>
+
+<article class="message">
+  <div class="message-header">
+    <p>Example 3 (no stop codons)</p>
+  </div>
+  <div class="message-body example-body">
+    <b>Input</b>: GCAAGAGAUAAUUGU
+    <br>
+    <b>Output</b>: AlaArgAspAsnCys
+  </div>
+</article>
+{% endblock %}
+
+{% block function_signature %}
+amino_acid_sequence(rna)
+{% endblock %}
+
+{% block notes_and_references %}
+{% endblock %}
+
+{% block discourse_topic_id %}301{% endblock %}

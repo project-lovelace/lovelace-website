@@ -5,9 +5,9 @@ from . import views
 app_name = 'problems'
 
 urlpatterns = [
-    # ex: /problems/
+    # e.g. /problems/
     path('', views.IndexView.as_view(), name='index'),
 
-    # ex: /problems/earthquake-epicenters/
+    # e.g. /problems/earthquake-epicenters/
     path('<str:problem_name>/', views.DetailView.as_view(), name='detail'),
 ]

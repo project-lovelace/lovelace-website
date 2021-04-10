@@ -14,6 +14,7 @@ genetics and strings.
   as a string of <tt>ATCG</tt> characters.
 </p>
 <br>
+
 <p class="has-text-justified">
   Certain DNA sequences contain the information required to syntheize proteins, and the first step in the process is to
   transcribe the DNA sequence into a ribonucleic acid (RNA) sequence. The transcription process is biochemically
@@ -21,10 +22,12 @@ genetics and strings.
   replaced with a <tt>U</tt> (uracil) and the sequence is reversed.
 </p>
 <br>
+
 <p class="has-text-justified">
   Given the DNA string as input, return the transcribed RNA string. Keep in mind that these sequences can be very long
   (the human genome is 3,088,286,401 characters or base pairs long!).
 </p>
+
 <figure class="has-text-centered">
   <img src="{% static 'img/DNA_RNA_difference.png' %}">
   <figcaption class="is-italic">
@@ -33,6 +36,12 @@ genetics and strings.
           href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">CC BY-SA 3.0</a>)
   </figcaption>
 </figure>
+
+<br>
+<p class="has-text-justified">
+  <i>Once you've solved this problem check out <a href="{% url 'problems:detail' 'rna-translation' %}">RNA translation</a> to learn how to translate RNA into amino acids.</i>
+</p>
+
 {% endblock %}
 
 {% block input_description %}
