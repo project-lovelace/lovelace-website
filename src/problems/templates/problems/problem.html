@@ -89,6 +89,7 @@
                 <td style=""><progress class="progress is-danger" value="{{ problem.timesink }}" max="15"></progress></td>
               {% endif %}
             </tr>
+            <!-- No point in showing these until the engine fully supports max runtime and max memory usage...
             <tr>
               <th><i class="far fa-clock fa-fw"></i>&nbsp;Max runtime</th>
               <td>60 s</td>
@@ -96,6 +97,7 @@
               <th><i class="fas fa-memory fa-fw"></i>&nbsp;Max memory</th>
               <td>250 MiB</td>
             </tr>
+            -->
             <tr>
               <th><i class="fas fa-file-code fa-fw"></i>&nbsp;Function</th>
               <td colspan="3"><span style="font-family: monospace;">{% block function_signature %}{% endblock %}</span></td>
