@@ -8,14 +8,11 @@ function visualize_test_case(input, output, expected, n) {
     return
 }
 
-function compound_interest(amount, rate, years) {
+function compoundInterest(amount, rate, years) {
     return amount * (1 + rate) ** years
 }
 
-function make_compound_interest_figure() {
-    var amount = 1000
-    var rate = 0.10
-    var years = 25
+function makeCompoundInterestFigure(amount, rate, years) {
 
     var year = new Array(years)
     for (n = 0; n <= years; n++) {
@@ -24,7 +21,7 @@ function make_compound_interest_figure() {
 
     var trace = {
         x: year,
-        y: year.map(n => compound_interest(amount, rate, n)),
+        y: year.map(n => compoundInterest(amount, rate, n)),
         type: 'bar'
     }
 
@@ -41,4 +38,57 @@ function make_compound_interest_figure() {
     return
 }
 
-make_compound_interest_figure()
+makeCompoundInterestFigure(1000, 0.10, 25)
+
+var sliderAmount = document.getElementById("slider-amount");
+var sliderRate = document.getElementById("slider-rate");
+var sliderYears = document.getElementById("slider-years");
+
+noUiSlider.create(sliderAmount, {
+    start: [1000],
+    range: {
+        "min": [100],
+        "max": [10000]
+    }
+});
+
+noUiSlider.create(sliderRate, {
+    start: [0.10],
+    range: {
+        "min": [-0.1],
+        "max": [0.5]
+    },
+    step: 0.01
+});
+
+noUiSlider.create(sliderYears, {
+    start: [25],
+    range: {
+        "min": [1],
+        "max": [100]
+    },
+    step: 1
+    // tooltips: [wNumb({decimals: 0})]
+});
+
+var labelAmount = document.getElementById("label-amount");
+var labelRate = document.getElementById("label-rate");
+var labelYears = document.getElementById("label-years");
+
+function remakeCompoundInterestFigure() {
+    var amount = parseFloat(sliderAmount.noUiSlider.get());
+    var rate = parseFloat(sliderRate.noUiSlider.get());
+    var years = parseFloat(sliderYears.noUiSlider.get());
+
+    labelAmount.innerHTML = amount;
+    labelRate.innerHTML = rate;
+    labelYears.innerHTML = years;
+
+    makeCompoundInterestFigure(amount, rate, years)
+
+    return
+}
+
+sliderAmount.noUiSlider.on("update", remakeCompoundInterestFigure);
+sliderRate.noUiSlider.on("update", remakeCompoundInterestFigure);
+sliderYears.noUiSlider.on("update", remakeCompoundInterestFigure);
