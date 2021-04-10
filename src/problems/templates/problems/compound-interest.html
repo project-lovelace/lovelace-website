@@ -3,6 +3,11 @@
 {% load static %}
 
 {% block problem_javascript %}
+<!-- noUiSlider -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.2.0/wNumb.min.js" integrity="sha512-igVQ7hyQVijOUlfg3OmcTZLwYJIBXU63xL9RC12xBHNpmGJAktDnzl9Iw0J4yrSaQtDxTTVlwhY730vphoVqJQ==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.7.0/nouislider.min.js" integrity="sha512-jWNpWAWx86B/GZV4Qsce63q5jxx/rpWnw812vh0RE+SBIo/mmepwOSQkY2eVQnMuE28pzUEO7ux0a5sJX91g8A==" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.7.0/nouislider.min.css" integrity="sha512-40vN6DdyQoxRJCw0klEUwZfTTlcwkOLKpP8K8125hy9iF4fi8gPpWZp60qKC6MYAFaond8yQds7cTMVU8eMbgA==" crossorigin="anonymous" />
+
 <!-- Only load Plotly for problems that use it since it's a big dependency. -->
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 {% endblock %}
@@ -31,7 +36,21 @@ This plot shows the growth of $m = 1,000$ dollars compounded every year at 10% (
 <figure class="has-text-centered">
   <div id="compound-interest-figure"></id>
 </figure>
-<br>
+
+<div class="columns">
+  <div class="column is-half">
+    <label id="label-amount" class="label">Amount</label>
+    <div id="slider-amount" class="block"></div>
+
+    <label id="label-rate" class="label">Interest rate</label>
+    <div id="slider-rate" class="block"></div>
+  </div>
+
+  <div class="column is-half">
+    <label id="label-years" class="label">Years</label>
+    <div id="slider-years" class="block"></div>
+  </div>
+</div>
 
 <p class="has-text-justified">
   Submit some code with a function <tt>compound_interest(m, r, n)</tt> that computes the final amount $M$ after
@@ -56,6 +75,7 @@ Final amount $M$.
        style="font-family: monospace; text-align: justify; word-wrap: break-word; white-space:pre;"><b>Input</b>: 1000, 0.07, 25
 <b>Output</b>: 5427.43</div>
 </article>
+<br>
 {% endblock %}
 
 {% block function_signature %}
