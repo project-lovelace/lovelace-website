@@ -27,6 +27,13 @@
     color: sienna;
 }
 
+.example-body {
+    font-family: monospace;
+    /* text-align: justify; */
+    /* word-wrap: break-word; */
+    /* white-space: pre; */
+}
+
 .CodeMirror {
     border: 1px solid black;
     font-size:13px;
