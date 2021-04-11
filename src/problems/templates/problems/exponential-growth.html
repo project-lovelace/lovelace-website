@@ -17,100 +17,82 @@
 {% endblock %}
 
 {% block problem_body %}
-  <figure class="has-text-centered">
-    <div id="exponential-growth-app"></div>
-  </figure>
+<p class="block has-text-justified">
+  The laws of nature are often written down in terms of differential equations. Everything from the motion
+  of a football to the quantum state of a particle and the global ocean circulation are described in terms
+  of differential equations!
+</p>
 
-  <div class="columns">
-    <div class="column is-half">
-      <label class="label">Initial value $x_0$: <span id="label-initial-value"></span></label>
-      <div id="slider-initial-value" class="block"></div>
+<p class="block has-text-justified">
+  Some differential equations can be solved by hand but many interesting ones cannot, so numerical or computational
+  solutions are super useful here. Here we'll solve a simple differential equation numerically. Technically we'll
+  be solving a first-order ordinary differential equation (ODE) using the forward Euler method, the simplest
+  numerical method for solving ODEs.
+</p>
 
-      <label class="label">Growth rate $k$: <span id="label-growth-rate"></span></label>
-      <div id="slider-growth-rate" class="block"></div>
-    </div>
+<p class="block has-text-justified">
+  We want to solve the differential equation describing exponential growth
 
-    <div class="column is-half">
-      <label class="label">Time step $\Delta t$: <span id="label-time-step"></span></label>
-      <div id="slider-time-step" class="block"></div>
+  $$ \frac{dx}{dt} = kx $$
 
-      <label class="label">Iterations $N$: <span id="label-iterations"></span></label>
-      <div id="slider-iterations" class="block"></div>
-    </div>
+  where $t$ is time, $k$ is a growth rate, and $x$ is the quantity we want to solve for (it could represent the
+  number of bacteria in a petri dish or <a href="{% url 'problems:detail' 'compound-interest' %}">compound interest</a>).
+  The differential equation is saying that the rate of change of $x$ is proportional to $x$ itself, so the more
+  $x$ you have the faster $x$ will grow. We want to solve for $x(t)$ which will be a function of time $t$.
+</p>
+
+<figure class="has-text-centered">
+  <div id="exponential-growth-app"></div>
+</figure>
+
+<div class="columns">
+  <div class="column is-half">
+    <label class="label">Initial value $x_0$: <span id="label-initial-value"></span></label>
+    <div id="slider-initial-value" class="block"></div>
+
+    <label class="label">Growth rate $k$: <span id="label-growth-rate"></span></label>
+    <div id="slider-growth-rate" class="block"></div>
   </div>
 
-    <!--- Introduction -->
-    <p>
-        The laws of nature are often written down in terms of differential equations. Everything
-        from the motion of a baseball and cannon shells to the quantum state of a particle and the
-        global ocean circulation are described in terms of differential equations. Without them, we
-        wouldn't be able to understand most physical phenomena!
-    </p>
-    <p>
-        A differential equation (DE) in a dependent variable $y(t)$ is any equation containing
-        $y(t)$ and its derivatives. A first-order DE only contains $y(t)$ and its first derivative
-        $\frac{dy}{dt}$. So one way to write a general first-order DE is
+  <div class="column is-half">
+    <label class="label">Time step $\Delta t$: <span id="label-time-step"></span></label>
+    <div id="slider-time-step" class="block"></div>
 
-        $$ \frac{dy(t)}{dt} = f \left( t,y(t) \right) $$
-    </p>
-    <p>
-        Many DE's can be solved by hand but many more cannot, making numerical/computational
-        solutions very useful. In this tutorial you will solve a first-order ordinary differential
-        equation (ODE) using Euler's method. The appendix discusses Euler's method more generally
-    </p>
+    <label class="label">Iterations $N$: <span id="label-iterations"></span></label>
+    <div id="slider-iterations" class="block"></div>
+  </div>
+</div>
 
-    <!--- "Recipe" or tutorial -->
-    <p>
-        The ODE given in the problem may be solved by hand however you will solve it using Euler's
-        method. To implement the method, the first step is to approximate the derivative by a
-        finite difference
+<p class="block has-text-justified">
+  To solve the differential equation we will discretize it numerically which will allow us to solve it
+  iteratively. We will solve the equation at discrete times $t_0 = 0$, $t_1 = \Delta t$, and so on
+  so the nth time step will be $t_n = n \Delta t$ where $\Delta t$ is a constant time step between solutions.
+  Let's denote the current value of $x$ to be $x_n = x(n \Delta t)$. If we know $x_n$ then we want a formula
+  for computing the next value $x_{n+1}$.
+</p>
 
-        $$ \frac{\Delta P}{\Delta t} = \left( 1 - \frac{P}{K} \right) rP $$
+<p class="block has-text-justified">
+  To find this formula, we start by discretizing the derivative
 
-        where $\Delta P$ is the change in $P$ between two iterations of Euler's method and
-        $\Delta t$ is the time step between iterations. Explicitly writing
-        $\Delta P = P_{i+1} - P_i$ we can write
+  $$ \frac{\Delta x}{\Delta t} = \frac{x_{n+1} - x_n}{\Delta t} = kx_n $$
 
-        $$ \frac{P_{i+1} - P_i}{\Delta t} = \left( 1 - \frac{P_i}{K} \right) rP_i $$
+  where $\Delta x = x_{n+1} - x_n$ is the change in $x$ over the constant time step $\Delta t = t_{n+1} - t_n$.
+  We can then solve for $x_{n+1}$ to get
 
-        or solving for $P_{i+1}$ we get
+  $$ x_{n+1} = x_n + k x_n \Delta t $$
 
-        $$ P_{i+1} = P_i + \left( 1 - \frac{P_i}{K} \right) rP_i\Delta t $$
-    </p>
-    <p>
-        We can then pick a small value for $\Delta t$ and approximate the solution starting from
-        $t=0$. $P(0)=P_0$ is given as an input so we can calculate
-
-        $$ P(\Delta t) = P_1 = P_0 + \left( 1 - \frac{P_0}{K} \right) rP_0\Delta t $$
-        $$ P(2\Delta t) = P_2 = P_1 + \left( 1 - \frac{P_1}{K} \right) rP_1\Delta t $$
-
-        and so on until you have enough of the solution as desired. The smaller you pick $\Delta t$
-        to be, the more accurate your solution will be in generaly; however, it will take more
-        steps to compute.
-    </p>
-
-    <p>
-        Let $P = P(t)$ denote the population of geese on a university campus as a function of time
-        (days). Then the population can be modelled by the differential equation
-
-        $$ \frac{dP}{dt} = \left( 1 - \frac{P}{K} \right) rP \quad $$
-
-        with the initial condition $P(0) = P_0$, where $K$ is the "carrying capacity" or the
-        maximum number of geese the campus may sustain according to the model, and $r$ is the
-        growth rate of the geese. $P_0$ is the initial geese population at time $t=0$.
-    </p>
-    <p>
-        The university would like to keep the population at a reasonable level and so it's your job
-        to predict when the goose population will reach half the carrying capacity $(K/2)$.
-    </p>
+  So if we start with an initial value $x_0$ and we know the growth rate $k$ and time step $\Delta t$ then
+  we can compute the solution $x_1$, $x_2$, and so on which will be a numerical approximation to the real
+  solution $x(t)$.
+</p>
 {% endblock %}
 
 {% block input_description %}
-  $x_0$, $k$, $\Delta t$, and $n$.
+Initial value $x_0$, growth rate $k$, time step $\Delta t$, and number of iterations $N$.
 {% endblock %}
 
 {% block output_description %}
-$x(t)$ or $x_0, x_1, \dots, x_n$
+The numerical solution $x_0, x_1, \dots, x_N$.
 {% endblock %}
 
 {% block examples %}
@@ -123,4 +105,4 @@ exponential_growth(x0, k, dt, n)
 {% block notes_and_references %}
 {% endblock %}
 
-{% block discourse_topic_id %}x{% endblock %}
+{% block discourse_topic_id %}1{% endblock %}
