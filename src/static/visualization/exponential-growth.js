@@ -1,13 +1,3 @@
-function visualize_test_case(input, output, expected, n) {
-    document.getElementById(`input${n}`).innerHTML =
-        `<b>Input</b>: m = ${input[0]}, r = ${input[1]}, n = ${input[2]} <br>`
-
-    document.getElementById(`output${n}`).innerHTML =
-        `<b>Output</b>: ${output[0]} (expected ${expected[0]}) <br>`
-
-    return
-}
-
 function exponentialGrowthAnalytic(x0, k, t) {
     return x0 * Math.exp(k * t)
 }
@@ -21,6 +11,61 @@ function exponentialGrowthForwardEuler(x0, k, dt, N) {
     }
 
     return x
+}
+
+function visualize_test_case(input, output, expected, nTestCase) {
+
+    var x0 = input[0];
+    var k = input[1];
+    var dt = input[2];
+    var N = input[3];
+
+    var xOutput = output[0];
+    var xExpected = expected[0];
+
+    document.getElementById(`input${nTestCase}`).innerHTML =
+        `<b>Input</b>: x0 = ${x0}, k = ${k}, dt = ${dt}, N = ${N} <br>`
+
+    document.getElementById(`output${nTestCase}`).innerHTML =
+        `<b>Output</b>: <br>` +
+        `<div id="output-plot-${nTestCase}"></div>`
+
+    var times = new Array(N)
+    for (n = 0; n <= N; n++) {
+        times[n] = n * dt
+    }
+
+    var traceAnalytic = {
+        x: times,
+        y: times.map(t => exponentialGrowthAnalytic(x0, k, t)),
+        mode: 'lines',
+        name: 'analytic'
+    }
+
+    var traceNumericalCorrect = {
+        x: times,
+        y: xExpected,
+        mode: 'lines',
+        name: `numerical (correct)`
+    }
+
+    var traceNumericalUser = {
+        x: times,
+        y: xOutput,
+        mode: 'lines',
+        name: `your output`
+    }
+
+    var layout = {
+        xaxis: { title: 'Time t' },
+        yaxis: { title: 'x(t)' },
+        paper_bgcolor: 'rgba(0, 0, 0, 0)',
+        plot_bgcolor: 'rgba(0, 0, 0, 0)'
+    }
+
+    Plotly.newPlot(`output-plot-${nTestCase}`, [traceAnalytic, traceNumericalCorrect, traceNumericalUser], layout)
+
+    return
 }
 
 function plotExponentialGrowth(x0, k, dt, N) {
