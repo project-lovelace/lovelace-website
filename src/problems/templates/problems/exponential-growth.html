@@ -24,19 +24,17 @@
 </p>
 
 <p class="block has-text-justified">
-  Some differential equations can be solved by hand but many interesting ones cannot, so numerical or computational
-  solutions are super useful here. Here we'll solve a simple differential equation numerically. Technically we'll
-  be solving a first-order ordinary differential equation (ODE) using the forward Euler method, the simplest
-  numerical method for solving ODEs.
+  Some differential equations can be solved by hand but many interesting ones cannot, so being able to compute
+  numerical solutions is super useful. Here we'll solve a simple differential equation numerically.
 </p>
 
 <p class="block has-text-justified">
-  We want to solve the differential equation describing exponential growth
+  We want to solve this differential equation describing exponential growth
 
   $$ \frac{dx}{dt} = kx $$
 
   where $t$ is time, $k$ is a growth rate, and $x$ is the quantity we want to solve for (it could represent the
-  number of bacteria in a petri dish or <a href="{% url 'problems:detail' 'compound-interest' %}">compound interest</a>).
+  number of bacteria in a petri dish or even <a href="{% url 'problems:detail' 'compound-interest' %}">compound interest</a>).
   The differential equation is saying that the rate of change of $x$ is proportional to $x$ itself, so the more
   $x$ you have the faster $x$ will grow. We want to solve for $x(t)$ which will be a function of time $t$.
 </p>
@@ -64,8 +62,8 @@
 </div>
 
 <p class="block has-text-justified">
-  To solve the differential equation we will discretize it numerically which will allow us to solve it
-  iteratively. We will solve the equation at discrete times $t_0 = 0$, $t_1 = \Delta t$, and so on
+  To solve the differential equation we will discretize it numerically so we can solve it iteratively.
+  We will solve the equation at discrete times $t_0 = 0, t_1 = \Delta t, t_2 = 2\Delta t, \dots$,
   so the nth time step will be $t_n = n \Delta t$ where $\Delta t$ is a constant time step between solutions.
   Let's denote the current value of $x$ to be $x_n = x(n \Delta t)$. If we know $x_n$ then we want a formula
   for computing the next value $x_{n+1}$.
@@ -82,7 +80,7 @@
   $$ x_{n+1} = x_n + k x_n \Delta t $$
 
   So if we start with an initial value $x_0$ and we know the growth rate $k$ and time step $\Delta t$ then
-  we can compute the solution $x_1$, $x_2$, and so on which will be a numerical approximation to the real
+  we can compute the solution $x_0, x_1, x_2, x_3, \dots$ which will be a numerical approximation to the real
   solution $x(t)$.
 </p>
 {% endblock %}
@@ -96,6 +94,27 @@ The numerical solution $x_0, x_1, \dots, x_N$.
 {% endblock %}
 
 {% block examples %}
+<article class="message">
+  <div class="message-header">
+    <p>Example 1</p>
+  </div>
+  <div class="message-body example-body">
+    <b>Input</b>: x0 = 5, k = 1, dt = 0.6, N = 3
+    <br>
+    <b>Output</b>: [5, 8.0, 12.8, 20.48]
+  </div>
+</article>
+
+<article class="message">
+  <div class="message-header">
+    <p>Example 2</p>
+  </div>
+  <div class="message-body example-body">
+    <b>Input</b>: x0 = 1, k = 2.5, dt = 0.1, N = 5
+    <br>
+    <b>Output</b>: [1, 1.25, 1.5625, 1.953125, 2.44140625, 3.0517578125]
+  </div>
+</article>
 {% endblock %}
 
 {% block function_signature %}
@@ -103,6 +122,9 @@ exponential_growth(x0, k, dt, n)
 {% endblock %}
 
 {% block notes_and_references %}
+<!-- Come back and flesh these out
+Technically we'll be solving a first-order ordinary differential equation (ODE) using the forward Euler method, the simplest numerical method for solving ODEs.
+-->
 {% endblock %}
 
 {% block discourse_topic_id %}1{% endblock %}
