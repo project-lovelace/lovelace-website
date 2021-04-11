@@ -1,0 +1,130 @@
+{% extends "problems/problem.html" %}
+
+{% load static %}
+
+{% block problem_javascript %}
+<!-- noUiSlider -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.2.0/wNumb.min.js" integrity="sha512-igVQ7hyQVijOUlfg3OmcTZLwYJIBXU63xL9RC12xBHNpmGJAktDnzl9Iw0J4yrSaQtDxTTVlwhY730vphoVqJQ==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.7.0/nouislider.min.js" integrity="sha512-jWNpWAWx86B/GZV4Qsce63q5jxx/rpWnw812vh0RE+SBIo/mmepwOSQkY2eVQnMuE28pzUEO7ux0a5sJX91g8A==" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.7.0/nouislider.min.css" integrity="sha512-40vN6DdyQoxRJCw0klEUwZfTTlcwkOLKpP8K8125hy9iF4fi8gPpWZp60qKC6MYAFaond8yQds7cTMVU8eMbgA==" crossorigin="anonymous" />
+
+<!-- Only load Plotly for problems that use it since it's a big dependency. -->
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+{% endblock %}
+
+{% block you_will_learn %}
+  differential equations
+{% endblock %}
+
+{% block problem_body %}
+<p class="block has-text-justified">
+  The laws of nature are often written down in terms of differential equations. Everything from the motion
+  of a football to the quantum state of a particle and the global ocean circulation are described in terms
+  of differential equations!
+</p>
+
+<p class="block has-text-justified">
+  Some differential equations can be solved by hand but many interesting ones cannot, so being able to compute
+  numerical solutions is super useful. Here we'll solve a simple differential equation numerically.
+</p>
+
+<p class="block has-text-justified">
+  We want to solve this differential equation describing exponential growth
+
+  $$ \frac{dx}{dt} = kx $$
+
+  where $t$ is time, $k$ is a growth rate, and $x$ is the quantity we want to solve for (it could represent the
+  number of bacteria in a petri dish or even <a href="{% url 'problems:detail' 'compound-interest' %}">compound interest</a>).
+  The differential equation is saying that the rate of change of $x$ is proportional to $x$ itself, so the more
+  $x$ you have the faster $x$ will grow. We want to solve for $x(t)$ which will be a function of time $t$.
+</p>
+
+<figure class="has-text-centered">
+  <div id="exponential-growth-app"></div>
+</figure>
+
+<div class="columns">
+  <div class="column is-half">
+    <label class="label">Initial value $x_0$: <span id="label-initial-value"></span></label>
+    <div id="slider-initial-value" class="block"></div>
+
+    <label class="label">Growth rate $k$: <span id="label-growth-rate"></span></label>
+    <div id="slider-growth-rate" class="block"></div>
+  </div>
+
+  <div class="column is-half">
+    <label class="label">Time step $\Delta t$: <span id="label-time-step"></span></label>
+    <div id="slider-time-step" class="block"></div>
+
+    <label class="label">Iterations $N$: <span id="label-iterations"></span></label>
+    <div id="slider-iterations" class="block"></div>
+  </div>
+</div>
+
+<p class="block has-text-justified">
+  To solve the differential equation we will discretize it numerically so we can solve it iteratively.
+  We will solve the equation at discrete times $t_0 = 0, t_1 = \Delta t, t_2 = 2\Delta t, \dots$,
+  so the nth time step will be $t_n = n \Delta t$ where $\Delta t$ is a constant time step between solutions.
+  Let's denote the current value of $x$ to be $x_n = x(n \Delta t)$. If we know $x_n$ then we want a formula
+  for computing the next value $x_{n+1}$.
+</p>
+
+<p class="block has-text-justified">
+  To find this formula, we start by discretizing the derivative
+
+  $$ \frac{\Delta x}{\Delta t} = \frac{x_{n+1} - x_n}{\Delta t} = kx_n $$
+
+  where $\Delta x = x_{n+1} - x_n$ is the change in $x$ over the constant time step $\Delta t = t_{n+1} - t_n$.
+  We can then solve for $x_{n+1}$ to get
+
+  $$ x_{n+1} = x_n + k x_n \Delta t $$
+
+  So if we start with an initial value $x_0$ and we know the growth rate $k$ and time step $\Delta t$ then
+  we can compute the solution $x_0, x_1, x_2, x_3, \dots$ which will be a numerical approximation to the real
+  solution $x(t)$.
+</p>
+{% endblock %}
+
+{% block input_description %}
+Initial value $x_0$, growth rate $k$, time step $\Delta t$, and number of iterations $N$.
+{% endblock %}
+
+{% block output_description %}
+The numerical solution $x_0, x_1, \dots, x_N$.
+{% endblock %}
+
+{% block examples %}
+<article class="message">
+  <div class="message-header">
+    <p>Example 1</p>
+  </div>
+  <div class="message-body example-body">
+    <b>Input</b>: x0 = 5, k = 1, dt = 0.6, N = 3
+    <br>
+    <b>Output</b>: [5, 8.0, 12.8, 20.48]
+  </div>
+</article>
+
+<article class="message">
+  <div class="message-header">
+    <p>Example 2</p>
+  </div>
+  <div class="message-body example-body">
+    <b>Input</b>: x0 = 1, k = 2.5, dt = 0.1, N = 5
+    <br>
+    <b>Output</b>: [1, 1.25, 1.5625, 1.953125, 2.44140625, 3.0517578125]
+  </div>
+</article>
+{% endblock %}
+
+{% block function_signature %}
+exponential_growth(x0, k, dt, n)
+{% endblock %}
+
+{% block notes_and_references %}
+<!-- Come back and flesh these out
+1. Technically we'll be solving a first-order ordinary differential equation (ODE) using the forward Euler method, the simplest numerical method for solving ODEs.
+-->
+{% endblock %}
+
+{% block discourse_topic_id %}303{% endblock %}

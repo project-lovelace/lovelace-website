@@ -54,12 +54,16 @@
   <section data-content="1" class="is-active">
     <div class="columns is-centered">
       <div class="column is-half">
-        {% block problem_body %}{% endblock %}
-        <br>
-        <p><strong>Input</strong>: {% block input_description %}{% endblock %}</p>
-        <p><strong>Output</strong>: {% block output_description %}{% endblock %}</p>
-        <br>
-        {% block examples %}{% endblock %}
+        <div class="block">
+          {% block problem_body %}{% endblock %}
+        </div>
+        <div class="block">
+          <p><strong>Input</strong>: {% block input_description %}{% endblock %}</p>
+          <p><strong>Output</strong>: {% block output_description %}{% endblock %}</p>
+        </div>
+        <div class="block">
+          {% block examples %}{% endblock %}
+        </div>
       </div>
 
       <div class="is-divider-vertical"></div>
