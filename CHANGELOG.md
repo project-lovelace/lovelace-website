@@ -1,5 +1,29 @@
 # Changelog
 
+## [v3.3.0](https://github.com/project-lovelace/lovelace-website/tree/v3.3.0) (2021-04-11)
+
+[Full Changelog](https://github.com/project-lovelace/lovelace-website/compare/v3.2.0...v3.3.0)
+
+**Closed issues:**
+
+- Look into interactive apps/plots [\#125](https://github.com/project-lovelace/lovelace-website/issues/125)
+
+**Merged pull requests:**
+
+- Remove news link in navbar [\#127](https://github.com/project-lovelace/lovelace-website/pull/127) ([ali-ramadhan](https://github.com/ali-ramadhan))
+- Interactive Compound interest figure [\#126](https://github.com/project-lovelace/lovelace-website/pull/126) ([ali-ramadhan](https://github.com/ali-ramadhan))
+- Hide max runtime and max memory until properly supported [\#124](https://github.com/project-lovelace/lovelace-website/pull/124) ([ali-ramadhan](https://github.com/ali-ramadhan))
+- RNA translation problem description [\#122](https://github.com/project-lovelace/lovelace-website/pull/122) ([ali-ramadhan](https://github.com/ali-ramadhan))
+- Cleanup half-baked problems [\#117](https://github.com/project-lovelace/lovelace-website/pull/117) ([ali-ramadhan](https://github.com/ali-ramadhan))
+- Bump django from 3.1.6 to 3.1.8 in /src [\#116](https://github.com/project-lovelace/lovelace-website/pull/116) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump urllib3 from 1.26.3 to 1.26.4 in /src [\#115](https://github.com/project-lovelace/lovelace-website/pull/115) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump django-registration from 3.1.1 to 3.1.2 in /src [\#114](https://github.com/project-lovelace/lovelace-website/pull/114) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Update footer [\#113](https://github.com/project-lovelace/lovelace-website/pull/113) ([ali-ramadhan](https://github.com/ali-ramadhan))
+- Tighter problem pages \(no need for sections\) [\#112](https://github.com/project-lovelace/lovelace-website/pull/112) ([ali-ramadhan](https://github.com/ali-ramadhan))
+- Sticky code editor column [\#111](https://github.com/project-lovelace/lovelace-website/pull/111) ([ali-ramadhan](https://github.com/ali-ramadhan))
+- Update `discourse_topic_id` for Plump moose and Compound Interest [\#110](https://github.com/project-lovelace/lovelace-website/pull/110) ([ali-ramadhan](https://github.com/ali-ramadhan))
+- Exponential growth problem description and visualization [\#98](https://github.com/project-lovelace/lovelace-website/pull/98) ([ali-ramadhan](https://github.com/ali-ramadhan))
+
 ## [v3.2.0](https://github.com/project-lovelace/lovelace-website/tree/v3.2.0) (2021-03-28)
 
 [Full Changelog](https://github.com/project-lovelace/lovelace-website/compare/v3.1.0...v3.2.0)
