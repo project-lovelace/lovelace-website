@@ -1,0 +1,126 @@
+{% extends "problems/problem.html" %}
+
+{% load static %}
+
+{% block problem_javascript %}
+<!-- noUiSlider -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.2.0/wNumb.min.js" integrity="sha512-igVQ7hyQVijOUlfg3OmcTZLwYJIBXU63xL9RC12xBHNpmGJAktDnzl9Iw0J4yrSaQtDxTTVlwhY730vphoVqJQ==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.7.0/nouislider.min.js" integrity="sha512-jWNpWAWx86B/GZV4Qsce63q5jxx/rpWnw812vh0RE+SBIo/mmepwOSQkY2eVQnMuE28pzUEO7ux0a5sJX91g8A==" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.7.0/nouislider.min.css" integrity="sha512-40vN6DdyQoxRJCw0klEUwZfTTlcwkOLKpP8K8125hy9iF4fi8gPpWZp60qKC6MYAFaond8yQds7cTMVU8eMbgA==" crossorigin="anonymous" />
+
+<!-- Only load Plotly for problems that use it since it's a big dependency. -->
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+{% endblock %}
+
+{% block you_will_learn %}
+  differential equations
+{% endblock %}
+
+{% block problem_body %}
+  <figure class="has-text-centered">
+    <div id="exponential-growth-app"></div>
+  </figure>
+
+  <div class="columns">
+    <div class="column is-half">
+      <label class="label">Initial value $x_0$: <span id="label-initial-value"></span></label>
+      <div id="slider-initial-value" class="block"></div>
+
+      <label class="label">Growth rate $k$: <span id="label-growth-rate"></span></label>
+      <div id="slider-growth-rate" class="block"></div>
+    </div>
+
+    <div class="column is-half">
+      <label class="label">Time step $\Delta t$: <span id="label-time-step"></span></label>
+      <div id="slider-time-step" class="block"></div>
+
+      <label class="label">Iterations $N$: <span id="label-iterations"></span></label>
+      <div id="slider-iterations" class="block"></div>
+    </div>
+  </div>
+
+    <!--- Introduction -->
+    <p>
+        The laws of nature are often written down in terms of differential equations. Everything
+        from the motion of a baseball and cannon shells to the quantum state of a particle and the
+        global ocean circulation are described in terms of differential equations. Without them, we
+        wouldn't be able to understand most physical phenomena!
+    </p>
+    <p>
+        A differential equation (DE) in a dependent variable $y(t)$ is any equation containing
+        $y(t)$ and its derivatives. A first-order DE only contains $y(t)$ and its first derivative
+        $\frac{dy}{dt}$. So one way to write a general first-order DE is
+
+        $$ \frac{dy(t)}{dt} = f \left( t,y(t) \right) $$
+    </p>
+    <p>
+        Many DE's can be solved by hand but many more cannot, making numerical/computational
+        solutions very useful. In this tutorial you will solve a first-order ordinary differential
+        equation (ODE) using Euler's method. The appendix discusses Euler's method more generally
+    </p>
+
+    <!--- "Recipe" or tutorial -->
+    <p>
+        The ODE given in the problem may be solved by hand however you will solve it using Euler's
+        method. To implement the method, the first step is to approximate the derivative by a
+        finite difference
+
+        $$ \frac{\Delta P}{\Delta t} = \left( 1 - \frac{P}{K} \right) rP $$
+
+        where $\Delta P$ is the change in $P$ between two iterations of Euler's method and
+        $\Delta t$ is the time step between iterations. Explicitly writing
+        $\Delta P = P_{i+1} - P_i$ we can write
+
+        $$ \frac{P_{i+1} - P_i}{\Delta t} = \left( 1 - \frac{P_i}{K} \right) rP_i $$
+
+        or solving for $P_{i+1}$ we get
+
+        $$ P_{i+1} = P_i + \left( 1 - \frac{P_i}{K} \right) rP_i\Delta t $$
+    </p>
+    <p>
+        We can then pick a small value for $\Delta t$ and approximate the solution starting from
+        $t=0$. $P(0)=P_0$ is given as an input so we can calculate
+
+        $$ P(\Delta t) = P_1 = P_0 + \left( 1 - \frac{P_0}{K} \right) rP_0\Delta t $$
+        $$ P(2\Delta t) = P_2 = P_1 + \left( 1 - \frac{P_1}{K} \right) rP_1\Delta t $$
+
+        and so on until you have enough of the solution as desired. The smaller you pick $\Delta t$
+        to be, the more accurate your solution will be in generaly; however, it will take more
+        steps to compute.
+    </p>
+
+    <p>
+        Let $P = P(t)$ denote the population of geese on a university campus as a function of time
+        (days). Then the population can be modelled by the differential equation
+
+        $$ \frac{dP}{dt} = \left( 1 - \frac{P}{K} \right) rP \quad $$
+
+        with the initial condition $P(0) = P_0$, where $K$ is the "carrying capacity" or the
+        maximum number of geese the campus may sustain according to the model, and $r$ is the
+        growth rate of the geese. $P_0$ is the initial geese population at time $t=0$.
+    </p>
+    <p>
+        The university would like to keep the population at a reasonable level and so it's your job
+        to predict when the goose population will reach half the carrying capacity $(K/2)$.
+    </p>
+{% endblock %}
+
+{% block input_description %}
+  $x_0$, $k$, $\Delta t$, and $n$.
+{% endblock %}
+
+{% block output_description %}
+$x(t)$ or $x_0, x_1, \dots, x_n$
+{% endblock %}
+
+{% block examples %}
+{% endblock %}
+
+{% block function_signature %}
+exponential_growth(x0, k, dt, n)
+{% endblock %}
+
+{% block notes_and_references %}
+{% endblock %}
+
+{% block discourse_topic_id %}x{% endblock %}
