@@ -1,0 +1,434 @@
+[
+{
+  "model": "problems.problem",
+  "pk": 1,
+  "fields": {
+    "order_id": 13,
+    "name": "rocket-science",
+    "title": "Rocket science",
+    "subject": "physics",
+    "subfield": "physics",
+    "date_added": "2017-10-22",
+    "solved_by": 169,
+    "difficulty": 2,
+    "timesink": 1,
+    "visible": true
+  }
+},
+{
+  "model": "problems.problem",
+  "pk": 2,
+  "fields": {
+    "order_id": 14,
+    "name": "habitable-exoplanets",
+    "title": "Habitable exoplanets",
+    "subject": "astronomy",
+    "subfield": "astronomy",
+    "date_added": "2017-10-29",
+    "solved_by": 131,
+    "difficulty": 3,
+    "timesink": 2,
+    "visible": true
+  }
+},
+{
+  "model": "problems.problem",
+  "pk": 3,
+  "fields": {
+    "order_id": 15,
+    "name": "chaos",
+    "title": "Chaos",
+    "subject": "math",
+    "subfield": "math",
+    "date_added": "2017-11-05",
+    "solved_by": 105,
+    "difficulty": 4,
+    "timesink": 3,
+    "visible": true
+  }
+},
+{
+  "model": "problems.problem",
+  "pk": 4,
+  "fields": {
+    "order_id": 16,
+    "name": "dna-transcription",
+    "title": "DNA transcription",
+    "subject": "biology",
+    "subfield": "genetics",
+    "date_added": "2017-11-12",
+    "solved_by": 133,
+    "difficulty": 3,
+    "timesink": 2,
+    "visible": true
+  }
+},
+{
+  "model": "problems.problem",
+  "pk": 5,
+  "fields": {
+    "order_id": 17,
+    "name": "caesar-cipher",
+    "title": "Caesar cipher",
+    "subject": "computer science",
+    "subfield": "cryptography",
+    "date_added": "2017-11-19",
+    "solved_by": 53,
+    "difficulty": 6,
+    "timesink": 3,
+    "visible": true
+  }
+},
+{
+  "model": "problems.problem",
+  "pk": 6,
+  "fields": {
+    "order_id": 18,
+    "name": "colorful-resistors",
+    "title": "Colorful resistors",
+    "subject": "engineering",
+    "subfield": "electronics",
+    "date_added": "2017-11-26",
+    "solved_by": 63,
+    "difficulty": 4,
+    "timesink": 5,
+    "visible": true
+  }
+},
+{
+  "model": "problems.problem",
+  "pk": 7,
+  "fields": {
+    "order_id": 19,
+    "name": "correlation-does-not-imply-causation",
+    "title": "Correlation does not imply causation",
+    "subject": "math",
+    "subfield": "statistics",
+    "date_added": "2017-12-03",
+    "solved_by": 48,
+    "difficulty": 5,
+    "timesink": 3,
+    "visible": true
+  }
+},
+{
+  "model": "problems.problem",
+  "pk": 8,
+  "fields": {
+    "order_id": 20,
+    "name": "molecular-mass-calculator",
+    "title": "Molecular mass calculator",
+    "subject": "chemistry",
+    "subfield": "chemistry",
+    "date_added": "2017-12-10",
+    "solved_by": 46,
+    "difficulty": 6,
+    "timesink": 5,
+    "visible": true
+  }
+},
+{
+  "model": "problems.problem",
+  "pk": 9,
+  "fields": {
+    "order_id": 21,
+    "name": "el-nino-intensities",
+    "title": "El Niño intensities",
+    "subject": "earth science",
+    "subfield": "climate",
+    "date_added": "2017-12-17",
+    "solved_by": 17,
+    "difficulty": 8,
+    "timesink": 6,
+    "visible": true
+  }
+},
+{
+  "model": "problems.problem",
+  "pk": 10,
+  "fields": {
+    "order_id": 22,
+    "name": "game-of-life",
+    "title": "Game of life",
+    "subject": "biology",
+    "subfield": "cellular automata",
+    "date_added": "2017-12-24",
+    "solved_by": 18,
+    "difficulty": 8,
+    "timesink": 7,
+    "visible": true
+  }
+},
+{
+  "model": "problems.problem",
+  "pk": 11,
+  "fields": {
+    "order_id": 23,
+    "name": "earthquake-epicenters",
+    "title": "Finding earthquake epicenters",
+    "subject": "earth science",
+    "subfield": "seismology",
+    "date_added": "2017-12-31",
+    "solved_by": 23,
+    "difficulty": 6,
+    "timesink": 4,
+    "visible": true
+  }
+},
+{
+  "model": "problems.problem",
+  "pk": 12,
+  "fields": {
+    "order_id": 24,
+    "name": "ada-lovelaces-note-g",
+    "title": "Ada Lovelace's Note G",
+    "subject": "math",
+    "subfield": "math",
+    "date_added": "2018-11-24",
+    "solved_by": 15,
+    "difficulty": 6,
+    "timesink": 4,
+    "visible": true
+  }
+},
+{
+  "model": "problems.problem",
+  "pk": 13,
+  "fields": {
+    "order_id": 4,
+    "name": "nand-gate",
+    "title": "NAND gate",
+    "subject": "engineering",
+    "subfield": "digital electronics",
+    "date_added": "2019-07-21",
+    "solved_by": 294,
+    "difficulty": 2,
+    "timesink": 1,
+    "visible": true
+  }
+},
+{
+  "model": "problems.problem",
+  "pk": 14,
+  "fields": {
+    "order_id": 1,
+    "name": "scientific-temperatures",
+    "title": "Scientific temperatures",
+    "subject": "physics",
+    "subfield": "thermometers",
+    "date_added": "2019-07-21",
+    "solved_by": 399,
+    "difficulty": 1,
+    "timesink": 1,
+    "visible": true
+  }
+},
+{
+  "model": "problems.problem",
+  "pk": 15,
+  "fields": {
+    "order_id": 2,
+    "name": "speed-of-light",
+    "title": "Speed of Light",
+    "subject": "astronomy",
+    "subfield": "astronomy",
+    "date_added": "2019-07-21",
+    "solved_by": 352,
+    "difficulty": 1,
+    "timesink": 1,
+    "visible": true
+  }
+},
+{
+  "model": "problems.problem",
+  "pk": 16,
+  "fields": {
+    "order_id": 6,
+    "name": "wind-chill",
+    "title": "Wind chill",
+    "subject": "earth science",
+    "subfield": "meteorology",
+    "date_added": "2019-07-21",
+    "solved_by": 208,
+    "difficulty": 2,
+    "timesink": 1,
+    "visible": true
+  }
+},
+{
+  "model": "problems.problem",
+  "pk": 17,
+  "fields": {
+    "order_id": 7,
+    "name": "flight-paths",
+    "title": "Flight paths",
+    "subject": "earth science",
+    "subfield": "geodesy",
+    "date_added": "2019-07-21",
+    "solved_by": 136,
+    "difficulty": 4,
+    "timesink": 3,
+    "visible": true
+  }
+},
+{
+  "model": "problems.problem",
+  "pk": 18,
+  "fields": {
+    "order_id": 8,
+    "name": "almost-pi",
+    "title": "Almost π",
+    "subject": "math",
+    "subfield": "math",
+    "date_added": "2019-07-21",
+    "solved_by": 143,
+    "difficulty": 3,
+    "timesink": 2,
+    "visible": true
+  }
+},
+{
+  "model": "problems.problem",
+  "pk": 19,
+  "fields": {
+    "order_id": 9,
+    "name": "temperature-variations",
+    "title": "Temperature variations",
+    "subject": "earth science",
+    "subfield": "meteorology",
+    "date_added": "2019-07-21",
+    "solved_by": 103,
+    "difficulty": 4,
+    "timesink": 3,
+    "visible": true
+  }
+},
+{
+  "model": "problems.problem",
+  "pk": 20,
+  "fields": {
+    "order_id": 10,
+    "name": "blood-types",
+    "title": "Blood types",
+    "subject": "biology",
+    "subfield": "biology",
+    "date_added": "2019-07-21",
+    "solved_by": 76,
+    "difficulty": 4,
+    "timesink": 5,
+    "visible": true
+  }
+},
+{
+  "model": "problems.problem",
+  "pk": 21,
+  "fields": {
+    "order_id": 11,
+    "name": "babylonian-square-roots",
+    "title": "Babylonian square roots",
+    "subject": "math",
+    "subfield": "math",
+    "date_added": "2019-07-21",
+    "solved_by": 71,
+    "difficulty": 5,
+    "timesink": 3,
+    "visible": true
+  }
+},
+{
+  "model": "problems.problem",
+  "pk": 22,
+  "fields": {
+    "order_id": 12,
+    "name": "definite-integrals",
+    "title": "Definite integrals",
+    "subject": "math",
+    "subfield": "calculus",
+    "date_added": "2019-07-21",
+    "solved_by": 75,
+    "difficulty": 4,
+    "timesink": 2,
+    "visible": true
+  }
+},
+{
+  "model": "problems.problem",
+  "pk": 23,
+  "fields": {
+    "order_id": 25,
+    "name": "rock-star-climate",
+    "title": "Rock star climate",
+    "subject": "earth science",
+    "subfield": "climate",
+    "date_added": "2019-08-02",
+    "solved_by": 32,
+    "difficulty": 4,
+    "timesink": 2,
+    "visible": true
+  }
+},
+{
+  "model": "problems.problem",
+  "pk": 24,
+  "fields": {
+    "order_id": 3,
+    "name": "plump-moose",
+    "title": "Plump moose",
+    "subject": "biology",
+    "subfield": "ecology",
+    "date_added": "2021-03-27",
+    "solved_by": 106,
+    "difficulty": 1,
+    "timesink": 1,
+    "visible": true
+  }
+},
+{
+  "model": "problems.problem",
+  "pk": 25,
+  "fields": {
+    "order_id": 5,
+    "name": "compound-interest",
+    "title": "Compound interest",
+    "subject": "math",
+    "subfield": "finance",
+    "date_added": "2021-03-27",
+    "solved_by": 74,
+    "difficulty": 2,
+    "timesink": 1,
+    "visible": true
+  }
+},
+{
+  "model": "problems.problem",
+  "pk": 26,
+  "fields": {
+    "order_id": 26,
+    "name": "rna-translation",
+    "title": "RNA translation",
+    "subject": "biology",
+    "subfield": "genetics",
+    "date_added": "2021-04-10",
+    "solved_by": 13,
+    "difficulty": 4,
+    "timesink": 11,
+    "visible": true
+  }
+},
+{
+  "model": "problems.problem",
+  "pk": 27,
+  "fields": {
+    "order_id": 27,
+    "name": "exponential-growth",
+    "title": "Exponential growth",
+    "subject": "math",
+    "subfield": "differential equations",
+    "date_added": "2021-04-11",
+    "solved_by": 13,
+    "difficulty": 6,
+    "timesink": 3,
+    "visible": true
+  }
+}
+]
