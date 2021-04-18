@@ -24,3 +24,14 @@ There are three steps to submitting a new problem:
 2. Add code stubs for the new problem in the [`src/static/code_stubs/`](https://github.com/project-lovelace/lovelace-website/tree/main/src/static/code_stubs) directory. If you're not sure what the code stub should look like, you can leave it blank (i.e. leave an empty file).
 3. Add problem-specific visualization code to the [`src/static/visualization/`](https://github.com/project-lovelace/lovelace-website/tree/main/src/static/visualization) directory. This tells your browser how to render and visualize the test case results. Usually it's just text but you could get fancy and plot things with Plotly if you want.
 4. Open a pull request! Once all the tests pass it can be merged.
+
+## How to set up the website development environment
+
+1. Make sure you have recent versions of `docker` and `docker-compose` installed.
+2. Clone this repository.
+3. Run `bash update_development.bash` to set up the website locally.
+4. You should now see the Project Lovelace website at `http://localhost:8000`.
+5. Run `bash populate_development_env.bash` to add the problems to the website.
+6. You should now see a list of problems at `http://localhost:8000/problems/`.
+7. Run `docker-compose exec django python manage.py createsuperuser` to create a new admin superuser for development if needed.
+8. You should now be able to log into `http://localhost:8000/admin/` and add new problems to the website for testing.
