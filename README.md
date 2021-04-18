@@ -30,6 +30,6 @@ There are three steps to submitting a new problem:
 1. Make sure you have recent versions of `docker` and `docker-compose` installed.
 2. Clone this repository.
 3. Run `bash update_development.bash` to set up a development environment with the website locally.
-4. Run `bash populate_development_env.bash` to populate the website with problems and a couple of users for debugging.
-5. You should now see a list of problems at `http://localhost:8000/problems/` and should be able to submit solutions.
-6. You should also be able to log into `http://localhost:8000/admin/` and add new problems to the website for testing.
+4. Run `bash populate_development_env.bash` to populate the website with problems and a couple of users.
+5. You should see a list of problems at `http://localhost:8000/problems/` and be able to submit solutions.
+6. You should be able to log into `http://localhost:8000/admin/` and add new problems.
