@@ -13,6 +13,10 @@ class Command(BaseCommand):
         n_users = User.objects.count()
         n_profiles = UserProfile.objects.count()
 
+        if n_users != 0 or n_profiles != 0:
+            self.stdout.write(f"There are already {n_users} users and {n_profiles} profiles. Not adding root and anonymous user profiles.")
+            sys.exit(0)
+
         dev_password = "lovelace"
 
         root_user = User.objects.create_user("root", password=dev_password)
