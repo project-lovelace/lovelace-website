@@ -10,5 +10,8 @@ docker-compose exec django python manage.py migrate --no-input
 echo "Populating Django database with problems..."
 docker-compose exec django python manage.py loaddata lovelace_problems.json
 
+echo "Creating root and anonymous user profiles..."
+docker-compose exec django python manage.py create_root_and_anonymous
+
 echo "Collecting static files..."
 docker-compose exec django python manage.py collectstatic --no-input
