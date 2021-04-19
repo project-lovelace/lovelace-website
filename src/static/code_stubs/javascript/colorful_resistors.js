@@ -48,6 +48,5 @@ function resistance(band_colors) {
 
     // Your code goes here!
 
-    solution = [nominal_R, minimum_R, maximum_R];
-    return solution;
+    return [nominal_R, minimum_R, maximum_R];
 }

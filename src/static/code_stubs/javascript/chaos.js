@@ -3,5 +3,5 @@ function logistic_map(r) {
 
     // Your code goes here!
 
-    return [x];
+    return x;
 }

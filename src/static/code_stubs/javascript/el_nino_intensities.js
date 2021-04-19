@@ -1,3 +1,6 @@
+const fs = require("fs");
+const fileContents = fs.readFileSync("mei.ext_index.txt", "utf8");
+
 function enso_classification(year) {
     classification = "";
     intensity = "";

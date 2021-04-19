@@ -1,5 +1,8 @@
 function bernoulli(n) {
-    numerator, denominator = 0, 0
+    let numerator = 0;
+    let denominator = 0;
 
-    return numerator, denominator
+    // Your code goes here!
+
+    return [numerator, denominator];
 }
