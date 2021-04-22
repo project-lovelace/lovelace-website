@@ -73,7 +73,7 @@ function plot_temp_mean_st_dev(id, data) {
     var trace_st_dev_max = {
         x: months,
         y: Array(months.length).fill(mean + st_dev / 2),
-        name: 'Standard Deviation',
+        name: 'standard deviation',
         type: 'scatter',
         mode: 'none',
         fill: 'tonexty',
