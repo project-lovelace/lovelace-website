@@ -34,14 +34,14 @@ function make_temperature_variations_figure() {
     return
 }
 
-function plot_temp_mean_variance(id, data) {
+function plot_temp_mean_st_dev(id, data) {
     var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
     var mean = data.reduce((a, b) => a + b) / data.length
 
-    var variance = 0
+    var st_dev = 0
     for (let i = 0; i < data.length; i++)
-        variance += (data[i] - mean)**2
-    variance = Math.sqrt(variance / data.length)
+        st_dev += (data[i] - mean)**2
+    st_dev = Math.sqrt(st_dev / data.length)
 
     var trace_data = {
         x: months,
@@ -59,26 +59,26 @@ function plot_temp_mean_variance(id, data) {
         text: 'mean'
     }
 
-    var trace_variance_min = {
+    var trace_st_dev_min = {
         x: months,
-        y: Array(months.length).fill(mean - variance / 2),
+        y: Array(months.length).fill(mean - st_dev / 2),
         type: 'scatter',
         mode: 'lines',
         fill: 'none',
         line: { color: 'rgba(31, 119, 180, 0.5)' },
         showlegend: false,
-        text: 'mean - variance / 2'
+        text: 'mean - st_dev / 2'
     }
 
-    var trace_variance_max = {
+    var trace_st_dev_max = {
         x: months,
-        y: Array(months.length).fill(mean + variance / 2),
-        name: 'variance',
+        y: Array(months.length).fill(mean + st_dev / 2),
+        name: 'standard deviation',
         type: 'scatter',
         mode: 'none',
         fill: 'tonexty',
         fillcolor: 'rgba(31, 119, 180, 0.5)',
-        text: 'mean + variance / 2'
+        text: 'mean + st_dev / 2'
     }
 
     var layout = {
@@ -91,13 +91,13 @@ function plot_temp_mean_variance(id, data) {
         height: '100%'
     }
 
-    traces = [trace_data, trace_mean, trace_variance_min, trace_variance_max]
+    traces = [trace_data, trace_mean, trace_st_dev_min, trace_st_dev_max]
     Plotly.newPlot(id, traces, layout)
 }
 
 function plot_temperature_variations_example() {
     var data = [4.4, 4.2, 7.0, 12.9, 18.5, 23.5, 26.4, 26.3, 22.5, 16.6, 11.2, 7.3]
-    plot_temp_mean_variance('temperature-variations-example', data)
+    plot_temp_mean_st_dev('temperature-variations-example', data)
     return
 }
 
@@ -109,10 +109,10 @@ function visualize_test_case(input, output, expected, n) {
         `<b>Input</b>: ${input[0]} <br>`
 
     document.getElementById(`output${n}`).innerHTML =
-        `<b>Output</b>: mean = ${output[0]} (expected ${expected[0]}), variance = ${output[1]} (expected ${expected[1]}) <br>` +
+        `<b>Output</b>: mean = ${output[0]} (expected ${expected[0]}), st_dev = ${output[1]} (expected ${expected[1]}) <br>` +
         `<div id="output${n}plot"></div>`
 
-    plot_temp_mean_variance(`output${n}plot`, input[0])
+    plot_temp_mean_st_dev(`output${n}plot`, input[0])
 
     return
 }
