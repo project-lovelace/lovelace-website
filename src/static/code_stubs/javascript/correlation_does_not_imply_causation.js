@@ -4,5 +4,5 @@ function correlation_coefficient(x, y) {
 
     // Your code goes here!
 
-    return r
+    return r;
 }

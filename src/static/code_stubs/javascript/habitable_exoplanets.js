@@ -1,5 +1,5 @@
 function habitable_exoplanet(L, r) {
-    habitability = "";
+    let habitability = "";
 
     // Your code goes here!
 
