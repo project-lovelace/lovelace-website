@@ -43,12 +43,12 @@ function pythagoreanTriples(c2) {
     return triples;
 }
 
-function babylonianSpiral(n_steps) {
+function babylonianSpiral(nSteps) {
     let vecs = [ [0,0], [0,1] ];
 
     let n2 = 1;
 
-    for (let step = 0; step < n_steps; step++) {
+    for (let step = 0; step < nSteps; step++) {
         let x0 = vecs[vecs.length-1][0];
         let y0 = vecs[vecs.length-1][1];
         let theta = Math.atan2(y0, x0);
@@ -88,22 +88,22 @@ function babylonianSpiral(n_steps) {
 ///// Interactive figure
 /////
 
-let MAX_STEPS = 10_000;
+let maxSteps = 10_000;
 
 let t0 = performance.now();
-let xy = babylonianSpiral(MAX_STEPS);
+let xy = babylonianSpiral(maxSteps);
 let t1 = performance.now();
 
-console.log(`Computing ${MAX_STEPS} steps of the Babylonian spiral took ${t1 - t0} ms.`);
+console.log(`Computing ${maxSteps} steps of the Babylonian spiral took ${t1 - t0} ms.`);
 
-let spiral_x = xy[0];
-let spiral_y = xy[1];
+let xSpiral = xy[0];
+let ySpiral = xy[1];
 
-function plotBabylonianSpiral(n_steps) {
+function plotBabylonianSpiral(nSteps) {
 
     let trace = {
-        x: spiral_x.slice(0, 2 + n_steps),
-        y: spiral_y.slice(0, 2 + n_steps),
+        x: xSpiral.slice(0, 2 + nSteps),
+        y: ySpiral.slice(0, 2 + nSteps),
         mode: 'lines',
         type: 'scatter'
     }
@@ -132,7 +132,7 @@ noUiSlider.create(sliderSteps, {
     start: [20],
     range: {
         "min": [0],
-        "max": [MAX_STEPS]
+        "max": [maxSteps]
     },
     step: 1
 });
@@ -140,11 +140,11 @@ noUiSlider.create(sliderSteps, {
 let labelSteps = document.getElementById("label-steps");
 
 function replotBabylonianSpiral() {
-    let n_steps = parseFloat(sliderSteps.noUiSlider.get());
+    let nSteps = parseFloat(sliderSteps.noUiSlider.get());
 
-    labelSteps.innerHTML = n_steps;
+    labelSteps.innerHTML = nSteps;
 
-    plotBabylonianSpiral(n_steps)
+    plotBabylonianSpiral(nSteps)
 
     return
 }
@@ -155,12 +155,47 @@ sliderSteps.noUiSlider.on("update", replotBabylonianSpiral);
 ///// Test case visualization
 /////
 
-function visualize_test_case(input, output, expected, n) {
-    document.getElementById(`input${n}`).innerHTML =
-        `<b>Input</b>: ${input[0]} <br>`
+function visualize_test_case(input, output, expected, nTestCase) {
 
-    document.getElementById(`output${n}`).innerHTML =
-        `<b>Output</b>: ${output[0]} (expected ${expected[0]}) <br>`
+    let nSteps = input[0];
+    let xOutput = output[0];
+    let yOutput = output[1];
+
+    document.getElementById(`input${nTestCase}`).innerHTML =
+        `<b>Input</b>: n_steps = ${nSteps} <br>`
+
+    document.getElementById(`output${nTestCase}`).innerHTML =
+        `<b>Output</b>: <br>` +
+        `<div id="output-plot-${nTestCase}"></div>`
+
+    let traceCorrect = {
+        x: xSpiral.slice(0, 2 + nSteps),
+        y: ySpiral.slice(0, 2 + nSteps),
+        mode: 'lines',
+        type: 'scatter',
+        name: 'correct'
+    }
+
+    let traceOutput = {
+        x: xOutput,
+        y: yOutput,
+        mode: 'lines',
+        type: 'scatter',
+        name: 'output'
+    }
+
+    let layout = {
+        xaxis: { title: 'x' },
+        yaxis: { title: 'y' },
+        paper_bgcolor: 'rgba(0, 0, 0, 0)',
+        plot_bgcolor: 'rgba(0, 0, 0, 0)',
+        yaxis: {
+            scaleanchor: "x",
+            scaleratio: 1
+        }
+    }
+
+    Plotly.newPlot(`output-plot-${nTestCase}`, [traceCorrect, traceOutput], layout)
 
     return
 }
