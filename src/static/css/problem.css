@@ -41,3 +41,10 @@
     width: 100%;
     resize: vertical;
 }
+
+.example-block {
+    font-family: monospace;
+    text-align: justify;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+}
