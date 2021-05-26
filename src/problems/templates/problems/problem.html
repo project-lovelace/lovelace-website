@@ -8,8 +8,6 @@
 
 <link rel="stylesheet" href="{% static 'css/problem.css' %}">
 
-{% block problem_javascript %}{% endblock %}
-
 {% endblock %}
 
 {% block page_title %}
@@ -233,6 +231,9 @@
 {% endblock %}
 
 {% block postload_javascript %}
+
+{% block problem_javascript %}{% endblock %}
+
 <!-- CodeMirror editor -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.1/codemirror.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.1/theme/monokai.css">
